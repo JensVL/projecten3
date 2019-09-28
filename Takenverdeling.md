@@ -48,7 +48,7 @@ Oscar2
 Papa2
 
 - Levi Goossens
-- Robin Daeleman
+- Arno Van Nieuwenhove
 
 Werkstations
 
@@ -58,3 +58,5 @@ Werkstations
 Firewall
 
 - Alister Adutwum
+
+Robin Daeleman?
