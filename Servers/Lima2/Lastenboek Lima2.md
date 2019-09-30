@@ -7,7 +7,3 @@
 
 
 ## Tijdbesteding
-
-|          deelopdracht              | Verantwoordelijke | Geschat  Gerealiseerd |
-|---:                                | .|---:    |  ---:         |
-|.|. | . |. |
