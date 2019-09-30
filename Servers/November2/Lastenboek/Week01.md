@@ -9,19 +9,8 @@ Taak team:
 
 Week: 01
 
-## Opdrachtomschrijving
-...
-
-## Done
-| TeamLid        | Omschrijving Taak | Uren           |
-| -------------- | -------------- | -------------- |
-|                |                |                |
-|                |                |                |
-|                |                |                |
-|                |                |                |
-
-## To do
-...
+## Opdrachtomschrijving 
+![week1](Servers/November2/Lastenboek/Screenshots lastenboek/Week1.png)
 
 ## Vragen
 - geen
