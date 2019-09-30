@@ -10,7 +10,7 @@ Taak team:
 Week: 01
 
 ## Opdrachtomschrijving 
-![week1](Lastenboek/Screenshots lastenboek/Week1.png)
+![week1](Screenshots lastenboek/Week1.png)
 
 ## Vragen
 - geen
