@@ -1,4 +1,4 @@
-## Teampasp
+## Teampaspoort
 
 | Wie?                  | Positief                       | Negatief            |
 | --------------------- | ------------------------------ | ------------------- |
@@ -21,7 +21,3 @@
 |                       |                                |                     |
 |                       |                                |                     |
 |                       |                                |                     |
-
-## oort
-
-Jannes Van Wontergh
