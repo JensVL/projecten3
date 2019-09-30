@@ -3,7 +3,7 @@
 Alpha2
 
 - Kimberly Declercq
-- Laurens Blankaert-Cassaert
+- Laurens Blancquaert-Cassaer
 
 Bravo2
 
