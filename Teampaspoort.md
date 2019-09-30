@@ -4,7 +4,7 @@
 | --------------------- | ------------------------------ | -------------------                    |
 | Jannes Van Wonterghem | - Behulpzaam<br />- Doorzetter | - Uitsteller<br />-                    |
 | Kimberly De Clercq    | - Behulpzaam<br />- Sociaal    | - Weinig zelfvertrouwen<br />- Koppig  |
-|                       |                                |                                        |
+| Laurens Blancquaert-Cassaer                      |          Zelfstandig, betrouwbaar                      |             Te perfectionistisch, (Soms) uitsteller                           |
 |                       |                                |                                        |
 |                       |                                |                                        |
 |                       |                                |                                        |
