@@ -13,7 +13,7 @@ De kolom "Uitvoering" bevat de verantwoordelijke voor het realiseren van de taak
 
 
 ## Overzicht documentatie
-
+[overzicht-netwerk](https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Netwerkbeheer/overzicht-netwerk.jpg)
 
 
 ## TODOs
