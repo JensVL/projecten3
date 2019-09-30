@@ -14,7 +14,7 @@ require 'yaml'
 ENV["LC_ALL"] = "en_US.UTF-8"
 
 # Set your default base box here
-DEFAULT_BASE_BOX = 'gusztavvargadr/w16s-iis'
+DEFAULT_BASE_BOX = 'gusztavvargadr/windows-server'
 
 #
 # No changes needed below this point
