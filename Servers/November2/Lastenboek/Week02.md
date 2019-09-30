@@ -10,18 +10,7 @@ Taak team:
 Week: 02
 
 ## Opdrachtomschrijving
-...
-
-## Done
-| TeamLid        | Omschrijving Taak | Uren           |
-| -------------- | -------------- | -------------- |
-|                |                |                |
-|                |                |                |
-|                |                |                |
-|                |                |                |
-
-## To do
-...
+![Week02](https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/November2/Lastenboek/Screenshots%20lastenboek/Week2.png)
 
 ## Vragen
 - geen
