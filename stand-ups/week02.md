@@ -19,7 +19,7 @@
 | Sean Vancompernolle |   V      | 
 | Jonas Vandegehuchte |   V      | 
 | Tibo Vanhercke |   V      | 
-| Ferre Verstichelen|   V      | 
+| Ferre Verstichelen|   X      | 
 | Elias Waterschoot |   V      |
 
 ## Algemeen
@@ -88,4 +88,4 @@
 
 - SAMEN BEPALEN OF WE POWERSHELL LINTING ZULLEN GEBRUIKEN OF NIET
 
-Author - Kimberly Declercq & Laurens Blancquaert-Cassaer
+Author - Kimberly De Clercq & Laurens Blancquaert-Cassaer
