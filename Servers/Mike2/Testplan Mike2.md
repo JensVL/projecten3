@@ -4,7 +4,6 @@
 
 Auteur(s) testplan: Tim Grijp
 
-\*
 ## installeren van de windows server
 
 * 
