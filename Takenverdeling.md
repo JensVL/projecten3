@@ -50,9 +50,10 @@ Papa2
 - Levi Goossens
 - Arno Van Nieuwenhove
 
-Werkstations
+Netwerk
 
 - Jens Van Lieferingen
+
 - Robin Van De Walle
 
 Firewall
