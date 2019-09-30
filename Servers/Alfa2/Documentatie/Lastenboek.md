@@ -10,7 +10,7 @@ Alle userauthenticatie gebeurd via Active Directory. Dit betekent dat werkstatio
 
 ## Overzicht deeltaken:
 | TeamLid                     | Deeltaak | Time Estimated           | Time spent  |
-| --------------              | --------------    | -------------- |              |
+| --------------              | --------------    | -------------- |      --------------        |
 | Laurens Blancquaert-Cassaer | Opzoekingswerk AD/DNS   |                |               |
 | Laurens Blancquaert-Cassaer | AD/DNS installatie + config   |                |               |
 | Laurens Blancquaert-Cassaer | Testplan + documentatie maken AD/DNS  |                |               |
