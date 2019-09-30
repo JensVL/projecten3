@@ -19,5 +19,9 @@
 
 [https://www.faqforge.com/windows/configure-dhcp-powershell/](https://www.faqforge.com/windows/configure-dhcp-powershell/)
 
+### DHCP to domain
+
+[https://www.dtonias.com/authorize-dhcp-server-2016/](https://www.dtonias.com/authorize-dhcp-server-2016/)
+
 ## Extra info
 [https://en.wikipedia.org/wiki/UDP_Helper_Address](https://en.wikipedia.org/wiki/UDP_Helper_Address)
