@@ -23,5 +23,9 @@
 
 [https://www.dtonias.com/authorize-dhcp-server-2016/](https://www.dtonias.com/authorize-dhcp-server-2016/)
 
+### IP address aanpassen
+
+[https://thebackroomtech.com/2018/04/16/configure-static-ip-address-on-network-adapter-using-powershell/](https://thebackroomtech.com/2018/04/16/configure-static-ip-address-on-network-adapter-using-powershell/)
+
 ## Extra info
 [https://en.wikipedia.org/wiki/UDP_Helper_Address](https://en.wikipedia.org/wiki/UDP_Helper_Address)
