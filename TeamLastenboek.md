@@ -1,9 +1,5 @@
 # Team Lastenboek
 
-## Vragen standup
-
-## Bespreking standup
-
 ## Lastenboek teams
 
 ### Alpha2
