@@ -26,14 +26,16 @@
 |---:                                | ---:    | ---:         |
 |Opzoekwerk: configuratie installatie serverol    |  300Min     |min  |in |
 |Opzoekwerk: Aanmaken disks     |       |min  |in |
-|Opzoekwerk: instellen permissies  |       |min  |in |
-|Opzoekwerk: instellen maximum capaciteit bij nodige drives |       |min  |in |
+|Opzoekwerk: instellen permissies  |  180min     |min  |in |
+|Opzoekwerk: instellen maximum capaciteit bij nodige drives |   60min    |min  |in |
 |Opzoekwerk: dagelijkse Schaduwkopie configureren voor AdminData. |       |min  |in |
 
 |          deelopdracht              | Geschat | Gerealiseerd |
 |---:                                | ---:    | ---:         |
-|configuratie installatie serverol    |  180Min     |min  |in |
+|Configuratie installatie serverol    |  180Min     |min  |in |
 |Aanmaken disks     |       |min  |in |
-|instellen permissies  |       |min  |in |
-|instellen maximum capaciteit bij nodige drives |       |min  |in |
-|dagelijkse Schaduwkopie configureren voor AdminData. |       |min  |in |
+|Instellen permissies  |    180min   |min  |in |
+|Instellen maximum capaciteit bij nodige drives | 120min      |min  |in |
+|Dagelijkse Schaduwkopie configureren voor AdminData. |       |min  |in |
+|Testen Fileserver |    180min   |min  |in |
+|Documenteren fileserver|   240min    |min  |in |
