@@ -63,6 +63,16 @@ debug "packagelocation = $packagelocation"
 
 
 #------------------------------------------------------------------------------
+# Run Powershell Linter
+#------------------------------------------------------------------------------
+# Install linter
+if ($PSVersionTable.PSVersion -gt 5.1.17763.592) {
+    Install-PackageProvider Nuget -MinimumVersion 2.8.5.201 –Force
+}
+Install-Module -Name PSScriptAnalyzer
+
+
+#------------------------------------------------------------------------------
 # Provision server
 #------------------------------------------------------------------------------
 # Ensure download path for installation files exists
@@ -111,10 +121,13 @@ if($blogdemo){
 # Set-ExecutionPolicy RemoteSigned
 
 # # Download SSL cmdlets for certificate generation
+# TODO: download script on host and include it in the provisioning files
+# for if the link is unreachable
 # download_ssl_cmdlets $downloadpath
 
 # # Generate SSL certificate
-configure_certs $downloadpath $website
+# TODO: test
+# configure_certs $downloadpath $website
 
 
 
