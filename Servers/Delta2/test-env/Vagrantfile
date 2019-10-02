@@ -93,11 +93,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         vb.customize ['modifyvm', :id, '--groups', PROJECT_NAME]
       end
 
-      iis = host['iis']
-      asp = host['asp']
-      webapp = host['webapp']
+      if host['name'] == "delta2"
+        iis = host['iis']
+        asp = host['asp']
+        webapp = host['webapp']
 
-      if host['name'] == 'delta2'
         node.vm.provision 'shell',
           privileged: true,
           path: 'provisioning/' + host['name'] + '.ps1',
@@ -112,14 +112,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             asp['dotnetcore30'],
             webapp['demo'],
             webapp['publocation'],
-            webapp['packagelocation'],
+            webapp['packagelocation']
           ]
-      elsif host['name'] == 'sql-test-server'
+      elsif host['name'] == "sql-test-server"
         node.vm.provision 'shell',
           privileged: true,
           path: 'provisioning/' + host['name'] + '.ps1',
-          args: []
+          args: [
+            host['downloadpath']
+          ]
       end
+
     end
   end
 end

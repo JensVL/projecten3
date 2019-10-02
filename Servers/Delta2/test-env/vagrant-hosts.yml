@@ -37,28 +37,29 @@
   gui: false
   memory: 2048
   cpus: 2
-  webapp:
-    demo: false
-    publocation: 'C:\inetpub\wwwroot\'
-    packagelocation: 'C:\vagrant\app\app.zip'
-  downloadpath: 'C:\SetupMedia'
   forwarded_ports:
     - guest: "3389"
       host: "3389"
+  downloadpath: 'C:\SetupMedia'
   iis:
-    username: 'vagrant'
-    password: 'vagrant'
+    username: vagrant
+    password: vagrant
   asp:
-    asp35: false
-    asp45: false
-    dotnetcore21: false
-    dotnetcore22: false
-    dotnetcore30: true
+    asp35: $false
+    asp45: $false
+    dotnetcore21: $false
+    dotnetcore22: $false
+    dotnetcore30: $true
+  webapp:
+    demo: $false
+    publocation: 'C:\inetpub\wwwroot\'
+    packagelocation: 'C:\vagrant\app\app.zip'
 
 - name: sql-test-server
   box: gusztavvargadr/sql-server
-  ip: 172.18.1.4
+  ip: 172.18.1.68
   netmask: 255.255.255.224
   gui: false
   memory: 2048
   cpus: 2
+  downloadpath: 'C:\SetupMedia'
