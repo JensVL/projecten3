@@ -29,6 +29,7 @@ Lima2
 
 - Cédric Detimmerman
 - Jochim De Wandel
+- Robby Daelman
 
 Mike2
 
@@ -60,4 +61,3 @@ Firewall
 
 - Alister Adutwum
 
-Robin Daeleman?
