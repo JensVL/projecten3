@@ -32,8 +32,11 @@ PfSense staat nu op de hardeschijf met de [Defaultconfiguration](https://docs.ne
 We moeten nu de firewall verder configureren via de shell menu of de WebGUI.  
 
 
-## Webconfig:  
+## Initiële Configuratie:
 
+## Webconfig:
+
+## Packages:
 
 ## Bronnen:  
 
@@ -44,4 +47,5 @@ We moeten nu de firewall verder configureren via de shell menu of de WebGUI.
 <https://www.youtube.com/watch?v=h97J70hzcP0>  
 <https://www.youtube.com/watch?v=6s5wvmlESfo>  
 <https://www.pfsense.org/getting-started/>
-
+<https://docs.netgate.com/pfsense/en/latest/packages/package-list.html>
+<https://www.youtube.com/watch?v=KOuCy8mf214>
