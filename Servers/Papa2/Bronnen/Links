@@ -5,6 +5,7 @@ https://sheska.com/how-to-create-an-automated-install-for-windows-server-2019/
 # autounattend.xml
 https://github.com/ruzickap/packer-templates/tree/master/http/windows-2019
 https://github.com/joefitzgerald/packer-windows/tree/master/answer_files/2016
+https://win10.guru/simple-deployment-with-autounattend-xml-answer-file/
 
 # ADK installeren
 https://docs.microsoft.com/en-us/windows-hardware/get-started/adk-offline-install
