@@ -35,7 +35,7 @@ We moeten nu de firewall verder configureren via de shell menu of de WebGUI.
 
 ## Initiële Configuratie:
 Na de installatie zien we dit menu:  
-![postinstall](https://raw.githubusercontent.com/HoGentTIN/p3ops-1920-red/master/Servers/Zulu2/img/postinstall.png?token=AGFYY4TXVZDDSRO3XKWIFRK5UIJG)  
+![postinstall](https://raw.githubusercontent.com/HoGentTIN/p3ops-1920-red/master/Servers/Zulu2/img/postinstall.png?token=AGFYY4TKE26HC6TKLEQAQ4S5UIJPQ)  
 We kunnen vanaf hier al extra packages installeren of commands invoeren via de shell (12) of andere devices pingen binnen het netwerk (7).
 Het eerste wat we willen doen is de interfaces juist instellen (Ip addressen en VLans).
 Druk Ctrl + C in om de configuratie te eindigen en terug naar het menu te gaan.  
