@@ -35,7 +35,7 @@ We moeten nu de firewall verder configureren via de shell menu of de WebGUI.
 
 ## Initiële Configuratie:
 Na de installatie zien we dit menu:  
-![postinstall](../img/postinstall.png)  
+![postinstall](https://github.com/HoGentTIN/p3ops-1920-red/tree/master/Servers/Zulu2/img/postinstall.png)  
 We kunnen vanaf hier al extra packages installeren of commands invoeren via de shell (12) of andere devices pingen binnen het netwerk (7).
 Het eerste wat we willen doen is de interfaces juist instellen (Ip addressen en VLans).
 Druk Ctrl + C in om de configuratie te eindigen en terug naar het menu te gaan.  
@@ -45,7 +45,7 @@ Druk Ctrl + C in om de configuratie te eindigen en terug naar het menu te gaan.
  3. Blijft enter drukken en "n" voor DHCP server  
  
  Als je het juist gedaan hebt zal je het volgend scherm zien kan je via een browser op de Webconfig gaan.  
- ![webinstall](../img/webinstall.png)  
+ ![webinstall](https://github.com/HoGentTIN/p3ops-1920-red/tree/master/Servers/Zulu2/img/webinstall.png)  
  
  
 ## Webconfig:
@@ -57,9 +57,9 @@ Maak een nieuwe VM aan dat toegang heeft tot een webbrowsers en dat in het zelfd
   2. Stel Ipv4 address van VM in op hetzelfde netwerk als dat van de firewall (192.168.1.54/24 in mijn test omgeving)   
   3. Zet Web Security uit en surf naar het ip address van de firewall (192.168.1.50).  
   Je zou normaal het login scherm zien van de PfSense WebGUI.  
-  ![login](../img/login.png)  
+  ![login](https://github.com/HoGentTIN/p3ops-1920-red/tree/master/Servers/Zulu2/img/login.png)  
  Log in "admin" en passwoord "pfsense" en ga door de wizard, alle gegevens dat je nu ingeeft kan je later nog veranderen. Na de wizard    zal je komen op het dashboard waar je een overzicht ziet van het systeeminformatie van de firewall. Van hieruit kan je alle configuratie doen dat je firewall nodig heeft.  
-  ![menu](../img/menu.png)  
+  ![menu](https://github.com/HoGentTIN/p3ops-1920-red/tree/master/Servers/Zulu2/img/menu.png)  
   
      
 ## Packages:
