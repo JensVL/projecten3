@@ -16,7 +16,9 @@ Datum voortgangsgesprek: 30/09/2019
 
 
 ### Nathan Cammerman
-
+* Informeren opdracht projecten 3
+* Info SSL certificatie voor webserver opzoeken
+* SSL certificatie implementeren in provisioning script + unzip functie + code cleanup
 ![Time-registration-week01-nathanwammerman](images/week01-nathancammerman.png)
 
 
@@ -36,6 +38,11 @@ Datum voortgangsgesprek: 30/09/2019
 ### Algemeen
 
 ### Nathan Cammerman
+
+* info web deploy
+* info web build
+* info SSL + integratie
+* info configuring IIS + configuring
 ### Matthias Van De Velde
 
 * Test plan
