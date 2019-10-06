@@ -18,7 +18,9 @@ Als inhoud voor deze CMS server voorzie je alle Windows documentatie van dit pro
 | Tim Grijp    | Opzoekingswerk SharePoint         |                |
 | Elias Waterschoot   | Installing prerequisites   |                |
 | Tim Grijp           | Installing prerequisites   |                |
-
+| Tim Grijp        | SharePoint installatie         |                 |
+| Elias Waterschoot | SharePoint installatie      |                 |
+| Tim Grijp        | script prerequisites         |              |
 
 
 ## Vragen
