@@ -10,7 +10,7 @@
 | Nathan Cammerman            | - Teamspeler<br>-Doorzetten             | - "Sorryzegger"<br>-Ziet soms door het bos de bomen niet meer |
 | Jens Van Liefferinge        | - Direct<br>- Resultaatgericht          | - Koppig<br>- Uitsteller                                     |
 | Elias Waterschoot           | - Geduldig<br>- Bedachtzaam             | - Verlegen, niet sociaal<br>- Uitsteller                     |
-|                             |                                         |                                                              |
+| Alister Adutwum             | - Stipt<br>- Betrouwbaar                | - Weinig initiatief<br> - Verlegen                           |
 |                             |                                         |                                                              |
 |                             |                                         |                                                              |
 |                             |                                         |                                                              |
