@@ -6,12 +6,35 @@
 4. Powershell code:
 
 ```
-Install-WindowsFeature RSAT-Clustering-CmdInterface, NET-Framework-45-Features, RPC-over-HTTP-proxy, RSAT-Clustering, RSAT-Clustering-CmdInterface, RSAT-Clustering-Mgmt, RSAT-Clustering-PowerShell, Web-Mgmt-Console, WAS-Process-Model, Web-Asp-Net45, Web-Basic-Auth, Web-Client-Auth, Web-Digest-Auth, Web-Dir-Browsing, Web-Dyn-Compression, Web-Http-Errors, Web-Http-Logging, Web-Http-Redirect, Web-Http-Tracing, Web-ISAPI-Ext, Web-ISAPI-Filter, Web-Lgcy-Mgmt-Console, Web-Metabase, Web-Mgmt-Console, Web-Mgmt-Service, Web-Net-Ext45, Web-Request-Monitor, Web-Server, Web-Stat-Compression, Web-Static-Content, Web-Windows-Auth, Web-WMI, Windows-Identity-Foundation, RSAT-ADDS
+Install-WindowsFeature Server-Media-Foundation
+
+Install-WindowsFeature Server-Media-Foundation, NET-Framework-45-Features, RPC-over-HTTP-proxy, RSAT-Clustering, RSAT-Clustering-CmdInterface, RSAT-Clustering-PowerShell, WAS-Process-Model, Web-Asp-Net45, Web-Basic-Auth, Web-Client-Auth, Web-Digest-Auth, Web-Dir-Browsing, Web-Dyn-Compression, Web-Http-Errors, Web-Http-Logging, Web-Http-Redirect, Web-Http-Tracing, Web-ISAPI-Ext, Web-ISAPI-Filter, Web-Metabase, Web-Mgmt-Service, Web-Net-Ext45, Web-Request-Monitor, Web-Server, Web-Stat-Compression, Web-Static-Content, Web-Windows-Auth, Web-WMI, RSAT-ADDS
+
+Optie 1:
+#chocolatey installeren
+Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+#autoconfirm
+choco feature enable -n=allowGlobalConfirmation
+
+#install ucma
+choco install ucma4
 
 
 
+Optie 2:
 
+#downloaden MICROSOFT UNIFIED COMMUNICATIONS MANAGED API 4.0
 Invoke-WebRequest -Uri "http://download.microsoft.com/download/2/C/4/2C47A5C1-A1F3-4843-B9FE-84C0032C61EC/UcmaRuntimeSetup.exe" -OutFile "C:\Users\Administrator\Downloads\Ucma.exe"
+
+
+#installeren MICROSOFT UNIFIED COMMUNICATIONS MANAGED API 4.0 (indien je dit een 2e keer runt, wordt het verwijderd)
+Start-Process "C:\Users\Administrator\Downloads\Ucma.exe" -ArgumentList "/quiet /norestart" -Wait -PassThru
+
+
+Verder:
+
+
 ```
 
 Handige links:
@@ -20,6 +43,7 @@ https://download.microsoft.com/download/2/C/4/2C47A5C1-A1F3-4843-B9FE-84C0032C61
 
 <https://www.itprotoday.com/email-and-calendaring/how-install-microsoft-exchange-server-2016-windows-server-2016-powershell>
 
-<https://emg.johnshopkins.edu/?p=1072>
+<https://emg.johnshopkins.edu/?p=1072> (Meer controles bij installatie ucma.exe)
 
 <https://www.youtube.com/watch?v=Z7nA0mpaSWQ>
+
