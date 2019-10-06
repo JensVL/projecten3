@@ -93,6 +93,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         vb.customize ['modifyvm', :id, '--groups', PROJECT_NAME]
       end
 
+      config.winrm.timeout = 3600
+      config.vm.boot_timeout = 3600
+
       if host['name'] == "delta2"
         iis = host['iis']
         asp = host['asp']
