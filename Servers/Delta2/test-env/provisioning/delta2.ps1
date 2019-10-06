@@ -66,10 +66,10 @@ debug "packagelocation = $packagelocation"
 # Run Powershell Linter
 #------------------------------------------------------------------------------
 # Install linter
-if ($PSVersionTable.PSVersion -gt 5.1.17763.592) {
-    Install-PackageProvider Nuget -MinimumVersion 2.8.5.201 –Force
-}
-Install-Module -Name PSScriptAnalyzer
+# if ($PSVersionTable.PSVersion -gt 5.1.17763.592) {
+#     Install-PackageProvider Nuget -MinimumVersion 2.8.5.201 –Force
+# }
+# Install-Module -Name PSScriptAnalyzer
 
 
 #------------------------------------------------------------------------------
@@ -105,13 +105,18 @@ if($dotnetcore30){
     install_asp_dotnet_core_30 $downloadpath
 }
 
-# TODO: Configure website on IIS
-configure_iis
-
+# # TODO: Configure website on IIS
+ configure_iis $iisusername $iispassword
+ 
+#To Do test underlying functionss
+# prerequisites_Application_Pool
+# create_App_Pool
+# create_Site
+# assignApplicationToPool
 
 # TODO
 # Deploy  demo
-if($blogdemo){
+if($demo){
     deploy_app $publocation $packagelocation
 }
 
