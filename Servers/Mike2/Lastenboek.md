@@ -15,9 +15,9 @@ Als inhoud voor deze CMS server voorzie je alle Windows documentatie van dit pro
 | TeamLid        | Omschrijving Taak | Uren           |
 | -------------- | -------------- | -------------- |
 | Elias Waterschoot | Opzoekingswerk SharePoint    |                |
-| Tim Grijp    | Opzoekingswerk SharePoint               |                |
-| Elias Waterschoot   | Installing prerequisites             |                |
-| Tim Grijp         |  Installing prerequistites              |                |
+| Tim Grijp    | Opzoekingswerk SharePoint         |                |
+| Elias Waterschoot   | Installing prerequisites   |                |
+| Tim Grijp           | Installing prerequisites   |                |
 
 
 
