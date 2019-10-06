@@ -19,7 +19,7 @@ Datum voortgangsgesprek: 30/09/2019
 * Informeren opdracht projecten 3
 * Info SSL certificatie voor webserver opzoeken
 * SSL certificatie implementeren in provisioning script + unzip functie + code cleanup
-![Time-registration-week01-nathanwammerman](images/week01-nathancammerman.png)
+![Time-registration-week01-nathancammerman](images/week01-nathancammerman.png)
 
 
 ### Matthias Van De Velde
