@@ -13,7 +13,7 @@ Datum voortgangsgesprek: 07/10/2019
 * Documentatie 
 * Testplan
 * install .NET core 3.0
-![Time-per-assignment]()
+![Time-per-assignment](images/week02-time-per-assignment.png)
 
 
 ### Nathan Cammerman
@@ -49,7 +49,7 @@ Datum voortgangsgesprek: 07/10/2019
 
 ### Matthias Van De Velde
 
-
+* Testplan 
 
 ## Waar hebben jullie nog problemen mee?
 
