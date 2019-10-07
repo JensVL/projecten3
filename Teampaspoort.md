@@ -17,7 +17,7 @@
 | Levi Goessens               | - Ordelijk <br> - Punctueel             | - Weinig zelfvertrouwen <br> - Pessimistisch                  |
 | Tim Grijp                   |  -flexibel <br> - zelfstandig           | -uitsteller, verlegen                                         |
 | Arno Van Nieuwenhove        | - Doorzetter <br> - zelfstandig         |  - Weinig zelfvertrouwen <br> - Perfectionistisch             |
-|                             |                                         |                                                               |
-|                             |                                         |                                                               |
+| Rik Claeyssens              | - Behulpzaam <br> - Flexibel            |  - Uitsteller <br> - Weinig motivatie                         |
+| Jonas Vandegehuchte         | - Flexibel <br> - Rustig                |  - Verlegen <br> - Uitstelgedrag                              |
 |                             |                                         |                                                               |
 |                             |                                         |                                                               |
