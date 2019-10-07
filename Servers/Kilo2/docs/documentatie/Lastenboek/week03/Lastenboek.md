@@ -16,7 +16,7 @@ Week: week 3
 | -------------- | -------------- | -------------- |
 | Tibo Vanhercke | Opzoekwerk     | 3 uur          |
 | Tibo Vanhercke | Scripting      | 30 minuten     |
-|                |                |                |
+| Yngvar Samyn               | Opzetten WinServer              | 3 uur               |
 |                |                |                |
 
 ## To do
