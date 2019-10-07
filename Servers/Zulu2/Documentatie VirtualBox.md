@@ -43,67 +43,67 @@ Deze handleiding veronderstelt dat Hyper-V ingeschakelt is op het hostsysteem. I
  1. Start het Hyper-V beheerscherm op.
  2. Navigeer naar **Actie > Virtual Switch Manager...**
  3. Navigeer naar **Nieuwe virtuele netwerkswitch**, kies als type **Intern**, en bevestig met **Virtuele switch maken**.
- [img 1]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image1.png]]
  4. Navigeer naar deze nieuwe toegevoegde switch, verander de naam naar `LAN`, geef een beschrijving in, verander het type naar **Particulier netwerk**, en pas de wijzigingen toe.
- [img 2]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image2.png]]
  5. Voeg opnieuw een nieuwe netwerkswitch toe zoals in **3.**, maar kies deze keer als type **Extern**.
  6. Navigeer naar deze nieuwe toegevoegde switch, verander de naam naar `WAN`, geef een beschrijving in, geef de correcte netwerkadapter voor het WAN-netwerk, en pas de wijzigingen toe.
- [img 3]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image3.png]]
  
 ### Aanmaken Virtuele Machine
 
  1. Navigeer naar **Actie > Nieuw > Virtuele machine...** in het Hyper-V beheerscherm.
  2. Geef een naam in voor de nieuwe virtuele machine en ga door.
- [img 4]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image4.png]]
  3. Selecteer de optie **Generatie 2** en ga door.
- [img 5]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image5.png]]
  4. Geef `2048 MB` in als opstartgeheugen, sta **dynamische geheugen** toe, en ga door.
- [img 6]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image6.png]]
  5. Geef als verbinding **WAN** in en ga door.
- [img 7]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image7.png]]
  6. Selecteer de optie **Een virtuele harde schijf maken**, geef `20 GB` geheugen in, en ga door.
- [img 8]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image8.png]]
  7. Selecteer de optie **Een besturingssysteem installeren vanaf een opstartbaar installatiekopiebestand**, navigeer naar het **pfsense ISO-bestand**, en ga door.
- [img 9]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image9.png]]
  8. Voltooi de installatie.
  
 ### Configuratie Virtuele Machine
 
  1. Navigeer naar de **Instellingen** van de nieuwe virtuele machine.
  2. Navigeer naar **Hardware toevoegen**, selecteer de optie **Netwerkadaptor**, en bevestig met **Toevoegen**.
- [img 10]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image10.png]]
  3. Navigeer naar de nieuwe netwerkadapter, selecteer als virtuele switch **LAN**, en pas de wijzigingen toe.
- [img 11]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image11.png]]
  4. Navigeer naar **Firmware** en rangschik de opstartvolgorde als volgt: *Hardeschijfstation > Dvd-station > WAN > LAN*. Pas de wijzigingen toe.
- [img 23]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image23.png]]
  5. Navigeer naar **Beveiliging**, schakel **Secure Boot** uit, en pas de wijzigingen toe.
- [img 24]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image24.png]]
  
 ### Installatie pfsense
 
  1. Verbind met de virtuele machine via **Actie > Verbindinging maken...** en **Start** de virtuele machine.
  2. Wacht terwijl de virtuele machine opstart van de ISO.
- [img 12]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image12.png]]
  3. **Accepteer** de copyrightnotitie.
- [img 13]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image13.png]]
  4. Selecteer de optie **Install**.
- [img 14]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image14.png]]
  5. Ga door met de **default keymap**.
- [img 15]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image15.png]]
  6. Selecteer de optie **Auto (UFS)**.
- [img 16]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image16.png]]
  7. Wacht tot de installatie compleet is en selecteer **No**.
- [img 17]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image17.png]]
  8. Selecteer **Reboot** en wacht tot de virtuele machine heropstart.
- [img 18]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image18.png]]
  9. Werp het ISO-installatiebestand uit via **Media > Dvd-station > ISO uitwerpen**.
- [img 19]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image19.png]]
  10. Wanneer gevraagd wordt om de VLANs op te zetten weiger door `n` in te geven en bevestig met enter.
- [img 20]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image20.png]]
  11. Waneer gevraagd wordt om de interfaces in te geven, geef `hn0` in voor **WAN**, `hn1` in voor **LAN**, en bevestig nadien met `y`. Bevestig steeds met enter.
- [img 21]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image21.png]]
  12. Wacht tot de installatie van pfsense compleet is en het hoofdmenu van pfsense wordt weergegeven. Je kan nu beginnen met de pfsense-configuratie.
- [img 22]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image22.png]]
 
 ## Initiële Configuratie:
 Na de installatie zien we dit menu:  
