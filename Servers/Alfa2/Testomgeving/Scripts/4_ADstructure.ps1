@@ -1,8 +1,13 @@
+# PREFERENCE VARIABLES: (Om Debug,Verbose en informaation info in de Start-Transcript log files te zien)
+$DebugPreference = "Continue"
+$VerbosePreference = "Continue"
+$InformationPreference = "Continue"
+
 Start-Transcript "C:\ScriptLogs\4_ADstructure.txt"
 Import-Module ActiveDirectory
 
 ## Groepen
-Write-Host "Make Organizational Unit Verkoop..." 
+Write-Host "Make Organizational Unit Verkoop..."
 New-ADOrganizationalUnit "Verkoop" -Discription "Organizational Unit voor Verkoop" -ManagedBy "Mieke"
 
 Write-Host "Make Organizational Unit Ontwikkeling..."
@@ -32,8 +37,8 @@ New-ADGroup "Administratie" -DisplayName "IT Administratie", -Path "OU=Administr
 New-ADGroup "Administratie" -DisplayName "Productie Administratie", -Path "OU=Administratie,OU=Productie Administratie, DC=red,DC=local", -GroupCategory "Security", -GroupScope "Global"
 New-ADGroup "Administratie" -DisplayName "Accounting Administratie", -Path "OU=Administratie,OU=Accounting Administratie, DC=red,DC=local", -GroupCategory "Security", -GroupScope "Global"
 
-# Gebruikers 
-# Er wordt telkens een gebruiker aangemaakt, specifiek de manager van elke Organizational Unit. 
+# Gebruikers
+# Er wordt telkens een gebruiker aangemaakt, specifiek de manager van elke Organizational Unit.
 $paswoordje=ConverTo-SecureString "Admin2019" -asPlainText -force
 
 Write-Host "Create users..."
@@ -74,7 +79,7 @@ Set-ADUser -Identity "Piet" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
 Set-ADUser -Identity "Tibo" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
 Set-ADUser -Identity "Dieter" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
 
-# Elk user-account unlocken. 
+# Elk user-account unlocken.
 Write-Host "Unlock accounts..."
 Enable-ADAccount -Identity "Kimberly"
 Enable-ADAccount -Identity "Laurens"
@@ -85,7 +90,7 @@ Enable-ADAccount -Identity "Tibo"
 Enable-ADAccount -Identity "Dieter"
 
 # Computers
-# Voeg minstens 5 werkstations toe (één in elke afdeling). 
+# Voeg minstens 5 werkstations toe (één in elke afdeling).
 Write-Host "Create workstations..."
 # Hoe moeten de werkstations heetten?
 New-ADComputer "Alfa2" -SamAccountName "Alfa2-SRV1" -Path "OU=Computers,OU=Administratie,DC=red,DC=local"
@@ -125,28 +130,28 @@ Set-ADUser -Identity Kimberly -ProfilePath "\\dc01\profiles\%username%"
 
 ## Group policy
 # Verbied iedereen uit alle afdelingen behalve IT Administratie de toegang tot het control panel
-New-GPO "DisablingControlPanel" | New-GPLink -Target "OU=Users,OU=Administratie,OU=IT Administratie,dc=red,dc=local" 
+New-GPO "DisablingControlPanel" | New-GPLink -Target "OU=Users,OU=Administratie,OU=IT Administratie,dc=red,dc=local"
 New-GPLink "DisablingControlPanel" -Target "OU,Users,OU=Verkoop,DC=red,dc=local"
 New-GPLink "DisablingControlPanel" -Target "OU,Users,OU=Ontwikkeling,DC=red,dc=local"
 New-GPLink "DisablingControlPanel" -Target "OU,Users,OU=Directie,DC=red,dc=local"
 $GPOSession = Open-NetGPO -PolicyStore "red.local\DisablingControlPanel"
 
-## TO DO: Group policy 
+## TO DO: Group policy
 # Import the settings from the latest backup to another directory in the same domain
-Import-GPO -BackupId "A491D730-F3ED-464C-B8C9-F50562C536AA" -TargetName "BackupGPO" -path "c:\backups" -CreateIfNeeded 
+Import-GPO -BackupId "A491D730-F3ED-464C-B8C9-F50562C536AA" -TargetName "BackupGPO" -path "c:\backups" -CreateIfNeeded
 # Import the settings from specified backup in the same directory in the same domain
-Import-GPO -BackupGPOName "BackupGPO" -Path "D:\Backups" -TargetName "BackupGPO" -MigrationTable "D:\Tables\Migtable1.migtable" -CreateIfNeeded 
+Import-GPO -BackupGPOName "BackupGPO" -Path "D:\Backups" -TargetName "BackupGPO" -MigrationTable "D:\Tables\Migtable1.migtable" -CreateIfNeeded
 
 # Verwijder het games link menu uit het start menu voor alle afdelingen
-New-GPO "DisablingGameLink" | New-GPLink -Target "OU=Users,OU=Administratie,OU=IT Administratie,dc=red,dc=local" 
-New-GPLink "DisablingGameLink" -Target "OU=Users,OU=Verkoop,dc=red,dc=local" 
-New-GPLink "DisablingGameLink" -Target "OU=Users,OU=Ontwikkeling,dc=red,dc=local" 
-New-GPLink "DisablingGameLink" -Target "OU=Users,OU=Administratie,dc=red,dc=local" 
-New-GPLink "DisablingGameLink" -Target "OU=Users,OU=Directie,dc=red,dc=local" 
+New-GPO "DisablingGameLink" | New-GPLink -Target "OU=Users,OU=Administratie,OU=IT Administratie,dc=red,dc=local"
+New-GPLink "DisablingGameLink" -Target "OU=Users,OU=Verkoop,dc=red,dc=local"
+New-GPLink "DisablingGameLink" -Target "OU=Users,OU=Ontwikkeling,dc=red,dc=local"
+New-GPLink "DisablingGameLink" -Target "OU=Users,OU=Administratie,dc=red,dc=local"
+New-GPLink "DisablingGameLink" -Target "OU=Users,OU=Directie,dc=red,dc=local"
 $GPOSession = Open-NetGPO -PolicyStore "red.local\DisablingGameLink"
 
 # Verbied iedereen uit de afdelingen Administratie en Verkoop de toegang tot de eigenschappen van de netwerkadapters
-New-GPO "DisableNetwerkadapters" | New-GPLink -Target "OU=Users,OU=Administratie,dc=red,dc=local" 
+New-GPO "DisableNetwerkadapters" | New-GPLink -Target "OU=Users,OU=Administratie,dc=red,dc=local"
 New-GPLink "DisableNetwerkadapters" -Target "OU=Users,OU=Verkoop,DC=red,DC=local"
 $GPOSession = Open-NetGPO -PolicyStore "red.local\DisableNetwerkadapters"
 

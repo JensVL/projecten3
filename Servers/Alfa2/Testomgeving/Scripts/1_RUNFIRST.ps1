@@ -7,7 +7,12 @@
 ############################################## BELANGRIJK #####################################################################################
 
 # VARIABLES:
-$VBOXdrive = "Z:\"
+$VBOXdrive = "Z:"
+
+# PREFERENCE VARIABLES: (Om Debug,Verbose en informaation info in de Start-Transcript log files te zien)
+$DebugPreference = "Continue"
+$VerbosePreference = "Continue"
+$InformationPreference = "Continue"
 
 # LOG SCRIPT TO FILE (+ op het einde van het script Stop-Transcript doen):
 Start-Transcript "C:\ScriptLogs\1_RUNFIRSTlog.txt"
@@ -21,7 +26,7 @@ Start-Transcript "C:\ScriptLogs\1_RUNFIRSTlog.txt"
 # 1.1) Voeg het script toe als registry value:
 # RunOnce verwijderd deze instelling automatisch nadat het script klaar is met runnen
 Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce' -Name ResumeScript `
-                -Value 'C:\Windows\system32\WindowsPowerShell\v1.0\Powershell.exe -executionpolicy bypass -file "$VBOXdrive\2_installDCDNS.ps1"'
+                -Value "C:\Windows\system32\WindowsPowerShell\v1.0\Powershell.exe -executionpolicy bypass -file `"$VBOXdrive\2_installDCDNS.ps1`""
 
 # 1.2) Verzamel de huidige credentials in een credentials object voor de auto-reboot:
 # Zal een popup window openen waarin je je passwoord moet invullen

@@ -8,8 +8,13 @@
 ############################################## BELANGRIJK #####################################################################################
 
 # VARIABLES:
-$VBOXdrive = "Z:\"
+$VBOXdrive = "Z:"
 $SCCMAdmin = "SCCMadmin"
+
+# PREFERENCE VARIABLES: (Om Debug,Verbose en informaation info in de Start-Transcript log files te zien)
+$DebugPreference = "Continue"
+$VerbosePreference = "Continue"
+$InformationPreference = "Continue"
 
 # LOG SCRIPT TO FILE (+ op het einde van het script Stop-Transcript doen):
 Start-Transcript "C:\ScriptLogs\999_PrepareADforSCCMlog.txt"
