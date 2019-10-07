@@ -1,13 +1,11 @@
 ### Technische documentatie
 
-1. Installeer windows server 2019 + ADDS (om te testen zonder alpha2/bravo2). Maak snapshot in VirtualBox om instellingen makkelijk terug te plaatsen bij testen
+1. Installeer windows server 2019 (opslag 30GB) + ADDS (om te testen zonder alpha2/bravo2). Maak snapshot in VirtualBox om instellingen makkelijk terug te plaatsen bij testen
 2. IP adres instellen voor host-only adapter
 3. AD joinen
 4. Powershell code:
 
 ```
-Install-WindowsFeature Server-Media-Foundation
-
 Install-WindowsFeature Server-Media-Foundation, NET-Framework-45-Features, RPC-over-HTTP-proxy, RSAT-Clustering, RSAT-Clustering-CmdInterface, RSAT-Clustering-PowerShell, WAS-Process-Model, Web-Asp-Net45, Web-Basic-Auth, Web-Client-Auth, Web-Digest-Auth, Web-Dir-Browsing, Web-Dyn-Compression, Web-Http-Errors, Web-Http-Logging, Web-Http-Redirect, Web-Http-Tracing, Web-ISAPI-Ext, Web-ISAPI-Filter, Web-Metabase, Web-Mgmt-Service, Web-Net-Ext45, Web-Request-Monitor, Web-Server, Web-Stat-Compression, Web-Static-Content, Web-Windows-Auth, Web-WMI, RSAT-ADDS
 
 Optie 1:
@@ -30,12 +28,31 @@ Invoke-WebRequest -Uri "http://download.microsoft.com/download/2/C/4/2C47A5C1-A1
 
 #installeren MICROSOFT UNIFIED COMMUNICATIONS MANAGED API 4.0 (indien je dit een 2e keer runt, wordt het verwijderd)
 Start-Process "C:\Users\Administrator\Downloads\Ucma.exe" -ArgumentList "/quiet /norestart" -Wait -PassThru
-
-
-Verder:
-
-
 ```
+
+5. Voer schijf exchange server 2016 in
+
+6. Powershell code (op AD?):
+
+   ```
+   #navigeer naar installatieschijf
+   d:
+   
+   .\setup.exe /PrepareSchema /IAcceptExchangeServerLicenseTerms
+   .\Setup.exe /PrepareAD /OrganizationName:'test' /IAcceptExchangeServerLicenseTerms
+   ```
+
+7. ```
+   .\Setup.exe /mode:Install /role:Mailbox /TargetDir:'E:\' /OrganizationName:'test' /IAcceptExchangeServerLicenseTerms
+   ```
+
+   
+
+   ```
+   VBoxManage modifyhd “C:\Users\janne\VirtualBox VMs\Project Systeembeheer\Project Systeembeheer.vdi” --resize 50000
+   ```
+
+
 
 Handige links:
 
