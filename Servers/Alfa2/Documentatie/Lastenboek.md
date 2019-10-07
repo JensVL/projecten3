@@ -12,12 +12,12 @@ Alle userauthenticatie gebeurd via Active Directory. Dit betekent dat werkstatio
 | TeamLid                     | Deeltaak          | Time Estimated | Time spent  |
 | --------------              | --------------    | -------------- | --------------|
 | Laurens Blancquaert-Cassaer | Opzoekingswerk AD/DNS   | 3        |               |
-| Laurens Blancquaert-Cassaer | AD/DNS installatie + config   |  6 |               |
+| Laurens Blancquaert-Cassaer | AD/DNS installatie + config   |  6 |      3         |
 | Laurens Blancquaert-Cassaer | documentatie maken AD/DNS  |  2    |               |
 | Laurens Blancquaert-Cassaer | Opzoekingswerk AGDLP permissies | 3 |              |
 | Laurens Blancquaert-Cassaer | AGDLP permissies implementeren  | 4 |              |
 | Laurens Blancquaert-Cassaer | Documentatie maken AGDLP permissies | 2 |          |
-| Laurens Blancquaert-Cassaer | AD voorbereiden op SCCM install script + opzoekingswerk | 4 |          |
+| Laurens Blancquaert-Cassaer | AD voorbereiden op SCCM install script + opzoekingswerk | 4 |    2      |
 | Kimberly De Clercq | Opzoekingswerk AD Structuur | 2  |    |
 | Kimberly De Clercq | Opzoekingswerk Beleidsregels | 3 |    |
 | Kimberly De Clercq | AD Structuur installatie + configuratie | 8 |    |
