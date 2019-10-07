@@ -1,0 +1,26 @@
+ip-address: 192.168.1.1
+
+virtualbox:
+    name: 'Kilo2'
+
+iis:
+    username: ""
+    password: ""
+    downloadpath: ""
+
+asp:
+    asp35: $true
+    asp45: $true
+
+sql:
+    downloadpath: ""
+    instancename: ""
+    rootpassword: ""
+    #NOTE: Port-number has to be between 49152 and 65535
+    tcpportnr: "50000"
+    dbname: ""
+    username: ""
+    password: ""
+
+folders:
+provision: './provisioning'

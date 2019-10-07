@@ -15,9 +15,14 @@
 | Robin Van de Walle          | - Sociaal <br> - Flexibel               | - uitstelgedrag <br> - twijfelaar                             |
 | Sean Vancompernolle         | - Zelfstanding <br> - Doorzetten        | - Uitsteller <br> - Minder sociaal                            |
 | Levi Goessens               | - Ordelijk <br> - Punctueel             | - Weinig zelfvertrouwen <br> - Pessimistisch                  |
-| Tim Grijp                   |  -flexibel <br> - zelfstandig           | -uitsteller, verlegen                               |
-|                             |                                         |                                                               |
-|                             |                                         |                                                               |
-|                             |                                         |                                                               |
-|                             |                                         |                                                               |
-|                             |                                         |                                                               |
+| Tibo Vanhercke              | - Geduldig <br> - Doorzetten            | - Uitsteller <br> - Twijfelaar                                |
+| Tim Grijp                   |  -flexibel <br> - zelfstandig           | -uitsteller, verlegen                                         |
+| Arno Van Nieuwenhove        | - Doorzetter <br> - zelfstandig         |  - Weinig zelfvertrouwen <br> - Perfectionistisch             |
+| Ferre Verstichelen          |  - Behulpzaam <br> - vastberaden        | - Onzeker <br> - koppig                                       |
+| Robby Daelman               |  - Doorzetter <br> - Zelfstandig        | - Verlegen <br> - Uitsteller                                  |
+| Aron Marckx                 |  - Behulpzaam <br> - Sociaal            | - Uitsteller <br> - Koppig                                    |
+| Rik Claeyssens              | - Behulpzaam <br> - Geduldig            | - Uitstellen <br> - Weinig motivatie                          |
+| Jonas Vandegehuchte         | - Flexibel <br> - Rustig                | - Uitsteller <br> - Verlegen                                  |
+| Cédric Van den Eede         | - Perfectionistisch <br> - Betrouwbaar  | - Opdringerig <br> - Kritisch                                 |
+
+
