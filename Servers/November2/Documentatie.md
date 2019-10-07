@@ -19,6 +19,7 @@ November2 heeft volgende instellingen:
    - Hostnaam: November 2
    - Ip-address: 172.18.1.4
    - Subnet mask: 255.255.255.192 
+   - Default gateway: 172.18.1.1
    - Preferred DNS: 172.18.1.66
    - Alternate DNS: 172.18.1.67
    
