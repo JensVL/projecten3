@@ -11,7 +11,7 @@
 | Jens Van Liefferinge        | - Direct<br>- Resultaatgericht          | - Koppig<br>- Uitsteller                                     |
 | Elias Waterschoot           | - Geduldig<br>- Bedachtzaam             | - Verlegen, niet sociaal<br>- Uitsteller                     |
 | Alister Adutwum             | - Stipt<br>- Betrouwbaar                | - Weinig initiatief<br> - Verlegen                           |
-|                             |                                         |                                                              |
+| Yngvar Samyn                | -Flexibel<br>-Rustig                    | - Weinig oog voor deadlines<br> -Rustig                      |
 |                             |                                         |                                                              |
 |                             |                                         |                                                              |
 |                             |                                         |                                                              |
