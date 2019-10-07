@@ -3,24 +3,24 @@
 ## Aanwezigen week 3:
 | Naam            | Aanwezig |
 | :---               | :---     |
-| Alister Adutwum |         |
-| Laurens Blancquart-Cassaer |        |
-| Nathan Cammerman |         |
-| Rik Claeyssens |       |
-| Kimberly De Clercq |        |
-| Tim Grijp |         |
-| Santi Meremans |        |
-| Yngvar Samyn |         |
-| Joachim Van de Keere |         |
-| Matthias Van de Velde |         |
-| Robin Van de Walle |         |
-| Jens Van Liefferinge |         |
-| Jannes Van Wontergem |         |
-| Sean Vancompernolle |         |
-| Jonas Vandegehuchte |         |
-| Tibo Vanhercke |        |
-| Ferre Verstichelen|         |
-| Elias Waterschoot |         |
+| Alister Adutwum |  V       |
+| Laurens Blancquart-Cassaer |    V    |
+| Nathan Cammerman |  V       |
+| Rik Claeyssens |    V   |
+| Kimberly De Clercq |   V     |
+| Tim Grijp |     V    |
+| Santi Meremans |   Niet ingeschreven     |
+| Yngvar Samyn |     V    |
+| Joachim Van de Keere |    V     |
+| Matthias Van de Velde |    V     |
+| Robin Van de Walle |      V   |
+| Jens Van Liefferinge |    V     |
+| Jannes Van Wonterghem |     V    |
+| Sean Vancompernolle |      V   |
+| Jonas Vandegehuchte |     V    |
+| Tibo Vanhercke |    V    |
+| Ferre Verstichelen|   V      |
+| Elias Waterschoot |    V     |
 
 ## Algemeen
   - Voorstellen teamleiders 
@@ -68,9 +68,10 @@
   * topologie via packet tracer + ip tabel gemaakt
 
 ## Problemen
-* ...
+* Degene (Arno & Levi uit Aalst) moeten nu Bravo2 doen, omdat het beter is dat Aalst de tweede domeincontroller maakt. 
+* Degene die available zijn, mogen de server Papa2 op zich nemen.
 
 ## Volgende stand-up:
   - Testrapport
 
-© Author - Kimberly De Clercq 
+© Author - Kimberly De Clercq - Jannes Van Wonterghem
