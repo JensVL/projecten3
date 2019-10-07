@@ -1,6 +1,14 @@
 # Configureren van IP address van de DHCP Server
 # TODO
 
+# Toevoegen aan domain
+
+$domain = ??????????????????????????????????
+$password = "Admin2019" | ConvertTo-SecureString -AsPlainText -Force
+$username = "Administrator"
+$credential = New-Object System.Management.Automation.PSCredential($username, $password)
+
+Add-Computer -DomainName $domain -Credential $credential -Restart -Force
 
 # DHCP rol installeren
 
@@ -15,3 +23,8 @@ Add-DhcpServerV4Scope -Name "Vlan 200" -StartRange 172.18.0.2 -EndRange 172.18.0
 
 # Lease time configureren
 # TODO
+
+
+
+# Restart DHCP Server
+Restart-service dhcpserver
