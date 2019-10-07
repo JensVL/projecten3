@@ -1,8 +1,12 @@
 # Installatiescript dat de initiële configuratie doet en de ADDS role installeert:
 # Elke stap wordt uitgelegd met zijn eigen comment
 
-# VARIABLES:                                                                          ##################################### TODO VARIABLES
+# VARIABLES:                                                                      
 $VBOXdrive = "Z:\"
+$Land = "eng-BE"
+$IpAddress = "172.18.1.66"
+$CIDR = "27"
+$AdapterNaam = "LAN"
 
 # LOG SCRIPT TO FILE (+ op het einde van het script Stop-Transcript doen):
 Start-Transcript "C:\ScriptLogs\2_InstallDCDNSlog.txt"
@@ -17,24 +21,24 @@ Write-host "Starting script now:"
 # Romance standard time = Brusselse tijd
 # Eerste commando zal tijd naar 24uur formaat instellen (eng zorgt dat taal op engels blijft maar regio komt op BE)
 Write-host "Setting correct timezone and time format settings:"
-Set-Culture -CultureInfo eng-BE
+Set-Culture -CultureInfo $Land
 set-timezone -Name "Romance Standard Time"
 
 ###################################################################################################### ENKEL VOOR VIRTUALBOX LAB TESTING DEMO HEEFT 1 NIC (LAN)
 # 2) Hernoem de netwerkadapters. NAT = de adapter die met het internet verbind
 # LAN = de adapter met static IP instellingen die alle servers met elkaar verbind.
 Write-host "Changing NIC adapter names:"
-#                                                                                                                       TODO: Vervang door:
-# Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName LAN
+# TODO:                                                                                                                      TODO: Vervang door:
+# Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName $AdapterNaam
 Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName NAT
-Get-NetAdapter -Name "Ethernet 2" | Rename-NetAdapter -NewName LAN
+Get-NetAdapter -Name "Ethernet 2" | Rename-NetAdapter -NewName $AdapterNaam
 ###################################################################################################### ENKEL VOOR VIRTUALBOX LAB TESTING DEMO HEEFT 1 NIC (LAN)
 
 #                                                                          ############################################ TODO: SWITCH IP ADRES INSTELLEN
 # 3) Geef de LAN adapter de correcte IP instellingen volgens de opdracht:
 # Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.224)
 Write-host "Setting correct ipv4 settings:"
-New-NetIPAddress -InterfaceAlias "LAN" -IPAddress "172.18.1.66" -PrefixLength 27
+New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR
 
 # 4) Installeer de Active Directory Domain Services role om van de server een DC te kunnen maken:
 Write-host "Starting installation of ADDS role:"

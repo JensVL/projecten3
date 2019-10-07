@@ -38,6 +38,8 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 
 # 2) Rename de DC van zijn default naam naar alfa2:
 # -Force zal confirmation dialog boxes negeren
-Rename-Computer -NewName alfa2 -Force
+Rename-Computer -NewName Alfa2 -Force
+
 Stop-Transcript
+
 Restart-Computer

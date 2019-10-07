@@ -9,6 +9,7 @@
 
 # VARIABLES:
 $VBOXdrive = "Z:\"
+$SCCMAdmin = "SCCMadmin"
 
 # LOG SCRIPT TO FILE (+ op het einde van het script Stop-Transcript doen):
 Start-Transcript "C:\ScriptLogs\999_PrepareADforSCCMlog.txt"
@@ -22,13 +23,13 @@ $SecureStringPwd = ConvertTo-SecureString "$SCCMPassword" -AsPlainText -Force
 
 # 1.2) Het aanmaken van de SCCM account zelf:
 Write-Host "Creating SCCMAdmin account in the AD for the Papa2 server:"
-New-ADUser -GivenName "SCCM" -Surname "Admin" -Name "SCCMAdmin" -PasswordNeverExpires $true -AccountPassword $SecureStringPwd
-set-adUser -Enabled $true -Identity "SCCMAdmin"
+New-ADUser -GivenName "SCCM" -Surname "Admin" -Name "$SCCMAdmin" -PasswordNeverExpires $true -AccountPassword $SecureStringPwd
+set-adUser -Enabled $true -Identity "$SCCMAdmin"
 
 # 1.3) Voeg nu de SCCM acocunt toe aan de Domain Admin en Administrators groups zodat hij full domain admin rechten heeft:
 Write-host "Adding SCCMAdmin to Domain Admin en Administrators group:"
-Add-ADGroupMember -Identity "Domain Admins" -Members "SCCMAdmin"
-Add-ADGroupMember -Identity "Administrators" -Members "SCCMAdmin"
+Add-ADGroupMember -Identity "Domain Admins" -Members "$SCCMAdmin"
+Add-ADGroupMember -Identity "Administrators" -Members "$SCCMAdmin"
 
 # 2) Nu moeten we in ADSIedit (Waar al de instellingen van ADDS staan) een System Management container maken onder de "System"
 # 2.1) Verbind met ADSIedit:
@@ -47,10 +48,10 @@ $SysManContainer.SetInfo()
 $SystemManagementCN = [ADSI]("LDAP://localhost:389/cn=System Management,cn=System,dc=red,dc=local")
 
 # 3.2) Get Papa2 als computer object:
-$server = get-adcomputer "Papa2"
+$SCCMserver = get-adcomputer "Papa2"
 
 # 3.3) Get identity reference van het computer object:
-$SID = [System.Security.Principal.SecurityIdentifier] $server.SID
+$SID = [System.Security.Principal.SecurityIdentifier] $SCCMserver.SID
 $ServerIdentity = [System.Security.Principal.IdentityReference] $SID
 
 # 3.4) Stel permissions in als ALLOW full control (full control = GenericAll hieronder):
