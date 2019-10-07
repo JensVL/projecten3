@@ -24,5 +24,4 @@
 | Rik Claeyssens              | - Behulpzaam <br> - Geduldig            | - Uitstellen <br> - Weinig motivatie                          |
 | Jonas Vandegehuchte         | - Flexibel <br> - Rustig                | - Uitsteller <br> - Verlegen  
 |
-| Cédric Van den Eede         | - Doorzetter <br> - Betrouwbaar         | - Perfectionistisch <br> - Opdringerig  
-|
+
