@@ -9,7 +9,7 @@ Taak team: Kilo2
 Week: week 3
 
 ## Opdrachtomschrijving
-Een interne member-server in het domein red.local die dienst doet als DHCP-servervoor de interne werkstations.
+Een interne member-server in het domein red.local die dienst doet als DHCP-server voor de interne werkstations.
 
 ## Done
 | TeamLid        | Omschrijving Taak | Uren           |
