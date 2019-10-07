@@ -25,7 +25,7 @@
 ## Algemeen
   - Voorstellen teamleiders 
     - Gent: Jannes Van Wonterghem
-    - Aalst: 
+    - Aalst: Aron Marckx
   - Verslag vorige stand-up overlopen
   - Lastenboek (niet per week)
   - Teampaspoort
