@@ -24,7 +24,9 @@ We moeten gebruik maken van PfSense en zorgen dat:
 
 
 ## To do
-Webconfig gebruiken voor configuratie, documentatie aanvullen, testplan maken
+ - Configuratie via Webconfig
+ - Documentatie aanvullen
+ - Testplan opstellen
 
 ## Vragen
 ...
