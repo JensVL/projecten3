@@ -43,7 +43,7 @@ Deze handleiding veronderstelt dat Hyper-V ingeschakelt is op het hostsysteem. I
  1. Start het Hyper-V beheerscherm op.
  2. Navigeer naar **Actie > Virtual Switch Manager...**
  3. Navigeer naar **Nieuwe virtuele netwerkswitch**, kies als type **Intern**, en bevestig met **Virtuele switch maken**.
- [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image1.png?raw=true]]
+ [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image1.png|alt=test]]
  4. Navigeer naar deze nieuwe toegevoegde switch, verander de naam naar `LAN`, geef een beschrijving in, verander het type naar **Particulier netwerk**, en pas de wijzigingen toe.
  [[https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/img/Hyper-V/image2.png]]
  5. Voeg opnieuw een nieuwe netwerkswitch toe zoals in **3.**, maar kies deze keer als type **Extern**.
