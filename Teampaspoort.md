@@ -22,6 +22,7 @@
 | Robby Daelman               |  - Doorzetter <br> - Zelfstandig        | - Verlegen <br> - Uitsteller                                  |
 | Aron Marckx                 |  - Behulpzaam <br> - Sociaal            | - Uitsteller <br> - Koppig                                    |
 | Rik Claeyssens              | - Behulpzaam <br> - Geduldig            | - Uitstellen <br> - Weinig motivatie                          |
-| Jonas Vandegehuchte         | - Flexibel <br> - Rustig                | - Uitsteller <br> - Verlegen  
-|
+| Jonas Vandegehuchte         | - Flexibel <br> - Rustig                | - Uitsteller <br> - Verlegen                                  |
+| Cédric Van den Eede         | - Doorzetter <br> - Betrouwbaar         | - Opdringerig <br> - Kritisch                                 |
+
 
