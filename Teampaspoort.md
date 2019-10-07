@@ -12,7 +12,7 @@
 | Elias Waterschoot           | - Geduldig<br>- Bedachtzaam             | - Verlegen, niet sociaal<br>- Uitsteller                     |
 | Alister Adutwum             | - Stipt<br>- Betrouwbaar                | - Weinig initiatief<br> - Verlegen                           |
 | Yngvar Samyn                | -Flexibel<br>-Rustig                    | - Weinig oog voor deadlines<br> -Rustig                      |
-|                             |                                         |                                                              |
+| Robin Van de Walle          | - Sociaal <br> - Flexibel               | - uitstelgedrag <br> - twijfelaar                            |
 |                             |                                         |                                                              |
 |                             |                                         |                                                              |
 |                             |                                         |                                                              |
