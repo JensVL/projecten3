@@ -22,7 +22,7 @@ Alle userauthenticatie gebeurd via Active Directory. Dit betekent dat werkstatio
 | Kimberly De Clercq | Opzoekingswerk Beleidsregels | 3 |    |
 | Kimberly De Clercq | AD Structuur installatie + configuratie | 8 |    |
 | Kimberly De Clercq | Beleidsregels installatie + configuratie | 12 |    |
-| Kimberly De Clercq en Laurens BC  | Testplan opstellen (+ zelf testen) alfa2 server | 8  |    |
+| Kimberly De Clercq en Laurens BC  | Testplan opstellen (+ zelf testen) alfa2 server | 8  | Laurens: 0.75   |
 
 Tests van de ALFA2 server wordt gedaan door: **TEAMLID_DIE_TESTRAPPORT_ALFA2_DOET_HIER**
 
