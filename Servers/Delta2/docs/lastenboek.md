@@ -13,6 +13,7 @@ Matthias Van De Velde
 * Website accessible over HTTP and HTTPS
 * Website accessible using "www" from all hosts in all domains
 * Dynamic ASP.NET demo app
+* App uses MS SQL Server
 
 ## Sub-tasks
 
@@ -24,8 +25,6 @@ Matthias Van De Velde
     - Responsible: Matthias Van De Velde
 3. Configure website on IIS
     - Responsible: Nathan Cammerman
-4. Install .NET Framework 3.5
-    - Responsible: Matthias Van De Velde
 5. Install .NET Framework 4.5
     - Responsible: Matthias Van De Velde
 6. Install .NET Core 2.1
