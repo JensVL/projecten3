@@ -23,3 +23,4 @@
 | Aron Marckx                 |  - Behulpzaam <br> - Sociaal            | - Uitsteller <br> - Koppig                                    |
 | Rik Claeyssens              | - Behulpzaam <br> - Geduldig            | - Uitstellen <br> - Weinig motivatie                          |
 | Jonas Vandegehuchte         | - Flexibel <br> - Rustig                | - Uitsteller <br> - Verlegen                                  |
+| Cedric Detemmerman         | - doorzetting <br> - Flexibel            | - Uitsteller <br> - te rustig
