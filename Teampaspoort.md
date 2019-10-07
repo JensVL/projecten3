@@ -19,6 +19,6 @@
 | Tim Grijp                   |  -flexibel <br> - zelfstandig           | -uitsteller, verlegen                                         |
 | Ferre Verstichelen          |  - Behulpzaam <br> - vastberaden        | - Onzeker <br> - koppig                                       |
 | Robby Daelman               |  - Doorzetter <br> - Zelfstandig        | - Verlegen <br> - Uitsteller                                   |
-|                             |                                         |                                                               |
+| Aron Marckx                 |  - Behulpzaam <br> - Sociaal            | - Uitsteller <br> - Koppig                                    |
 |                             |                                         |                                                               |
 |                             |                                         |                                                               |
