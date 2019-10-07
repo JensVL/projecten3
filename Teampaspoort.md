@@ -15,7 +15,7 @@
 | Robin Van de Walle          | - Sociaal <br> - Flexibel               | - uitstelgedrag <br> - twijfelaar                             |
 | Sean Vancompernolle         | - Zelfstanding <br> - Doorzetten        | - Uitsteller <br> - Minder sociaal                            |
 | Levi Goessens               | - Ordelijk <br> - Punctueel             | - Weinig zelfvertrouwen <br> - Pessimistisch                  |
-|                             |                                         |                                                               |
+| Tim Grijp                   |  -flexibel <br> - zelfstandig           | -uitsteller, verlegen                               |
 |                             |                                         |                                                               |
 |                             |                                         |                                                               |
 |                             |                                         |                                                               |
