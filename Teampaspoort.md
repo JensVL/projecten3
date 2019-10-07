@@ -14,7 +14,7 @@
 | Yngvar Samyn                | -Flexibel<br>-Rustig                    | - Weinig oog voor deadlines<br> -Rustig                       |
 | Robin Van de Walle          | - Sociaal <br> - Flexibel               | - uitstelgedrag <br> - twijfelaar                             |
 | Sean Vancompernolle         | - Zelfstanding <br> - Doorzetten        | - Uitsteller <br> - Minder sociaal                            |
-| Levi Goessens               | - Ordelijk <br> - punctueel             | - weinig zelfvertrouwen <br> - pessimistisch                  |
+| Levi Goessens               | - Ordelijk <br> - Punctueel             | - Weinig zelfvertrouwen <br> - Pessimistisch                  |
 |                             |                                         |                                                               |
 |                             |                                         |                                                               |
 |                             |                                         |                                                               |
