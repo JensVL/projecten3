@@ -8,7 +8,6 @@ Alpha2
 Bravo2
 
 - Ferre Verstichelen
-- Santi Meremans
 
 Charlie2
 

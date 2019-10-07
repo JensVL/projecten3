@@ -15,9 +15,16 @@
 | Robin Van de Walle          | - Sociaal <br> - Flexibel               | - uitstelgedrag <br> - twijfelaar                             |
 | Sean Vancompernolle         | - Zelfstanding <br> - Doorzetten        | - Uitsteller <br> - Minder sociaal                            |
 | Levi Goessens               | - Ordelijk <br> - Punctueel             | - Weinig zelfvertrouwen <br> - Pessimistisch                  |
+| Tibo Vanhercke              | - Geduldig <br> - Doorzetten            | - Uitsteller <br> - Twijfelaar                                |
 | Tim Grijp                   |  -flexibel <br> - zelfstandig           | -uitsteller, verlegen                                         |
+<<<<<<< HEAD
 | Arno Van Nieuwenhove        | - Doorzetter <br> - zelfstandig         |  - Weinig zelfvertrouwen <br> - Perfectionistisch             |
 | Rik Claeyssens              | - Behulpzaam <br> - Flexibel            |  - Uitsteller <br> - Weinig motivatie                         |
 | Jonas Vandegehuchte         | - Flexibel <br> - Rustig                |  - Verlegen <br> - Uitstelgedrag                              |
+=======
+| Ferre Verstichelen          |  - Behulpzaam <br> - vastberaden        | - Onzeker <br> - koppig                                       |
+| Robby Daelman               |  - Doorzetter <br> - Zelfstandig        | - Verlegen <br> - Uitsteller                                   |
+|                             |                                         |                                                               |
+>>>>>>> 9fe603bb4435471957f54b47bbd49c46d40283cd
 |                             |                                         |                                                               |
 |                             |                                         |                                                               |

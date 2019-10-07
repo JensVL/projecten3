@@ -1,4 +1,4 @@
-# Documentatie Testomgeving met Virtualbox:  
+# Documentatie Testomgeving met Virtualbox en HyperV:  
 
 ## AchtergrondInformatie:  
 
