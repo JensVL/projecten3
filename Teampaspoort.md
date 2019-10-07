@@ -18,7 +18,7 @@
 | Tibo Vanhercke              | - Geduldig <br> - Doorzetten            | - Uitsteller <br> - Twijfelaar                                |
 | Tim Grijp                   |  -flexibel <br> - zelfstandig           | -uitsteller, verlegen                                         |
 | Ferre Verstichelen          |  - Behulpzaam <br> - vastberaden        | - Onzeker <br> - koppig                                       |
-|                             |                                         |                                                               |
+| Robby Daelman               |  - Doorzetter <br> - Zelfstandig        | - Verlegen <br> - Uitsteller                                   |
 |                             |                                         |                                                               |
 |                             |                                         |                                                               |
 |                             |                                         |                                                               |
