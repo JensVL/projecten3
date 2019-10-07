@@ -13,10 +13,9 @@ Wachtwoord: Admin2019 <br>
 
 ### Installatie procedure
 
-1. Installeer Windows Server 2016
-2. Verander de hostnaam, ip-instellingen en firewallinstellingen.
+1. Installeer Windows Server 2019
+2. Verander de hostnaam en ip-instellingen.
 November2 heeft volgende instellingen:
    - Hostnaam: November 2
-   - Firewall: Off
    - Ip-address: 172.18.1.4
    - Subnet mask: 255.255.255.192 
