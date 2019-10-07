@@ -15,11 +15,12 @@ We moeten gebruik maken van PfSense en zorgen dat:
 ## Done
 | TeamLid                     | Deeltaak | Time Estimated           | Time spent  |
 | --------------              | --------------    | -------------- |      --------------        |
-| Alister | Opzoekingswerk PfSense   |        8        |               |
-| Alister | Test Omgeving   |    6            |               |
-|  | Documentatie testomgeving  |      4          |               |
+| Alister & Sean | Opzoekingswerk PfSense   |        8        |       7        |
+| Alister | Test Omgeving   |    6            |       1        |
+| Alister | Documentatie testomgeving  |      4          |       2        |
 |  | Testplan   |      3          |               |
-|  | Documentatie Productieomgeving |         10       |               |
+| Sean | Documentatie Productieomgeving |         1       |     0.8          |
+| Sean | Installatie Productieomgeving |  3 |  2  |
 
 
 ## To do
