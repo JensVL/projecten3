@@ -30,8 +30,80 @@ Automatie is deels mogelijk door een voorgeconfigureerd XML bestand te laden in 
    4. Start VM > Doe de Installatie > Reboot en Unmount de ISO file  
 
 PfSense staat nu op de hardeschijf met de [Defaultconfiguration](https://docs.netgate.com/pfsense/en/latest/install/installing-pfsense.html#pfsense-default-configuration).  
-We moeten nu de firewall verder configureren via de shell menu of de WebGUI.  
+We moeten nu de firewall verder configureren via de shell menu of de WebGUI.
 
+## Hyper-V
+
+Deze handleiding veronderstelt dat Hyper-V ingeschakelt is op het hostsysteem. Indien dit niet het geval is open een Powershell-venster met administratorprivileges, voer het volgende commando uit, en herstart hierna het hostsysteem:
+
+`Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All`
+
+### Aanmaken Virtuele Switches
+
+ 1. Start het Hyper-V beheerscherm op.
+ 2. Navigeer naar **Actie > Virtual Switch Manager...**
+ 3. Navigeer naar **Nieuwe virtuele netwerkswitch**, kies als type **Intern**, en bevestig met **Virtuele switch maken**.
+ [img 1]
+ 4. Navigeer naar deze nieuwe toegevoegde switch, verander de naam naar `LAN`, geef een beschrijving in, verander het type naar **Particulier netwerk**, en pas de wijzigingen toe.
+ [img 2]
+ 5. Voeg opnieuw een nieuwe netwerkswitch toe zoals in **3.**, maar kies deze keer als type **Extern**.
+ 6. Navigeer naar deze nieuwe toegevoegde switch, verander de naam naar `WAN`, geef een beschrijving in, geef de correcte netwerkadapter voor het WAN-netwerk, en pas de wijzigingen toe.
+ [img 3]
+ 
+### Aanmaken Virtuele Machine
+
+ 1. Navigeer naar **Actie > Nieuw > Virtuele machine...** in het Hyper-V beheerscherm.
+ 2. Geef een naam in voor de nieuwe virtuele machine en ga door.
+ [img 4]
+ 3. Selecteer de optie **Generatie 2** en ga door.
+ [img 5]
+ 4. Geef `2048 MB` in als opstartgeheugen, sta **dynamische geheugen** toe, en ga door.
+ [img 6]
+ 5. Geef als verbinding **WAN** in en ga door.
+ [img 7]
+ 6. Selecteer de optie **Een virtuele harde schijf maken**, geef `20 GB` geheugen in, en ga door.
+ [img 8]
+ 7. Selecteer de optie **Een besturingssysteem installeren vanaf een opstartbaar installatiekopiebestand**, navigeer naar het **pfsense ISO-bestand**, en ga door.
+ [img 9]
+ 8. Voltooi de installatie.
+ 
+### Configuratie Virtuele Machine
+
+ 1. Navigeer naar de **Instellingen** van de nieuwe virtuele machine.
+ 2. Navigeer naar **Hardware toevoegen**, selecteer de optie **Netwerkadaptor**, en bevestig met **Toevoegen**.
+ [img 10]
+ 3. Navigeer naar de nieuwe netwerkadapter, selecteer als virtuele switch **LAN**, en pas de wijzigingen toe.
+ [img 11]
+ 4. Navigeer naar **Firmware** en rangschik de opstartvolgorde als volgt: *Hardeschijfstation > Dvd-station > WAN > LAN*. Pas de wijzigingen toe.
+ [img 23]
+ 5. Navigeer naar **Beveiliging**, schakel **Secure Boot** uit, en pas de wijzigingen toe.
+ [img 24]
+ 
+### Installatie pfsense
+
+ 1. Verbind met de virtuele machine via **Actie > Verbindinging maken...** en **Start** de virtuele machine.
+ 2. Wacht terwijl de virtuele machine opstart van de ISO.
+ [img 12]
+ 3. **Accepteer** de copyrightnotitie.
+ [img 13]
+ 4. Selecteer de optie **Install**.
+ [img 14]
+ 5. Ga door met de **default keymap**.
+ [img 15]
+ 6. Selecteer de optie **Auto (UFS)**.
+ [img 16]
+ 7. Wacht tot de installatie compleet is en selecteer **No**.
+ [img 17]
+ 8. Selecteer **Reboot** en wacht tot de virtuele machine heropstart.
+ [img 18]
+ 9. Werp het ISO-installatiebestand uit via **Media > Dvd-station > ISO uitwerpen**.
+ [img 19]
+ 10. Wanneer gevraagd wordt om de VLANs op te zetten weiger door `n` in te geven en bevestig met enter.
+ [img 20]
+ 11. Waneer gevraagd wordt om de interfaces in te geven, geef `hn0` in voor **WAN**, `hn1` in voor **LAN**, en bevestig nadien met `y`. Bevestig steeds met enter.
+ [img 21]
+ 12. Wacht tot de installatie van pfsense compleet is en het hoofdmenu van pfsense wordt weergegeven. Je kan nu beginnen met de pfsense-configuratie.
+ [img 22]
 
 ## Initiële Configuratie:
 Na de installatie zien we dit menu:  
@@ -74,4 +146,6 @@ Maak een nieuwe VM aan dat toegang heeft tot een webbrowsers en dat in het zelfd
 <https://www.youtube.com/watch?v=6s5wvmlESfo>  
 <https://www.pfsense.org/getting-started/>
 <https://docs.netgate.com/pfsense/en/latest/packages/package-list.html>
-<https://www.youtube.com/watch?v=KOuCy8mf214>
+<https://www.youtube.com/watch?v=KOuCy8mf214> 
+<https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v>
+<https://www.pbworks.net/windows-10-hyper-v-vm-boot-not-working/>

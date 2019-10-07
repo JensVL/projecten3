@@ -31,9 +31,9 @@
 ---
 
 - name: Zulu2
-  ip: 172.18.0.1
+  ip: 192.168.2.2
   intnet: true
-  box: "dlee35/pfsense"
+  box: "42n4/pfsense"
   #synced_folders:
   #  - src: scripts
   #    dest: /Setup/Scripts

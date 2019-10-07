@@ -14,7 +14,7 @@ require 'yaml'
 ENV["LC_ALL"] = "en_US.UTF-8"
 
 # Set your default base box here
-DEFAULT_BASE_BOX = 'dlee35/pfsense'
+DEFAULT_BASE_BOX = '42n4/pfsense'
 
 #
 # No changes needed below this point
