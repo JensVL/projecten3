@@ -13,7 +13,7 @@
 | Alister Adutwum             | - Stipt<br>- Betrouwbaar                | - Weinig initiatief<br> - Verlegen                           |
 | Yngvar Samyn                | -Flexibel<br>-Rustig                    | - Weinig oog voor deadlines<br> -Rustig                      |
 | Robin Van de Walle          | - Sociaal <br> - Flexibel               | - uitstelgedrag <br> - twijfelaar                            |
-|                             |                                         |                                                              |
+| Sean Vancompernolle         |  Zelfstanding <br> Doorzetten           | - Uitsteller <br> Minder sociaal                             |
 |                             |                                         |                                                              |
 |                             |                                         |                                                              |
 |                             |                                         |                                                              |
