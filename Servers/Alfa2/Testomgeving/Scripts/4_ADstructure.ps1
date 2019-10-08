@@ -39,82 +39,107 @@ New-ADGroup "Administratie" -DisplayName "Accounting Administratie", -Path "OU=A
 
 # Gebruikers
 # Er wordt telkens een gebruiker aangemaakt, specifiek de manager van elke Organizational Unit.
-$paswoordje=ConverTo-SecureString "Admin2019" -asPlainText -force
+$paswoordje=ConvertTo-SecureString "Admin2019" -asPlainText -force
 
 Write-Host "Create users..."
-New-AdUser -Name "Kimberly" -Surname "De Clercq" -Department "Manager" -Description "Account voor Kimberly" -DisplayName "KimberlyDC" `
-           -GivenName "Kimberly" -State "West-Vlaanderen"  -City "Ingelmunster" -PostalCode "8770" -EmailAddress "kimberly@red.local" `
-           -Office "B0.001" -EmployeeID "1004" -HomePhone "0444727272" -Initials "KDC" -Path "OU=Users,OU=Directie,DC=red,DC=local" -AccountPassword $paswoordje
+New-AdUser -Name "Kimberly" -Surname "De Clercq" -Department "Manager" -Description "Account voor Kimberly" -DisplayName "KimberlyDC" -GivenName "Kimberly" -State "West-Vlaanderen"  -City "Ingelmunster" -PostalCode "8770" -EmailAddress "kimberly@red.local" -Office "B0.001" -EmployeeID "1004" -HomePhone "0444727272" -Initials "KDC" -Path "OU=Users,OU=Directie,DC=red,DC=local" -AccountPassword $paswoordje
 
 New-AdUser -Name "Laurens" -Surname "Blancquaert-Cassaer" -Department "IT Administration" -Description "Account voor Laurens" -DisplayName "LaurensBC" `
            -GivenName "Laurens" -State "Oost-Vlaanderen" -City "Gent" -PostalCode "9000" -EmailAddress "laurens@red.local" `
-           -Office "B4.037" -EmployeeID "2015" -HomePhone "0444727281" -Initials "LBC" -Path "OU=Users,OU=Administratie,OU=IT Administratie,DC=red,DC=local" -AccountPassword $paswoordje
+           -Office "B4.037" -EmployeeID "2015" -HomePhone "0444727280" -Initials "LBC" -Path "OU=Users,OU=Administratie,OU=IT Administratie,DC=red,DC=local" -AccountPassword $paswoordje
+
+New-AdUser -Name "Pieter" -Surname "Blomme" -Department "IT Administration" -Description "Account voor Pieter" -DisplayName "PieterB" `
+           -GivenName "Laurens" -State "West-Vlaanderen" -City "Wervik" -PostalCode "8940" -EmailAddress "pieter@red.local" `
+           -Office "B4.037" -EmployeeID "8425" -HomePhone "0444727281" -Initials "PB" -Path "OU=Users,OU=Administratie,OU=IT Administratie,DC=red,DC=local" -AccountPassword $paswoordje
 
 New-AdUser -Name "Jan" -Surname "Janssens" -Department "Development" -Description "Account voor Jan" -DisplayName "JanJ" `
            -GivenName "Jan" -State "Antwerpen" -City "Zoersel" -PostalCode "2980" -EmailAddress "jan@red.local" `
-           -Office "B1.018" -EmployeeID "5078" -HomePhone "0444727280" -Initials "JJ" -Path "OU=Users,OU=Ontwikkeling,DC=red,DC=local" -AccountPassword $paswoordje
+           -Office "B1.018" -EmployeeID "5078" -HomePhone "0444727290" -Initials "JJ" -Path "OU=Users,OU=Ontwikkeling,DC=red,DC=local" -AccountPassword $paswoordje
+
+New-AdUser -Name "Jonas" -Surname "Van Geel" -Department "Development" -Description "Account voor Jonas" -DisplayName "JonasVG" `
+           -GivenName "Jan" -State "Vlaams-Brabant" -City "Bierbeek" -PostalCode "3360" -EmailAddress "jonas@red.local" `
+           -Office "B1.018" -EmployeeID "1578" -HomePhone "0444727291" -Initials "JVG" -Path "OU=Users,OU=Ontwikkeling,DC=red,DC=local" -AccountPassword $paswoordje
 
 New-AdUser -Name "Mieke" -Surname "Dobbels" -Department "Sale" -Description "Account voor Mieke" -DisplayName "MiekeD" `
            -GivenName "Mieke" -State "West-Vlaanderen" -City "Koksijde" -PostalCode "8670" -EmailAddress "mieke@red.local" `
-           -Office "B0.015" -EmployeeID "4245" -HomePhone "0444727275" -Initials "MD" -Path "OU=Users,OU=Verkoop,DC=red,DC=local" -AccountPassword $paswoordje
+           -Office "B0.015" -EmployeeID "4732" -HomePhone "0444727200" -Initials "MD" -Path "OU=Users,OU=Verkoop,DC=red,DC=local" -AccountPassword $paswoordje
+
+New-AdUser -Name "Sandra" -Surname "Dewulf" -Department "Sale" -Description "Account voor Sandra" -DisplayName "SandraD" `
+           -GivenName "Sandra" -State "West-Vlaanderen" -City "Torhout" -PostalCode "8820" -EmailAddress "sandra@red.local" `
+           -Office "B0.015" -EmployeeID "5422" -HomePhone "0444727201" -Initials "SD" -Path "OU=Users,OU=Verkoop,DC=red,DC=local" -AccountPassword $paswoordje
 
 New-AdUser -Name "Piet" -Surname "Pietersen" -Department "Administration" -Description "Account voor Piet" -DisplayName "PietP" `
             -GivenName "Piet" -State "Oost-Vlaanderen" -City "Sint-Martens-Latem" -Postalcode "9830" -EmailAddress "piet@red.local" `
-            -Office "B4.002" -EmployeeID "2531" -HomePhone "0444727280" -Initials "PP" -Path "OU=Users,OU=Administratie,DC=red,DC=local" -AccountPassword $paswoordje
+            -Office "B4.002" -EmployeeID "2531" -HomePhone "0444727260" -Initials "PP" -Path "OU=Users,OU=Administratie,DC=red,DC=local" -AccountPassword $paswoordje
+
+New-AdUser -Name "Stijn" -Surname "Streuvels" -Department "Administration" -Description "Account voor Stijn" -DisplayName "StijnS" `
+            -GivenName "Stijn" -State "West-Vlaanderen" -City "Ingooigem" -Postalcode "8570" -EmailAddress "stijn@red.local" `
+            -Office "B4.002" -EmployeeID "9432" -HomePhone "0444727261" -Initials "SS" -Path "OU=Users,OU=Administratie,DC=red,DC=local" -AccountPassword $paswoordje
 
 New-AdUser -Name "Tibo" -Surname "Vanhercke" -Department "Accounting Administration" -Description "Account voor Tibo" -DisplayName "TiboV" `
             -GivenName "Tibo" -State "Oost-Vlaanderen" -City "Gent" -Postalcode "9000" -EmailAddress "tibo@red.local" `
-            -Office "B4.012" -EmployeeID "2246" -HomePhone "0444727282" -Initials "TV" -Path "OU=Users,OU=Administratie,OU=Accounting Administratie,DC=red,DC=local" -AccountPassword $paswoordje
+            -Office "B4.012" -EmployeeID "2246" -HomePhone "0444727250" -Initials "TV" -Path "OU=Users,OU=Administratie,OU=Accounting Administratie,DC=red,DC=local" -AccountPassword $paswoordje
+
+New-AdUser -Name "Lies" -Surname "Huyge" -Department "Accounting Administration" -Description "Account voor Lies" -DisplayName "LiesH" `
+            -GivenName "Lies" -State "West-Vlaanderen" -City "Meulebeke" -Postalcode "8760" -EmailAddress "lies@red.local" `
+            -Office "B4.012" -EmployeeID "4253" -HomePhone "0444727251" -Initials "LH" -Path "OU=Users,OU=Administratie,OU=Accounting Administratie,DC=red,DC=local" -AccountPassword $paswoordje
 
 New-AdUser -Name "Dieter" -Surname "Vanderbeken" -Department "Productie Administration" -Description "Account voor Dieter" -DisplayName "DieterV" `
             -GivenName "Dieter" -State "Oost-Vlaanderen" -City "Gent" -Postalcode "9000" -EmailAddress "dieter@red.local" `
-            -Office "B4.022" -EmployeeID "2246" -HomePhone "0444727283" -Initials "DV" -Path "OU=Users,OU=Administratie,OU=Productie Administratie,DC=red,DC=local" -AccountPassword $paswoordje
+            -Office "B4.022" -EmployeeID "2246" -HomePhone "0444727240" -Initials "DV" -Path "OU=Users,OU=Administratie,OU=Productie Administratie,DC=red,DC=local" -AccountPassword $paswoordje
+
+New-AdUser -Name "Louis" -Surname "Vanden Berghe" -Department "Productie Administration" -Description "Account voor Louis" -DisplayName "LouisVB" `
+            -GivenName "Louis" -State "Oost-Vlaanderen" -City "Gent" -Postalcode "9000" -EmailAddress "louis@red.local" `
+            -Office "B4.022" -EmployeeID "2286" -HomePhone "0444727241" -Initials "LVB" -Path "OU=Users,OU=Administratie,OU=Productie Administratie,DC=red,DC=local" -AccountPassword $paswoordje
 
 ## Manager toekennen aan elke user
 Write-Host "Allocate manager ..."
 Set-ADUser -Identity "Laurens" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
+Set-ADUser -Identity "Pieter" -Manager "CN=Laurens,OU=Administratie,OU=IT Administratie,DC=red,DC=local"
+
 Set-ADUser -Identity "Jan" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
+Set-ADUser -Identity "Jonas" -Manager "CN=Jan,OU=Ontwikkeling,DC=red,DC=local"
+
 Set-ADUser -Identity "Mieke" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
+Set-ADUser -Identity "Sandra" -Manager "CN=Mieke,OU=Verkoop,OU=IT Administratie,DC=red,DC=local"
+
 Set-ADUser -Identity "Piet" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
+Set-ADUser -Identity "Stijn" -Manager "CN=Piet,OU=Administratie,DC=red,DC=local"
+
 Set-ADUser -Identity "Tibo" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
+Set-ADUser -Identity "Lies" -Manager "CN=Tibo,OU=Administratie,OU=Accounting Administratie,DC=red,DC=local"
+
 Set-ADUser -Identity "Dieter" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
+Set-ADUser -Identity "Louis" -Manager "CN=Dieter,OU=Administratie,OU=Productie Administratie,DC=red,DC=local"
 
 # Elk user-account unlocken.
 Write-Host "Unlock accounts..."
 Enable-ADAccount -Identity "Kimberly"
 Enable-ADAccount -Identity "Laurens"
+Enable-ADAccount -Identity "Pieter"
 Enable-ADAccount -Identity "Jan"
+Enable-ADAccount -Identity "Jonas"
 Enable-ADAccount -Identity "Mieke"
+Enable-ADAccount -Identity "Sandra"
 Enable-ADAccount -Identity "Piet"
+Enable-ADAccount -Identity "Stijn"
 Enable-ADAccount -Identity "Tibo"
+Enable-ADAccount -Identity "Lies"
 Enable-ADAccount -Identity "Dieter"
+Enable-ADAccount -Identity "Louis"
 
 # Computers
 # Voeg minstens 5 werkstations toe (één in elke afdeling).
 Write-Host "Create workstations..."
-# Hoe moeten de werkstations heetten?
-New-ADComputer "Alfa2" -SamAccountName "Alfa2-SRV1" -Path "OU=Computers,OU=Administratie,DC=red,DC=local"
+New-ADComputer "Werkstation_001" -SamAccountName "Admin001-SRV1" -Path "OU=Computers,OU=Administratie,DC=red,DC=local"
+New-ADComputer "Werkstation_002" -SamAccountName "Verkoop001-SRV1" -Path "OU=Computers,OU=Verkoop,DC=red,DC=local"
+New-ADComputer "Werkstation_003" -SamAccountName "Ontwikkeling001-SRV1" -Path "OU=Computers,OU=Ontwikkeling,DC=red,DC=local"
+New-ADComputer "Werkstation_004" -SamAccountName "Directie001-SRV1" -Path "OU=Computers,OU=Directie,DC=red,DC=local"
 
-Write-Host "Create workstation for Administratie..."
-New-ADComputer "Admin001" -SamAccountName "Admin001-SRV1" -Path "OU=Computers,OU=Administratie,DC=red,DC=local"
-
-Write-Host "Create workstation for IT Administratie..."
-New-ADComputer "ITAdmin001" -SamAccountName "ITAdmin001-SRV1" -Path "OU=Computers,OU=Adminsitratie,OU=IT Administratie,DC=red,DC=local" -Enabled $True -Location "Gent,BE"
-
-Write-Host "Create workstation for Accounting Administratie..."
-New-ADComputer "ACCAdmin001" -SamAccountName "ITAdmin001-SRV1" -Path "OU=Computers,OU=Adminsitratie,OU=Accounting Administratie,DC=red,DC=local" -Enabled $True -Location "Gent,BE"
-
-Write-Host "Create workstation for Productie Administratie..."
-New-ADComputer "ProdAdmin001" -SamAccountName "ITAdmin001-SRV1" -Path "OU=Computers,OU=Adminsitratie,OU=Productie Administratie,DC=red,DC=local" -Enabled $True -Location "Gent,BE"
-
-Write-Host "Create workstation for Verkoop..."
-New-ADComputer "Verkoop001" -SamAccountName "Verkoop001-SRV1" -Path "OU=Computers,OU=Verkoop,DC=red,DC=local"
-
-Write-Host "Create workstation for Ontwikkeling..."
-New-ADComputer "Ontwikkeling001" -SamAccountName "Ontwikkeling001-SRV1" -Path "OU=Computers,OU=Ontwikkeling,DC=red,DC=local"
-
-Write-Host "Create workstation for Directie..."
-New-ADComputer "Directie001" -SamAccountName "Directie001-SRV1" -Path "OU=Computers,OU=Directie,DC=red,DC=local"
+Write-Host "Create workstations for sub OU's..."
+New-ADComputer "Werkstation_005" -SamAccountName "ITAdmin001-SRV1" -Path "OU=Computers,OU=Adminsitratie,OU=IT Administratie,DC=red,DC=local" -Enabled $True -Location "Gent,BE"
+New-ADComputer "Werkstation_006" -SamAccountName "ITAdmin001-SRV1" -Path "OU=Computers,OU=Adminsitratie,OU=Accounting Administratie,DC=red,DC=local" -Enabled $True -Location "Gent,BE"
+New-ADComputer "Werkstation_007" -SamAccountName "ITAdmin001-SRV1" -Path "OU=Computers,OU=Adminsitratie,OU=Productie Administratie,DC=red,DC=local" -Enabled $True -Location "Gent,BE"
 
 # Roaming profiles
 Write-Host "Create a shared folder for roaming profiles..."
