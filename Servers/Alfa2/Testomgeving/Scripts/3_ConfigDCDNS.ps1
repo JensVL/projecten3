@@ -30,7 +30,7 @@ Add-DnsServerPrimaryZone -Name "red.local" -ReplicationScope "Domain" -DynamicUp
 
 # 2) Voeg de servers als AAAA records toe met hun ip adres in de aangemaakte primary zone: (name to ip address)
 # LET OP: Charlie2 Exchange (mail) server = MX record ipv AAAA record
-#en Bravo2 DC2 = NS record (NS record niet zelf aanmaken gebeurd automatisch volgens AD-integration zones)
+# en Bravo2 DC2 = NS record (NS record niet zelf aanmaken gebeurd automatisch volgens AD-integration zones)
 # MX record -MailExchange option moet pointen naar bestaande A record (Zie -Mail Exchange optie Microsoft docs Add-DnsServerResourceRecordMX)
 Add-DnsServerResourceRecordA -Name "Charlie2" -ZoneName "red.local" -IPv4Address "$Charlie2IP" -CreatePtr
 Add-DnsServerResourceRecordMX -Name "." -MailExchange "Charlie2.red.local" -ZoneName "red.local"
@@ -43,7 +43,7 @@ Add-DnsServerResourceRecordA -Name "November2" -ZoneName "red.local" -IPv4Addres
 Add-DnsServerResourceRecordA -Name "Oscar2" -ZoneName "red.local" -IPv4Address "$Oscar2IP" -CreatePtr
 Add-DnsServerResourceRecordA -Name "Papa2" -ZoneName "red.local" -IPv4Address "$Papa2IP" -CreatePtr
 
-#######################################################################################################################################################
+########################### ############################################################################################################################
 # 3) DNS reverse lookup zone maken (IP address to domain name):
 # 172.18.1.66 / 27 => Network portion: 172.18.1.64
 # TODO: MAG WSS WEG reverse lookup zone enkel voor als je subdomains hebt in andere subnets (wij hebben maar 1 domain = red.local)
