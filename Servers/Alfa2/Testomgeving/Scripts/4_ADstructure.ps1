@@ -6,7 +6,7 @@ $InformationPreference = "Continue"
 Start-Transcript "C:\ScriptLogs\4_ADstructure.txt"
 Import-Module ActiveDirectory
 
-## Groepen
+## Organizational units:                            ######################## OU "IT_Administratie" aanmaken en sub OU's wegdoen (voor ADGLP permissies)
 Write-Host "Make Organizational Unit Verkoop..."
 New-ADOrganizationalUnit "Verkoop" -Discription "Organizational Unit voor Verkoop" -ManagedBy "Mieke"
 
