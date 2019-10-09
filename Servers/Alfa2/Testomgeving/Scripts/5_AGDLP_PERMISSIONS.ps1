@@ -26,7 +26,7 @@ Start-Transcript "C:\ScriptLogs\5_AGDLP_PERMISSIONSlog.txt"
 
 # 1) Map alle drives zodat Alfa2 toegang heeft tot de shared folders van Lima2:          TODO: MOET OOK IN SCCM TASK SEQUENCE VOOR DE CLIENTS (+ SMB 1.0/CIFS)
 # net use [drive letter]: \\server\sharedFolder\    /P:yes = Maak mapping permanent
-Write-Host "Mapping Shared folders of Lima2 to drive letters so Alfa2 has access to them:"
+Write-Host "Mapping Shared folders of Lima2 to drive letters so Alfa2 has access to them:" -ForeGroundColor "Green"
 net use d: $VerkoopData /P:Yes
 net use e: $OntwikkelingData /P:Yes
 net use f: $ITData /P:Yes
@@ -39,7 +39,7 @@ net use y: $Profiledirs /P:Yes        # Z: drive in opgave (was al bezet door Vi
 
 # 2) Maak groupen (GLOBAL GROUPS) voor elke afdeling:
 # Groepen aanmaken
-Write-Host "Make AD Global Groups..."
+Write-Host "Make AD Global Groups..." -ForeGroundColor "Green"
 New-ADGroup -Name "Administratie" -Path "OU=Administratie,DC=red,DC=local" -GroupCategory "Security" -GroupScope "Global"
 New-ADGroup -Name "Directie" -Path "OU=Directie,DC=red,DC=local" -GroupCategory "Security" -GroupScope "Global"
 New-ADGroup -Name "Ontwikkeling" -Path "OU=Ontwikkeling,DC=red,DC=local" -GroupCategory "Security" -GroupScope "Global"
@@ -48,6 +48,7 @@ New-ADGroup -Name "IT_Administratie" -Path "OU=IT_Administratie,DC=red,DC=local"
 
 # 3) Domain local groups aanmaken waarop we de permissies toepassen:
 # IT_Administratie heeft full control over alle shared folders
+Write-Host "Make AD Localdomain groups (= permission groups)" -ForeGroundColor "Green"
 New-ADGroup -Name "RW_VERKOOP" -Path "DC=red,DC=local" -GroupCategory "Security" -GroupScope "DomainLocal"
 New-ADGroup -Name "RW_ONTWIKKELING" -Path "DC=red,DC=local" -GroupCategory "Security" -GroupScope "DomainLocal"
 New-ADGroup -Name "RW_DIRECTIE" -Path "DC=red,DC=local" -GroupCategory "Security" -GroupScope "DomainLocal"
@@ -68,6 +69,7 @@ New-ADGroup -Name "RW_SHAREVERKOOP" -Path "DC=red,DC=local" -GroupCategory "Secu
 Add-LocalGroupMember -Group "LOCAL_GROUP_HERE" -Member "MEMBERS_HERE(= global groups)", "MEMBER_2", "MEMBER_3" -
 
 # 5) Geef de nodige permissies/rechten aan elke global group volgens de opdrachtomschrijving:
+Write-Host "Assigning permissions to the domainlocal groups:" -ForeGroundColor "Green"
 $ACL = Get-ACL "$Verkoopdata"
 $VerkoopPermissions = New-Object System.Security.AccessControl.FileSystemAccessRule("username","FullControl","Allow")
 $ACL.SetAccessRule($VerkoopPermissions)

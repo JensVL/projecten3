@@ -27,12 +27,12 @@ $SCCMPassword = $CurrentCredentials.GetNetworkCredential().Password
 $SecureStringPwd = ConvertTo-SecureString "$SCCMPassword" -AsPlainText -Force
 
 # 1.2) Het aanmaken van de SCCM account zelf:
-Write-Host "Creating SCCMAdmin account in the AD for the Papa2 server:"
+Write-Host "Creating SCCMAdmin account in the AD for the Papa2 server:" -ForeGroundColor "Green"
 New-ADUser -GivenName "SCCM" -Surname "Admin" -Name "$SCCMAdmin" -PasswordNeverExpires $true -AccountPassword $SecureStringPwd
 set-adUser -Enabled $true -Identity "$SCCMAdmin"
 
 # 1.3) Voeg nu de SCCM acocunt toe aan de Domain Admin en Administrators groups zodat hij full domain admin rechten heeft:
-Write-host "Adding SCCMAdmin to Domain Admin en Administrators group:"
+Write-host "Adding SCCMAdmin to Domain Admin en Administrators group:" -ForeGroundColor "Green"
 Add-ADGroupMember -Identity "Domain Admins" -Members "$SCCMAdmin"
 Add-ADGroupMember -Identity "Administrators" -Members "$SCCMAdmin"
 
@@ -42,7 +42,7 @@ Add-ADGroupMember -Identity "Administrators" -Members "$SCCMAdmin"
 $ASDIconnection = [ADSI]"LDAP://localhost:389/cn=System,dc=red,dc=local"
 
 # 2.2) Maak de System Management container aan in ADSIedit:
-Write-Host "Creating System Management container in ADSIedit:"
+Write-Host "Creating System Management container in ADSIedit:" -ForeGroundColor "Green"
 $SysManContainer = $ASDIconnection.Create("container", "cn=System Management")
 $SysManContainer.SetInfo()
 
@@ -68,7 +68,7 @@ $inheritanceAll = [System.DirectoryServices.ActiveDirectorySecurityInheritance] 
 
 # 3.5) Dit zal de gekozen permissies toepassen op de System Management container:
 # in ADSIedit noemt een permission rule "Access rule" (AddAccessRule methode)
-Write-Host "Setting permissions of System Management container to Papa2 server"
+Write-Host "Setting permissions of System Management container to Papa2 server" -ForeGroundColor "Green"
 $PermissionsRule = New-Object System.DirectoryServices.ActiveDirectoryAccessRule `
 $ServerIdentity,$permissions,$allow,$inheritanceAll
 
@@ -85,7 +85,7 @@ $SystemManagementCN.psbase.commitchanges()
 Copy-Item "$VBOXdrive\ExtendADschema" -Destination "C:\Users\Administrator.red\Desktop" -Recurse
 
 # 4.2) Dan voer je het script (ALS ADMINISTRATOR!) uit om de AD schema te extenden:
-Write-Host "Extending AD Schema:"
+Write-Host "Extending AD Schema:" -ForeGroundColor "Green"
 Start-Process -Verb RunAs C:\Users\Administrator.red\Desktop\ExtendADschema\extadsch.exe
 
 # NOG STEEDS FAILED TO EXTEND AD SCHEMA ERROR Error 8224?

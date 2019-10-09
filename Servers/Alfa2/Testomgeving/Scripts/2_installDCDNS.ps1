@@ -18,21 +18,21 @@ Start-Transcript "C:\ScriptLogs\2_InstallDCDNSlog.txt"
 
 # Start-Sleep zal 10 seconden wachten voor hij aan het eerste commando van dit script begint
 # om zeker te zijn dat de server klaar is met het starten van zijn services na de reboot
-Write-host "Waiting 15 seconds before executing script"
+Write-host "Waiting 15 seconds before executing script" -ForeGroundColor "Green"
 start-sleep -s 15
-Write-host "Starting script now:"
+Write-host "Starting script now:" -ForeGroundColor "Green"
 
 # 1) Stel Datum/tijd correct in:
 # Romance standard time = Brusselse tijd
 # Eerste commando zal tijd naar 24uur formaat instellen (eng zorgt dat taal op engels blijft maar regio komt op BE)
-Write-host "Setting correct timezone and time format settings:"
+Write-host "Setting correct timezone and time format settings:" -ForeGroundColor "Green"
 Set-Culture -CultureInfo $Land
-set-timezone -Name "Romance Standard Time"
+set-timezone -Name "Romance Standard Time" -ForeGroundColor "Green"
 
 ###################################################################################################### ENKEL VOOR VIRTUALBOX LAB TESTING DEMO HEEFT 1 NIC (LAN)
 # 2) Hernoem de netwerkadapters. NAT = de adapter die met het internet verbind
 # LAN = de adapter met static IP instellingen die alle servers met elkaar verbind.
-Write-host "Changing NIC adapter names:"
+Write-host "Changing NIC adapter names:" -ForeGroundColor "Green"
 # TODO:                                                                                                                      TODO: Vervang door:
 # Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName $AdapterNaam
 Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName NAT
@@ -42,7 +42,7 @@ Get-NetAdapter -Name "Ethernet 2" | Rename-NetAdapter -NewName $AdapterNaam
 #                                                                          ############################# TODO: SWITCH IP ADRES INSTELLEN ALS Def. Gateway
 # 3) Geef de LAN adapter de correcte IP instellingen volgens de opdracht:
 # Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.224)
-Write-host "Setting correct ipv4 settings:"
+Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
 New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR
 
 # 4) DNS van LAN van Alfa2 instellen op Hogent DNS servers:
@@ -50,7 +50,7 @@ New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixL
 Set-DnsClientServerAddress -InterfaceAlias "$AdapterNaam" -ServerAddress "193.190.173.1","193.190.173.2"
 
 # 4) Installeer de Active Directory Domain Services role om van de server een DC te kunnen maken:
-Write-host "Starting installation of ADDS role:"
+Write-host "Starting installation of ADDS role:" -ForeGroundColor "Green"
 Install-WindowsFeature AD-domain-services -IncludeManagementTools
 import-module ADDSDeployment
 
@@ -79,7 +79,7 @@ Set-ItemProperty -Path "REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\
 #     Forestmode/DomainMode => 7 is = Windows Server 2016 (de oudste Windows Server versie in onze opstelling)
 #     DNS role laten aanmaken en DNSdelegation uitzetten om later onze eigen DNS server in te stellen
 #     Force forceert negeren van bevestigingen
-Write-host "Starting configuration of red.local domain:"
+Write-host "Starting configuration of red.local domain:" -ForeGroundColor "Green"
 install-ADDSForest -DomainName "red.local" `
                   -ForestMode 7 `
                   -DomainMode 7 `

@@ -7,32 +7,32 @@ Start-Transcript "C:\ScriptLogs\4_ADstructure.txt"
 Import-Module ActiveDirectory
 
 ## Organizational units:                            ######################## OU "IT_Administratie" aanmaken en sub OU's wegdoen (voor ADGLP permissies)
-Write-Host "Make Organizational Unit Verkoop..."
+Write-Host "Make Organizational Unit Verkoop..." -ForeGroundColor "Green"
 New-ADOrganizationalUnit "Verkoop" -Discription "Organizational Unit voor Verkoop" -ManagedBy "Mieke"
 
-Write-Host "Make Organizational Unit Ontwikkeling..."
+Write-Host "Make Organizational Unit Ontwikkeling..." -ForeGroundColor "Green"
 New-ADOrganizationalUnit "Ontwikkeling" -Discription "Organizational Unit voor Ontwikkeling" -ManagedBy  "Jan"
 
-Write-Host "Make Organizational Unit Directie..."
+Write-Host "Make Organizational Unit Directie..." -ForeGroundColor "Green"
 New-ADOrganizationalUnit "Directie" -Discription "Organizational Unit voor Directie" -ManagedBy "Kimberly"
 
-Write-Host "Make Organizational Unit Administratie..."
+Write-Host "Make Organizational Unit Administratie..." -ForeGroundColor "Green"
 New-ADOrganizationalUnit -Name "Administratie" -Discription "Organizational Unit voor Administratie" -ManagedBy "Piet"
 
 # Sub OU
-Write-Host "Make Organizational Units in OU Administratie..."
+Write-Host "Make Organizational Units in OU Administratie..." -ForeGroundColor "Green"
 New-ADOrganizationalUnit "IT Administratie" –Path "OU=Administratie,DC=red,DC=local" -Discription "Organizational Unit voor IT Administratie" -ManagedBy "Laurens"
 New-ADOrganizationalUnit "Accounting Administratie" –Path "OU=Administratie,DC=red,DC=local" -Discription "Organizational Unit voor Accounting Administratie"  -ManagedBy "Tibo"
 New-ADOrganizationalUnit "Productie Administratie" –Path "OU=Administratie,DC=red,DC=local" -Discription "Organizational Unit voor Productie Administratie" -ManagedBy "Dieter"
 
 # Groepen aanmaken
-Write-Host "Make AD Groups..."
+Write-Host "Make AD Groups..." -ForeGroundColor "Green"
 New-ADGroup "Administratie" -DisplayName "Administratie", -Path "OU=Administratie,DC=red,DC=local", -GroupCategory "Security", -GroupScope "Global"
 New-ADGroup "Administratie" -DisplayName "Directie", -Path "OU=Directie,DC=red,DC=local", -GroupCategory "Security", -GroupScope "Global"
 New-ADGroup "Administratie" -DisplayName "Ontwikkeling", -Path "OU=Ontwikkeling,DC=red,DC=local", -GroupCategory "Security", -GroupScope "Global"
 New-ADGroup "Administratie" -DisplayName "Verkoop", -Path "OU=Verkoop,DC=red,DC=local", -GroupCategory "Security", -GroupScope "Global"
 
-Write-Host "Make AD Sub-Groups..."
+Write-Host "Make AD Sub-Groups..." -ForeGroundColor "Green"
 New-ADGroup "Administratie" -DisplayName "IT Administratie", -Path "OU=Administratie,OU=IT Administratie, DC=red,DC=local", -GroupCategory "Security", -GroupScope "Global"
 New-ADGroup "Administratie" -DisplayName "Productie Administratie", -Path "OU=Administratie,OU=Productie Administratie, DC=red,DC=local", -GroupCategory "Security", -GroupScope "Global"
 New-ADGroup "Administratie" -DisplayName "Accounting Administratie", -Path "OU=Administratie,OU=Accounting Administratie, DC=red,DC=local", -GroupCategory "Security", -GroupScope "Global"
@@ -41,7 +41,7 @@ New-ADGroup "Administratie" -DisplayName "Accounting Administratie", -Path "OU=A
 # Er wordt telkens een gebruiker aangemaakt, specifiek de manager van elke Organizational Unit.
 $paswoordje=ConvertTo-SecureString "Admin2019" -asPlainText -force
 
-Write-Host "Create users..."
+Write-Host "Create users..." -ForeGroundColor "Green"
 New-AdUser -Name "Kimberly" -Surname "De Clercq" -Department "Manager" -Description "Account voor Kimberly" -DisplayName "KimberlyDC" -GivenName "Kimberly" -State "West-Vlaanderen"  -City "Ingelmunster" -PostalCode "8770" -EmailAddress "kimberly@red.local" -Office "B0.001" -EmployeeID "1004" -HomePhone "0444727272" -Initials "KDC" -Path "OU=Users,OU=Directie,DC=red,DC=local" -AccountPassword $paswoordje
 
 New-AdUser -Name "Laurens" -Surname "Blancquaert-Cassaer" -Department "IT Administration" -Description "Account voor Laurens" -DisplayName "LaurensBC" `
@@ -93,7 +93,7 @@ New-AdUser -Name "Louis" -Surname "Vanden Berghe" -Department "Productie Adminis
             -Office "B4.022" -EmployeeID "2286" -HomePhone "0444727241" -Initials "LVB" -Path "OU=Users,OU=Administratie,OU=Productie Administratie,DC=red,DC=local" -AccountPassword $paswoordje
 
 ## Manager toekennen aan elke user
-Write-Host "Allocate manager ..."
+Write-Host "Allocate manager ..." -ForeGroundColor "Green"
 Set-ADUser -Identity "Laurens" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
 Set-ADUser -Identity "Pieter" -Manager "CN=Laurens,OU=Administratie,OU=IT Administratie,DC=red,DC=local"
 
@@ -113,7 +113,7 @@ Set-ADUser -Identity "Dieter" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
 Set-ADUser -Identity "Louis" -Manager "CN=Dieter,OU=Administratie,OU=Productie Administratie,DC=red,DC=local"
 
 # Elk user-account unlocken.
-Write-Host "Unlock accounts..."
+Write-Host "Unlock accounts..." -ForeGroundColor "Green"
 Enable-ADAccount -Identity "Kimberly"
 Enable-ADAccount -Identity "Laurens"
 Enable-ADAccount -Identity "Pieter"
@@ -130,26 +130,26 @@ Enable-ADAccount -Identity "Louis"
 
 # Computers
 # Voeg minstens 5 werkstations toe (één in elke afdeling).
-Write-Host "Create workstations..."
+Write-Host "Create workstations..." -ForeGroundColor "Green"
 New-ADComputer "Werkstation_001" -SamAccountName "Admin001-SRV1" -Path "OU=Computers,OU=Administratie,DC=red,DC=local"
 New-ADComputer "Werkstation_002" -SamAccountName "Verkoop001-SRV1" -Path "OU=Computers,OU=Verkoop,DC=red,DC=local"
 New-ADComputer "Werkstation_003" -SamAccountName "Ontwikkeling001-SRV1" -Path "OU=Computers,OU=Ontwikkeling,DC=red,DC=local"
 New-ADComputer "Werkstation_004" -SamAccountName "Directie001-SRV1" -Path "OU=Computers,OU=Directie,DC=red,DC=local"
 
-Write-Host "Create workstations for sub OU's..."
+Write-Host "Create workstations for sub OU's..." -ForeGroundColor "Green"
 New-ADComputer "Werkstation_005" -SamAccountName "ITAdmin001-SRV1" -Path "OU=Computers,OU=Adminsitratie,OU=IT Administratie,DC=red,DC=local" -Enabled $True -Location "Gent,BE"
 New-ADComputer "Werkstation_006" -SamAccountName "ITAdmin001-SRV1" -Path "OU=Computers,OU=Adminsitratie,OU=Accounting Administratie,DC=red,DC=local" -Enabled $True -Location "Gent,BE"
 New-ADComputer "Werkstation_007" -SamAccountName "ITAdmin001-SRV1" -Path "OU=Computers,OU=Adminsitratie,OU=Productie Administratie,DC=red,DC=local" -Enabled $True -Location "Gent,BE"
 
 # Roaming profiles
-Write-Host "Create a shared folder for roaming profiles..."
+Write-Host "Create a shared folder for roaming profiles..." -ForeGroundColor "Green"
 New-Item -ItemType Directory -Name "Profiles" -Path "C:"
 New-SmbShare -Path "C:\Profiles\" -Name "Profiles"
 
-Write-Host "Modify folder permissions..."
+Write-Host "Modify folder permissions..." -ForeGroundColor "Green"
 Grant-SmbShareAccess -Name "Profiles" -AccountName Everyone -AccesRight Full
 
-Write-Host "Configure the profile path..."
+Write-Host "Configure the profile path..." -ForeGroundColor "Green"
 # TO DO: ProfilePath + Identity
 Set-ADUser -Identity Kimberly -ProfilePath "\\dc01\profiles\%username%"
 
