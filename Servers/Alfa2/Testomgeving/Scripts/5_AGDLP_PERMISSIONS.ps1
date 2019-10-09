@@ -53,11 +53,24 @@ New-ADGroup -Name "RW_ONTWIKKELING" -Path "DC=red,DC=local" -GroupCategory "Secu
 New-ADGroup -Name "RW_DIRECTIE" -Path "DC=red,DC=local" -GroupCategory "Security" -GroupScope "DomainLocal"
 New-ADGroup -Name "RW_ADMIN" -Path "DC=red,DC=local" -GroupCategory "Security" -GroupScope "DomainLocal"
 
+# IT DomainLocal group dat full permissies aan alle shares:
+New-ADGroup -Name "FullAccess_IT" -Path "DC=red,DC=local" -GroupCategory "Security" -GroupScope "DomainLocal"
+
+# Homedirs/profiledirs enkel zichtbaar voor de gebruiker die is aangemeld (de anderen niet):
 New-ADGroup -Name "RW_HOMEDIRS" -Path "DC=red,DC=local" -GroupCategory "Security" -GroupScope "DomainLocal"
 New-ADGroup -Name "RW_PROFILEDIRS" -Path "DC=red,DC=local" -GroupCategory "Security" -GroupScope "DomainLocal"
 
 # TODO: NADENKEN OVER DE PERMISSIES HIERONDER + -Path overal correct invullen
 New-ADGroup -Name "RW_SHAREVERKOOP" -Path "DC=red,DC=local" -GroupCategory "Security" -GroupScope "DomainLocal"
 
+
+# 4) Voeg de Domain local groups toe als members juiste van de global groups:
+Add-LocalGroupMember -Group "LOCAL_GROUP_HERE" -Member "MEMBERS_HERE(= global groups)", "MEMBER_2", "MEMBER_3" -
+
+# 5) Geef de nodige permissies/rechten aan elke global group volgens de opdrachtomschrijving:
+$ACL = Get-ACL "$Verkoopdata"
+$VerkoopPermissions = New-Object System.Security.AccessControl.FileSystemAccessRule("username","FullControl","Allow")
+$ACL.SetAccessRule($VerkoopPermissions)
+Set-ACL "$Verkoopdata" $ACL
 
 Stop-Transcript
