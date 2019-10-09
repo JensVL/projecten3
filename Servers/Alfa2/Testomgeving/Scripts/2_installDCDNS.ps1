@@ -27,7 +27,7 @@ Write-host "Starting script now:" -ForeGroundColor "Green"
 # Eerste commando zal tijd naar 24uur formaat instellen (eng zorgt dat taal op engels blijft maar regio komt op BE)
 Write-host "Setting correct timezone and time format settings:" -ForeGroundColor "Green"
 Set-Culture -CultureInfo $Land
-set-timezone -Name "Romance Standard Time" -ForeGroundColor "Green"
+set-timezone -Name "Romance Standard Time"
 
 ###################################################################################################### ENKEL VOOR VIRTUALBOX LAB TESTING DEMO HEEFT 1 NIC (LAN)
 # 2) Hernoem de netwerkadapters. NAT = de adapter die met het internet verbind
