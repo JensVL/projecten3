@@ -10,7 +10,7 @@ Naam leden:
 
 Taak team: 
 
-[Algemeen lastenboek]!(https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/Lastenboek/Screenshots%20lastenboek/lastenboek%20groep%20aalst.png)
+![Algemeen lastenboek](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/Lastenboek/Screenshots%20lastenboek/lastenboek%20groep%20aalst.png)
 
 ## Vragen
 
