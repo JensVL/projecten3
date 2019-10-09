@@ -43,22 +43,14 @@ Add-DnsServerResourceRecordA -Name "November2" -ZoneName "red.local" -IPv4Addres
 Add-DnsServerResourceRecordA -Name "Oscar2" -ZoneName "red.local" -IPv4Address "$Oscar2IP" -CreatePtr
 Add-DnsServerResourceRecordA -Name "Papa2" -ZoneName "red.local" -IPv4Address "$Papa2IP" -CreatePtr
 
-########################### ############################################################################################################################
-# 3) DNS reverse lookup zone maken (IP address to domain name):
-# 172.18.1.66 / 27 => Network portion: 172.18.1.64
-# TODO: MAG WSS WEG reverse lookup zone enkel voor als je subdomains hebt in andere subnets (wij hebben maar 1 domain = red.local)
-Add-DnsServerPrimaryZone -ReplicationScope "Domain" -DynamicUpdate "Secure" -NetworkID "172.18.1.64/27"
-
-# Voeg de servers van het red domain toe als PTR records in de reverse lookup zone:
-# TODO: MAG WSS WEG reverse lookup zone enkel voor als je subdomains hebt in andere subnets (wij hebben maar 1 domain = red.local)
-Add-DnsServerResourceRecordPtr -Name "Delta2" -ZoneName "1.18.172.in-addr.arpa" -AllowUpdateAny --PtrDomainName "Delta2.contoso.com"
-#######################################################################################################################################################
-
-# 3) DNS forwarders instellen op de Hogent DNS servers:          DNS FORWARDERS MOETEN OF NIET??????????????????????????????
+# 3) DNS forwarders instellen op de Hogent DNS servers:         TODO DNS FORWARDERS MOETEN OF NIET??????????????????????????????
 Add-DnsServerForwarder -IpAddress "193.190.173.1","193.190.173.2"
+
+# 4) Start het 4_ADstructure.ps1 script als Administrator:
+Start-Process powershell -Verb runAs -ArgumentList "$VBOXdrive\4_ADstructure.ps1"
 
 # TODO: Na configuratie DNS testen met nslookup
 
-# Eventueel vragen aan Bravo2 om secondary zones aan te maken van mijn zone(s)
+# TODO Eventueel vragen aan Bravo2 om secondary zones aan te maken van mijn zone(s)
 
 Stop-Transcript

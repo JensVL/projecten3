@@ -29,6 +29,7 @@ $SecureStringPwd = ConvertTo-SecureString "$SCCMPassword" -AsPlainText -Force
 # 1.2) Het aanmaken van de SCCM account zelf:
 Write-Host "Creating SCCMAdmin account in the AD for the Papa2 server:" -ForeGroundColor "Green"
 New-ADUser -GivenName "SCCM" -Surname "Admin" -Name "$SCCMAdmin" -PasswordNeverExpires $true -AccountPassword $SecureStringPwd
+New-ADComputer -Name "Papa2"
 set-adUser -Enabled $true -Identity "$SCCMAdmin"
 
 # 1.3) Voeg nu de SCCM acocunt toe aan de Domain Admin en Administrators groups zodat hij full domain admin rechten heeft:
