@@ -97,4 +97,6 @@ Remove-Item -Path "C:\Users\Administrator.red\Desktop\ExtendADschema" -Force
 # Verplaats bovengenoemde log naar desktop van domain admin:
 Move-item -Path "C:\ExtADSch.log" -Destination "C:\Users\Administrator.red\Desktop"
 
+Set-ExecutionPolicy -ExecutionPolicy "Restricted"
+
 Stop-Transcript

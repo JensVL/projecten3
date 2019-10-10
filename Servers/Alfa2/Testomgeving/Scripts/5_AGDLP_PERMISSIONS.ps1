@@ -88,7 +88,7 @@ Add-LocalGroupMember -Group "R_SHAREVERKOOP" -Member "Ontwikkeling"
 Write-Host "Assigning permissions to the Lima2:" -ForeGroundColor "Green"
 
 
-# 5.1) Verkoopdata:
+# 5.1) Verkoopdata: (+ RW voor ShareVerkoop folder)
 $ACL = Get-ACL "$Verkoopdata"
 $Permissies = New-Object System.Security.AccessControl.FileSystemAccessRule("RW_VERKOOP","Read", `
                          "ContainerInherit,ObjectInherit","InheritOnly","Allow")  # Read permissions
@@ -99,6 +99,8 @@ $Permissies = New-Object System.Security.AccessControl.FileSystemAccessRule("RW_
 $ACL.AddAccessRule($Permissies)
 
 Set-ACL "$Verkoopdata" $ACL
+# ook read write permissions aan shareverkoop folder geven:
+Set-ACL "$ShareVerkoop" $ACL
 
 
 # 5.2) Ontwikkelingdata:
@@ -162,14 +164,6 @@ $Permissies = New-Object System.Security.AccessControl.FileSystemAccessRule("RW_
                          "ContainerInherit,ObjectInherit","InheritOnly","Allow")  # Read permissions ontwikkeling
 $ACL.SetAccessRule($Permissies)
 
-$Permissies = New-Object System.Security.AccessControl.FileSystemAccessRule("RW_VERKOOP","Write", `
-                         "ContainerInherit,ObjectInherit","InheritOnly","Allow")  # Write permissions verkoop
-$ACL.AddAccessRule($Permissies)
-
-$Permissies = New-Object System.Security.AccessControl.FileSystemAccessRule("RW_VERKOOP","read", `
-                         "ContainerInherit,ObjectInherit","InheritOnly","Allow")  # Read permissions verkoop
-$ACL.AddAccessRule($Permissies)
-
 Set-ACL "$ShareVerkoop" $ACL
 
 
@@ -214,6 +208,8 @@ ForEach ($GEBRUIKER in $REDLOCALUSERS) {
       Set-ACL "$ProfileFolder" $ACL
  }
 
-
+# 6) Zet Auto login terug af:
+ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogon -Value 0
+ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name ForceAutoLogon -Value 0
 
 Stop-Transcript
