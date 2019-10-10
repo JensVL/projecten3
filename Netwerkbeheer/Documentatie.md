@@ -17,14 +17,11 @@
   - Router1: Site to site VPN -> Router0 ?
   - Router4: ISP Google ?
   - Router3: ISP red.be ?
-  - ...
+  - EIGRP continued
 
 - Switches
   - VLANs continued
   - ...
-
-- Make pings between VLANs work
-- ...
 
 ## DONE
 
@@ -32,9 +29,10 @@
 - Added firewall server
 - Rearranged using L2 switches
 - VLAN 200 + 300 + 500 created + assigned to interfaces
-- Ping between clients & router in VLAN 200 OK (NO DHCP yet PC5 has static IP to test)
+- Ping between clients & router in VLAN 200 OK (NO DHCP yet - PC5 has static IP to test)
 - Ping between servers & router in VLAN 300 OK
 - Ping between servers & router in VLAN 500 OK
+- Ping between VLAN 500 & VLAN 300 OK
 - Routers
   - Add serial connections
   - Hostname
@@ -43,6 +41,7 @@
   - Telnet(VTY) lines password
   - Copy running config -> startup config
   - Provisional IPs on interfaces
+  - EIGRP base
 
 - Switches
   - Hostname
