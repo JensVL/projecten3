@@ -39,7 +39,7 @@
   cpus: 2
   forwarded_ports:
     - guest: "3389"
-      host: "3389"
+      host: "3390"
   downloadpath: 'C:\SetupMedia'
   iis:
     username: vagrant
@@ -48,12 +48,13 @@
     asp35: $false
     asp45: $false
     dotnetcore21: $false
-    dotnetcore22: $false
-    dotnetcore30: $true
+    dotnetcore22: $true
+    dotnetcore30: $false
   webapp:
     demo: $false
     publocation: 'C:\inetpub\wwwroot\'
-    packagelocation: 'C:\vagrant\app\app.zip'
+    packagelocation: 'C:\vagrant\provisioning\files\App.zip'
+  include_linter: $false
 
 - name: sql-test-server
   box: gusztavvargadr/sql-server
@@ -63,3 +64,6 @@
   memory: 2048
   cpus: 2
   downloadpath: 'C:\SetupMedia'
+  forwarded_ports:
+    - guest: "22"
+      host: "2223"

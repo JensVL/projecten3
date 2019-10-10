@@ -115,7 +115,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             asp['dotnetcore30'],
             webapp['demo'],
             webapp['publocation'],
-            webapp['packagelocation']
+            webapp['packagelocation'],
+            host['include_linter']
           ]
       elsif host['name'] == "sql-test-server"
         node.vm.provision 'shell',

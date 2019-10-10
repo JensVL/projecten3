@@ -314,23 +314,23 @@ function configure_iis() {
 # TODO
 #
 # $packagelocation is a zip file with the app
-function deploy_app() {
-    param(
-        [string]$publocation,
-        [string]$packagelocation
-    )
-    $directoryInfo = Get-ChildItem $publocation | Measure-Object
+# function deploy_app() {
+#     param(
+#         [string]$publocation,
+#         [string]$packagelocation
+#     )
+#     $directoryInfo = Get-ChildItem $publocation | Measure-Object
 
-    # if publocation is empty, deploy app
-    if (!($directoryInfo.count -eq 0)) {
-        Get-ChildItem -Path $publocation -Include * -File -Recurse | foreach { $_.Delete()}
+#     # if publocation is empty, deploy app
+#     if (!($directoryInfo.count -eq 0)) {
+#         Get-ChildItem -Path $publocation -Include * -File -Recurse | foreach { $_.Delete()}
 
-        debug 'Deploying Blog Demo ...'
-        $msdeploy = "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe"
+#         debug 'Deploying Blog Demo ...'
+#         $msdeploy = "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe"
 
-        & $msdeploy -verb:sync -source:package=$packagelocation -dest:auto > $null
-    }
-}
+#         & $msdeploy -verb:sync -source:package=$packagelocation -dest:auto > $null
+#     }
+# }
 
 # Usage: configure_certs [-downloadpath]  <c:\foo\bar>
 #
@@ -344,24 +344,26 @@ function configure_certs() {
     New-SelfSignedCertificateEx -StoreLocation $downloadpath -DnsName 'www.red.local'
 }
 
-# Usage:
-#
-# imports webadministration tool for pool and site creation
-function prerequisites_Application_Pool() {
-    Import-Module WebAdministration
+#copy paste file
+function CopyPaste(){
+    param(
+        [string]$sourcePath,
+        [String]$DestinationPath
+    )
+    Copy-Item -Path $sourcePath -Destination $DestinationPath
 }
-
-# Usage:
-#
+#imports webadministration tool for pool and site creation +
 #create an applicationpool where our application will be a part off
-function create_App_Pool() {
-    New-Item -Path "IIS:\AppPools" -Name "Delta2Red" -Type AppPool
-    Set-ItemProperty -Path "IIS:\AppPools\Delta2Red" -name "managedRuntimeVersion" -value "v4.0"
-    Set-ItemProperty -Path "IIS:\AppPools\Delta2Red" -name "enable32BitAppOnWin64" -value $false
-    Set-ItemProperty -Path "IIS:\AppPools\Delta2Red" -name "autoStart" -value $true
-    Set-ItemProperty -Path "IIS:\AppPools\Delta2Red" -name "processModel" -value @{identitytype="ApplicationPoolIdentity"}
+function create_App_Pool(){
+    param($NamePool)
+    Import-Module WebAdministration
+    New-Item -Path "IIS:\AppPools" -Name $NamePool -Type AppPool
+    Set-ItemProperty -Path "IIS:\AppPools\$NamePool" -name "managedRuntimeVersion" -value "v4.0"
+    Set-ItemProperty -Path "IIS:\AppPools\$NamePool" -name "enable32BitAppOnWin64" -value $false
+    Set-ItemProperty -Path "IIS:\AppPools\$NamePool" -name "autoStart" -value $true
+    Set-ItemProperty -Path "IIS:\AppPools\$NamePool" -name "processModel" -value @{identitytype="ApplicationPoolIdentity"}
     if ([Environment]::OSVersion.Version -ge (new-object 'Version' 6,2)) {
-        Set-ItemProperty -Path "IIS:\AppPools\Delta2Red" -name "startMode" -value "OnDemand"
+        Set-ItemProperty -Path "IIS:\AppPools\$NamePool" -name "startMode" -value "OnDemand"
     }
     # New-WebAppPool -name "Delta2Red"
     # New-Item -Path "IIS:\AppPools" -Name "Delta2Red" -Type AppPool
@@ -375,7 +377,8 @@ function create_App_Pool() {
 #
 # create a site in iis where we will later move our application to
 function create_Site(){
-    New-Website -Name "RedWebsite" -Port 80 -IPAddress "*" -HostHeader "www.red.be" -PhysicalPath "C:\inetpub\wwwroot\test"
+    param($PhysicalPath,$NamePool)
+    New-Website -Name "RedWebsite" -Port 80 -IPAddress "*" -HostHeader "www.red.local" -PhysicalPath $PhysicalPath -ApplicationPool $NamePool
     Start-Website -Name "RedWebsite"
     ##advanced way of creating site
     # New-Item -Path "IIS:\Sites" -Name "RedWebsite" -Type Site -Bindings @{protocol="http";bindingInformation="*:8021:"}
@@ -399,5 +402,21 @@ function create_Site(){
 
 #assigning our application to the pool
 function assignApplicationToPool(){
-    Set-ItemProperty -Path "C:\inetpub\wwwroot\test" -name "applicationPool" -value "Delta2Red"
+    param($NamePool)
+    Import-Module ServerManager
+    Add-WindowsFeature Web-Scripting-Tools
+    Import-Module WebAdministration
+    Set-ItemProperty -Path "IIS:\Sites\Default Web Site\App" -name applicationPool -value $NamePool -Force
+}
+
+function fix_SSL(){
+    Import-Module WebAdministration
+    #add new binding to site
+    New-WebBinding -Name "RedWebsite" -IPAddress * -Port 443 Protocoll https
+    #create self signed certificate
+    $cert = New-SelfSignedCertificate -CertStoreLocation "Cert:\LocalMachine\My" -DnsName "red.local"
+    #Attach the certificate to the SSL binding
+    $CertPath = "Cert:\LocalMachine\My\$($cert.Thumbprint)"
+    $ProviderPath = "IIS:\SSLBindings\*!443" #binding to all ip addresses to port 443 | als * niet werkt probeer 0.0.0.0s
+    Get-Item $CertPath | New-Item $ProviderPath
 }

@@ -17,7 +17,8 @@ Param(
 
     [string]$stringdemo         = "$false",
     [string]$publocation        = "C:\inetpub\wwwroot\",
-    [string]$packagelocation    = 'C:\vagrant\app\app.zip'
+    [string]$packagelocation    = 'C:\vagrant\app\app.zip',
+    [string]$include_linter     = "$false"
 )
 
 [boolean]$asp35        = [convert]::ToBoolean($stringasp35)
@@ -31,6 +32,11 @@ Param(
 # Variables
 #------------------------------------------------------------------------------
 $provisioning_scripts="c:\vagrant\provisioning"
+$shared_Path = "c:\vagrant\provisioning\files\App.zip"
+$dotnet_app_deploy_location = "c:\inetpub\wwwroot"
+$dotnet_app_deploy_zip_location = "c:\inetpub\wwwroot\App.zip"
+$dotnet_app_deploy_unzip_location = "c:\inetpub\wwwroot\App"
+$NamePool ="Delta2Red"
 
 #------------------------------------------------------------------------------
 # Imports
@@ -65,12 +71,12 @@ debug "packagelocation = $packagelocation"
 #------------------------------------------------------------------------------
 # Run Powershell Linter
 #------------------------------------------------------------------------------
-# Install linter
-# if ($PSVersionTable.PSVersion -gt 5.1.17763.592) {
-#     Install-PackageProvider Nuget -MinimumVersion 2.8.5.201 –Force
-# }
-# Install-Module -Name PSScriptAnalyzer
-
+if ($include_linter) {
+    if ($PSVersionTable.PSVersion -gt 5.1.17763.592) {
+        Install-PackageProvider Nuget -MinimumVersion 2.8.5.201 –Force
+    }
+    Install-Module -Name PSScriptAnalyzer
+}
 
 #------------------------------------------------------------------------------
 # Provision server
@@ -109,15 +115,15 @@ if($dotnetcore30){
  configure_iis $iisusername $iispassword
  
 #To Do test underlying functionss
-# prerequisites_Application_Pool
-# create_App_Pool
-# create_Site
-# assignApplicationToPool
 
 # TODO
 # Deploy  demo
 if($demo){
-    deploy_app $publocation $packagelocation
+    # deploy_app $publocation $packagelocation
+    CopyPaste $shared_Path $dotnet_app_deploy_location
+    unzip $dotnet_app_deploy_zip_location $dotnet_app_deploy_unzip_location
+    create_App_Pool $NamePool
+    create_Site $dotnet_app_deploy_unzip_location $NamePool
 }
 
 ### perhaps we don't need this as the script is executed by the root user
