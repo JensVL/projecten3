@@ -8,15 +8,15 @@ Import-Module ActiveDirectory
 
 ## Organizational Units aanmaken
 Write-Host "Make Organizational Unit Verkoop..." -ForeGroundColor "Green"
-New-ADOrganizationalUnit -Name "Verkoop" -Description "Organizational Unit voor Verkoop" 
+New-ADOrganizationalUnit -Name "Verkoop" -Description "Organizational Unit voor Verkoop"
 Write-Host "Make Organizational Unit Ontwikkeling..." -ForeGroundColor "Green"
-New-ADOrganizationalUnit -Name "Ontwikkeling" -Description "Organizational Unit voor Ontwikkeling" 
+New-ADOrganizationalUnit -Name "Ontwikkeling" -Description "Organizational Unit voor Ontwikkeling"
 Write-Host "Make Organizational Unit Directie..." -ForeGroundColor "Green"
 New-ADOrganizationalUnit -Name "Directie" -Description "Organizational Unit voor Directie"
 Write-Host "Make Organizational Unit Administratie..." -ForeGroundColor "Green"
-New-ADOrganizationalUnit -Name "Administratie" -Description "Organizational Unit voor Administratie" 
+New-ADOrganizationalUnit -Name "Administratie" -Description "Organizational Unit voor Administratie"
 Write-Host "Make Organizational Unit IT Administratie..." -ForeGroundColor "Green"
-New-ADOrganizationalUnit -Name "IT_Administratie" -Description "Organizational Unit voor IT Administratie" 
+New-ADOrganizationalUnit -Name "IT_Administratie" -Description "Organizational Unit voor IT Administratie"
 
 # Groepen aanmaken
 Write-Host "Make AD Groups..." -ForeGroundColor "Green"
@@ -99,7 +99,7 @@ Enable-ADAccount -Identity "Piet"
 Enable-ADAccount -Identity "Tibo"
 
 # Computers
-# Voeg minstens 5 werkstations toe (één in elke afdeling).
+# Voeg minstens 5 werkstations toe (ï¿½ï¿½n in elke afdeling).
 Write-Host "Create workstations..." -ForeGroundColor "Green"
 New-ADComputer "Directie_001" -SamAccountName "Directie001" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "Kimberly"
 New-ADComputer "Administratie_001" -SamAccountName "Admin001" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "Piet"

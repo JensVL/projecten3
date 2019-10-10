@@ -30,7 +30,7 @@ Write-Host "Mapping Shared folders of Lima2 to drive letters so Alfa2 has access
 net use d: $VerkoopData /P:Yes
 net use e: $OntwikkelingData /P:Yes
 net use f: $ITData /P:Yes
-net use g: $DirpData /P:Yes
+net use g: $DirData /P:Yes
 net use h: $AdminData /P:Yes
 net use i: $ShareVerkoop /P:Yes
 
@@ -46,9 +46,11 @@ New-ADGroup -Name "Ontwikkeling" -Path "OU=Ontwikkeling,DC=red,DC=local" -GroupC
 New-ADGroup -Name "Verkoop" -Path "OU=Verkoop,DC=red,DC=local" -GroupCategory "Security" -GroupScope "Global"
 New-ADGroup -Name "IT_Administratie" -Path "OU=IT_Administratie,DC=red,DC=local" -GroupCategory "Security" -GroupScope "Global"
 
+
 # 3) Domain local groups aanmaken waarop we de permissies toepassen:
 # IT_Administratie heeft full control over alle shared folders
 Write-Host "Make AD Localdomain groups (= permission groups)" -ForeGroundColor "Green"
+
 New-ADGroup -Name "RW_VERKOOP" -Path "DC=red,DC=local" -GroupCategory "Security" -GroupScope "DomainLocal"
 New-ADGroup -Name "RW_ONTWIKKELING" -Path "DC=red,DC=local" -GroupCategory "Security" -GroupScope "DomainLocal"
 New-ADGroup -Name "RW_DIRECTIE" -Path "DC=red,DC=local" -GroupCategory "Security" -GroupScope "DomainLocal"
@@ -61,18 +63,157 @@ New-ADGroup -Name "FullAccess_IT" -Path "DC=red,DC=local" -GroupCategory "Securi
 New-ADGroup -Name "RW_HOMEDIRS" -Path "DC=red,DC=local" -GroupCategory "Security" -GroupScope "DomainLocal"
 New-ADGroup -Name "RW_PROFILEDIRS" -Path "DC=red,DC=local" -GroupCategory "Security" -GroupScope "DomainLocal"
 
-# TODO: NADENKEN OVER DE PERMISSIES HIERONDER + -Path overal correct invullen
+New-ADGroup -Name "ALLE_AFDELINGEN" -Path "DC=red,DC=local" -GroupCategory "Security" -GroupScope "DomainLocal"
+
+New-ADGroup -Name "R_SHAREVERKOOP" -Path "DC=red,DC=local" -GroupCategory "Security" -GroupScope "DomainLocal"
 New-ADGroup -Name "RW_SHAREVERKOOP" -Path "DC=red,DC=local" -GroupCategory "Security" -GroupScope "DomainLocal"
 
 
 # 4) Voeg de Domain local groups toe als members juiste van de global groups:
-Add-LocalGroupMember -Group "LOCAL_GROUP_HERE" -Member "MEMBERS_HERE(= global groups)", "MEMBER_2", "MEMBER_3" -
+Add-LocalGroupMember -Group "RW_VERKOOP" -Member "Verkoop"
+Add-LocalGroupMember -Group "RW_ONTWIKKELING" -Member "Ontwikkeling"
+Add-LocalGroupMember -Group "RW_DIRECTIE" -Member "Directie"
+Add-LocalGroupMember -Group "RW_ADMIN" -Member "Administratie"
 
-# 5) Geef de nodige permissies/rechten aan elke global group volgens de opdrachtomschrijving:
-Write-Host "Assigning permissions to the domainlocal groups:" -ForeGroundColor "Green"
+Add-LocalGroupMember -Group "FullAccess_IT" -Member "IT_Administratie"
+
+# PROFILESDIR EN HOMEDIRS => alle afdelingen in ALLE_AFDELINGEN group:
+Add-LocalGroupMember -Group "ALLE_AFDELINGEN" -Member "Verkoop","Ontwikkeling","Directie","Administratie","IT_Administratie"
+
+# Shareverkoop RW en R permissies apart:
+Add-LocalGroupMember -Group "RW_SHAREVERKOOP" -Member "Verkoop"
+Add-LocalGroupMember -Group "R_SHAREVERKOOP" -Member "Ontwikkeling"
+
+# 5) Geef de nodige permissies/rechten op de shared folders volgens de opdrachtomschrijving:
+Write-Host "Assigning permissions to the Lima2:" -ForeGroundColor "Green"
+
+
+# 5.1) Verkoopdata:
 $ACL = Get-ACL "$Verkoopdata"
-$VerkoopPermissions = New-Object System.Security.AccessControl.FileSystemAccessRule("username","FullControl","Allow")
-$ACL.SetAccessRule($VerkoopPermissions)
+$Permissies = New-Object System.Security.AccessControl.FileSystemAccessRule("RW_VERKOOP","Read", `
+                         "ContainerInherit,ObjectInherit","InheritOnly","Allow")  # Read permissions
+$ACL.SetAccessRule($Permissies)
+
+$Permissies = New-Object System.Security.AccessControl.FileSystemAccessRule("RW_VERKOOP","Write", `
+                         "ContainerInherit,ObjectInherit","InheritOnly","Allow")  # Write permissions
+$ACL.AddAccessRule($Permissies)
+
 Set-ACL "$Verkoopdata" $ACL
+
+
+# 5.2) Ontwikkelingdata:
+$ACL = Get-ACL "$OntwikkelingData"
+$Permissies = New-Object System.Security.AccessControl.FileSystemAccessRule("RW_ONTWIKKELING","Read", `
+                         "ContainerInherit,ObjectInherit","InheritOnly","Allow")  # Read permissions
+$ACL.SetAccessRule($Permissies)
+
+$Permissies = New-Object System.Security.AccessControl.FileSystemAccessRule("RW_ONTWIKKELING","Write", `
+                         "ContainerInherit,ObjectInherit","InheritOnly","Allow")  # Write permissions
+$ACL.AddAccessRule($Permissies)
+
+Set-ACL "$OntwikkelingData" $ACL
+
+
+# 5.3) Dirdata:
+$ACL = Get-ACL "$DirData"
+$Permissies = New-Object System.Security.AccessControl.FileSystemAccessRule("RW_DIRECTIE","Read", `
+                         "ContainerInherit,ObjectInherit","InheritOnly","Allow")  # Read permissions
+$ACL.SetAccessRule($Permissies)
+
+$Permissies = New-Object System.Security.AccessControl.FileSystemAccessRule("RW_DIRECTIE","Write", `
+                         "ContainerInherit,ObjectInherit","InheritOnly","Allow")  # Write permissions
+$ACL.AddAccessRule($Permissies)
+
+Set-ACL "$DirData" $ACL
+
+
+# 5.4) Admindata:
+$ACL = Get-ACL "$AdminData"
+$Permissies = New-Object System.Security.AccessControl.FileSystemAccessRule("RW_ADMIN","Read", `
+                         "ContainerInherit,ObjectInherit","InheritOnly","Allow")  # Read permissions
+$ACL.SetAccessRule($Permissies)
+
+$Permissies = New-Object System.Security.AccessControl.FileSystemAccessRule("RW_ADMIN","Write", `
+                         "ContainerInherit,ObjectInherit","InheritOnly","Allow")  # Write permissions
+$ACL.AddAccessRule($Permissies)
+
+Set-ACL "$AdminData" $ACL
+
+
+# 5.5) Full Access IT data:
+$ACL = Get-ACL "$ITData"
+$Permissies = New-Object System.Security.AccessControl.FileSystemAccessRule("FullAccess_IT","FullControl", `
+                         "ContainerInherit,ObjectInherit","InheritOnly","Allow")  # Full Control for FullAccess_IT group
+$ACL.SetAccessRule($Permissies)
+Set-ACL "$ITData" $ACL
+
+Set-ACL "$VerkoopData" $ACL
+Set-ACL "$OntwikkelingData" $ACL
+Set-ACL "$DirData" $ACL
+Set-ACL "$AdminData" $ACL
+Set-ACL "$Shareverkoop" $ACL
+Set-ACL "$Profiledirs" $ACL
+Set-ACL "$Homedirs" $ACL
+
+
+# 5.6 Shareverkoop:
+$ACL = Get-ACL "$ShareVerkoop"
+$Permissies = New-Object System.Security.AccessControl.FileSystemAccessRule("RW_ONTWIKKELING","Read", `
+                         "ContainerInherit,ObjectInherit","InheritOnly","Allow")  # Read permissions ontwikkeling
+$ACL.SetAccessRule($Permissies)
+
+$Permissies = New-Object System.Security.AccessControl.FileSystemAccessRule("RW_VERKOOP","Write", `
+                         "ContainerInherit,ObjectInherit","InheritOnly","Allow")  # Write permissions verkoop
+$ACL.AddAccessRule($Permissies)
+
+$Permissies = New-Object System.Security.AccessControl.FileSystemAccessRule("RW_VERKOOP","read", `
+                         "ContainerInherit,ObjectInherit","InheritOnly","Allow")  # Read permissions verkoop
+$ACL.AddAccessRule($Permissies)
+
+Set-ACL "$ShareVerkoop" $ACL
+
+
+# 5.7) Profile en home dirs algemeen per afdeling read / write:
+      $ACL = Get-Acl "$Homedirs"
+      $Permissies = New-Object System.Security.AccessControl.FileSystemAccessRule("ALLE_AFDELINGEN","Read", `
+                               "ContainerInherit,ObjectInherit","InheritOnly","Allow")  # Read permissions ontwikkeling
+      $ACL.SetAccessRule($Permissies)
+      $Permissies = New-Object System.Security.AccessControl.FileSystemAccessRule("ALLE_AFDELINGEN","Write", `
+                               "ContainerInherit,ObjectInherit","InheritOnly","Allow")  # Write permissions verkoop
+      $ACL.AddAccessRule($Permissies)
+
+      Set-ACL "$Homedirs" $ACL
+      Set-ACL "$Profiledirs" $ACL
+
+# 5.8) Profile en Home dirs individueel per gebruiker:
+# TODO: USERNAMEN INVULLEN HIER (SAMacocuntname?) + checken of Home/profile via new-aduser moet worden aangemaakt TODO TODO TODO
+ $REDLOCALUSERS = @
+                  ("user1", "user2", "user3")
+                  @
+
+Write-Host "Assigning correct permissions to each AD user's profile and home directory:"
+ForEach ($GEBRUIKER in $REDLOCALUSERS) {
+#     HOMEFOLDERS:  Permissions op modify zetten
+      $HomeFolder = $Homedirs\$GEBRUIKER
+      $ACL = Get-ACL "$HomeFolder"
+
+      $Permissies = New-Object System.Security.AccessControl.FileSystemAccessRule("$GEBRUIKER","Modify", `
+                               "ContainerInherit,ObjectInherit","InheritOnly","Allow")  # Read permissions ontwikkeling
+      $ACL.SetAccessRule($Permissies)
+
+      Set-ACL "$HomeFolder" $ACL
+
+#    PROFILE FOLDERS: Permissions op modify zetten
+      $ProfileFolder = $Profiledirs\$GEBRUIKER
+      $ACL = Get-ACL "$ProfileFolder"
+
+      $Permissies = New-Object System.Security.AccessControl.FileSystemAccessRule("$GEBRUIKER","Modify", `
+                               "ContainerInherit,ObjectInherit","InheritOnly","Allow")  # Read permissions ontwikkeling
+      $ACL.SetAccessRule($Permissies)
+
+      Set-ACL "$ProfileFolder" $ACL
+ }
+
+
 
 Stop-Transcript
