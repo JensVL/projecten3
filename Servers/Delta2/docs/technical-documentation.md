@@ -1,5 +1,10 @@
 # Technical documentation
 
+## Description
+
+This document aims to explain all parameters and how to adjust the settings to your needs.
+The provisioning is by design [idempotent](https://en.wikipedia.org/wiki/Idempotence). You can run run the provisioning over and over, the server will stay configured according to the config file.
+
 
 Base-box: gusztavvargadr/windows-server (hosted on Atlas)
 OS: Windows Server 2019
@@ -12,26 +17,26 @@ OS: Windows Server 2019
 * box_url             -- Download the base box from the specified URL insteas of from Atlas
 * ip                  -- Fixed IP address, by default an IP will be assigned from DHCP
 * netmask             -- Fixed subnet, by default, the network mask is 255.255.255.0
-* gui                 -- Wether to launch the virtualbox gui or not(true/false)
+* gui                 -- Wether to launch the virtualbox gui or not (true/false)
 * memory              -- RAM assigned to vm
 * cpus                -- Amount of cpus assigned to vm
-* webapp
-    * demo            -- Wether to deploy a demo app or not(true/false)
-    * publocation     -- Location where the website will we hosted on the server (e.g. C:\inetpub\wwwroot\)
-    * packagelocation -- Location of the app that will be deployed (e.g. C:\vagrant\app\app.zip)
-* downloadpath        -- Location where all the downloads regarding the provisioning will be stored
 * forwarded_ports
     * guest           -- Guest port
     * host            -- Host port
+* downloadpath        -- Location where all the downloads regarding the provisioning will be stored
 * iis
     * username        -- IIS username
     * password        -- IIS password
 * asp
-    * asp35           -- Install .NET Framework 3.5(true/false)
-    * asp45           -- Install .NET Framework 4.5(true/false)
-    * dotnetcore21    -- Install .NET Core 2.1(true/false)
-    * dotnetcore22    -- Install .NET Core 2.2(true/false)
-    * dotnetcore30    -- Install .NET Core 3.0(true/false)
+    * asp45           -- Install .NET Framework 4.5 (true/false)
+    * dotnetcore21    -- Install .NET Core 2.1 (true/false)
+    * dotnetcore22    -- Install .NET Core 2.2 (true/false)
+    * dotnetcore30    -- Install .NET Core 3.0 (true/false)
+* webapp
+    * demo            -- Wether to deploy a demo app or not (true/false)
+    * publocation     -- Location where the website will we hosted on the server (e.g. C:\inetpub\wwwroot\)
+    * packagelocation -- Location of the app that will be deployed (e.g. C:\vagrant\app\app.zip)
+* include_linter      -- Wether to install PSScriptAnalyser or not (true/false)
 
 
 ## Provisioning steps
