@@ -113,6 +113,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             asp['dotnetcore22'],
             asp['dotnetcore30'],
             webapp['demo'],
+            webapp['app_name'],
+            webapp['pool_name'],
+            webapp['website_domain'],
             webapp['publocation'],
             webapp['packagelocation'],
             host['include_linter']

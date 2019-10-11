@@ -60,7 +60,7 @@ function unzip {
 #
 # creates zip function so we can zip the files
 function zip {
-    Param([string]$zipfile,[string]$outpath)
+    Param([string]$zipfile, [string]$outpath)
     $compress = @{
         Path             = $zipfile
         CompressionLevel = "Optimal"
@@ -250,6 +250,9 @@ function install_asp_dotnet_core_22 {
     }
 }
 
+# Usage: install_asp_dotnet_core_30 [-downloadpath] <c:\foo\bar>
+#
+# install dotnet core 3.0
 function install_asp_dotnet_core_30 {
     param([string]$downloadpath)
 
@@ -281,138 +284,135 @@ function install_asp_dotnet_core_30 {
 # Usage: restart_web_services
 #
 # restart webservices
-function restart_web_services {
+function restart_web_services() {
     debug 'Restarting Web Services ...'
     net stop was /y > $null
     net start w3svc > $null
     Start-Sleep -s 10     
 }
 
-# TODO
+# Usage: configure_iis [-iisusername] <username> [-iispassword] <password>
 #
-#
+# Set the permissions on the web space
 function configure_iis() {
-    param($iisusername, $iispassword)
+    param([string]$iisusername, [string]$iispassword)
+
     $Acl = Get-Acl "C:\inetpub\wwwroot"
     $Acl.SetAccessRule((New-Object  system.security.accesscontrol.filesystemaccessrule("LOCAL SERVICE", "FullControl", "Allow")))
     Set-Acl "C:\inetpub\wwwroot" $Acl
-    debug 'Acl permissions set'
+
     Try {
+        debug "Allow $iisusername to manage the website in IIS"
         [void][System.Reflection.Assembly]::LoadWithPartialName("Microsoft.Web.Management")
         [void][Microsoft.Web.Management.Server.ManagementAuthentication]::CreateUser($iisusername, $iispassword)
         [void][Microsoft.Web.Management.Server.ManagementAuthorization]::Grant($iisusername, "Default Web Site", $FALSE)
     }
     Catch [System.Management.Automation.RuntimeException] {
-        debug 'User vagrant already exists(skipping)'
+        debug '$iisusername has alreaddy management permission for the website(skipping)'
     }
 }
 
-# TODO
+# Usage: copy_file [-source] <foo> [-destination] <bar>
 #
-# $packagelocation is a zip file with the app
-# function deploy_app() {
-#     param(
-#         [string]$publocation,
-#         [string]$packagelocation
-#     )
-#     $directoryInfo = Get-ChildItem $publocation | Measure-Object
+# Wrapper function to copy a file from <foo> to <bar
+function copy_file() {
+    param([string]$sourcePath,[String]$DestinationPath)
 
-#     # if publocation is empty, deploy app
-#     if (!($directoryInfo.count -eq 0)) {
-#         Get-ChildItem -Path $publocation -Include * -File -Recurse | foreach { $_.Delete()}
-
-#         debug 'Deploying Blog Demo ...'
-#         $msdeploy = "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe"
-
-#         & $msdeploy -verb:sync -source:package=$packagelocation -dest:auto > $null
-#     }
-# }
-
-# Usage: configure_certs [-downloadpath]  <c:\foo\bar>
-#
-# configure SSL cert for HTTPS access
-function configure_certs() {
-    param(
-        [string]$downloadpath,
-        [string]$website
-    )
-
-    New-SelfSignedCertificateEx -StoreLocation $downloadpath -DnsName 'www.red.local'
-}
-
-#copy paste file
-function CopyPaste(){
-    param(
-        [string]$sourcePath,
-        [String]$DestinationPath
-    )
     Copy-Item -Path $sourcePath -Destination $DestinationPath
 }
-#imports webadministration tool for pool and site creation +
-#create an applicationpool where our application will be a part off
-function create_App_Pool(){
-    param($NamePool)
+
+# Usage: create_app_pool [-pool_name] <pool name>
+#
+# Create a pool for websides to reside in
+function create_app_pool() {
+    param([string]$pool_name)
+
+    $iis_app_pools = "IIS:\AppPools"
+
     Import-Module WebAdministration
-    New-Item -Path "IIS:\AppPools" -Name $NamePool -Type AppPool
-    Set-ItemProperty -Path "IIS:\AppPools\$NamePool" -name "managedRuntimeVersion" -value "v4.0"
-    Set-ItemProperty -Path "IIS:\AppPools\$NamePool" -name "enable32BitAppOnWin64" -value $false
-    Set-ItemProperty -Path "IIS:\AppPools\$NamePool" -name "autoStart" -value $true
-    Set-ItemProperty -Path "IIS:\AppPools\$NamePool" -name "processModel" -value @{identitytype="ApplicationPoolIdentity"}
+    New-Item -Path "$iis_app_pools" -Name $pool_name -Type AppPool
+    Set-ItemProperty -Path "$iis_app_pools\$pool_name" -name "managedRuntimeVersion" -value "v4.0"
+    Set-ItemProperty -Path "$iis_app_pools\$pool_name" -name "enable32BitAppOnWin64" -value $false
+    Set-ItemProperty -Path "$iis_app_pools\$pool_name" -name "autoStart" -value $true
+    Set-ItemProperty -Path "$iis_app_pools\$pool_name" -name "processModel" -value @{identitytype="ApplicationPoolIdentity"}
+
     if ([Environment]::OSVersion.Version -ge (new-object 'Version' 6,2)) {
-        Set-ItemProperty -Path "IIS:\AppPools\$NamePool" -name "startMode" -value "OnDemand"
+        Set-ItemProperty -Path "$iis_app_pools\$pool_name" -name "startMode" -value "OnDemand"
     }
-    # New-WebAppPool -name "Delta2Red"
-    # New-Item -Path "IIS:\AppPools" -Name "Delta2Red" -Type AppPool
-    # $appPool = Get-Item -name "Delta2Red" 
-    # $appPool.processModel.identityType = "NetworkService"
-    # $appPool.enable32BitAppOnWin64 = 1
-    # $appPool | Set-Item
 }
 
-# Usage:
+# Usage: create_site [-website_name] <foo> [-publocation] <C:\inetpub\wwwroot\> [-website_domain] <www.red.local> [-pool_name] <pool name>
 #
-# create a site in iis where we will later move our application to
-function create_Site(){
-    param($PhysicalPath,$NamePool)
-    New-Website -Name "RedWebsite" -Port 80 -IPAddress "*" -HostHeader "www.red.local" -PhysicalPath $PhysicalPath -ApplicationPool $NamePool
-    Start-Website -Name "RedWebsite"
-    ##advanced way of creating site
+# -website_name    Name of the website
+# -publocation     Location where the app will be published 
+# -website_domain  Domain name of the website
+# -pool_name       Name of the pool where the app will resided
+# Create site object in IIS and add this to the given pool
+function create_site() {
+    param([string]$website_name, [string]$publocation, [string]$website_domain, [string]$pool_name)
+
+    New-Website -Name $website_name -Port 80 -IPAddress "*" -HostHeader $website_domain -PhysicalPath "$publocation\$website_name" -ApplicationPool $pool_name
+    Start-Website -Name $website_name
+
+    ### Extended way of creating site {{{
     # New-Item -Path "IIS:\Sites" -Name "RedWebsite" -Type Site -Bindings @{protocol="http";bindingInformation="*:8021:"}
     # Set-ItemProperty -Path "IIS:\Sites\RedWebsite" -name "physicalPath" -value "C:\inetpub\wwwroot\test"
     # Set-ItemProperty -Path "IIS:\Sites\RedWebsite" -Name "id" -Value 4
     # New-ItemProperty -Path "IIS:\Sites\RedWebsite" -Name "bindings" -Value (@{protocol="http";bindingInformation="*:8022:"}, @{protocol="http";bindingInformation="*:8023:"})
-
-    # Start-Website -Name "RedWebsite"
-    #-----previous code
-    # $SiteFolderPath = "C:\inetpub\wwwroot\test" # Website Folder
-    # $SiteAppPool = "Delta2Red"                  # Application Pool Name
-    # $SiteName = "RedWebsite"                           # IIS Site Name
-    # $SiteHostName = "www.red.be"                # Host Header
-
-    # New-Item $SiteFolderPath -type Directory
-    # Set-Content $SiteFolderPath\Default.htm "<h1>Hello IIS</h1>"
-    # New-Item IIS:\AppPools\$SiteAppPool
-    # New-Item IIS:\Sites\$SiteName -physicalPath $SiteFolderPath -bindings @{protocol="https";bindingInformation=":80:"+$SiteHostName}
-    # Set-ItemProperty IIS:\Sites\$SiteName -name applicationPool -value $SiteAppPool
+    ### }}}
 }
 
-#assigning our application to the pool
-function assignApplicationToPool(){
-    param($NamePool)
-    Import-Module ServerManager
-    Add-WindowsFeature Web-Scripting-Tools
-    Import-Module WebAdministration
-    Set-ItemProperty -Path "IIS:\Sites\Default Web Site\App" -name applicationPool -value $NamePool -Force
-}
+# Usage: fix_ssl [-website_name] <foo> [-website_domain] <www.red.local>
+#
+# -website_name    Name of the website
+# -website_domain  Domain name of the website
+# Allow all hosts to connect on port 443 and use the SSL certificate to ensure HTTPS
+function fix_ssl() {
+    param([string]$website_name, [string]$website_domain)
 
-function fix_SSL(){
     Import-Module WebAdministration
+
     #add new binding to site
-    New-WebBinding -Name "RedWebsite" -IPAddress * -Port 443 Protocoll https
+    New-WebBinding -Name $website_name -IPAddress * -Port 443 Protocoll https
+
     #create self signed certificate
-    $cert = New-SelfSignedCertificate -CertStoreLocation "Cert:\LocalMachine\My" -DnsName "red.local"
+    $cert = New-SelfSignedCertificate -CertStoreLocation "Cert:\LocalMachine\App" -DnsName $website_domain
+
     #Attach the certificate to the SSL binding
-    $CertPath = "Cert:\LocalMachine\My\$($cert.Thumbprint)"
-    $ProviderPath = "IIS:\SSLBindings\*!443" #binding to all ip addresses to port 443 | als * niet werkt probeer 0.0.0.0s
+    $CertPath = "Cert:\LocalMachine\App\$($cert.Thumbprint)"
+
+    #binding to all ip addresses to port 443 | als * niet werkt probeer 0.0.0.0
+    $ProviderPath = "IIS:\SSLBindings\*!443" 
+
     Get-Item $CertPath | New-Item $ProviderPath
 }
+
+
+# Usage: deploy_app [-publocation] <publish location> [-packagelocation] <package location>
+#
+# Publish a webdeploy package to the given location
+# The package is a zip file, containing the app, with config files in the same directory
+# function deploy_app() {
+#     param([string]$publocation, [string]$packagelocation)
+#
+#     $directoryInfo = Get-ChildItem $publocation | Measure-Object
+#
+#     # if publocation is empty, deploy app
+#     if (!($directoryInfo.count -eq 0)) {
+#         Get-ChildItem -Path $publocation -Include * -File -Recurse | foreach { $_.Delete()}
+#         debug 'Deploying Blog Demo ...'
+#         $msdeploy = "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe"
+#         & $msdeploy -verb:sync -source:package=$packagelocation -dest:auto > $null
+#     }
+# }
+
+# Usage: configure_certs [-downloadpath] <c:\foo\bar>
+#
+# configure SSL cert for HTTPS access
+# function configure_certs() {
+#     param(
+#         [string]$downloadpath,
+#         [string]$website
+#     )
+#     New-SelfSignedCertificateEx -StoreLocation $downloadpath -DnsName 'www.red.local'
+# }
