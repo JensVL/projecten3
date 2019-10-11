@@ -31,27 +31,51 @@ New-ADGroup -Name "IT_Administratie" -DisplayName "IT_Administratie" -Path "OU=I
 $paswoord=ConvertTo-SecureString "Admin2019" -asPlainText -force
 
 Write-Host "Create users..." -ForeGroundColor "Green"
-New-AdUser -Name "Van Nieuwenhove" -Surname "Arno" -Department "Manager" -Description "Account voor Arno" -DisplayName "ArnoVN" `
+New-AdUser -Name "Kimberly" -Surname "De Clercq" -Department "Manager" -Description "Account voor Kimberly" -DisplayName "KimberlyDC" `
+           -GivenName "Kimberly" -State "West-Vlaanderen"  -City "Ingelmunster" -PostalCode "8770" -EmailAddress "kimberly@red.local" `
+           -Office "B0.001" -EmployeeID "1004" -HomePhone "0444727272" -Initials "KDC" -Path "OU=Directie,DC=red,DC=local" -AccountPassword $paswoord
+
+New-AdUser -Name "Laurens" -Surname "Blancquaert-Cassaer" -Department "IT_Administration" -Description "Account voor Laurens" -DisplayName "LaurensBC" `
+           -GivenName "Laurens" -State "Oost-Vlaanderen" -City "Gent" -PostalCode "9000" -EmailAddress "laurens@red.local" `
+           -Office "B4.037" -EmployeeID "2015" -HomePhone "0444727280" -Initials "LBC" -Path "OU=IT_Administratie,DC=red,DC=local" -AccountPassword $paswoord
+
+New-AdUser -Name "Pieter" -Surname "Blomme" -Department "IT_Administration" -Description "Account voor Pieter" -DisplayName "PieterB" `
+           -GivenName "Laurens" -State "West-Vlaanderen" -City "Wervik" -PostalCode "8940" -EmailAddress "pieter@red.local" `
+           -Office "B4.037" -EmployeeID "8425" -HomePhone "0444727281" -Initials "PB" -Path "OU=IT_Administratie,DC=red,DC=local" -AccountPassword $paswoord
+
+New-AdUser -Name "Jan" -Surname "Janssens" -Department "Development" -Description "Account voor Jan" -DisplayName "JanJ" `
+           -GivenName "Jan" -State "Antwerpen" -City "Zoersel" -PostalCode "2980" -EmailAddress "jan@red.local" `
+           -Office "B1.018" -EmployeeID "5078" -HomePhone "0444727290" -Initials "JJ" -Path "OU=Ontwikkeling,DC=red,DC=local" -AccountPassword $paswoord
+
+New-AdUser -Name "Jonas" -Surname "Vander Beken" -Department "Development" -Description "Account voor Jonas" -DisplayName "JonasVB" `
+           -GivenName "Jan" -State "Vlaams-Brabant" -City "Bierbeek" -PostalCode "3360" -EmailAddress "jonas@red.local" `
+           -Office "B1.018" -EmployeeID "1578" -HomePhone "0444727291" -Initials "JVB" -Path "OU=Ontwikkeling,DC=red,DC=local" -AccountPassword $paswoord
+
+New-AdUser -Name "Mieke" -Surname "Dobbels" -Department "Sale" -Description "Account voor Mieke" -DisplayName "MiekeD" `
+           -GivenName "Mieke" -State "West-Vlaanderen" -City "Koksijde" -PostalCode "8670" -EmailAddress "mieke@red.local" `
+           -Office "B0.015" -EmployeeID "4732" -HomePhone "0444727200" -Initials "MD" -Path "OU=Verkoop,DC=red,DC=local" -AccountPassword $paswoord
+
+New-AdUser -Name "Arno" -Surname "Van Nieuwenhove" -Department "Manager" -Description "Account voor Arno" -DisplayName "ArnoVN" `
            -GivenName "Arno" -State "Oost-Vlaanderen"  -City "Ninove" -PostalCode "9404" -EmailAddress "arno@red.local" `
            -Office "B0.001" -EmployeeID "1003" -HomePhone "0444727273" -Initials "AVN" -Path "OU=Directie,DC=red,DC=local" -AccountPassword $paswoord
 
-New-AdUser -Name "Goessens" -Surname "Levi" -Department "IT_Administration" -Description "Account voor Levi" -DisplayName "LeviG" `
+New-AdUser -Name "Levi" -Surname "Goessens" -Department "IT_Administration" -Description "Account voor Levi" -DisplayName "LeviG" `
            -GivenName "Levi" -State "Oost-Vlaanderen" -City "Denderwindeke" -PostalCode "9400" -EmailAddress "Levi@red.local" `
            -Office "B4.037" -EmployeeID "2014" -HomePhone "0444727284" -Initials "LG" -Path "OU=IT_Administratie,DC=red,DC=local" -AccountPassword $paswoord
 
-New-AdUser -Name "Marckx" -Surname "Aron" -Department "IT_Administration" -Description "Account voor Pieter" -DisplayName "AronM" `
+New-AdUser -Name "Aron" -Surname "Marckx" -Department "IT_Administration" -Description "Account voor Pieter" -DisplayName "AronM" `
            -GivenName "Aron" -State "Oost-Vlaanderen" -City "Meldert" -PostalCode "9310" -EmailAddress "aron@red.local" `
            -Office "B4.037" -EmployeeID "8424" -HomePhone "0444727285" -Initials "AM" -Path "OU=IT_Administratie,DC=red,DC=local" -AccountPassword $paswoord
 
-New-AdUser -Name "Van den Eede" -Surname "Cédric" -Department "Development" -Description "Account voor Cédric" -DisplayName "CedricVDE" `
-           -GivenName "Cédric" -State "Antwerpen" -City "Zoersel" -PostalCode "2980" -EmailAddress "cedric@red.local" `
+New-AdUser -Name "Cédric" -Surname "Van den Eede" -Department "Development" -Description "Account voor Cédric" -DisplayName "CedricVDE" `
+           -GivenName "Cédric" -State "Oost-Vlaanderen" -City "Meldert" -PostalCode "9310" -EmailAddress "cedric@red.local" `
            -Office "B1.018" -EmployeeID "5078" -HomePhone "0444727294" -Initials "CVE" -Path "OU=Ontwikkeling,DC=red,DC=local" -AccountPassword $paswoord
 
-New-AdUser -Name "Detemmerman" -Surname "Cedric" -Department "Development" -Description "Account voor Cedric" -DisplayName "CedricD" `
+New-AdUser -Name "Cedric" -Surname "Detemmerman" -Department "Development" -Description "Account voor Cedric" -DisplayName "CedricD" `
            -GivenName "Cedric" -State "Oost-Vlaanderen" -City "Haaltert" -PostalCode "3360" -EmailAddress "cedricd@red.local" `
            -Office "B1.018" -EmployeeID "1588" -HomePhone "0444727295" -Initials "CD" -Path "OU=Ontwikkeling,DC=red,DC=local" -AccountPassword $paswoord
 
-New-AdUser -Name "Daelman" -Surname "Robby" -Department "Sale" -Description "Account voor Roby" -DisplayName "RobbyD" `
+New-AdUser -Name "Robby" -Surname "Daelman" -Department "Sale" -Description "Account voor Roby" -DisplayName "RobbyD" `
            -GivenName "Robby" -State "Oost-Vlaanderen" -City "Lede" -PostalCode "9340" -EmailAddress "robby@red.local" `
            -Office "B0.015" -EmployeeID "4736" -HomePhone "0444727220" -Initials "RD" -Path "OU=Verkoop,DC=red,DC=local" -AccountPassword $paswoord
 
@@ -67,29 +91,36 @@ New-AdUser -Name "Tibo" -Surname "Vanhercke" -Department "Administration" -Descr
             -GivenName "Tibo" -State "West-Vlaanderen" -City "Ingooigem" -Postalcode "8570" -EmailAddress "tibo@red.local" `
             -Office "B4.002" -EmployeeID "2246" -HomePhone "0444727261" -Initials "TV" -Path "OU=Administratie,DC=red,DC=local" -AccountPassword $paswoord
 
-## Managers per groep toekennen
+## Managers per groep toekennen Gent
 Write-Host "Allocate managers to OU's..." -ForeGroundColor "Green"
 Set-ADOrganizationalUnit -Identity "OU=Verkoop,DC=red,DC=local" -ManagedBy "Mieke"
 Set-ADOrganizationalUnit -Identity "OU=Ontwikkeling,DC=red,DC=local" -ManagedBy "Jan"
-Set-ADOrganizationalUnit -Identity "OU=Directie,DC=red,DC=local" -ManagedBy "Arno"
+Set-ADOrganizationalUnit -Identity "OU=Directie,DC=red,DC=local" -ManagedBy "Kimberly"
 Set-ADOrganizationalUnit -Identity "OU=Administratie,DC=red,DC=local" -ManagedBy "Piet"
-Set-ADOrganizationalUnit -Identity "OU=IT_Administratie,DC=red,DC=local" -ManagedBy "Levi"
+Set-ADOrganizationalUnit -Identity "OU=IT_Administratie,DC=red,DC=local" -ManagedBy "Laurens"
 
-## Manager toekennen aan elke user
+## Manager toekennen aan elke user voor Gent
 Write-Host "Allocate manager ..." -ForeGroundColor "Green"
-Set-ADUser -Identity "Levi" -Manager "CN=Arno,OU=Directie,DC=red,DC=local"
-Set-ADUser -Identity "Pieter" -Manager "CN=Levi,OU=IT_Administratie,DC=red,DC=local"
-Set-ADUser -Identity "Jan" -Manager "CN=Arno,OU=Directie,DC=red,DC=local"
+Set-ADUser -Identity "Laurens" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
+Set-ADUser -Identity "Pieter" -Manager "CN=Laurens,OU=IT_Administratie,DC=red,DC=local"
+Set-ADUser -Identity "Jan" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
 Set-ADUser -Identity "Jonas" -Manager "CN=Jan,OU=Ontwikkeling,DC=red,DC=local"
-Set-ADUser -Identity "Mieke" -Manager "CN=Arno,OU=Directie,DC=red,DC=local"
+Set-ADUser -Identity "Mieke" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
 Set-ADUser -Identity "Sandra" -Manager "CN=Mieke,OU=Verkoop,DC=red,DC=local"
-Set-ADUser -Identity "Piet" -Manager "CN=Arno,OU=Directie,DC=red,DC=local"
+Set-ADUser -Identity "Piet" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
 Set-ADUser -Identity "Tibo" -Manager "CN=Piet,OU=Administratie,DC=red,DC=local"
 
-# Elk user-account unlocken.
+## Manager toekennen aan elke user voor Aalst
+SET-ADUser -Identity "Levi" -Manager "CN=Arno,p,OU=Directie,DC=red,DC=local"
+SET-ADUser -Identity "Aron" -Manager "CN=Levi,OU=IT_Administratie,DC=red,DC=local"
+SET-ADUser -Identity "Cédric" -Manager "CN=Arno,OU=Directie,DC=red,DC=local"
+SET-ADUser -Identity "Cedric" -Manager "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local"
+SET-ADUser -Identity "Robby" -Manager "CN=Ar,p,OU=Directie,DC=red,DC=local"
+
+## Elk user-account unlocken.
 Write-Host "Unlock accounts..." -ForeGroundColor "Green"
-Enable-ADAccount -Identity "Arno"
-Enable-ADAccount -Identity "Levi"
+Enable-ADAccount -Identity "Kimberly"
+Enable-ADAccount -Identity "Laurens"
 Enable-ADAccount -Identity "Pieter"
 Enable-ADAccount -Identity "Jan"
 Enable-ADAccount -Identity "Jonas"
@@ -97,6 +128,14 @@ Enable-ADAccount -Identity "Mieke"
 Enable-ADAccount -Identity "Sandra"
 Enable-ADAccount -Identity "Piet"
 Enable-ADAccount -Identity "Tibo"
+
+## Elk user-account unlocken Aalst
+Enable-ADAccount -Identity "Arno"
+Enable-ADAccount -Identity "Levi"
+Enable-ADAccount -Identity "Aron"
+Enable-ADAccount -Identity "Cédric"
+Enable-ADAccount -Identity "Cedric"
+Enable-ADAccount -Identity "Robby"
 
 # Computers
 # Voeg minstens 5 werkstations toe (��n in elke afdeling).
@@ -120,7 +159,9 @@ Write-Host "Modify folder permissions..." -ForeGroundColor "Green"
 Grant-SmbShareAccess -Name "Profiles" -AccountName Everyone -AccesRight Full
 
 Write-Host "Configure the profile path..." -ForeGroundColor "Green"
-# TO DO: ProfilePath + Identity
+
+# TO DO: ProfilePath + Identity Aalst en Gent
+Set-ADUser -Identity "Kimberly" -ProfilePath "\\dc01\profiles\%username%"
 Set-ADUser -Identity "Arno" -ProfilePath "\\dc02\profiles\%username%"
 
 ## Group policy
