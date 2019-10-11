@@ -45,7 +45,7 @@
     username: vagrant
     password: vagrant
   asp:
-    asp35: $false
+    asp45: $true
     asp45: $false
     dotnetcore21: $false
     dotnetcore22: $true

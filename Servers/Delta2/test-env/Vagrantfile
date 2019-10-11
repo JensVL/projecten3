@@ -108,7 +108,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             host['downloadpath'],
             iis['username'],
             iis['password'],
-            asp['asp35'],
             asp['asp45'],
             asp['dotnetcore21'],
             asp['dotnetcore22'],

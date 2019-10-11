@@ -9,7 +9,6 @@ Param(
     [string]$iisusername        = "vagrant",
     [string]$iispassword        = "vagrant",
 
-    [string]$stringasp35        = "$false",
     [string]$stringasp45        = "$false",
     [string]$stringdotnetcore21 = "$false",
     [string]$stringdotnetcore22 = "$false",
@@ -21,7 +20,6 @@ Param(
     [string]$include_linter     = "$false"
 )
 
-[boolean]$asp35        = [convert]::ToBoolean($stringasp35)
 [boolean]$asp45        = [convert]::ToBoolean($stringasp45)
 [boolean]$dotnetcore21 = [convert]::ToBoolean($stringdotnetcore21)
 [boolean]$dotnetcore22 = [convert]::ToBoolean($stringdotnetcore22)
@@ -51,14 +49,12 @@ debug "downloadpath = $downloadpath"
 debug "iisusername = $iisusername"
 debug "iispassword = $iispassword"
 
-debug "stringasp35 = $stringasp35"
 debug "stringasp45 = $stringasp45"
 debug "stringdotnetcore21 = $stringdotnetcore21"
 debug "stringdotnetcore22 = $stringdotnetcore22"
 debug "stringdotnetcore30 = $stringdotnetcore30"
 debug "stringdemo = $stringdemo"
 
-debug "asp35 = $asp35"
 debug "asp45 = $asp45"
 debug "dotnetcore21 = $dotnetcore21"
 debug "dotnetcore22 = $dotnetcore22"
@@ -66,7 +62,7 @@ debug "dotnetcore30 = $dotnetcore30"
 debug "demo = $demo"
 debug "publocation = $publocation"
 debug "packagelocation = $packagelocation"
-
+debug "include_linter = $include_linter"
 
 #------------------------------------------------------------------------------
 # Run Powershell Linter
@@ -90,10 +86,9 @@ install_iis
 # Download + install webdeploy
 install_webdeploy $downloadpath
 
-### update:26-09-2019: offline installer not working on windows 2019
-### method via DISM with the iso might work but will omit this for now
-# if ($asp35) {
-# }
+#########################################################################
+### To install .NET Framework on Windows 2019 refer to the documentation
+#########################################################################
 
 if ($asp45) {
     install_asp_dotnet_45
