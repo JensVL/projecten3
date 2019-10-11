@@ -95,25 +95,24 @@ function install_webdeploy() {
     $file = $downloadpath + "\WebDeploy_amd64_en-US.msi"
     $downloadlink = "https://download.microsoft.com/download/0/1/D/01DC28EA-638C-4A22-A57B-4CEF97755C6C/WebDeploy_amd64_en-US.msi"
 
-    if (!(Test-Path $file)) {
-        debug 'Downloading Webdeploy...'
+    if (!(Test-Path "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe")) {
+        if (!(Test-Path $file)) {
+            debug 'Downloading Webdeploy...'
 
-        (New-Object System.Net.WebClient).DownloadFile($downloadlink, $file)
+            (New-Object System.Net.WebClient).DownloadFile($downloadlink, $file)
 
-        debug 'Download complete'
+            debug 'Download complete'
+        }
+        else {
+            debug 'Webdeploy installer already present(skipping)'
+        }
+
+        debug 'Installing Webdeploy...'
+        msiexec /i $file ADDLOCAL=DelegationScriptsFeature /qn /norestart LicenseAccepted="0"
+        debug 'Installed Webdeploy'
+    } else {
+        debug 'Webdeploy already installed(skipping)'
     }
-    else {
-        debug 'Webdeploy installer already present(skipping)'
-    }
-
-    # TODO: check if installed
-    # if (!$installed) {
-    debug 'Installing Webdeploy...'
-    msiexec /i $file ADDLOCAL=DelegationScriptsFeature /qn /norestart LicenseAccepted="0"
-    debug 'Installed Webdeploy'
-    # } else {
-    #     debug 'Webdeploy already installed(skipping)'
-    # }
 }
 
 # Usage: install_iis
@@ -194,7 +193,7 @@ function download_ssl_cmdlets() {
 function install_asp_dotnet_core_21 {
     param([string]$downloadpath)
     
-    $installed = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\ASP.NET Core\Shared Framework\v2.1\2.1.9\" -Name "Version").Version
+    $installed = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\ASP.NET Core\Shared Framework\v2.1\2.1.9\" -Name "Version").Version 2> $null
 
     # install if not installed
     if (!$installed -eq '2.1.9.0') {
@@ -212,12 +211,11 @@ function install_asp_dotnet_core_21 {
 
         debug 'Running the .NET Core 2.1 installer ...'
         Start-Process -FilePath $file -ArgumentList /S, /v, /qn -Wait 
+
+        restart_web_services
     } else {
         debug '.NET Core 2.1 is already installed(skipping)'
     }
-
-    # restart web server
-    restart_web_services
 }
 
 
@@ -227,7 +225,7 @@ function install_asp_dotnet_core_21 {
 function install_asp_dotnet_core_22 {
     param([string]$downloadpath)
 
-    $installed = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\ASP.NET Core\Shared Framework\v2.2\2.2.3\" -Name "Version").Version
+    $installed = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\ASP.NET Core\Shared Framework\v2.2\2.2.3\" -Name "Version").Version 2> $null
 
     # install if not installed
     if (!$installed -eq '2.2.9.0') {
@@ -245,18 +243,17 @@ function install_asp_dotnet_core_22 {
 
         debug 'Running the .NET Core 2.2 installer ...'
         Start-Process -FilePath $file -ArgumentList /S, /v, /qn -Wait 
+
+        restart_web_services
     } else {
         debug '.NET Core 2.2 is already installed(skipping)'
     }
-
-    # restart web server
-    restart_web_services
 }
 
 function install_asp_dotnet_core_30 {
     param([string]$downloadpath)
 
-    $installed = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\ASP.NET Core\Shared Framework\v3.0\3.0.0\" -Name "Version").Version
+    $installed = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\ASP.NET Core\Shared Framework\v3.0\3.0.0\" -Name "Version").Version 2> $null
 
     # install if not installed
     if (!$installed -eq '3.0.0.0') {
@@ -274,12 +271,11 @@ function install_asp_dotnet_core_30 {
 
         debug 'Running the .NET Core 3.0 installer ...'
         Start-Process -FilePath $file -ArgumentList /S, /v, /qn -Wait 
+
+        restart_web_services
     } else {
         debug '.NET Core 3.0 is already installed(skipping)'
     }
-
-    # restart web server
-    restart_web_services
 }
 
 # Usage: restart_web_services
