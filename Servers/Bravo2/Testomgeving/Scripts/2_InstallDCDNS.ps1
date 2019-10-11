@@ -79,4 +79,6 @@ install-ADDSForest -DomainName "red.local" `
                   -SafeModeAdministratorPassword $DSRMPassword
                   -force:$true
 
+# 8) Repliceren van Alfa2
+Get-DnsServerZone -ComputerName "Alfa2.red.local" | where {("Primary" -eq $.ZoneType) | %{ $ | Add-DnsServerSecondaryZone -MasterServers 172.18.1.66 -ZoneFile "$($_.ZoneName).dns"}
 Stop-Transcript
