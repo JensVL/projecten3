@@ -32,11 +32,11 @@
 
 `vagrant ssh`
 
-- *Expected*: prompt (i.e. TODO)
+- *Expected*: prompt (vagrant@DELTA2 C:\Users\vagrant>)
 
 `powershell`
 
-- *Expected*: powershell prompt
+- *Expected*: powershell prompt (PS C:\Users\vagrant>)
 
 
 ### Install IIS
@@ -64,23 +64,30 @@ TODO: Nathan
 
 ### Install .NET Core 2.1
 
-`(Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\ASP.NET Core\Shared Framework\v2.1\2.1.9\" -Name "Version").Version`
+`(Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\ASP.NET Core\Shared Framework\v2.1\2.1.9\" -Name "Version").Version 2> $null`
 
-- *Expected*: TODO
+- *Expected*: 2.1.9.0
 
 
 ### Install .NET Core 2.2
 
-`(Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\ASP.NET Core\Shared Framework\v2.2\2.2.3\" -Name "Version").Version`
+`(Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\ASP.NET Core\Shared Framework\v2.2\2.2.3\" -Name "Version").Version 2> $null`
 
-- *Expected*: TODO
+- *Expected*: 2.2.3.0
 
 
 ### Install .NET Core 3.0
 
-`(Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\ASP.NET Core\Shared Framework\v3.0\3.0.0\" -Name "Version").Version`
+`(Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\ASP.NET Core\Shared Framework\v3.0\3.0.0\" -Name "Version").Version 2> $null`
 
-- *Expected*: TODO
+- *Expected*: 3.0.0.0
+
+
+### Install Webdepoly
+
+`Test-Path "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe")`
+
+- *Expected*: True
 
 
 ### Build WebApp
