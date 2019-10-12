@@ -1,4 +1,4 @@
-# Documentatie Testomgeving met Virtualbox en HyperV:  
+# Documentatie Installatie met Virtualbox en HyperV:  
 
 ## AchtergrondInformatie:  
 
@@ -144,8 +144,8 @@ Maak een nieuwe VM aan dat toegang heeft tot een webbrowsers en dat in het zelfd
 <https://www.ceos3c.com/pfsense/pfsense-2-4-installation-step-step-overview/>  
 <https://www.youtube.com/watch?v=h97J70hzcP0>  
 <https://www.youtube.com/watch?v=6s5wvmlESfo>  
-<https://www.pfsense.org/getting-started/>
-<https://docs.netgate.com/pfsense/en/latest/packages/package-list.html>
+<https://www.pfsense.org/getting-started/>  
+<https://docs.netgate.com/pfsense/en/latest/packages/package-list.html>  
 <https://www.youtube.com/watch?v=KOuCy8mf214> 
-<https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v>
-<https://www.pbworks.net/windows-10-hyper-v-vm-boot-not-working/>
+<https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v>  
+<https://www.pbworks.net/windows-10-hyper-v-vm-boot-not-working/>  
