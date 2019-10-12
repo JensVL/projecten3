@@ -132,9 +132,7 @@ Maak een nieuwe VM aan dat toegang heeft tot een webbrowsers en dat in het zelfd
   ![login](https://raw.githubusercontent.com/HoGentTIN/p3ops-1920-red/master/Servers/Zulu2/img/login.png?token=AGFYY4VOBXKB4IOSD53VN425UIJJQ)  
  Log in "admin" en passwoord "pfsense" en ga door de wizard, alle gegevens dat je nu ingeeft kan je later nog veranderen. Na de wizard    zal je komen op het dashboard waar je een overzicht ziet van het systeeminformatie van de firewall. Van hieruit kan je alle configuratie doen dat je firewall nodig heeft.  
   ![menu](https://raw.githubusercontent.com/HoGentTIN/p3ops-1920-red/master/Servers/Zulu2/img/menu.png?token=AGFYY4Q3FJ3RF5IBBIIT62C5UIJMS)  
-  
-     
-## Packages:
+       
 
 ## Bronnen:  
 
