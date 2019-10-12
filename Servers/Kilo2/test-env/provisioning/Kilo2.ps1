@@ -23,5 +23,11 @@ Set-DhcpServerV4OptionValue -DnsServer 172.18.1.66,172.18.1.67 -Router 172.18.0.
 
 Set-DhcpServerv4Scope -ScopeId 172.18.0.0 -LeaseDuration (New-TimeSpan -Days 2)
 
+# Reservations
+$ReservationsPath = $PSScriptRoot
+$ReservationsPath += "./Reservations.csv"
+
+Import-Csv -Path $ReservationsPath | Add-DhcpServerV4Reservation
+
 # Restart DHCP Server
 Restart-service dhcpserver
