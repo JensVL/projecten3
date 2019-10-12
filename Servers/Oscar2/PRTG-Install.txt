@@ -1,0 +1,8 @@
+PRTG installatie in virtualbox:
+EERST Guest Additions installeren
+Daarna een shared folder aanmaken
+Gebruik het commando "net use x: \\vboxsvr\[SHAREDFOLDER]"
+Er is nu een 'netwerkschijf' x:
+Plaats op de hostpc de installatiefiles voor PRTG
+Vind de files in de shared folder op de guest
+run de installer
