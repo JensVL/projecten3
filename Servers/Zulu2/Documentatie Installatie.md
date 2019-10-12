@@ -1,4 +1,4 @@
-# Documentatie Testomgeving met Virtualbox en HyperV:  
+# Documentatie Installatie met Virtualbox en HyperV:  
 
 ## AchtergrondInformatie:  
 
@@ -132,9 +132,7 @@ Maak een nieuwe VM aan dat toegang heeft tot een webbrowsers en dat in het zelfd
   ![login](https://raw.githubusercontent.com/HoGentTIN/p3ops-1920-red/master/Servers/Zulu2/img/login.png?token=AGFYY4VOBXKB4IOSD53VN425UIJJQ)  
  Log in "admin" en passwoord "pfsense" en ga door de wizard, alle gegevens dat je nu ingeeft kan je later nog veranderen. Na de wizard    zal je komen op het dashboard waar je een overzicht ziet van het systeeminformatie van de firewall. Van hieruit kan je alle configuratie doen dat je firewall nodig heeft.  
   ![menu](https://raw.githubusercontent.com/HoGentTIN/p3ops-1920-red/master/Servers/Zulu2/img/menu.png?token=AGFYY4Q3FJ3RF5IBBIIT62C5UIJMS)  
-  
-     
-## Packages:
+       
 
 ## Bronnen:  
 
@@ -144,8 +142,8 @@ Maak een nieuwe VM aan dat toegang heeft tot een webbrowsers en dat in het zelfd
 <https://www.ceos3c.com/pfsense/pfsense-2-4-installation-step-step-overview/>  
 <https://www.youtube.com/watch?v=h97J70hzcP0>  
 <https://www.youtube.com/watch?v=6s5wvmlESfo>  
-<https://www.pfsense.org/getting-started/>
-<https://docs.netgate.com/pfsense/en/latest/packages/package-list.html>
+<https://www.pfsense.org/getting-started/>  
+<https://docs.netgate.com/pfsense/en/latest/packages/package-list.html>  
 <https://www.youtube.com/watch?v=KOuCy8mf214> 
-<https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v>
-<https://www.pbworks.net/windows-10-hyper-v-vm-boot-not-working/>
+<https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v>  
+<https://www.pbworks.net/windows-10-hyper-v-vm-boot-not-working/>  
