@@ -108,14 +108,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             host['downloadpath'],
             iis['username'],
             iis['password'],
-            asp['asp35'],
             asp['asp45'],
             asp['dotnetcore21'],
             asp['dotnetcore22'],
             asp['dotnetcore30'],
             webapp['demo'],
+            webapp['app_name'],
+            webapp['pool_name'],
+            webapp['website_domain'],
             webapp['publocation'],
-            webapp['packagelocation']
+            webapp['packagelocation'],
+            host['include_linter']
           ]
       elsif host['name'] == "sql-test-server"
         node.vm.provision 'shell',

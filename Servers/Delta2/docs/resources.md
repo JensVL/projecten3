@@ -48,6 +48,19 @@ https://devblogs.microsoft.com/scripting/psscriptanalyzer-deep-dive-part-2-of-4/
 https://devblogs.microsoft.com/scripting/psscriptanalyzer-deep-dive-part-3-of-4/
 https://devblogs.microsoft.com/scripting/psscriptanalyzer-deep-dive-part-4-of-4/
 
+IIS Website PowerShell With SSL Encryption
+https://www.youtube.com/watch?v=mAf9JWOalyY
+https://4sysops.com/archives/create-a-self-signed-certificate-with-powershell/
+https://searchwindowsserver.techtarget.com/tutorial/How-to-configure-SSL-on-IIS-with-PowerShell
+
+Error creatie site “Can't find the drive. The drive called 'IIS' does not exist.” 
+https://stackoverflow.com/questions/24392696/getting-cant-find-the-drive-the-drive-called-iis-does-not-exist
+
+GUI step by step guide installing asp.net core site on IIS server (used it so I knew how to order the scripts )
+https://www.youtube.com/watch?v=iLUZdQBzn54
+
+Site creation and App Pool creation
+https://octopus.com/blog/iis-powershell
 ## Authors
 
 Nathan Cammerman

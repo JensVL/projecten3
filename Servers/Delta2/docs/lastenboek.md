@@ -1,6 +1,6 @@
 # Lastenboek delta2: Webapplicatieservers
 
-## Leden
+## Members
 
 Nathan Cammerman
 Matthias Van De Velde
@@ -8,45 +8,32 @@ Matthias Van De Velde
 
 ## Deliverables
 
-(Som hier de concrete eindresultaten op die je voor deze opdracht moet opleveren.)
-
 * Website accessible over HTTP and HTTPS
 * Website accessible using "www" from all hosts in all domains
 * Dynamic ASP.NET demo app
+* App uses MS SQL Server
+
 
 ## Sub-tasks
 
-(Som hier de deeltaken voor deze opdracht op en duid voor elk een verantwoordelijke en tester aan. Vermeld ook afhankelijkheden tussen deeltaken als die er zijn. Elke deeltaak wordt een kaartje op het kanban-bord!)
-
-1. Setup basic environment
-    - Responsible: Matthias Van De Velde
-2. Install IIS
-    - Responsible: Matthias Van De Velde
-3. Configure website on IIS
-    - Responsible: Nathan Cammerman
-4. Install .NET Framework 3.5
-    - Responsible: Matthias Van De Velde
-5. Install .NET Framework 4.5
-    - Responsible: Matthias Van De Velde
-6. Install .NET Core 2.1
-    - Responsible: Matthias Van De Velde
-7. Install .NET Core 2.2
-    - Responsible: Matthias Van De Velde
-8. Install .NET Core 3.0
-    - Responsible: Matthias Van De Velde
-9. Build WebApp
-    - Responsible: Nathan Cammerman
-10. Deploy WebApp
-    - Responsible: Nathan Cammerman
-11. Generate SSL certificate
-    - Responsible: Nathan Cammerman
+| Sub-task                   | Member                | Time Estimated | Time spent     |
+| --------------             | --------------        | -------------- | -------------- |
+| Setup basic environment    | Matthias Van De Velde | 3              | 2.5            |
+| Install IIS                | Matthias Van De Velde | 0.5            | 0.5            |
+| Configure website on IIS   | Nathan Cammerman      | 5              |                |
+| Install .NET Framework 4.5 | Matthias Van De Velde | 1              | 1              |
+| Install .NET Core 2.1      | Matthias Van De Velde | 2              | 2              |
+| Install .NET Core 2.2      | Matthias Van De Velde | 2              | 2              |
+| Install .NET Core 3.0      | Matthias Van De Velde | 1              | 1              |
+| Build WebApp               | Nathan Cammerman      | 7              |                |
+| Deploy WebApp              | Nathan Cammerman      | 2              |                |
+| Generate SSL certificate   | Nathan Cammerman      | 7              |                |
+| Test plan                  |                       | 6              |                |
+| Documentation              |                       | 4              |                |
 
 
-## Time spending
+## Test plan
 
-| Student               | Estimated | Realised |
-| :---                  | ---:      | ---:     |
-| Matthias Van De Velde | 15        |          |
-| Nathan Cammerman      | 17        |          |
-| **Total**             |           |          |
+Member: <name>
 
+Reference: [commit](link/to/test-report)
