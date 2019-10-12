@@ -50,4 +50,10 @@ Write-Output "Install Application Content"
 Install-SPApplicationConten
 
 
+Write-Output "Create the Central Administration site"
+New-SPCentralAdministration `
+-Port 11111 `
+-WindowsAuthProvider "NTLM"
+
+
 
