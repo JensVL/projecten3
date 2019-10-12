@@ -3,7 +3,7 @@ New-GPO -Name "NaamGPO" -Comment "Beschrijving"
 #De GPO aan de OU linken. (OU, Domain, Site)
 New-GPLink -Name "NaamGPO" -Target "ou=INVULLEN,dc=alfa2/bravo2,dc=inet"
 #CHECK GPO
-Get-GPO -Name "ScreenSaverTimeOut" | Get-GPOReport
+Get-GPO -Name "NaamGPO" | Get-GPOReport
 #Exra beveiliging om GPO's te blocken van de parent OU
 Set-GPInheritance -Target "ou=?,dc=alfa2/bravo2,dc=inet" -IsBlocked 1
 #Om van een user group, de rest leesrechten te geven en 1 iemand alle rechten gaat geven
