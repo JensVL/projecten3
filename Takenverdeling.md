@@ -2,21 +2,22 @@
 
 Alpha2
 
-- Kimberly Declercq
-- Laurens Blancquaert-Cassaer
+- Kimberly De Clercq
+- Laurens Blancquart-Cassaer
 
 Bravo2
 
-- Ferre Verstichelen
+- Levi Goessens
+- Arno Van Nieuwenhove
 
 Charlie2
 
-- Joachim Vandekeere
+- Joachim Van de Keere
 - Jannes Van Wonterghem
 
 Delta2
 
-- Matthias Van De Velde
+- Matthias Van de Velde
 - Nathan Cammerman
 
 Kilo2
@@ -26,8 +27,7 @@ Kilo2
 
 Lima2
 
-- Cédric Detimmerman
-- Jochim De Wandel
+- Cédric Detemmerman
 - Robby Daelman
 
 Mike2
@@ -42,21 +42,80 @@ November2
 
 Oscar2
 
-- Rik Claeysens
+- Rik Claeyssens
 - Jonas Vandegehuchte
 
 Papa2
 
-- Levi Goossens
-- Arno Van Nieuwenhove
+- Ferre Verstichelen
 
 Netwerk
 
-- Jens Van Lieferingen
-
-- Robin Van De Walle
+- Jens Van Liefferinge
+- Robin Van de Walle
 
 Firewall
 
 - Alister Adutwum
 
+
+## Voorlopige versie testrapport
+
+Alpha2
+
+- Alister Adutwum
+- 
+
+Bravo2
+
+- Cédric Detemmerman
+- Robby Daelman
+
+Charlie2
+
+- Kimberly De Clercq
+- Laurens Blancquart-Cassaer
+
+Delta2
+
+- Joachim Van de Keere
+- Jannes Van Wonterghem
+
+Kilo2
+
+- Matthias Van de Velde
+- Nathan Cammerman
+
+Lima2
+
+- Aron Marckx
+- Cédric Van den Eede
+
+Mike2
+
+- Yngvar Samyn
+- Tibo Vanhercke
+
+November2
+
+- Levi Goessens
+- Arno Van Nieuwenhove
+
+Oscar2
+
+- Rik Claeyssens
+- Jonas Vandegehuchte 
+
+Papa2
+
+- Jens Van Liefferinge
+- Robin Van de Walle
+
+Netwerk
+
+- Tim Grijp
+- Elias Waterschoot
+
+Firewall
+
+- Ferre Verstichelen
