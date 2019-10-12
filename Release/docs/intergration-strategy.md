@@ -106,6 +106,7 @@ TODO: implement draw.io critical path
 6. [ ] On the Windows 10 VMs, ping Alfa2 and Bravo2
 7. [ ] On the Windows 10 VMs, join the domain _red.local_
 8. [ ] On the windows 10 VMs, test internet connectivity
+9. [ ] On the windows 10 VMs, configure the primary and secondary DNS of the network adapter
 
 #### Test remarks
 
