@@ -23,3 +23,31 @@ rename-computer -computername "$env:computername" -newname "mike2" -DomainCreden
 //install sql internet nodig
 
  \\VBOXSVR\windows_school_vm\SQLServer2016-SSEI-Eval.exe  /Iacceptsqlserverlicenseterms /q
+
+
+
+
+
+
+
+#############################################################################################################################
+
+# config wizard tasks
+ 
+Write-Output "Install Help Collections"
+Install-SPHelpCollection -All
+ 
+Write-Output "Initialize security"
+Initialize-SPResourceSecurity
+ 
+Write-Output "Install services"
+Install-SPService
+ 
+Write-Output "Register features"
+Install-SPFeature -AllExistingFeatures
+ 
+Write-Output "Install Application Content"
+Install-SPApplicationConten
+
+
+
