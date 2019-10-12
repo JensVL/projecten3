@@ -52,8 +52,9 @@
 
 ### Configure website on IIS
 
-TODO: Nathan
+`Get-ExecutionPolicy`f
 
+- *Expected*: Bypass
 
 ### Install .NET Framework 4.5
 
@@ -100,14 +101,44 @@ TODO: Nathan
 TODO: Nathan
 
 
+### creat WebAppPool
+
+`Get-WebAppPoolState -name 'Delta2TRed'`
+
+| Value            | 
+| ---------------- |
+| Started          |
+### Create site
+
+`Get-Website -name 'App'`
+or
+`Get-IISSite -name 'App'`
+
+- *Expected*:
+
+| Name |ID | State   | Physical Path          | Bindings                                              | 
+| ---- | - | ------- | ---------------------- |:-----------------------------------------------------:|
+| App  | 2 | Started | C:\inetpub\wwwroot\\App| http  *:80:www.red.local <br> shttps *:443: sslFlags=0|
+  
+
+### Configure website on IIS
+
+`Get-WebBinding`
+| protocol         | BindingInformation| sslFlags      |
+| ---------------- |:-----------------:| -------------:|
+| http             |*:80:www.red.local |    0          |
+
+
 ### Generate SSL certificate
 
-TODO: Nathan
+`Get-WebBinding 'App'`
 
+- *Expected*: 
 
-
-
-
+| protocol         | BindingInformation| sslFlags      |
+| ---------------- |:-----------------:| -------------:|
+| http             |*:80:www.red.local |    0          |
+|<mark>https</mark>|<mark>*:443:</mark>|<mark>0</mark> |
 
 
 
