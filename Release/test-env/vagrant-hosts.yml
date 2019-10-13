@@ -96,8 +96,8 @@
     - guest: '3389'
       host: '3390'
   synced_folders: 
-    - src: '../../Servers/Delta2/test-env/provisioning/'
-    - dest: 'C:\vagrant'
+    - src: '../../Servers/Delta2/test-env'
+      dest: '/vagrant'
   downloadpath: 'C:\SetupMedia'
   iis:
     username: 'vagrant'
