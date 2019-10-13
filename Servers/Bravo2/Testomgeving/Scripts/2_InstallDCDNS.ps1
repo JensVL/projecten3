@@ -80,9 +80,8 @@ Set-ItemProperty -Path "REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\
 #     DNS role laten aanmaken en DNSdelegation uitzetten om later onze eigen DNS server in te stellen
 #     Force forceert negeren van bevestigingen
 Write-host "Starting configuration of red.local domain:" -ForeGroundColor "Green"
-install-ADDSForest -DomainName "red.local" `
-                  -ForestMode 7 `
-                  -DomainMode 7 `
+install-ADDSDomainController -DomainName "red.local" `
+                  -ReplicationSourceDC "Alfa2.red.local"
                   -installDns:$true `
                   -createDNSDelegation:$false `
                   -SafeModeAdministratorPassword $DSRM `
