@@ -95,8 +95,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       forwarded_ports(node.vm, host)
 
       node.vm.provider :virtualbox do |vb|
-        vb.gui = host['gui']
-        vb.cpus = host['cpus'] if host.key? 'cpus'
+        vb.gui    = host['gui']
+        vb.cpus   = host['cpus'] if host.key? 'cpus'
         vb.memory = host['memory'] if host.key? 'memory'
         
         # WARNING: if the name of the current directory is the same as the
@@ -104,26 +104,80 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         vb.customize ['modifyvm', :id, '--groups', PROJECT_NAME]
       end
 
-      config.winrm.timeout = 3600
-      config.vm.boot_timeout = 3600
+      config.winrm.timeout         = 3600
+      config.vm.boot_timeout       = 3600
+      config.winrm.transport       = :plaintext
+      config.winrm.basic_auth_only = true
 
       if host['name'] == "alfa2"
-        # TODO
-        provisioning_path = ALFA2+'/test-env/provisioning/'
+        provisioning_path = ALFA2+'/Testomgeving/Scripts'
+
+        node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + '/1_RUNFIRST.ps1',
+          args: []
+        node.vm.provision 'shell', reboot: true
+        node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + '/2_installDCDNS.ps1',
+          args: []
+        node.vm.provision 'shell', reboot: true
+        node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + '/3_ConfigDCDNS.ps1',
+          args: []
+        node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + '/4_ADstructure.ps1',
+          args: []
+        node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + '/5_AGDLP_PERMISSIONS.ps1',
+          args: []
+
       elsif host['name'] == "bravo2"
-        # TODO
-        provisioning_path = BRAVO2+'/test-env/provisioning/'
+        provisioning_path = BRAVO2+'/Testomgeving/Scripts'
+
+        node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + '/1_RUNFIRST.ps1',
+          args: []
+        node.vm.provision 'shell', reboot: true
+        node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + '/2_installDCDNS.ps1',
+          args: []
+        node.vm.provision 'shell', reboot: true
+        node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + '/3_ConfigDCDNS.ps1',
+          args: []
+        node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + '/4_ADstructure.ps1',
+          args: []
+        node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + '/5_AGDLP_PERMISSIONS.ps1',
+          args: []
+
       elsif host['name'] == "kilo2"
-        # TODO
         provisioning_path = KILO2+'/test-env/provisioning/'
+
+        node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + host['name'] + '.ps1',
+          args: []
+
       elsif host['name'] == "november2"
         # TODO
         provisioning_path = NOVEMBER2+'/test-env/provisioning/'
+
       elsif host['name'] == "lima2"
         # TODO
         provisioning_path = LIMA2+'/test-env/provisioning/'
-      elsif host['name'] == "delta2"
 
+      elsif host['name'] == "delta2"
         provisioning_path = DELTA2+'/test-env/provisioning/'
 
         iis = host['iis']
