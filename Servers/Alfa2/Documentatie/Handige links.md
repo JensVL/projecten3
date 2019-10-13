@@ -13,6 +13,8 @@
 [Group Policy](https://blog.netwrix.com/2019/04/11/top-10-group-policy-powershell-commands/)    
 [Disable Control Panel Access](http://www.mustbegeek.com/disable-control-panel-access-using-group-policy-on-windows/)  
 [Import-GPO](https://docs.microsoft.com/en-us/powershell/module/grouppolicy/import-gpo?view=win10-ps)   
+[Get-GPO](https://docs.microsoft.com/en-us/powershell/module/grouppolicy/get-gpo?view=win10-ps)   
+[New-GPO](https://sid-500.com/2017/08/25/configuring-group-policies-by-using-windows-powershell/)   
 ### Verwijder het games link menu uit het start menu voor alle afdelingen
 Get-AppxPackage *Xbox* | Remove-AppxPackage  
 ### Verbied iedereen uit de afdelingen Administratie en Verkoop de toegang tot de eigenschappen van de netwerkadapters  
