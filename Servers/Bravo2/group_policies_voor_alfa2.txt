@@ -1,0 +1,15 @@
+#Create a GPO
+New-GPO -Name "NaamGPO" -Comment "Beschrijving"
+#De GPO aan de OU linken. (OU, Domain, Site)
+New-GPLink -Name "NaamGPO" -Target "ou=INVULLEN,dc=alfa2/bravo2,dc=inet"
+#CHECK GPO
+Get-GPO -Name "NaamGPO" | Get-GPOReport
+#Exra beveiliging om GPO's te blocken van de parent OU
+Set-GPInheritance -Target "ou=?,dc=alfa2/bravo2,dc=inet" -IsBlocked 1
+#Om van een user group, de rest leesrechten te geven en 1 iemand alle rechten gaat geven
+#Stap 1: alle rechten weg
+Set-GPPermission -Name "NaamGPO" -TargetName "WELKE GROEP" -TargetType User -PermissionLevel None
+#Stap 2: alleen leesrechten aan iedereen geven
+Set-GPPermission -Name "NaamGPO" -TargetName "WELKE GROEP" -TargetType User -PermissionLevel GPORead
+#Stap 3: hoofdgebruiker alle rechten geven
+Set-GPPermission -Name "NaamGPO" -TargetName "NAAM GEBRUIKER" -TargetType User -PermissionLevel GPOApply
