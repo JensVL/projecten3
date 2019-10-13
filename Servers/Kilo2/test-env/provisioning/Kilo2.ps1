@@ -1,3 +1,15 @@
+# IP Configuraties
+
+$IP = "172.18.1.1"
+$DefaultGateway = "172.18.1.66"
+$DNS = "172.18.1.66"
+$InterfaceIndex = Get-NetIPAddress -IPAddress $IP | select -ExpandProperty InterfaceIndex
+Remove-NetIPAddress -InterfaceIndex $InterfaceIndex -Confirm:$false
+Remove-NetRoute -InterfaceIndex $InterfaceIndex -Confirm:$false
+Set-DnsClientServerAddress -InterfaceIndex $InterfaceIndex -ResetServerAddresses
+New-NetIPAddress -InterfaceIndex $InterfaceIndex -IPAddress $IP -PrefixLength 24 -DefaultGateway $DefaultGateway
+Set-DnsClientServerAddress -InterfaceIndex $InterfaceIndex -ServerAddresses $DNS
+
 # Toevoegen aan domain
 
 $domain = "red.local"
