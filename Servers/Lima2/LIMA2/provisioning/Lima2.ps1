@@ -10,6 +10,7 @@ if (-not (Get-WindowsFeature -Name FS-Resource-Manager).Installed)
 }
 #Init disk 0, zodat nieuwe partities aangemaakt kunnen worden. Daarna worden de volumes geformateerd.
 Get-Disk 0 | Initialize-Disk
+Resize-Partition -DiskNumber 0 -PartitionNumber 2 -Size (30GB)
 New-Partition -DiskNumber 0 -Size 5GB -DriveLetter D
 New-Partition -DiskNumber 0 -Size 5GB -DriveLetter E
 Format-Volume -DriveLetter D -FileSystem NTFS -NewFileSystemLabel VerkoopData -Confirm:$False
