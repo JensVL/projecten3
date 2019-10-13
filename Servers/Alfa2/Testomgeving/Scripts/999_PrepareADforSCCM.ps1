@@ -8,7 +8,13 @@
 ############################################## BELANGRIJK #####################################################################################
 
 # VARIABLES:
-$VBOXdrive = "Z:\"
+$VBOXdrive = "Z:"
+$SCCMAdmin = "SCCMadmin"
+
+# PREFERENCE VARIABLES: (Om Debug,Verbose en informaation info in de Start-Transcript log files te zien)
+$DebugPreference = "Continue"
+$VerbosePreference = "Continue"
+$InformationPreference = "Continue"
 
 # LOG SCRIPT TO FILE (+ op het einde van het script Stop-Transcript doen):
 Start-Transcript "C:\ScriptLogs\999_PrepareADforSCCMlog.txt"
@@ -21,14 +27,15 @@ $SCCMPassword = $CurrentCredentials.GetNetworkCredential().Password
 $SecureStringPwd = ConvertTo-SecureString "$SCCMPassword" -AsPlainText -Force
 
 # 1.2) Het aanmaken van de SCCM account zelf:
-Write-Host "Creating SCCMAdmin account in the AD for the Papa2 server:"
-New-ADUser -GivenName "SCCM" -Surname "Admin" -Name "SCCMAdmin" -PasswordNeverExpires $true -AccountPassword $SecureStringPwd
-set-adUser -Enabled $true -Identity "SCCMAdmin"
+Write-Host "Creating SCCMAdmin account in the AD for the Papa2 server:" -ForeGroundColor "Green"
+New-ADUser -GivenName "SCCM" -Surname "Admin" -Name "$SCCMAdmin" -PasswordNeverExpires $true -AccountPassword $SecureStringPwd
+New-ADComputer -Name "Papa2"
+set-adUser -Enabled $true -Identity "$SCCMAdmin"
 
 # 1.3) Voeg nu de SCCM acocunt toe aan de Domain Admin en Administrators groups zodat hij full domain admin rechten heeft:
-Write-host "Adding SCCMAdmin to Domain Admin en Administrators group:"
-Add-ADGroupMember -Identity "Domain Admins" -Members "SCCMAdmin"
-Add-ADGroupMember -Identity "Administrators" -Members "SCCMAdmin"
+Write-host "Adding SCCMAdmin to Domain Admin en Administrators group:" -ForeGroundColor "Green"
+Add-ADGroupMember -Identity "Domain Admins" -Members "$SCCMAdmin"
+Add-ADGroupMember -Identity "Administrators" -Members "$SCCMAdmin"
 
 # 2) Nu moeten we in ADSIedit (Waar al de instellingen van ADDS staan) een System Management container maken onder de "System"
 # 2.1) Verbind met ADSIedit:
@@ -36,7 +43,7 @@ Add-ADGroupMember -Identity "Administrators" -Members "SCCMAdmin"
 $ASDIconnection = [ADSI]"LDAP://localhost:389/cn=System,dc=red,dc=local"
 
 # 2.2) Maak de System Management container aan in ADSIedit:
-Write-Host "Creating System Management container in ADSIedit:"
+Write-Host "Creating System Management container in ADSIedit:" -ForeGroundColor "Green"
 $SysManContainer = $ASDIconnection.Create("container", "cn=System Management")
 $SysManContainer.SetInfo()
 
@@ -47,10 +54,10 @@ $SysManContainer.SetInfo()
 $SystemManagementCN = [ADSI]("LDAP://localhost:389/cn=System Management,cn=System,dc=red,dc=local")
 
 # 3.2) Get Papa2 als computer object:
-$server = get-adcomputer "Papa2"
+$SCCMserver = get-adcomputer "Papa2"
 
 # 3.3) Get identity reference van het computer object:
-$SID = [System.Security.Principal.SecurityIdentifier] $server.SID
+$SID = [System.Security.Principal.SecurityIdentifier] $SCCMserver.SID
 $ServerIdentity = [System.Security.Principal.IdentityReference] $SID
 
 # 3.4) Stel permissions in als ALLOW full control (full control = GenericAll hieronder):
@@ -62,7 +69,7 @@ $inheritanceAll = [System.DirectoryServices.ActiveDirectorySecurityInheritance] 
 
 # 3.5) Dit zal de gekozen permissies toepassen op de System Management container:
 # in ADSIedit noemt een permission rule "Access rule" (AddAccessRule methode)
-Write-Host "Setting permissions of System Management container to Papa2 server"
+Write-Host "Setting permissions of System Management container to Papa2 server" -ForeGroundColor "Green"
 $PermissionsRule = New-Object System.DirectoryServices.ActiveDirectoryAccessRule `
 $ServerIdentity,$permissions,$allow,$inheritanceAll
 
@@ -79,7 +86,7 @@ $SystemManagementCN.psbase.commitchanges()
 Copy-Item "$VBOXdrive\ExtendADschema" -Destination "C:\Users\Administrator.red\Desktop" -Recurse
 
 # 4.2) Dan voer je het script (ALS ADMINISTRATOR!) uit om de AD schema te extenden:
-Write-Host "Extending AD Schema:"
+Write-Host "Extending AD Schema:" -ForeGroundColor "Green"
 Start-Process -Verb RunAs C:\Users\Administrator.red\Desktop\ExtendADschema\extadsch.exe
 
 # NOG STEEDS FAILED TO EXTEND AD SCHEMA ERROR Error 8224?
@@ -89,5 +96,7 @@ Start-Process -Verb RunAs C:\Users\Administrator.red\Desktop\ExtendADschema\exta
 Remove-Item -Path "C:\Users\Administrator.red\Desktop\ExtendADschema" -Force
 # Verplaats bovengenoemde log naar desktop van domain admin:
 Move-item -Path "C:\ExtADSch.log" -Destination "C:\Users\Administrator.red\Desktop"
+
+Set-ExecutionPolicy -ExecutionPolicy "Restricted"
 
 Stop-Transcript
