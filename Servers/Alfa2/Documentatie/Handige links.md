@@ -19,6 +19,7 @@
 Get-AppxPackage *Xbox* | Remove-AppxPackage  
 ### Verbied iedereen uit de afdelingen Administratie en Verkoop de toegang tot de eigenschappen van de netwerkadapters  
 [Disable-NetAdapter](https://docs.microsoft.com/en-us/powershell/module/netadapter/disable-netadapter?view=win10-ps)  
+[Disable Ethernet network adapters](https://www.windowscentral.com/how-enable-or-disable-wi-fi-and-ethernet-network-adapters-windows-10)  
 
 ### Zorg voor de juiste toegangsgroepen voor de fileserver (Modify/Read/Full) en voeg de juiste personen en/of groepen toe.  
 [Set-GPPermission](https://docs.microsoft.com/en-us/powershell/module/grouppolicy/Set-GPPermission?view=win10-ps)  

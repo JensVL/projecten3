@@ -69,7 +69,7 @@ Auteur(s) testplan: Kimberly De Clercq en Laurens Blancquaert-Cassaer
 | 13 | Heeft elke gebruiker een manager, behalve "Kimberly De Clercq"? | Ja/Nee |
 | 14 | Heeft iedere afdeling de juiste manager toegekend (zie indeling)? | Ja/Nee |
 | 15 | Is elke gebruiker unlocked? | Ja/Nee |
-| 16 | Kan elke gebruiker inloggen met het password `Admin2019`? | Ja/Nee |
+| 16 | Kan elke gebruiker inloggen met het password `Administrator2019`? | Ja/Nee |
 
 ### Indeling Active Directory Organizational Units
 | Afdeling | Naam | Is manager? | Gent/Aalst |
