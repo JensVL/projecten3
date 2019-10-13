@@ -43,6 +43,12 @@ Auteur(s) testplan: Kimberly De Clercq en Laurens Blancquaert-Cassaer
 | 3 | Is er een duidelijk verschil tussen gebruikers, computers en groepen? | Ja/Nee |
 | 4 | Bestaan de groepen `Directie`, `IT_Administratie`, `Administratie`, `Ontwikkeling` en `Verkoop`? | Ja/Nee |
 | 5 | Is aan elke groep de juiste manager toegewezen (zie indeling)? | Ja/Nee |
+| 6 | Bevat elke groep zijn members (zie indeling)? | Ja/Nee |
+| 7 | Wordt elke groep gemanaged door de juiste persoon (zie indeling)? | Ja/Nee |
+| 8 | Bestaan de OU's `Directie`, `IT_Administratie`, `Administratie`, `Ontwikkeling` en `Verkoop`? | Ja/Nee |
+| 9 | Is aan elke OU de juiste manager toegewezen (zie indeling)? | Ja/Nee |
+| 10 | Bevat elke OU zijn members (zie indeling)? | Ja/Nee |
+| 11 | Wordt elke OU gemanaged door de juiste persoon (zie indeling)? | Ja/Nee |
 
 ### Gebruikers
 
@@ -50,19 +56,20 @@ Auteur(s) testplan: Kimberly De Clercq en Laurens Blancquaert-Cassaer
 | :--- | :--- | :--- | 
 | 1 | Zijn er enkele gebruikers aangemaakt? | Ja/Nee |
 | 2 | Is er gewerkt met zwervende profielen (roaming profiles)? | Ja/Nee |
-| 3 | Bevindt elke gebruiker zich in de toegewezen afdeling (zie indeling)? | Ja/Nee |
-| 4 | Heeft elke gebruiker een uniek `EmployeeID`? | Ja/Nee |
-| 5 | Heeft elke gebruiker een uniek telefoonnummer? | Ja/Nee |
-| 6 | Bevindt elke gebruiker zich in de juiste afdeling? Is het `path` juist? | Ja/Nee |
-| 7 | Bevindt elke gebruiker zich in het juiste `Office` (zie indeling)| Ja/Nee |
-| 8 | Heeft elke gebruiker een uniek `EmailAddress`? | Ja/Nee |
-| 9 | Heeft elke gebruiker de juiste `initials`? | Ja/Nee |
-| 10 | Heeft elke gebruiker een toepasselijke `SamAccountName`? | Ja/Nee |
-| 11 | Is er aan elke afdeling een manager toegekend? | Ja/Nee |
-| 12 | Heeft elke gebruiker een manager, behalve "Kimberly De Clercq"? | Ja/Nee |
-| 13 | Heeft iedere afdeling de juiste manager toegekend (zie indeling)? | Ja/Nee |
-| 14 | Is elke gebruiker unlocked? | Ja/Nee |
-| 15 | Kan elke gebruiker inloggen met het password `Admin2019`? | Ja/Nee |
+| 3 | Heeft elke gebruiker zijn eigen profile? | Ja/Nee |
+| 4 | Bevindt elke gebruiker zich in de toegewezen afdeling (zie indeling)? | Ja/Nee |
+| 5 | Heeft elke gebruiker een uniek `EmployeeID`? | Ja/Nee |
+| 6 | Heeft elke gebruiker een uniek telefoonnummer? | Ja/Nee |
+| 7 | Bevindt elke gebruiker zich in de juiste afdeling? Is het `path` juist? | Ja/Nee |
+| 8 | Bevindt elke gebruiker zich in het juiste `Office` (zie indeling)| Ja/Nee |
+| 9 | Heeft elke gebruiker een uniek `EmailAddress`? | Ja/Nee |
+| 10 | Heeft elke gebruiker de juiste `initials`? | Ja/Nee |
+| 11 | Heeft elke gebruiker een toepasselijke `SamAccountName`? | Ja/Nee |
+| 12 | Is er aan elke afdeling een manager toegekend? | Ja/Nee |
+| 13 | Heeft elke gebruiker een manager, behalve "Kimberly De Clercq"? | Ja/Nee |
+| 14 | Heeft iedere afdeling de juiste manager toegekend (zie indeling)? | Ja/Nee |
+| 15 | Is elke gebruiker unlocked? | Ja/Nee |
+| 16 | Kan elke gebruiker inloggen met het password `Admin2019`? | Ja/Nee |
 
 ### Indeling Active Directory Organizational Units
 | Afdeling | Naam | Is manager? | Gent/Aalst |
