@@ -4,7 +4,11 @@
 
 Auteur(s) testplan: Tim Grijp
 
-## toevoegen aan het domein red
+
+## controleer lan ip en dns ip
+* lan ip moet 172.18.1.3 zijn
+* dns ip moet 172.18.1.66 zijn
+## toevoegen aan het domein red hiervoor moet server alfa2 draaien
 * log in als administrator van domein red
 * kijk in server manager -> local server
 * controleer of de computername "mike2" noemt
