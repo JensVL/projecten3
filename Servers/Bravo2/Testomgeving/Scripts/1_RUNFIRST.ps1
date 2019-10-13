@@ -21,4 +21,4 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 
 Rename-Computer -NewName bravo2 -Force
 Stop-Transcript
-Restart-Computer -force
+# Restart-Computer -force

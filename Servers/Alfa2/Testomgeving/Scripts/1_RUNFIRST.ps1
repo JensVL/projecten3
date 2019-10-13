@@ -47,4 +47,4 @@ Rename-Computer -NewName Alfa2 -Force
 
 Stop-Transcript
 
-Restart-Computer
+# Restart-Computer
