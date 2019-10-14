@@ -1,0 +1,15 @@
+# Opzetten server stap voor stap
+https://www.virtualizationhowto.com/2019/05/create-unattend-answer-file-for-windows-server-2019-automated-packer-installation/
+https://sheska.com/how-to-create-an-automated-install-for-windows-server-2019/
+
+# autounattend.xml
+https://github.com/ruzickap/packer-templates/tree/master/http/windows-2019
+https://github.com/joefitzgerald/packer-windows/tree/master/answer_files/2016
+https://win10.guru/simple-deployment-with-autounattend-xml-answer-file/
+
+# ADK installeren
+https://docs.microsoft.com/en-us/windows-hardware/get-started/adk-offline-install
+
+# Opstarten server youtube videos
+https://www.youtube.com/watch?v=n90Kli9u4CM
+https://www.youtube.com/watch?v=pEwn0BoMz4U
