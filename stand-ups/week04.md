@@ -3,29 +3,29 @@
 ## Aanwezigen week 4:
 | Naam                          | Aanwezig |
 | :---                          | :---   |
-| Alister Adutwum               |        |
-| Laurens Blancquart-Cassaer    |        |
-| Nathan Cammerman              |        |
-| Rik Claeyssens                |        |
-| Kimberly De Clercq            |        |
-| Tim Grijp                     |        |
-| Yngvar Samyn                  |        |
-| Joachim Van de Keere          |        |
-| Matthias Van de Velde         |        |
-| Robin Van de Walle            |        |
-| Jens Van Liefferinge          |        |
-| Jannes Van Wonterghem         |        |
-| Sean Vancompernolle           |        |
-| Jonas Vandegehuchte           |        |
-| Tibo Vanhercke                |        |
-| Ferre Verstichelen            |        |
-| Elias Waterschoot             |        |
-| Robby Daelman                 |        |
-| Cedric Detemmerman            |        |
-| Levi Goessens                 |        |
-| Aron Marckx                   |        |
-| Cédric Van den Eede           |        |
-| Arno Van Nieuwenhove          |        |
+| Alister Adutwum               | x |
+| Laurens Blancquart-Cassaer    | x |
+| Nathan Cammerman              | x |
+| Rik Claeyssens                | x |
+| Kimberly De Clercq            | x |
+| Tim Grijp                     | x |
+| Yngvar Samyn                  | x |
+| Joachim Van de Keere          | x |
+| Matthias Van de Velde         | x |
+| Robin Van de Walle            | x |
+| Jens Van Liefferinge          | x |
+| Jannes Van Wonterghem         | x |
+| Sean Vancompernolle           | x |
+| Jonas Vandegehuchte           | x |
+| Tibo Vanhercke                | x |
+| Ferre Verstichelen            | x |
+| Elias Waterschoot             | x |
+| Robby Daelman                 | x |
+| Cedric Detemmerman            | x |
+| Levi Goessens                 | x |
+| Aron Marckx                   | x |
+| Cédric Van den Eede           | x |
+| Arno Van Nieuwenhove          | x |
 
 ## Algemeen
 - Verslag vorige stand-up overlopen
