@@ -9,13 +9,13 @@ Volgende parameters worden minimaal opgevolgd :
 - CPU gebruik
 - Geheugen gebruik
 - Toestand van de harde schij(f)(ven)
-- Toestand van elke specifieke service die op een Windows server staat de draai-en (services zoals MS-SQL, Sharepoint, IIS, mail, ...)
+- Toestand van elke specifieke service die op een Windows server staat te draaien (services zoals MS-SQL, Sharepoint, IIS, mail, ...)
 
 ## Overzicht deeltaken
 
 | TeamLid                     | Deeltaak          | Time Estimated | Time spent  |
 | --------------              | --------------    | -------------- | ----------- |
-|                             |                   |                |             |
+| Rik Claeyssens              | PRTG installatie  | 8              | 10          |
 |                             |                   |                |             |
 |                             |                   |                |             |
 |                             |                   |                |             |
