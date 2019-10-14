@@ -1,5 +1,5 @@
 Write-Host 'Setting IP configuration'
-#IP configuratie
+#IP config
 $ip = "172.18.1.4"
 $defaultgateway = "172.18.1.1"
 $prefix = "26"
@@ -23,3 +23,4 @@ $joindomainuser = "Administrator"
 $credential = New-Object System.Management.Automation.PSCredential($joindomainuser,$SafeModeAdministratorPassword)
 Add-Computer -DomainName $DomainName -Credential $credential
 Restart-Computer
+
