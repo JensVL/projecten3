@@ -8,21 +8,21 @@ Import-Module ActiveDirectory
 
 ## Organizational Units aanmaken
 Write-Host "Make Organizational Unit Verkoop..." -ForeGroundColor "Green"
-New-ADOrganizationalUnit -Name "Verkoop" -Description "Organizational Unit voor Verkoop" 
+New-ADOrganizationalUnit -Name "Verkoop" -Description "Organizational Unit voor Verkoop"
 Write-Host "Make Organizational Unit Ontwikkeling..." -ForeGroundColor "Green"
-New-ADOrganizationalUnit -Name "Ontwikkeling" -Description "Organizational Unit voor Ontwikkeling" 
+New-ADOrganizationalUnit -Name "Ontwikkeling" -Description "Organizational Unit voor Ontwikkeling"
 Write-Host "Make Organizational Unit Directie..." -ForeGroundColor "Green"
 New-ADOrganizationalUnit -Name "Directie" -Description "Organizational Unit voor Directie"
 Write-Host "Make Organizational Unit Administratie..." -ForeGroundColor "Green"
-New-ADOrganizationalUnit -Name "Administratie" -Description "Organizational Unit voor Administratie" 
+New-ADOrganizationalUnit -Name "Administratie" -Description "Organizational Unit voor Administratie"
 Write-Host "Make Organizational Unit IT Administratie..." -ForeGroundColor "Green"
-New-ADOrganizationalUnit -Name "IT_Administratie" -Description "Organizational Unit voor IT Administratie" 
+New-ADOrganizationalUnit -Name "IT_Administratie" -Description "Organizational Unit voor IT Administratie"
 
 # Groepen aanmaken
 Write-Host "Make AD Groups..." -ForeGroundColor "Green"
-New-ADGroup -Name "Administratie" -DisplayName "Administratie" -Path "OU=Administratie,DC=red,DC=local" -GroupCategory Security -GroupScope Global 
-New-ADGroup -Name "Directie" -DisplayName "Directie" -Path "OU=Directie,DC=red,DC=local" -GroupCategory Security -GroupScope Global 
-New-ADGroup -Name "Ontwikkeling" -DisplayName "Ontwikkeling" -Path "OU=Ontwikkeling,DC=red,DC=local" -GroupCategory Security -GroupScope Global 
+New-ADGroup -Name "Administratie" -DisplayName "Administratie" -Path "OU=Administratie,DC=red,DC=local" -GroupCategory Security -GroupScope Global
+New-ADGroup -Name "Directie" -DisplayName "Directie" -Path "OU=Directie,DC=red,DC=local" -GroupCategory Security -GroupScope Global
+New-ADGroup -Name "Ontwikkeling" -DisplayName "Ontwikkeling" -Path "OU=Ontwikkeling,DC=red,DC=local" -GroupCategory Security -GroupScope Global
 New-ADGroup -Name "Verkoop" -DisplayName "Verkoop" -Path "OU=Verkoop,DC=red,DC=local" -GroupCategory Security -GroupScope Global
 New-ADGroup -Name "IT_Administratie" -DisplayName "IT_Administratie" -Path "OU=IT_Administratie,DC=red,DC=local" -GroupCategory Security -GroupScope Global
 
@@ -64,7 +64,7 @@ Write-Host "Create users for Administratie..." -ForeGroundColor "Green"
 New-AdUser -Name "Joachim" -Surname "Van de Keere" -SamAccountName "JoachimVDK" -Department "Administration" -Description "Account voor Joachim" -DisplayName "JoachimVDK" `
             -GivenName "Joachim" -State "Oost-Vlaanderen" -City "Sint-Martens-Latem" -Postalcode "9830" -EmailAddress "joachim@red.local" `
             -Office "B4.002" -EmployeeID "2531" -HomePhone "0444727260" -Initials "JVDK" -Path "OU=Administratie,DC=red,DC=local" -AccountPassword $paswoord
-           
+
 New-AdUser -Name "Tibo" -Surname "Vanhercke" -SamAccountName "TiboV"-Department "Administration" -Description "Account voor Tibo" -DisplayName "TiboV" `
             -GivenName "Tibo" -State "West-Vlaanderen" -City "Ingooigem" -Postalcode "8570" -EmailAddress "tibo@red.local" `
             -Office "B4.002" -EmployeeID "6312" -HomePhone "0444727261" -Initials "TV" -Path "OU=Administratie,DC=red,DC=local" -AccountPassword $paswoord
@@ -80,7 +80,7 @@ New-AdUser -Name "Tim" -Surname "Grijp" -SamAccountName "TimG" -Department "Admi
 New-AdUser -Name "Rik" -Surname "Claeyssens" -SamAccountName "RikC" -Department "Administration" -Description "Account voor Rik" -DisplayName "RikC" `
             -GivenName "Rik" -State "Oost-Vlaanderen" -City "Sint-Martens-Latem" -Postalcode "9830" -EmailAddress "rik@red.local" `
             -Office "B4.002" -EmployeeID "2731" -HomePhone "0444727264" -Initials "RC" -Path "OU=Administratie,DC=red,DC=local" -AccountPassword $paswoord
-            
+
 Write-Host "Create users for OU Ontwikkeling..." -ForeGroundColor "Green"
 New-AdUser -Name "Jannes" -Surname "Van Wonterghem" -SamAccountName "JannesVW" -Department "Development" -Description "Account voor Jannes" -DisplayName "JannesVW" `
            -GivenName "Jannes" -State "Antwerpen" -City "Zoersel" -PostalCode "2980" -EmailAddress "jannes@red.local" `
@@ -126,10 +126,10 @@ New-AdUser -Name "Alister" -Surname "Adutwum" -SamAccountName "AlisterA"-Departm
 ## Managers per groep toekennen
 Write-Host "Allocate managers to groups..." -ForeGroundColor "Green"
 Set-ADGroup -Identity "CN=Administratie,OU=Administratie,DC=red,DC=local" -ManagedBy "CN=Joachim,OU=Administratie,DC=red,DC=local"
-Set-ADGroup -Identity "CN=Directie,OU=Directie,DC=red,DC=local" -ManagedBy "CN=Kimberly,OU=Directie,DC=red,DC=local" 
-Set-ADGroup -Identity "CN=Ontwikkeling,OU=Ontwikkeling,DC=red,DC=local" -ManagedBy "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local" 
-Set-ADGroup -Identity "CN=Verkoop,OU=Verkoop,DC=red,DC=local" -ManagedBy "CN=Matthias,OU=Verkoop,DC=red,DC=local" 
-Set-ADGroup -Identity "CN=IT_Administratie,OU=IT_Administratie,DC=red,DC=local" -ManagedBy "CN=Laurens,OU=IT_Administratie,DC=red,DC=local"      
+Set-ADGroup -Identity "CN=Directie,OU=Directie,DC=red,DC=local" -ManagedBy "CN=Kimberly,OU=Directie,DC=red,DC=local"
+Set-ADGroup -Identity "CN=Ontwikkeling,OU=Ontwikkeling,DC=red,DC=local" -ManagedBy "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
+Set-ADGroup -Identity "CN=Verkoop,OU=Verkoop,DC=red,DC=local" -ManagedBy "CN=Matthias,OU=Verkoop,DC=red,DC=local"
+Set-ADGroup -Identity "CN=IT_Administratie,OU=IT_Administratie,DC=red,DC=local" -ManagedBy "CN=Laurens,OU=IT_Administratie,DC=red,DC=local"
 
 ## Groepmembers maken
 Write-Host "Add members to groups..." -ForeGroundColor "Green"
@@ -238,45 +238,49 @@ New-ADComputer "ITAdministratie_003" -SamAccountName "ITAdmin003" -Path "CN=Comp
 New-ADComputer "ITAdministratie_004" -SamAccountName "ITAdmin004" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "CN=Aron,OU=IT_Administratie,DC=red,DC=local"
 New-ADComputer "ITAdministratie_005" -SamAccountName "ITAdmin005" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Jens,OU=IT_Administratie,DC=red,DC=local"
 
+####################################################################################################################################### TODO MAG WSS WEG
+
 # Roaming profiles
-Write-Host "Create a shared folder for roaming profiles..." -ForeGroundColor "Green"
-New-Item -ItemType Directory -Name "Profiles" -Path "C:"
-New-SmbShare -Path "C:\Windows\system32\Profiles\" -Name "Profiles"
+# Write-Host "Create a shared folder for roaming profiles..." -ForeGroundColor "Green"
+# New-Item -ItemType Directory -Name "Profiles" -Path "C:"
+# New-SmbShare -Path "C:\Windows\system32\Profiles\" -Name "Profiles"
+#
+# Write-Host "Modify folder permissions..." -ForeGroundColor "Green"
+# Grant-SmbShareAccess -Name "Profiles" -AccountName Everyone -AccessRight Full -Force
+#
+# Write-Host "Configure the profile path for Directie..." -ForeGroundColor "Green"
+# Set-ADUser -Identity "CN=Kimberly,OU=Directie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\kimberly"
+# Set-ADUser -Identity "CN=Arno,OU=Directie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\arno"
+#
+# Write-Host "Configure the profile path for Administratie..." -ForeGroundColor "Green"
+# Set-ADUser -Identity "CN=Joachim,OU=Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\joachim"
+# Set-ADUser -Identity "CN=Tibo,OU=Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\tibo"
+# Set-ADUser -Identity "CN=Yngvar,OU=Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\yngvar"
+# Set-ADUser -Identity "CN=Tim,OU=Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\tim"
+# Set-ADUser -Identity "CN=Rik,OU=Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\rik"
+#
+# Write-Host "Configure the profile path for IT_Administratie..." -ForeGroundColor "Green"
+# Set-ADUser -Identity "CN=Laurens,OU=IT_Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\laurens"
+# Set-ADUser -Identity "CN=Ferre,OU=IT_Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\ferre"
+# Set-ADUser -Identity "CN=Levi,OU=IT_Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\levi"
+# Set-ADUser -Identity "CN=Aron,OU=IT_Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\aron"
+# Set-ADUser -Identity "CN=Jens,OU=IT_Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\jens"
+#
+# Write-Host "Configure the profile path for Ontwikkeling..." -ForeGroundColor "Green"
+# Set-ADUser -Identity "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\jannes"
+# Set-ADUser -Identity "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\jonas"
+# Set-ADUser -Identity "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\cédric"
+# Set-ADUser -Identity "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\cedricD"
+# Set-ADUser -Identity "CN=Robin,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\robin"
+#
+# Write-Host "Configure the profile path for Verkoop..." -ForeGroundColor "Green"
+# Set-ADUser -Identity "CN=Matthias,OU=Verkoop,DC=red,DC=local" -ProfilePath "\\dc01\profiles\matthias"
+# Set-ADUser -Identity "CN=Robby,OU=Verkoop,DC=red,DC=local" -ProfilePath "\\dc01\profiles\robby"
+# Set-ADUser -Identity "CN=Nathan,OU=Verkoop,DC=red,DC=local" -ProfilePath "\\dc01\profiles\nathan"
+# Set-ADUser -Identity "CN=Elias,OU=Verkoop,DC=red,DC=local" -ProfilePath "\\dc01\profiles\elias"
+# Set-ADUser -Identity "CN=Alister,OU=Verkoop,DC=red,DC=local" -ProfilePath "\\dc01\profiles\alister"
 
-Write-Host "Modify folder permissions..." -ForeGroundColor "Green"
-Grant-SmbShareAccess -Name "Profiles" -AccountName Everyone -AccessRight Full -Force
-
-Write-Host "Configure the profile path for Directie..." -ForeGroundColor "Green"
-Set-ADUser -Identity "CN=Kimberly,OU=Directie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\kimberly"
-Set-ADUser -Identity "CN=Arno,OU=Directie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\arno"
-
-Write-Host "Configure the profile path for Administratie..." -ForeGroundColor "Green"
-Set-ADUser -Identity "CN=Joachim,OU=Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\joachim"
-Set-ADUser -Identity "CN=Tibo,OU=Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\tibo"
-Set-ADUser -Identity "CN=Yngvar,OU=Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\yngvar"
-Set-ADUser -Identity "CN=Tim,OU=Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\tim"
-Set-ADUser -Identity "CN=Rik,OU=Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\rik"
-
-Write-Host "Configure the profile path for IT_Administratie..." -ForeGroundColor "Green"
-Set-ADUser -Identity "CN=Laurens,OU=IT_Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\laurens"
-Set-ADUser -Identity "CN=Ferre,OU=IT_Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\ferre"
-Set-ADUser -Identity "CN=Levi,OU=IT_Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\levi"
-Set-ADUser -Identity "CN=Aron,OU=IT_Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\aron"
-Set-ADUser -Identity "CN=Jens,OU=IT_Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\jens"
-
-Write-Host "Configure the profile path for Ontwikkeling..." -ForeGroundColor "Green"
-Set-ADUser -Identity "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\jannes"
-Set-ADUser -Identity "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\jonas"
-Set-ADUser -Identity "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\cédric"
-Set-ADUser -Identity "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\cedricD"
-Set-ADUser -Identity "CN=Robin,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\robin"
-
-Write-Host "Configure the profile path for Verkoop..." -ForeGroundColor "Green"
-Set-ADUser -Identity "CN=Matthias,OU=Verkoop,DC=red,DC=local" -ProfilePath "\\dc01\profiles\matthias"
-Set-ADUser -Identity "CN=Robby,OU=Verkoop,DC=red,DC=local" -ProfilePath "\\dc01\profiles\robby"
-Set-ADUser -Identity "CN=Nathan,OU=Verkoop,DC=red,DC=local" -ProfilePath "\\dc01\profiles\nathan"
-Set-ADUser -Identity "CN=Elias,OU=Verkoop,DC=red,DC=local" -ProfilePath "\\dc01\profiles\elias"
-Set-ADUser -Identity "CN=Alister,OU=Verkoop,DC=red,DC=local" -ProfilePath "\\dc01\profiles\alister"
+####################################################################################################################################### TODO MAG WSS WEG
 
 ## TO DO: Group policy
 # Verbied iedereen uit alle afdelingen behalve IT Administratie de toegang tot het control panel
@@ -290,7 +294,7 @@ New-GPLink -Name "DisablingControlPanel" -Target "OU=Directie,DC=red,DC=local"
 $GPOSession = Open-NetGPO -PolicyStore "red.local\DisablingControlPanel"
 
 # Review GPO
-Get-GPO -Name "DisablingControlPanel" | Get-GPOReport -ReportyType HTML
+Get-GPO -Name "DisablingControlPanel" | Get-GPOReport -ReportType HTML
 # Extra beveiliging om GPO's te blocken van de parent OU
 Set-GPInheritance -Target "OU=Administratie,DC=red,DC=local" -IsBlocked 1
 
@@ -316,8 +320,8 @@ $GPOSession = Open-NetGPO -PolicyStore "red.local\DisableNetwerkadapters"
 Save-NetGPO -GPOSession $GPOSession
 
 ## Juiste toegangsgroepen voor de fileserver (Modify/Read/Full) en voeg de juiste personen en/of groepen toe
-Set-GPPermission -Name "DisablingControlPanel" -TargetName "Users" -TargetType User -PermissionLevel Noneµ
-Set-GPPermission -Name "DisbalingControlPanel" -TargetName "OU=IT_Administratie,DC=red,DC=local" -TargetType User -PermissionLevel GPOApply
+Set-GPPermission -Name "DisablingControlPanel" -TargetName "Users" -TargetType User -PermissionLevel None
+Set-GPPermission -Name "DisablingControlPanel" -TargetName "OU=IT_Administratie,DC=red,DC=local" -TargetType User -PermissionLevel GPOApply
 
 # Import the settings from the latest backup to another directory in the same domain
 ##  Import-GPO -BackupId "A491D730-F3ED-464C-B8C9-F50562C536AA" -TargetName "BackupGPO" -path "c:\backups" -CreateIfNeeded

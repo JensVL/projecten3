@@ -38,9 +38,9 @@ Set-DnsServerPrimaryZone -Name "red.local" -SecureSecondaries "TransferToZoneNam
 # MX record -MailExchange option moet pointen naar bestaande A record (Zie -Mail Exchange optie Microsoft docs Add-DnsServerResourceRecordMX)
 Write-host "Adding DNS A and MX records for the servers of red.local" -ForeGroundColor "Green"
 
-# TODO CHECKEN OF DIT KLOPT MET MX RECORD (geen ip adres in dns manager bij charlie2????) TODO TODO TODO
+# TODO TODO TODO: -MailExchange option misschien op Charlie2.red.local zetten
 Add-DnsServerResourceRecordA -Name "Charlie2" -ZoneName "red.local" -IPv4Address "$Charlie2IP"
-Add-DnsServerResourceRecordMX -Name "." -MailExchange "Charlie2.red.local" -ZoneName "red.local" -Peference 100
+Add-DnsServerResourceRecordMX -Name "Charlie2" -MailExchange "mail.red.local" -ZoneName "red.local" -Preference 100
 
 Add-DnsServerResourceRecordA -Name "Delta2" -ZoneName "red.local" -IPv4Address "$Delta2IP"
 Add-DnsServerResourceRecordA -Name "Kilo2" -ZoneName "red.local" -IPv4Address "$Kilo2IP"
@@ -50,13 +50,14 @@ Add-DnsServerResourceRecordA -Name "November2" -ZoneName "red.local" -IPv4Addres
 Add-DnsServerResourceRecordA -Name "Oscar2" -ZoneName "red.local" -IPv4Address "$Oscar2IP"
 Add-DnsServerResourceRecordA -Name "Papa2" -ZoneName "red.local" -IPv4Address "$Papa2IP"
 
-# 3) DNS forwarders instellen op de Hogent DNS servers:         TODO DNS FORWARDERS MOETEN OF NIET??????????????????????????????
-Write-host "Adding Hogent DNS servers as DNS forwarders:" -ForeGroundColor "Green"
-Add-DnsServerForwarder -IpAddress "193.190.173.1","193.190.173.2"
+# 4) Firewall uitzetten (want we gebruiken hardware firewall):
+Write-Host "Turning firewall off:" -ForeGroundColor "Green"
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 
-# 4) Start het 4_ADstructure.ps1 script als Administrator:
-Write-host "Running next script 4_ADSTRUCTUR.ps1 as admin:" -ForeGroundColor "Green"
+# 5) Start het 4_ADstructure.ps1 script als Administrator:
+Write-host "Running next script 4_ADSTRUCTURE.ps1 as admin:" -ForeGroundColor "Green"
 Start-Process powershell -Verb runAs -ArgumentList "$VBOXdrive\4_ADstructure.ps1"
+
 
 # TODO: Na configuratie DNS testen met nslookup
 
