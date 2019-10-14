@@ -30,10 +30,19 @@ Add-Computer -DomainName $domain -Credential $credential -Restart -Force
 
 Install-WindowsFeature -Name DHCP -IncludeManagementTools
 
+
+# Authoriseren van DHCP
+
+# cmd.exe /c "netsh dhcp add securitygroups"
+Restart-Service DHCPServer
+Add-DhcpServerInDC -DnsName $Env:COMPUTERNAME
+# Set-ItemProperty –Path registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ServerManager\Roles\12 –Name ConfigurationState –Value 2
+
+
 # Configureren van de Scopes op de DHCP Server
 
 # --scope vlan 200--
-Add-DhcpServerV4Scope -Name "Vlan 200" -StartRange 172.18.0.2 -EndRange 172.18.0.254 -SubnetMask 255.255.255.0
+Add-DhcpServerV4Scope -Name "Vlan 200" -StartRange 172.18.0.2 -EndRange 172.18.0.254 -SubnetMask 255.255.255.0 -Type Both
 
 # DNS, Router, Default Gateway en mogelijk andere zaken toevoegen
 
