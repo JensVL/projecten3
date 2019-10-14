@@ -35,7 +35,9 @@ New-SmbShare -Name "DirData" -Path "G:\"
 New-SmbShare -Name "AdminData" -Path "H:\"
 New-SmbShare -Name "HomeDirs" -Path "Y:\"
 New-SmbShare -Name "ProfileDirs" -Path "Z:\"
-
+#Configure shadow storage voor adminData
+vssadmin add shadowstorage /for=h: /on=h: /maxsize=2000mb
+#Hier komt ps code voor dagleijske schaduw copy te maken
 
 
 ###Creating a new file share:
