@@ -38,7 +38,6 @@ Set-DnsServerPrimaryZone -Name "red.local" -SecureSecondaries "TransferToZoneNam
 # MX record -MailExchange option moet pointen naar bestaande A record (Zie -Mail Exchange optie Microsoft docs Add-DnsServerResourceRecordMX)
 Write-host "Adding DNS A and MX records for the servers of red.local" -ForeGroundColor "Green"
 
-# TODO TODO TODO: -MailExchange option misschien op Charlie2.red.local zetten
 Add-DnsServerResourceRecordA -Name "Charlie2" -ZoneName "red.local" -IPv4Address "$Charlie2IP"
 Add-DnsServerResourceRecordMX -Name "Charlie2" -MailExchange "mail.red.local" -ZoneName "red.local" -Preference 100
 
@@ -57,10 +56,5 @@ Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 # 5) Start het 4_ADstructure.ps1 script als Administrator:
 Write-host "Running next script 4_ADSTRUCTURE.ps1 as admin:" -ForeGroundColor "Green"
 Start-Process powershell -Verb runAs -ArgumentList "$VBOXdrive\4_ADstructure.ps1"
-
-
-# TODO: Na configuratie DNS testen met nslookup
-
-# TODO Eventueel vragen aan Bravo2 om secondary zones aan te maken van mijn zone(s)
 
 Stop-Transcript
