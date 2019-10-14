@@ -30,13 +30,16 @@
 # [1] http://docs.vagrantup.com/v2/synced-folders/basic_usage.html
 ---
 
-- name: alfa2
+- name: Alfa2
   box: gusztavvargadr/windows-server
   ip: 172.18.1.66
   netmask: 255.255.255.224
   gui: false
   memory: 2048
   cpus: 2
+  synced_folders: 
+    - src: '../../Servers/Alfa2/Testomgeving/Scripts'
+      dest: '/vagrant'
   forwarded_ports:
     - guest: '3389'
       host: '3390'
@@ -138,6 +141,4 @@
   forwarded_ports:
     - guest: '3389'
       host: '3390'
-
-
 

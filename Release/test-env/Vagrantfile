@@ -109,14 +109,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       config.winrm.transport       = :plaintext
       config.winrm.basic_auth_only = true
 
-      if host['name'] == "alfa2"
+      if host['name'] == "Alfa2"
         provisioning_path = ALFA2+'/Testomgeving/Scripts'
 
-        node.vm.provision 'shell',
-          privileged: true,
-          path: provisioning_path + '/1_RUNFIRST.ps1',
-          args: []
-        node.vm.provision 'shell', reboot: true
+        # node.vm.provision 'shell',
+        #   privileged: true,
+        #   path: provisioning_path + '/1_RUNFIRST.ps1',
+        #   args: []
+        # node.vm.provision 'shell', reboot: true
         node.vm.provision 'shell',
           privileged: true,
           path: provisioning_path + '/2_installDCDNS.ps1',
@@ -135,7 +135,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           path: provisioning_path + '/5_AGDLP_PERMISSIONS.ps1',
           args: []
 
-      elsif host['name'] == "bravo2"
+      elsif host['name'] == "Bravo2"
         provisioning_path = BRAVO2+'/Testomgeving/Scripts'
 
         node.vm.provision 'shell',
@@ -161,7 +161,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           path: provisioning_path + '/5_AGDLP_PERMISSIONS.ps1',
           args: []
 
-      elsif host['name'] == "kilo2"
+      elsif host['name'] == "Kilo2"
         provisioning_path = KILO2+'/test-env/provisioning/'
 
         node.vm.provision 'shell',
@@ -169,15 +169,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           path: provisioning_path + host['name'] + '.ps1',
           args: []
 
-      elsif host['name'] == "november2"
+      elsif host['name'] == "November2"
         # TODO
         provisioning_path = NOVEMBER2+'/test-env/provisioning/'
 
-      elsif host['name'] == "lima2"
+      elsif host['name'] == "Dima2"
         # TODO
         provisioning_path = LIMA2+'/test-env/provisioning/'
 
-      elsif host['name'] == "delta2"
+      elsif host['name'] == "Delta2"
         provisioning_path = DELTA2+'/test-env/provisioning/'
 
         iis = host['iis']
@@ -203,6 +203,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             webapp['packagelocation'],
             host['include_linter']
           ]
+      elsif host['name'].match(/win10-client/)
+        # TODO
+        node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + host['name'] + '.ps1',
+          args: []
       end
     end
   end
