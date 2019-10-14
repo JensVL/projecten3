@@ -1,6 +1,6 @@
 # Testplan PfSense:
 
-** Opmerking: Er wordt veronderstelt dat de gebruiker PfSense juist heeft geinstalleerd met de juiste netwerk adapters**
+#### Opmerking: Er wordt veronderstelt dat de gebruiker PfSense juist heeft geinstalleerd met de juiste netwerk adapters volgens de [Installatie documentatie](https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/Zulu2/Documentatie%20Installatie.md).
 
 1. Zet IPv4 interfaces:  
 ```
