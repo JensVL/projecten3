@@ -88,9 +88,4 @@ install-ADDSDomainController -DomainName "red.local" `
                   -force:$true
 
 
-# 7.1) Check domaincontroller informatie en forest
-Get-ADDomainController 
-Get-ADTrust –Filter  *
-# 8) Repliceren van Alfa2
-Get-DnsServerZone -ComputerName "Alfa2.red.local" | where {("Primary" -eq $.ZoneType) | %{ $ | Add-DnsServerSecondaryZone -MasterServers 172.18.1.66 -ZoneFile "$($_.ZoneName).dns"}
 Stop-Transcript
