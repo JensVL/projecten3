@@ -5,6 +5,11 @@
 - Switch / Router telnet(vty) password: Telnet2019
 
 - No L3 switches available on site: replaced with router + L2 switch
+- PINGS WON'T WORK on Hogent environment
+- Configure NAT on outside & inside interfaces
+- Use PAT and ACL to ensure connectivity
+- Workaround for patch panel not working: insert cable on island from internetport to management port (eg 2 -> 14)
+- DHCP on interface to ISP for getting IP address
 
 ## TODO
 

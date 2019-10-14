@@ -89,12 +89,25 @@
 - login
 - exit
 - service password-encryption
+
+- ### ! Internet on outside interface via DHCP -- NAT
+(internal interface)
 - int s0/1/0
 - ip address 172.18.2.1 255.255.255.252
+- ip nat inside
 - no shut
-- int s0/1/1
 - 
-- ### ! Outside interface
+(external interface)
+- int s0/1/1
+- ip address dhcp
+- ip nat outside
+- no shut
+- exit
+
+- access-list 1 permit 172.18.2.0 0.0.0.3
+- ip nat inside source list 1 interface s0/1/0 overload
+
+- do show ip nat translations
 
 #
 - router ospf 10
