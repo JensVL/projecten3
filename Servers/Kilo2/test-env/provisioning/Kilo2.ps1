@@ -1,5 +1,6 @@
 # IP Configuraties
 
+Write-Host "Configuring IP..."
 $IP = "172.18.1.1"
 $DefaultGateway = "172.18.1.66"
 $DNS = "172.18.1.66"
@@ -9,6 +10,12 @@ Remove-NetRoute -InterfaceIndex $InterfaceIndex -Confirm:$false
 Set-DnsClientServerAddress -InterfaceIndex $InterfaceIndex -ResetServerAddresses
 New-NetIPAddress -InterfaceIndex $InterfaceIndex -IPAddress $IP -PrefixLength 24 -DefaultGateway $DefaultGateway
 Set-DnsClientServerAddress -InterfaceIndex $InterfaceIndex -ServerAddresses $DNS
+Write-Host "Ip Configured"
+
+# Add delay to give the server time to adapt to new ip configurations
+# If no delay is added the Machine will not be adapted to the new ip configurations and will fail to join the domain
+
+Start-Sleep -s 5
 
 # Toevoegen aan domain
 
