@@ -63,7 +63,7 @@ Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce'
 # 6) Voeg de Alfa2 server toe aan het nieuwe domain: red.local
 # 6.1) Maak een CredentialsOBject aan voor de user om zijn DSRM password te vragen (Admin2019)
 # Zal een popup window openen waarin je je passwoord moet invullen dit passwoord wordt dan in het commando in stap 7 gebruikt
-$CurrentCredentials = Get-Credential -UserName $env:USERNAME -Message "Geef je gewenste DSRM passwoord in"
+$CurrentCredentials = Get-Credential -UserName "RED\$env:USERNAME" -Message "Geef je gewenste DSRM passwoord in"
 $DSRM = $CurrentCredentials.Password
 
 # 6.2) Vanaf dat ik met red/administrator was ingelogd had ik het probleem dat ik geen permissie had om de netwerkadapters te wijzigen.
@@ -81,8 +81,9 @@ Set-ItemProperty -Path "REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\
 #     Force forceert negeren van bevestigingen
 Write-host "Starting configuration of red.local domain:" -ForeGroundColor "Green"
 install-ADDSDomainController -DomainName "red.local" `
-                  -ReplicationSourceDC "Alfa2.red.local"
-                  -installDns:$true `
+                  -ReplicationSourceDC "Alfa2.red.local" `
+                  -credential $CurrentCredentials `
+                  -installDns `
                   -createDNSDelegation:$false `
                   -SafeModeAdministratorPassword $DSRM `
                   -force:$true
