@@ -10,7 +10,7 @@ This is to exclude any pitfalls in the connectivity between the hosts that might
 
 ## Roadmap
 
-TODO: implement draw.io critical path
+![draw.io map](/Critical_path.png)
 
 
 ## Integration process
@@ -44,12 +44,13 @@ TODO: implement draw.io critical path
 | Win10-client01 | 172.18.0.5 | /24    |
 | Win10-client02 | 172.18.0.6 | /24    |
 
-1. [ ] In Ghent, connect 2 laptops to an outlet going to the patch panel
-2. [ ] Configure a static IP on both laptops according to the IP table
-3. [ ] Disable the firewall on both laptops
-4. [ ] Ping each other
-5. [ ] Enable the firewall on both laptops(Security measure for the next step)
+1. [X] In Ghent, connect 2 laptops to an outlet going to the patch panel
+2. [X] Configure a static IP on both laptops according to the IP table
+3. [X] Disable the firewall on both laptops
+4. [X] Ping each other
+5. [X] Enable the firewall on both laptops(Security measure for the next step)
 6. [ ] Test internet connectivity on both laptops
+    * problem in NAT config
 7. [ ] Configure a Windows 10 VM with *ONLY* a bridge adapter and a static IP according to the IP table
 8. [ ] Launch the Windows 10 VM, this client will later be used to join the domain
 9. [ ] Disable the VM's firewall
@@ -67,6 +68,10 @@ TODO: implement draw.io critical path
 #### Test remarks
 
 *TODO:* take notes during test
+
+* Ping outside Hogent is disabled
+* Connect router to table socket with n° greater than 6 and connect the table socket 
+to another table socket lower than 6 for internet connectivity
 
 
 ### Alfa2 & Bravo2
