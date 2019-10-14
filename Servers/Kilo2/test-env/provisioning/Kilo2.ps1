@@ -35,21 +35,6 @@ Install-WindowsFeature -Name DHCP -IncludeManagementTools
 # --scope vlan 200--
 Add-DhcpServerV4Scope -Name "Vlan 200" -StartRange 172.18.0.2 -EndRange 172.18.0.254 -SubnetMask 255.255.255.0
 
-# --scope vlan 300--
-Add-DhcpServerV4Scope -Name "Vlan 300" -StartRange 172.18.1.1 -EndRange 172.18.1.62 -SubnetMask 255.255.255.192
-
-# --scope vlan 400--
-Add-DhcpServerV4Scope -Name "Vlan 400" -StartRange 172.18.1.97 -EndRange 172.18.1.98 -SubnetMask 255.255.255.252
-
-# --scope vlan 500--
-Add-DhcpServerV4Scope -Name "Vlan 500" -StartRange 172.18.1.65 -EndRange 172.18.1.94 -SubnetMask 255.255.255.224
-
-# --scope vlan 600--
-Add-DhcpServerV4Scope -Name "Vlan 600" -StartRange 172.18.1.101 -EndRange 172.18.1.102 -SubnetMask 255.255.255.252
-
-# --scope vlan 700--
-Add-DhcpServerV4Scope -Name "Vlan 700" -StartRange 172.18.1.105 -EndRange 172.18.1.106 -SubnetMask 255.255.255.252
-
 # DNS, Router, Default Gateway en mogelijk andere zaken toevoegen
 
 Set-DhcpServerV4OptionValue -DnsServer 172.18.1.66,172.18.1.67 -Router 172.18.0.1 -ScopeId 172.18.0.0
