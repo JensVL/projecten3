@@ -373,9 +373,10 @@ function fix_ssl() {
     Import-Module WebAdministration
 
     #add new binding to site
-    New-WebBinding -Name $website_name -IPAddress * -Port 443 Protocoll https
+    New-WebBinding -Name $website_name -IPAddress * -Port 443 -Protocol https
 
     #create self signed certificate
+    #$cert = New-SelfSignedCertfificate -CertStoreLocation "Cert:\LocalMachine\App" -DnsName $website_domain
     $cert = New-SelfSignedCertificate -CertStoreLocation "Cert:\LocalMachine\App" -DnsName $website_domain
 
     #Attach the certificate to the SSL binding
