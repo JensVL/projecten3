@@ -9,6 +9,7 @@
 [Roaming profiles](https://sid-500.com/2017/08/27/active-directory-configuring-roaming-profiles-using-gui-and-powershell/)   
 
 ## Beleidsregels op gebruikersniveau
+[Link GPO to OU](https://www.manageengine.com/products/active-directory-audit/kb/how-to/how-to-link-a-gpo-to-an-ou.html)   
 ### Verbied iedereen uit alle afdelingen behalve IT Administratie de toegang tot het control panel  
 [Group Policy](https://blog.netwrix.com/2019/04/11/top-10-group-policy-powershell-commands/)    
 [Disable Control Panel Access](http://www.mustbegeek.com/disable-control-panel-access-using-group-policy-on-windows/)  
@@ -28,7 +29,6 @@ Get-AppxPackage *Xbox* | Remove-AppxPackage
 
 ### Zorg voor de juiste toegangsgroepen voor de fileserver (Modify/Read/Full) en voeg de juiste personen en/of groepen toe.  
 [Set-GPPermission](https://docs.microsoft.com/en-us/powershell/module/grouppolicy/Set-GPPermission?view=win10-ps)  
-
 
 ### Maak gebruik van AGDLP (Account, Global, Domain Local, Permission) voor het uitwerken van de groepsstructuur.
 

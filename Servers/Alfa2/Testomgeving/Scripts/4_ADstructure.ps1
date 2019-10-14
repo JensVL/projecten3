@@ -26,7 +26,6 @@ New-ADGroup -Name "Ontwikkeling" -DisplayName "Ontwikkeling" -Path "OU=Ontwikkel
 New-ADGroup -Name "Verkoop" -DisplayName "Verkoop" -Path "OU=Verkoop,DC=red,DC=local" -GroupCategory Security -GroupScope Global
 New-ADGroup -Name "IT_Administratie" -DisplayName "IT_Administratie" -Path "OU=IT_Administratie,DC=red,DC=local" -GroupCategory Security -GroupScope Global
 
-
 # Gebruikers
 # Er wordt telkens een gebruiker aangemaakt, specifiek de manager van elke Organizational Unit.
 # Wachtwoord "Admin2019" gaf foutmeldingen. 
@@ -283,53 +282,12 @@ New-ADComputer "ITAdministratie_005" -SamAccountName "ITAdmin005" -Path "CN=Comp
 
 ####################################################################################################################################### TODO MAG WSS WEG
 
-## TO DO: Group policy
-# Verbied iedereen uit alle afdelingen behalve IT Administratie de toegang tot het control panel
-Write-Host "Forbid everyone from all departments except IT Administration access to the control panel..." -ForeGroundColor "Green"
-New-GPO "DisablingControlPanel" -Comment "Disable Control Panel"
-# GPO aan OU linken
-New-GPLink -Name "DisablingControlPanel" -Target "OU=Administratie,DC=red,DC=local"
-New-GPLink -Name "DisablingControlPanel" -Target "OU=Verkoop,DC=red,DC=local"
-New-GPLink -Name "DisablingControlPanel" -Target "OU=Ontwikkeling,DC=red,DC=local"
-New-GPLink -Name "DisablingControlPanel" -Target "OU=Directie,DC=red,DC=local"
-$GPOSession = Open-NetGPO -PolicyStore "red.local\DisablingControlPanel"
-
-# Review GPO
-Get-GPO -Name "DisablingControlPanel" | Get-GPOReport -ReportType HTML
-# Extra beveiliging om GPO's te blocken van de parent OU
-Set-GPInheritance -Target "OU=Administratie,DC=red,DC=local" -IsBlocked 1
-
-# Verwijder het games link menu uit het start menu voor alle afdelingen
-Write-Host "Remove the games link menu from the start menu..." -ForeGroundColor "Green"
-New-GPO "DisablingGameLink" -Comment "Disable Game link menu uit start menu"
-# GPO aan OU linken
-New-GPLink -Name "DisablingGameLink" -Target "OU=IT_Administratie,DC=red,DC=local"
-New-GPLink -Name "DisablingGameLink" -Target "OU=Verkoop,DC=red,DC=local"
-New-GPLink -Name "DisablingGameLink" -Target "OU=Ontwikkeling,DC=red,DC=local"
-New-GPLink -Name "DisablingGameLink" -Target "OU=Administratie,DC=red,DC=local"
-New-GPLink -Name "DisablingGameLink" -Target "OU=Directie,DC=red,DC=local"
-$GPOSession = Open-NetGPO -PolicyStore "red.local\DisablingGameLink"
-
-# Verbied iedereen uit de afdelingen Administratie en Verkoop de toegang tot de eigenschappen van de netwerkadapters
-Write-Host "Forbid everyone from the Administration and Sales departments access to the properties of the network adapters..." -ForeGroundColor "Green"
-New-GPO "DisableNetwerkadapters" -Comment "Disable Netwerkadapters voor de afdelingen Administratie en Verkoop"
-New-GPLink -Name "DisableNetwerkadapters" -Target "OU=Administratie,DC=red,DC=local"
-New-GPLink -Name "DisableNetwerkadapters" -Target "OU=Verkoop,DC=red,DC=local"
-$GPOSession = Open-NetGPO -PolicyStore "red.local\DisableNetwerkadapters"
-
-# GPO opslaan
-Save-NetGPO -GPOSession $GPOSession
-
-## Juiste toegangsgroepen voor de fileserver (Modify/Read/Full) en voeg de juiste personen en/of groepen toe
-Set-GPPermission -Name "DisablingControlPanel" -TargetName "Users" -TargetType User -PermissionLevel None
-Set-GPPermission -Name "DisablingControlPanel" -TargetName "OU=IT_Administratie,DC=red,DC=local" -TargetType User -PermissionLevel GPOApply
-
-# Import the settings from the latest backup to another directory in the same domain
-##  Import-GPO -BackupId "A491D730-F3ED-464C-B8C9-F50562C536AA" -TargetName "BackupGPO" -path "c:\backups" -CreateIfNeeded
-# Import the settings from specified backup in the same directory in the same domain
-##  Import-GPO -BackupGPOName "BackupGPO" -Path "D:\Backups" -TargetName "BackupGPO" -MigrationTable "D:\Tables\Migtable1.migtable" -CreateIfNeeded
-
-## Copy-NetFirewallRule -Name ""
-# New-GPLink -Name "Control Panel" -Target "OU=Verkoop,dc=red,dc=local" -LinkEnabled Yes -Enforced Yes
+# Group Policy - GUI
+# 1. Verbied iedereen uit alle afdelingen behalve IT Administratie de toegang tot het control panel
+# Group Policy Management Editor > DisablingGameLink > User Configuration > Policies > Administratieve Templates: Policy definitions > Control Panel > Display > Disable the Display Control Panel
+# 2. Verwijder het games link menu uit het start menu voor alle afdelingen
+# Group Policy Management Editor > DisablingGameLink > User Configuration > Policies > Administratieve Templates: Policy definitions > Start Menu and Taskbar > Remove Games link from Start Menu
+# 3. Verbied iedereen uit de afdelingen Administratie en Verkoop de toegang tot de eigenschappen van de netwerkadapters
+# Group Policy Management Editor > DisableNetwerkadapters > User Configuration > Policies > Administratieve Templates: Policy definitions > Network > Network Connections > Prohibit access to properties of a LAN connection
 
 Stop-Transcript
