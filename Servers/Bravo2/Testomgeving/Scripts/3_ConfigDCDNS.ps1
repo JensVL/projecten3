@@ -33,5 +33,5 @@ Get-ADTrust –Filter  *
 # Replicatie DNS niet nodig de A records werden automatisch gerepliceerd van Alfa2 naar BRavo2
 
 # DNS Check
-Test-DnsServer -IPAddress 172.18.1.67 -Context RootHint
+Test-DnsServer -IPAddress 172.18.1.67 -Context RootHints
 
