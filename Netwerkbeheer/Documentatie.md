@@ -17,6 +17,7 @@
   - Router1: Site to site VPN -> Router0 ?
   - Router4: ISP Google ?
   - Router3: ISP red.be ?
+  - "Switch5": ip helper-address 172.18.1.1 
   - ...
 
 - Switches
