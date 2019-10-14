@@ -29,7 +29,8 @@ New-ADGroup -Name "IT_Administratie" -DisplayName "IT_Administratie" -Path "OU=I
 
 # Gebruikers
 # Er wordt telkens een gebruiker aangemaakt, specifiek de manager van elke Organizational Unit.
-$paswoord=ConvertTo-SecureString "Admin2019" -asPlainText -force
+# Wachtwoord "Admin2019" gaf foutmeldingen. 
+$paswoord=ConvertTo-SecureString "Administrator2019" -asPlainText -force
 Write-Host "Create users for OU Directie..." -ForeGroundColor "Green"
 New-AdUser -Name "Kimberly" -Surname "De Clercq" -SamAccountName "KimberlyDC" -Department "Manager" -Description "Account voor Kimberly" -DisplayName "KimberlyDC" `
            -GivenName "Kimberly" -State "West-Vlaanderen"  -City "Ingelmunster" -PostalCode "8770" -EmailAddress "kimberly@red.local" `
