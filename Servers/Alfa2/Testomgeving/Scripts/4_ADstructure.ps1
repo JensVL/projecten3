@@ -8,27 +8,28 @@ Import-Module ActiveDirectory
 
 ## Organizational Units aanmaken
 Write-Host "Make Organizational Unit Verkoop..." -ForeGroundColor "Green"
-New-ADOrganizationalUnit -Name "Verkoop" -Description "Organizational Unit voor Verkoop" 
+New-ADOrganizationalUnit -Name "Verkoop" -Description "Organizational Unit voor Verkoop"
 Write-Host "Make Organizational Unit Ontwikkeling..." -ForeGroundColor "Green"
-New-ADOrganizationalUnit -Name "Ontwikkeling" -Description "Organizational Unit voor Ontwikkeling" 
+New-ADOrganizationalUnit -Name "Ontwikkeling" -Description "Organizational Unit voor Ontwikkeling"
 Write-Host "Make Organizational Unit Directie..." -ForeGroundColor "Green"
 New-ADOrganizationalUnit -Name "Directie" -Description "Organizational Unit voor Directie"
 Write-Host "Make Organizational Unit Administratie..." -ForeGroundColor "Green"
-New-ADOrganizationalUnit -Name "Administratie" -Description "Organizational Unit voor Administratie" 
+New-ADOrganizationalUnit -Name "Administratie" -Description "Organizational Unit voor Administratie"
 Write-Host "Make Organizational Unit IT Administratie..." -ForeGroundColor "Green"
-New-ADOrganizationalUnit -Name "IT_Administratie" -Description "Organizational Unit voor IT Administratie" 
+New-ADOrganizationalUnit -Name "IT_Administratie" -Description "Organizational Unit voor IT Administratie"
 
 # Groepen aanmaken
 Write-Host "Make AD Groups..." -ForeGroundColor "Green"
-New-ADGroup -Name "Administratie" -DisplayName "Administratie" -Path "OU=Administratie,DC=red,DC=local" -GroupCategory Security -GroupScope Global -ManagedBy "Piet"
-New-ADGroup -Name "Directie" -DisplayName "Directie" -Path "OU=Directie,DC=red,DC=local" -GroupCategory Security -GroupScope Global -ManagedBy "Kimberly"
-New-ADGroup -Name "Ontwikkeling" -DisplayName "Ontwikkeling" -Path "OU=Ontwikkeling,DC=red,DC=local" -GroupCategory Security -GroupScope Global -ManagedBy "Jan"
-New-ADGroup -Name "Verkoop" -DisplayName "Verkoop" -Path "OU=Verkoop,DC=red,DC=local" -GroupCategory Security -GroupScope Global -ManagedBy "Mieke"
-New-ADGroup -Name "IT_Administratie" -DisplayName "IT_Administratie" -Path "OU=IT_Administratie,DC=red,DC=local" -GroupCategory Security -GroupScope Global -ManagedBy "Laurens"
+New-ADGroup -Name "Administratie" -DisplayName "Administratie" -Path "OU=Administratie,DC=red,DC=local" -GroupCategory Security -GroupScope Global
+New-ADGroup -Name "Directie" -DisplayName "Directie" -Path "OU=Directie,DC=red,DC=local" -GroupCategory Security -GroupScope Global
+New-ADGroup -Name "Ontwikkeling" -DisplayName "Ontwikkeling" -Path "OU=Ontwikkeling,DC=red,DC=local" -GroupCategory Security -GroupScope Global
+New-ADGroup -Name "Verkoop" -DisplayName "Verkoop" -Path "OU=Verkoop,DC=red,DC=local" -GroupCategory Security -GroupScope Global
+New-ADGroup -Name "IT_Administratie" -DisplayName "IT_Administratie" -Path "OU=IT_Administratie,DC=red,DC=local" -GroupCategory Security -GroupScope Global
 
 # Gebruikers
 # Er wordt telkens een gebruiker aangemaakt, specifiek de manager van elke Organizational Unit.
-$paswoord=ConvertTo-SecureString "Admin2019" -asPlainText -force
+# Wachtwoord "Admin2019" gaf foutmeldingen. 
+$paswoord=ConvertTo-SecureString "Administrator2019" -asPlainText -force
 Write-Host "Create users for OU Directie..." -ForeGroundColor "Green"
 New-AdUser -Name "Kimberly" -Surname "De Clercq" -SamAccountName "KimberlyDC" -Department "Manager" -Description "Account voor Kimberly" -DisplayName "KimberlyDC" `
            -GivenName "Kimberly" -State "West-Vlaanderen"  -City "Ingelmunster" -PostalCode "8770" -EmailAddress "kimberly@red.local" `
@@ -48,7 +49,7 @@ New-AdUser -Name "Ferre" -Surname "Verstichelen" -SamAccountName "FerreV" -Depar
            -Office "B4.037" -EmployeeID "8425" -HomePhone "0444727281" -Initials "FV" -Path "OU=IT_Administratie,DC=red,DC=local" -AccountPassword $paswoord
 
 New-AdUser -Name "Levi" -Surname "Goessens" -SamAccountName "LeviG" -Department "IT_Administration" -Description "Account voor Levi" -DisplayName "LeviG" `
-           -GivenName "Levi" -State "Oost-Vlaanderen" -City "Denderwindeke" -PostalCode "9400" -EmailAddress "Levi@red.local" `
+           -GivenName "Levi" -State "Oost-Vlaanderen" -City "Denderwindeke" -PostalCode "9400" -EmailAddress "levi@red.local" `
            -Office "B4.037" -EmployeeID "2014" -HomePhone "0444727284" -Initials "LG" -Path "OU=IT_Administratie,DC=red,DC=local" -AccountPassword $paswoord
 
 New-AdUser -Name "Aron" -Surname "Marckx" -SamAccountName "AronM" -Department "IT_Administration" -Description "Account voor Aron" -DisplayName "AronM" `
@@ -63,7 +64,7 @@ Write-Host "Create users for Administratie..." -ForeGroundColor "Green"
 New-AdUser -Name "Joachim" -Surname "Van de Keere" -SamAccountName "JoachimVDK" -Department "Administration" -Description "Account voor Joachim" -DisplayName "JoachimVDK" `
             -GivenName "Joachim" -State "Oost-Vlaanderen" -City "Sint-Martens-Latem" -Postalcode "9830" -EmailAddress "joachim@red.local" `
             -Office "B4.002" -EmployeeID "2531" -HomePhone "0444727260" -Initials "JVDK" -Path "OU=Administratie,DC=red,DC=local" -AccountPassword $paswoord
-           
+
 New-AdUser -Name "Tibo" -Surname "Vanhercke" -SamAccountName "TiboV"-Department "Administration" -Description "Account voor Tibo" -DisplayName "TiboV" `
             -GivenName "Tibo" -State "West-Vlaanderen" -City "Ingooigem" -Postalcode "8570" -EmailAddress "tibo@red.local" `
             -Office "B4.002" -EmployeeID "6312" -HomePhone "0444727261" -Initials "TV" -Path "OU=Administratie,DC=red,DC=local" -AccountPassword $paswoord
@@ -79,7 +80,7 @@ New-AdUser -Name "Tim" -Surname "Grijp" -SamAccountName "TimG" -Department "Admi
 New-AdUser -Name "Rik" -Surname "Claeyssens" -SamAccountName "RikC" -Department "Administration" -Description "Account voor Rik" -DisplayName "RikC" `
             -GivenName "Rik" -State "Oost-Vlaanderen" -City "Sint-Martens-Latem" -Postalcode "9830" -EmailAddress "rik@red.local" `
             -Office "B4.002" -EmployeeID "2731" -HomePhone "0444727264" -Initials "RC" -Path "OU=Administratie,DC=red,DC=local" -AccountPassword $paswoord
-            
+
 Write-Host "Create users for OU Ontwikkeling..." -ForeGroundColor "Green"
 New-AdUser -Name "Jannes" -Surname "Van Wonterghem" -SamAccountName "JannesVW" -Department "Development" -Description "Account voor Jannes" -DisplayName "JannesVW" `
            -GivenName "Jannes" -State "Antwerpen" -City "Zoersel" -PostalCode "2980" -EmailAddress "jannes@red.local" `
@@ -93,7 +94,7 @@ New-AdUser -Name "Cédric" -Surname "Van den Eede" -SamAccountName "CedricVDE"-D
            -GivenName "Cédric" -State "Oost-Vlaanderen" -City "Meldert" -PostalCode "9310" -EmailAddress "cedric@red.local" `
            -Office "B1.018" -EmployeeID "5079" -HomePhone "0444727292" -Initials "CVDE" -Path "OU=Ontwikkeling,DC=red,DC=local" -AccountPassword $paswoord
 
-New-AdUser -Name "Cedric" -Surname "Detemmerman" -SamAccountName "CedricD"-Department "Development" -Description "Account voor Cedric" -DisplayName "CedricD" `
+New-AdUser -Name "CedricD" -Surname "Detemmerman" -SamAccountName "CedricD"-Department "Development" -Description "Account voor Cedric" -DisplayName "CedricD" `
            -GivenName "Cedric" -State "Oost-Vlaanderen" -City "Haaltert" -PostalCode "3360" -EmailAddress "cedricd@red.local" `
            -Office "B1.018" -EmployeeID "1558" -HomePhone "0444727293" -Initials "CD" -Path "OU=Ontwikkeling,DC=red,DC=local" -AccountPassword $paswoord
 
@@ -123,162 +124,170 @@ New-AdUser -Name "Alister" -Surname "Adutwum" -SamAccountName "AlisterA"-Departm
            -Office "B0.015" -EmployeeID "7215" -HomePhone "0444727206" -Initials "AA" -Path "OU=Verkoop,DC=red,DC=local" -AccountPassword $paswoord
 
 ## Managers per groep toekennen
+Write-Host "Allocate managers to groups..." -ForeGroundColor "Green"
+Set-ADGroup -Identity "CN=Administratie,OU=Administratie,DC=red,DC=local" -ManagedBy "CN=Joachim,OU=Administratie,DC=red,DC=local"
+Set-ADGroup -Identity "CN=Directie,OU=Directie,DC=red,DC=local" -ManagedBy "CN=Kimberly,OU=Directie,DC=red,DC=local"
+Set-ADGroup -Identity "CN=Ontwikkeling,OU=Ontwikkeling,DC=red,DC=local" -ManagedBy "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
+Set-ADGroup -Identity "CN=Verkoop,OU=Verkoop,DC=red,DC=local" -ManagedBy "CN=Matthias,OU=Verkoop,DC=red,DC=local"
+Set-ADGroup -Identity "CN=IT_Administratie,OU=IT_Administratie,DC=red,DC=local" -ManagedBy "CN=Laurens,OU=IT_Administratie,DC=red,DC=local"
+
+## Groepmembers maken
+Write-Host "Add members to groups..." -ForeGroundColor "Green"
+Add-ADGroupMember -Identity "CN=Directie,OU=Directie,DC=red,DC=local" -Members "CN=Kimberly,OU=Directie,DC=red,DC=local", "CN=Arno,OU=Directie,DC=red,DC=local"
+Add-ADGroupMember -Identity "CN=Administratie,OU=Administratie,DC=red,DC=local" -Members "CN=Joachim,OU=Administratie,DC=red,DC=local", "CN=Tibo,OU=Administratie,DC=red,DC=local", "CN=Yngvar,OU=Administratie,DC=red,DC=local", "CN=Tim,OU=Administratie,DC=red,DC=local", "CN=Rik,OU=Administratie,DC=red,DC=local"
+Add-ADGroupMember -Identity "CN=IT_Administratie,OU=IT_Administratie,DC=red,DC=local" -Members "CN=Laurens,OU=IT_Administratie,DC=red,DC=local", "CN=Ferre,OU=IT_Administratie,DC=red,DC=local", "CN=Levi,OU=IT_Administratie,DC=red,DC=local", "CN=Aron,OU=IT_Administratie,DC=red,DC=local", "CN=Jens,OU=IT_Administratie,DC=red,DC=local"
+Add-ADGroupMember -Identity "CN=Verkoop,OU=Verkoop,DC=red,DC=local" -Members "CN=Matthias,OU=Verkoop,DC=red,DC=local", "CN=Robby,OU=Verkoop,DC=red,DC=local", "CN=Nathan,OU=Verkoop,DC=red,DC=local", "CN=Elias,OU=Verkoop,DC=red,DC=local", "CN=Alister,OU=Verkoop,DC=red,DC=local"
+Add-ADGroupMember -Identity "CN=Ontwikkeling,OU=Ontwikkeling,DC=red,DC=local" -Members "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local", "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local", "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local", "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local", "CN=Robin,OU=Ontwikkeling,DC=red,DC=local"
+
+## Managers per OU toekennen
 Write-Host "Allocate managers to OU's..." -ForeGroundColor "Green"
-Set-ADOrganizationalUnit -Identity "OU=Verkoop,DC=red,DC=local" -ManagedBy "Matthias"
-Set-ADOrganizationalUnit -Identity "OU=Ontwikkeling,DC=red,DC=local" -ManagedBy "Jannes"
-Set-ADOrganizationalUnit -Identity "OU=Directie,DC=red,DC=local" -ManagedBy "Kimberly"
-Set-ADOrganizationalUnit -Identity "OU=Administratie,DC=red,DC=local" -ManagedBy "Joachim"
-Set-ADOrganizationalUnit -Identity "OU=IT_Administratie,DC=red,DC=local" -ManagedBy "Laurens"
+Set-ADOrganizationalUnit -Identity "OU=Verkoop,DC=red,DC=local" -ManagedBy "CN=Matthias,OU=Verkoop,DC=red,DC=local"
+Set-ADOrganizationalUnit -Identity "OU=Ontwikkeling,DC=red,DC=local" -ManagedBy "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
+Set-ADOrganizationalUnit -Identity "OU=Directie,DC=red,DC=local" -ManagedBy "CN=Kimberly,OU=Directie,DC=red,DC=local"
+Set-ADOrganizationalUnit -Identity "OU=Administratie,DC=red,DC=local" -ManagedBy "CN=Joachim,OU=Administratie,DC=red,DC=local"
+Set-ADOrganizationalUnit -Identity "OU=IT_Administratie,DC=red,DC=local" -ManagedBy "CN=Laurens,OU=IT_Administratie,DC=red,DC=local"
 
 ## Manager toekennen aan elke user
 Write-Host "Allocate manager OU Directie Kimberly..." -ForeGroundColor "Green"
-Set-ADUser -Identity "Laurens" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
-Set-ADUser -Identity "Joachim" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
-Set-ADUser -Identity "Jannes" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
-Set-ADUser -Identity "Matthias" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
-Set-ADUser -Identity "Arno" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
+Set-ADUser -Identity "CN=Laurens,OU=IT_Administratie,DC=red,DC=local" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
+Set-ADUser -Identity "CN=Joachim,OU=Administratie,DC=red,DC=local" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
+Set-ADUser -Identity "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
+Set-ADUser -Identity "CN=Matthias,OU=Verkoop,DC=red,DC=local" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
+Set-ADUser -Identity "CN=Arno,OU=Directie,DC=red,DC=local" -Manager "CN=Kimberly,OU=Directie,DC=red,DC=local"
 
 Write-Host "Allocate manager OU IT_Administratie Laurens..." -ForeGroundColor "Green"
-Set-ADUser -Identity "Ferre" -Manager "CN=Laurens,OU=IT_Administratie,DC=red,DC=local"
-Set-ADUser -Identity "Levi" -Manager "CN=Laurens,OU=IT_Administratie,DC=red,DC=local"
-Set-ADUser -Identity "Aron" -Manager "CN=Laurens,OU=IT_Administratie,DC=red,DC=local"
-Set-ADUser -Identity "Jens" -Manager "CN=Laurens,OU=IT_Administratie,DC=red,DC=local"
+Set-ADUser -Identity "CN=Ferre,OU=IT_Administratie,DC=red,DC=local" -Manager "CN=Laurens,OU=IT_Administratie,DC=red,DC=local"
+Set-ADUser -Identity "CN=Levi,OU=IT_Administratie,DC=red,DC=local" -Manager "CN=Laurens,OU=IT_Administratie,DC=red,DC=local"
+Set-ADUser -Identity "CN=Aron,OU=IT_Administratie,DC=red,DC=local" -Manager "CN=Laurens,OU=IT_Administratie,DC=red,DC=local"
+Set-ADUser -Identity "CN=Jens,OU=IT_Administratie,DC=red,DC=local" -Manager "CN=Laurens,OU=IT_Administratie,DC=red,DC=local"
 
 Write-Host "Allocate manager OU Administratie Joachim..." -ForeGroundColor "Green"
-Set-ADUser -Identity "Tibo" -Manager "CN=Joachim,OU=Administratie,DC=red,DC=local"
-Set-ADUser -Identity "Yngvar" -Manager "CN=Joachim,OU=Administratie,DC=red,DC=local"
-Set-ADUser -Identity "Tim" -Manager "CN=Joachim,OU=Administratie,DC=red,DC=local"
-Set-ADUser -Identity "Rik" -Manager "CN=Joachim,OU=Administratie,DC=red,DC=local"
+Set-ADUser -Identity "CN=Tibo,OU=Administratie,DC=red,DC=local" -Manager "CN=Joachim,OU=Administratie,DC=red,DC=local"
+Set-ADUser -Identity "CN=Yngvar,OU=Administratie,DC=red,DC=local" -Manager "CN=Joachim,OU=Administratie,DC=red,DC=local"
+Set-ADUser -Identity "CN=Tim,OU=Administratie,DC=red,DC=local" -Manager "CN=Joachim,OU=Administratie,DC=red,DC=local"
+Set-ADUser -Identity "CN=Rik,OU=Administratie,DC=red,DC=local" -Manager "CN=Joachim,OU=Administratie,DC=red,DC=local"
 
 Write-Host "Allocate manager OU Ontwikkeling Jannes..." -ForeGroundColor "Green"
-Set-ADUser -Identity "Jonas" -Manager "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
-Set-ADUser -Identity "Cédric" -Manager "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
-Set-ADUser -Identity "Cedric" -Manager "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
-Set-ADUser -Identity "Robin" -Manager "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
+Set-ADUser -Identity "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local" -Manager "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
+Set-ADUser -Identity "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local" -Manager "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
+Set-ADUser -Identity "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local" -Manager "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
+Set-ADUser -Identity "CN=Robin,OU=Ontwikkeling,DC=red,DC=local" -Manager "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
 
 Write-Host "Allocate manager OU Verkoop Matthias..." -ForeGroundColor "Green"
-Set-ADUser -Identity "Robby" -Manager "CN=Matthias,OU=Verkoop,DC=red,DC=local"
-Set-ADUser -Identity "Nathan" -Manager "CN=Matthias,OU=Verkoop,DC=red,DC=local"
-Set-ADUser -Identity "Elias" -Manager "CN=Matthias,OU=Verkoop,DC=red,DC=local"
-Set-ADUser -Identity "Alister" -Manager "CN=Matthias,OU=Verkoop,DC=red,DC=local"
+Set-ADUser -Identity "CN=Robby,OU=Verkoop,DC=red,DC=local" -Manager "CN=Matthias,OU=Verkoop,DC=red,DC=local"
+Set-ADUser -Identity "CN=Nathan,OU=Verkoop,DC=red,DC=local" -Manager "CN=Matthias,OU=Verkoop,DC=red,DC=local"
+Set-ADUser -Identity "CN=Elias,OU=Verkoop,DC=red,DC=local" -Manager "CN=Matthias,OU=Verkoop,DC=red,DC=local"
+Set-ADUser -Identity "CN=Alister,OU=Verkoop,DC=red,DC=local" -Manager "CN=Matthias,OU=Verkoop,DC=red,DC=local"
 
 # Elk user-account unlocken.
 Write-Host "Unlock accounts..." -ForeGroundColor "Green"
-Enable-ADAccount -Identity "Kimberly"
-Enable-ADAccount -Identity "Laurens"
-Enable-ADAccount -Identity "Arno"
-Enable-ADAccount -Identity "Ferre"
-Enable-ADAccount -Identity "Levi"
-Enable-ADAccount -Identity "Aron"
-Enable-ADAccount -Identity "Jens"
-Enable-ADAccount -Identity "Joachim"
-Enable-ADAccount -Identity "Tibo"
-Enable-ADAccount -Identity "Yngvar"
-Enable-ADAccount -Identity "Tim"
-Enable-ADAccount -Identity "Rik"
-Enable-ADAccount -Identity "Jannes"
-Enable-ADAccount -Identity "Jonas"
-Enable-ADAccount -Identity "Cédric"
-Enable-ADAccount -Identity "Cedric"
-Enable-ADAccount -Identity "Robin"
-Enable-ADAccount -Identity "Matthias"
-Enable-ADAccount -Identity "Robby"
-Enable-ADAccount -Identity "Nathan"
-Enable-ADAccount -Identity "Elias"
-Enable-ADAccount -Identity "Alister"
+Enable-ADAccount -Identity "CN=Kimberly,OU=Directie,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=Arno,OU=Directie,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=Laurens,OU=IT_Administratie,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=Ferre,OU=IT_Administratie,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=Levi,OU=IT_Administratie,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=Aron,OU=IT_Administratie,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=Jens,OU=IT_Administratie,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=Joachim,OU=Administratie,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=Tibo,OU=Administratie,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=Yngvar,OU=Administratie,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=Tim,OU=Administratie,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=Rik,OU=Administratie,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=Robin,OU=Ontwikkeling,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=Matthias,OU=Verkoop,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=Robby,OU=Verkoop,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=Nathan,OU=Verkoop,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=Elias,OU=Verkoop,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=Alister,OU=Verkoop,DC=red,DC=local"
 
 # Computers
 # Voeg minstens 5 werkstations toe (één in elke afdeling).
 Write-Host "Create workstations for Directie..." -ForeGroundColor "Green"
-New-ADComputer "Directie_001" -SamAccountName "Directie001" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "Kimberly"
-New-ADComputer "Directie_002" -SamAccountName "Directie002" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "Arno"
+New-ADComputer "Directie_001" -SamAccountName "Directie001" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Kimberly,OU=Directie,DC=red,DC=local"
+New-ADComputer "Directie_002" -SamAccountName "Directie002" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "CN=Arno,OU=Directie,DC=red,DC=local"
 
 Write-Host "Create workstations for Administratie..." -ForeGroundColor "Green"
-New-ADComputer "Administratie_001" -SamAccountName "Admin001" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "Joachim"
-New-ADComputer "Administratie_002" -SamAccountName "Admin002" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "Tibo"
-New-ADComputer "Administratie_003" -SamAccountName "Admin003" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "Yngvar"
-New-ADComputer "Administratie_004" -SamAccountName "Admin004" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "Tim"
-New-ADComputer "Administratie_005" -SamAccountName "Admin005" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "Rik"
+New-ADComputer "Administratie_001" -SamAccountName "Admin001" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Joachim,OU=Administratie,DC=red,DC=local"
+New-ADComputer "Administratie_002" -SamAccountName "Admin002" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Tibo,OU=Administratie,DC=red,DC=local"
+New-ADComputer "Administratie_003" -SamAccountName "Admin003" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Yngvar,OU=Administratie,DC=red,DC=local"
+New-ADComputer "Administratie_004" -SamAccountName "Admin004" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Tim,OU=Administratie,DC=red,DC=local"
+New-ADComputer "Administratie_005" -SamAccountName "Admin005" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Rik,OU=Administratie,DC=red,DC=local"
 
 Write-Host "Create workstations for Verkoop..." -ForeGroundColor "Green"
-New-ADComputer "Verkoop_001" -SamAccountName "Verkoop001" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "Matthias"
-New-ADComputer "Verkoop_002" -SamAccountName "Verkoop002" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "Robby"
-New-ADComputer "Verkoop_003" -SamAccountName "Verkoop003" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "Nathan"
-New-ADComputer "Verkoop_004" -SamAccountName "Verkoop004" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "Elias"
-New-ADComputer "Verkoop_005" -SamAccountName "Verkoop005" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "Alister"
+New-ADComputer "Verkoop_001" -SamAccountName "Verkoop001" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Matthias,OU=Verkoop,DC=red,DC=local"
+New-ADComputer "Verkoop_002" -SamAccountName "Verkoop002" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "CN=Robby,OU=Verkoop,DC=red,DC=local"
+New-ADComputer "Verkoop_003" -SamAccountName "Verkoop003" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Nathan,OU=Verkoop,DC=red,DC=local"
+New-ADComputer "Verkoop_004" -SamAccountName "Verkoop004" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Elias,OU=Verkoop,DC=red,DC=local"
+New-ADComputer "Verkoop_005" -SamAccountName "Verkoop005" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Alister,OU=Verkoop,DC=red,DC=local"
 
 Write-Host "Create workstations for Ontwikkeling..." -ForeGroundColor "Green"
-New-ADComputer "Ontwikkeling_001" -SamAccountName "Ontwikkeling001" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "Jannes"
-New-ADComputer "Ontwikkeling_002" -SamAccountName "Ontwikkeling002" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "Jonas"
-New-ADComputer "Ontwikkeling_003" -SamAccountName "Ontwikkeling003" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "Cédric"
-New-ADComputer "Ontwikkeling_004" -SamAccountName "Ontwikkeling004" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "Cedric"
-New-ADComputer "Ontwikkeling_005" -SamAccountName "Ontwikkeling005" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "Robin"
+New-ADComputer "Ontwikkeling_001" -SamAccountName "Ontwikkeling001" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
+New-ADComputer "Ontwikkeling_002" -SamAccountName "Ontwikkeling002" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local"
+New-ADComputer "Ontwikkeling_003" -SamAccountName "Ontwikkeling003" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local"
+New-ADComputer "Ontwikkeling_004" -SamAccountName "Ontwikkeling004" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local"
+New-ADComputer "Ontwikkeling_005" -SamAccountName "Ontwikkeling005" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Robin,OU=Ontwikkeling,DC=red,DC=local"
 
 Write-Host "Create workstations for IT_Administratie..." -ForeGroundColor "Green"
-New-ADComputer "ITAdministratie_001" -SamAccountName "ITAdmin001" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "Laurens"
-New-ADComputer "ITAdministratie_002" -SamAccountName "ITAdmin002" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "Ferre"
-New-ADComputer "ITAdministratie_003" -SamAccountName "ITAdmin003" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "Levi"
-New-ADComputer "ITAdministratie_004" -SamAccountName "ITAdmin004" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "Aron"
-New-ADComputer "ITAdministratie_005" -SamAccountName "ITAdmin005" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "Jens"
+New-ADComputer "ITAdministratie_001" -SamAccountName "ITAdmin001" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Laurens,OU=IT_Administratie,DC=red,DC=local"
+New-ADComputer "ITAdministratie_002" -SamAccountName "ITAdmin002" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Ferre,OU=IT_Administratie,DC=red,DC=local"
+New-ADComputer "ITAdministratie_003" -SamAccountName "ITAdmin003" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "CN=Levi,OU=IT_Administratie,DC=red,DC=local"
+New-ADComputer "ITAdministratie_004" -SamAccountName "ITAdmin004" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "CN=Aron,OU=IT_Administratie,DC=red,DC=local"
+New-ADComputer "ITAdministratie_005" -SamAccountName "ITAdmin005" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Jens,OU=IT_Administratie,DC=red,DC=local"
+
+####################################################################################################################################### TODO MAG WSS WEG
 
 # Roaming profiles
-Write-Host "Create a shared folder for roaming profiles..." -ForeGroundColor "Green"
-New-Item -ItemType Directory -Name "Profiles" -Path "C:"
-New-SmbShare -Path "C:\Windows\system32\Profiles\" -Name "Profiles"
+# Write-Host "Create a shared folder for roaming profiles..." -ForeGroundColor "Green"
+# New-Item -ItemType Directory -Name "Profiles" -Path "C:"
+# New-SmbShare -Path "C:\Windows\system32\Profiles\" -Name "Profiles"
+#
+# Write-Host "Modify folder permissions..." -ForeGroundColor "Green"
+# Grant-SmbShareAccess -Name "Profiles" -AccountName Everyone -AccessRight Full -Force
+#
+# Write-Host "Configure the profile path for Directie..." -ForeGroundColor "Green"
+# Set-ADUser -Identity "CN=Kimberly,OU=Directie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\kimberly"
+# Set-ADUser -Identity "CN=Arno,OU=Directie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\arno"
+#
+# Write-Host "Configure the profile path for Administratie..." -ForeGroundColor "Green"
+# Set-ADUser -Identity "CN=Joachim,OU=Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\joachim"
+# Set-ADUser -Identity "CN=Tibo,OU=Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\tibo"
+# Set-ADUser -Identity "CN=Yngvar,OU=Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\yngvar"
+# Set-ADUser -Identity "CN=Tim,OU=Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\tim"
+# Set-ADUser -Identity "CN=Rik,OU=Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\rik"
+#
+# Write-Host "Configure the profile path for IT_Administratie..." -ForeGroundColor "Green"
+# Set-ADUser -Identity "CN=Laurens,OU=IT_Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\laurens"
+# Set-ADUser -Identity "CN=Ferre,OU=IT_Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\ferre"
+# Set-ADUser -Identity "CN=Levi,OU=IT_Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\levi"
+# Set-ADUser -Identity "CN=Aron,OU=IT_Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\aron"
+# Set-ADUser -Identity "CN=Jens,OU=IT_Administratie,DC=red,DC=local" -ProfilePath "\\dc01\profiles\jens"
+#
+# Write-Host "Configure the profile path for Ontwikkeling..." -ForeGroundColor "Green"
+# Set-ADUser -Identity "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\jannes"
+# Set-ADUser -Identity "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\jonas"
+# Set-ADUser -Identity "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\cédric"
+# Set-ADUser -Identity "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\cedricD"
+# Set-ADUser -Identity "CN=Robin,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\robin"
+#
+# Write-Host "Configure the profile path for Verkoop..." -ForeGroundColor "Green"
+# Set-ADUser -Identity "CN=Matthias,OU=Verkoop,DC=red,DC=local" -ProfilePath "\\dc01\profiles\matthias"
+# Set-ADUser -Identity "CN=Robby,OU=Verkoop,DC=red,DC=local" -ProfilePath "\\dc01\profiles\robby"
+# Set-ADUser -Identity "CN=Nathan,OU=Verkoop,DC=red,DC=local" -ProfilePath "\\dc01\profiles\nathan"
+# Set-ADUser -Identity "CN=Elias,OU=Verkoop,DC=red,DC=local" -ProfilePath "\\dc01\profiles\elias"
+# Set-ADUser -Identity "CN=Alister,OU=Verkoop,DC=red,DC=local" -ProfilePath "\\dc01\profiles\alister"
 
-Write-Host "Modify folder permissions..." -ForeGroundColor "Green"
-Grant-SmbShareAccess -Name "Profiles" -AccountName Everyone -AccessRight Full -Force
+####################################################################################################################################### TODO MAG WSS WEG
 
-Write-Host "Configure the profile path..." -ForeGroundColor "Green"
-Set-ADUser -Identity "Kimberly" -ProfilePath "\\dc01\profiles\%username%"
-
-## TO DO: Group policy
-# Verbied iedereen uit alle afdelingen behalve IT Administratie de toegang tot het control panel
-Write-Host "Forbid everyone from all departments except IT Administration access to the control panel..." -ForeGroundColor "Green"
-New-GPO "DisablingControlPanel" -Comment "Disable Control Panel"
-# GPO aan OU linken
-New-GPLink -Name "DisablingControlPanel" -Target "OU=Administratie,DC=red,DC=local"
-New-GPLink -Name "DisablingControlPanel" -Target "OU=Verkoop,DC=red,DC=local"
-New-GPLink -Name "DisablingControlPanel" -Target "OU=Ontwikkeling,DC=red,DC=local"
-New-GPLink -Name "DisablingControlPanel" -Target "OU=Directie,DC=red,DC=local"
-$GPOSession = Open-NetGPO -PolicyStore "red.local\DisablingControlPanel"
-
-# Review GPO
-Get-GPO -Name "DisablingControlPanel" | Get-GPOReport -ReportyType HTML
-# Extra beveiliging om GPO's te blocken van de parent OU
-Set-GPInheritance -Target "OU=Administratie,DC=red,DC=local" -IsBlocked 1
-
-# Verwijder het games link menu uit het start menu voor alle afdelingen
-Write-Host "Remove the games link menu from the start menu..." -ForeGroundColor "Green"
-New-GPO "DisablingGameLink" -Comment "Disable Game link menu uit start menu"
-# GPO aan OU linken
-New-GPLink -Name "DisablingGameLink" -Target "OU=IT_Administratie,DC=red,DC=local"
-New-GPLink -Name "DisablingGameLink" -Target "OU=Verkoop,DC=red,DC=local"
-New-GPLink -Name "DisablingGameLink" -Target "OU=Ontwikkeling,DC=red,DC=local"
-New-GPLink -Name "DisablingGameLink" -Target "OU=Administratie,DC=red,DC=local"
-New-GPLink -Name "DisablingGameLink" -Target "OU=Directie,DC=red,DC=local"
-$GPOSession = Open-NetGPO -PolicyStore "red.local\DisablingGameLink"
-
-# Verbied iedereen uit de afdelingen Administratie en Verkoop de toegang tot de eigenschappen van de netwerkadapters
-Write-Host "Forbid everyone from the Administration and Sales departments access to the properties of the network adapters..." -ForeGroundColor "Green"
-New-GPO "DisableNetwerkadapters" -Comment "Disable Netwerkadapters voor de afdelingen Administratie en Verkoop"
-New-GPLink -Name "DisableNetwerkadapters" -Target "OU=Administratie,DC=red,DC=local"
-New-GPLink -Name "DisableNetwerkadapters" -Target "OU=Verkoop,DC=red,DC=local"
-$GPOSession = Open-NetGPO -PolicyStore "red.local\DisableNetwerkadapters"
-
-# GPO opslaan
-Save-NetGPO -GPOSession $GPOSession
-
-## Juiste toegangsgroepen voor de fileserver (Modify/Read/Full) en voeg de juiste personen en/of groepen toe
-Set-GPPermission -Name "DisablingControlPanel" -TargetName "Users" -TargetType User -PermissionLevel Noneµ
-Set-GPPermission -Name "DisbalingControlPanel" -TargetName "OU=IT_Administratie,DC=red,DC=local" -TargetType User -PermissionLevel GPOApply
-
-# Import the settings from the latest backup to another directory in the same domain
-##  Import-GPO -BackupId "A491D730-F3ED-464C-B8C9-F50562C536AA" -TargetName "BackupGPO" -path "c:\backups" -CreateIfNeeded
-# Import the settings from specified backup in the same directory in the same domain
-##  Import-GPO -BackupGPOName "BackupGPO" -Path "D:\Backups" -TargetName "BackupGPO" -MigrationTable "D:\Tables\Migtable1.migtable" -CreateIfNeeded
-
-## Copy-NetFirewallRule -Name ""
-# New-GPLink -Name "Control Panel" -Target "OU=Verkoop,dc=red,dc=local" -LinkEnabled Yes -Enforced Yes
+# Group Policy - GUI
+# 1. Verbied iedereen uit alle afdelingen behalve IT Administratie de toegang tot het control panel
+# Group Policy Management Editor > DisablingGameLink > User Configuration > Policies > Administratieve Templates: Policy definitions > Control Panel > Display > Disable the Display Control Panel
+# 2. Verwijder het games link menu uit het start menu voor alle afdelingen
+# Group Policy Management Editor > DisablingGameLink > User Configuration > Policies > Administratieve Templates: Policy definitions > Start Menu and Taskbar > Remove Games link from Start Menu
+# 3. Verbied iedereen uit de afdelingen Administratie en Verkoop de toegang tot de eigenschappen van de netwerkadapters
+# Group Policy Management Editor > DisableNetwerkadapters > User Configuration > Policies > Administratieve Templates: Policy definitions > Network > Network Connections > Prohibit access to properties of a LAN connection
 
 Stop-Transcript

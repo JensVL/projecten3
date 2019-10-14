@@ -5,6 +5,7 @@
 $VBOXdrive = "Z:"
 $Land = "eng-BE"
 $IpAddress = "172.18.1.66"
+$DefaultGateway = "172.18.1.98"
 $CIDR = "27"
 $AdapterNaam = "LAN"
 
@@ -34,16 +35,16 @@ set-timezone -Name "Romance Standard Time"
 # LAN = de adapter met static IP instellingen die alle servers met elkaar verbind.
 Write-host "Changing NIC adapter names:" -ForeGroundColor "Green"
 # TODO:                                                                                                                      TODO: Vervang door:
-# Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName $AdapterNaam
-Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName NAT
-Get-NetAdapter -Name "Ethernet 2" | Rename-NetAdapter -NewName $AdapterNaam
+Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName $AdapterNaam
+#Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName NAT
+#Get-NetAdapter -Name "Ethernet 2" | Rename-NetAdapter -NewName $AdapterNaam
 ###################################################################################################### ENKEL VOOR VIRTUALBOX LAB TESTING DEMO HEEFT 1 NIC (LAN)
 
 #                                                                          ############################# TODO: SWITCH IP ADRES INSTELLEN ALS Def. Gateway
 # 3) Geef de LAN adapter de correcte IP instellingen volgens de opdracht:
 # Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.224)
 Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
-New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR
+New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR -DefaultGateway "$DefaultGateway"
 
 # 4) DNS van LAN van Alfa2 instellen op Hogent DNS servers:
 # Eventueel commenten tijdens testen in demo omgeving
