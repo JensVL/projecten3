@@ -26,37 +26,11 @@ Start-Transcript "C:\ScriptLogs\3_ConfigDCDNSlog.txt"
 Write-Host "Waiting 30 seconds before starting script:" -ForeGroundColor "Green"
 Start-Sleep -s 30
 
-# 1) Stel forward primary lookup zones in voor alle servers in het red domein:
-# TODO: Checken of DC2 / DNS2 automatisch een NS record heeft (voor replicatie TransferToZoneNameServer) TODO TODO TODO TODO
-Write-host "Adding DNS primary zone for red.local" -ForeGroundColor "Green"
-Add-DnsServerPrimaryZone -Name "red.local" -ReplicationScope "Domain" -DynamicUpdate "Secure"
-Set-DnsServerPrimaryZone -Name "red.local" -SecureSecondaries "TransferToZoneNameServer"
-
-# 2) Voeg de servers als AAAA records toe met hun ip adres in de aangemaakte primary zone: (name to ip address)
-# LET OP: Charlie2 Exchange (mail) server = MX record ipv AAAA record
-# en Bravo2 DC2 = NS record (NS record niet zelf aanmaken gebeurd automatisch volgens AD-integration zones)
-# MX record -MailExchange option moet pointen naar bestaande A record (Zie -Mail Exchange optie Microsoft docs Add-DnsServerResourceRecordMX)
-Write-host "Adding DNS A and MX records for the servers of red.local" -ForeGroundColor "Green"
-
-# TODO CHECKEN OF DIT KLOPT MET MX RECORD (geen ip adres in dns manager bij charlie2????) TODO TODO TODO
-Add-DnsServerResourceRecordA -Name "Charlie2" -ZoneName "red.local" -IPv4Address "$Charlie2IP"
-Add-DnsServerResourceRecordMX -Name "." -MailExchange "Charlie2.red.local" -ZoneName "red.local" -Peference 100
-
-Add-DnsServerResourceRecordA -Name "Delta2" -ZoneName "red.local" -IPv4Address "$Delta2IP"
-Add-DnsServerResourceRecordA -Name "Kilo2" -ZoneName "red.local" -IPv4Address "$Kilo2IP"
-Add-DnsServerResourceRecordA -Name "Lima2" -ZoneName "red.local" -IPv4Address "$Lima2IP"
-Add-DnsServerResourceRecordA -Name "Mike2" -ZoneName "red.local" -IPv4Address "$Mike2IP"
-Add-DnsServerResourceRecordA -Name "November2" -ZoneName "red.local" -IPv4Address "$November2IP"
-Add-DnsServerResourceRecordA -Name "Oscar2" -ZoneName "red.local" -IPv4Address "$Oscar2IP"
-Add-DnsServerResourceRecordA -Name "Papa2" -ZoneName "red.local" -IPv4Address "$Papa2IP"
-
-# 3) DNS forwarders instellen op de Hogent DNS servers:         TODO DNS FORWARDERS MOETEN OF NIET??????????????????????????????
-Write-host "Adding Hogent DNS servers as DNS forwarders:" -ForeGroundColor "Green"
-Add-DnsServerForwarder -IpAddress "193.190.173.1","193.190.173.2"
-
-# 4) Start het 4_ADstructure.ps1 script als Administrator:
-Write-host "Running next script 4_ADSTRUCTUR.ps1 as admin:" -ForeGroundColor "Green"
-Start-Process powershell -Verb runAs -ArgumentList "$VBOXdrive\4_ADstructure.ps1"
+# 7.1) Check domaincontroller informatie en forest
+Get-ADDomainController 
+Get-ADTrust –Filter  *
+# 8) Repliceren van Alfa2
+Get-DnsServerZone -ComputerName "Alfa2.red.local" | where {("Primary" -eq $.ZoneType) | %{ $ | Add-DnsServerSecondaryZone -MasterServers 172.18.1.66 -ZoneFile "$($_.ZoneName).dns"}
 
 # DNS Check
 Test-DnsServer -IPAddress 172.18.1.67 -Context RootHint
