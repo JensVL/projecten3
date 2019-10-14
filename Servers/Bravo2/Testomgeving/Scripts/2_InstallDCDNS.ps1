@@ -58,7 +58,10 @@ set-itemproperty -Path "REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\
 Set-ItemProperty -Path "REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System" `
                 -Name "FilterAdministratorToken" -value 1
 
-# 7) Joinen van domein "Red.local":
+# 7) Firewall uitschakelen
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+
+# 8) Joinen van domein "Red.local":
 Write-host "Starting configuration of red.local domain:" -ForeGroundColor "Green"
 install-ADDSDomainController -DomainName "red.local" `
                   -ReplicationSourceDC "Alfa2.red.local" `
