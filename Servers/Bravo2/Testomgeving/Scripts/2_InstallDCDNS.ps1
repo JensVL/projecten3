@@ -28,8 +28,7 @@ Write-host "Changing NIC adapter names:" -ForeGroundColor "Green"
 # TODO:                                                                                                                      TODO: Vervang door:
 Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName $AdapterNaam
 
-# 3) Geef de LAN adapter de correcte IP instellingen volgens de opdracht:
-# Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.224)
+# 3) LAN adapter instellen
 Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
 New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR -DefaultGateWay "$DefaultGateWay"
 
