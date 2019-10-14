@@ -26,7 +26,9 @@ New-SmbShare -Name "AdminData" -Path "H:\" -ChangeAccess AvalonSoft\Administrato
 New-SmbShare -Name "HomeDirs" -Path "Y:\" -ChangeAccess AvalonSoft\Administrators `  -FullAccess "AvalonSoft\*"
 New-SmbShare -Name "ProfileDirs" -Path "Z:\" -ChangeAccess AvalonSoft\Administrators `  -FullAccess "AvalonSoft\*"
 New-SmbShare -Name "ShareVerkoop" -Path "Z:\" -ChangeAccess AvalonSoft\Administrators `  -FullAccess "AvalonSoft\*"
-
+#Configure shadow storage voor adminData
+vssadmin add shadowstorage /for=h: /on=h: /maxsize=2000mb
+#Hier komt ps code voor dagleijske schaduw copy te maken
 
 New-FsrmQuota -Path "D:\" -Description "limit usage to 0.2GB" -Size 200MB
 
