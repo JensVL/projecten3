@@ -26,10 +26,11 @@ Datum voortgangsgesprek: 14/10/2019
 
 ### Matthias Van De Velde
 
-* Documentatie 
-* Testplan
-* Setup strategy
-* Set up environment
+* Update documentation
+* Refactor webapp deploy code 
+* Update testplan
+* Set up integration strategy
+* Set up integration environment
 
 
 ![Time-registration-week03-matthiasvandevelde](images/week03-matthiasvandevelde.png)  
@@ -44,8 +45,10 @@ Datum voortgangsgesprek: 14/10/2019
 * Testplan
 * Documentatie
 
+
 ### Matthias Van De Velde
 
+* Research ESXi and vagrant integration
 
 
 ## Waar hebben jullie nog problemen mee?
