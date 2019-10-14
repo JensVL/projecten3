@@ -54,29 +54,42 @@
 
 ## Gerealiseerd week 3
 * Alpha
-  * 
+  * GPO moet nog gebeuren
+  * Moet nog getest worden
 * Bravo
-  * 
+  * Even ver als alpha
+  * Moet nog getest worden
 * Charlie
-  * 
+  * Werkt lokaal
+  * Testen in
+  * Verbinding met Linux-domein moet nog getest worden
 * Delta
-  * 
+  * Is klaar
 * Kilo
-  * 
+  * Laatste stappen met powershell moeten nog gebeuren
 * Lima
-  * 
+  * shares aangemaakt, partities, max capaciteit in orde
 * Mike
-  * 
+  * Volledig klaar en gescript
+  * Configuratie moet nog gebeuren. Moeten nog afspreken met SQL-server
 * November
-  * 
+  * Scripts zijn in orde. Juist 
+  * Bezig met documentatie
 * Oscar
-  * 
+  * Automatisatie niet ondersteund,
+  * Manuele installatie in orde, nog te testen
 * Papa
-  * 
+  * Manuele installatie zo goed als rond. Client pushen lukt niet
+  * Kan pas getest worden met DHCP-server
+  * Hulp is welkom => Laurens helpt
 * Zulu
-  * 
+  * Firewall is bijna af
+  * Documentatie is af voor alles behalve configuratie
+  * testplan + doc afwerken
+  * to do: overleggen met linux-gedeelte
 * Netwerkinfra
-  * 
+  * Opstelling aangepast omdat er geen L3-switches zijn
+  * Vandaag eerste test
 
 ## Problemen
 * Degene die available zijn, mogen de server Papa2 op zich nemen.
@@ -84,5 +97,7 @@
 
 ## Volgende stand-up:
   - Voorbereiden draaiboek
+  - plan van aanpak voor testdag: timing van pert-chart maken => best in gant-chart
+  - 
 
 © Author - Kimberly De Clercq & Matthias Van De Velde
