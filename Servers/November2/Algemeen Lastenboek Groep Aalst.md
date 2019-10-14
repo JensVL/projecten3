@@ -10,7 +10,7 @@ Naam leden:
 
 Taak team: 
 
-![Algemeen lastenboek](https://docs.google.com/spreadsheets/d/1WhQM26jLM-hnRav2BzW6e6BP8fbvt7izwyyp7CY4rEc/edit#gid=0)
+[Algemeen lastenboek](https://docs.google.com/spreadsheets/d/1WhQM26jLM-hnRav2BzW6e6BP8fbvt7izwyyp7CY4rEc/edit#gid=0)
 
 ## Vragen
 
