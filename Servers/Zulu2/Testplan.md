@@ -4,20 +4,24 @@
 
 1. Zet IPv4 interfaces:  
 ```
-LAN: 172.18.1.102
-WAN: 192.168.0.177 (dhcp)
+LAN: 192.168.1.1
+WAN: DHCP
 ```
 *Verwacht*: de LAN en WAN ip adressen zijn juist gezet voor deze PfSense testomgeving.    
 
-2. Maak een firewall regel voor access op WebGUI met x -> host IP address.    
+2. Ga naar de Shell (8) en maak een firewall regel voor access op WebGUI met x -> host-only adapter IP address.
 ```
-easyrule pass wan tcp 192.168.0.x 192.168.0.177 443  
+easyrule pass lan tcp 192.168.1.x 192.168.1.1 443  
 ```
-*Verwacht*: firewall regel wordt toegevoegd zonder error output.  
+Indien dit niet werkt kan je heel de firewall tijdelijk disablen
+```
+pfctl -d
+```
+*Verwacht*: firewall regel wordt toegevoegd, de gebruiker zou toegang hebben op de WebGUI.  
 
 3. Surf naar de WebGUI van je PfSense.  
 ```
-https://192.168.0.177  
+https://192.168.1.1  
 ```  
 *Verwacht*: De gebruiker ziet het login scherm van de PfSense WebGUI. De console output toont dat de gebruiker op de WebGUI is geconnecteerd.  
 
