@@ -18,39 +18,27 @@ Write-Host "Ip Configured"
 Start-Sleep -s 5
 
 # Toevoegen aan domain
-
+Write-Host "Adding server to Domain..."
 $domain = "red.local"
-$password = "Admin2019" | ConvertTo-SecureString -AsPlainText -Force
+$password = "vagrant" | ConvertTo-SecureString -AsPlainText -Force
 $username = "Administrator"
 $credential = New-Object System.Management.Automation.PSCredential($username, $password)
 
-Add-Computer -DomainName $domain -Credential $credential -Restart -Force
+Add-Computer -DomainName $domain -Credential $credential -Force
+Write-Host "Server added to Domain"
 
 # DHCP rol installeren
-
+Write-Host "Installing DHCP feature..."
 Install-WindowsFeature -Name DHCP -IncludeManagementTools
+Write-Host "DHCP feature installed"
 
 
-# Authoriseren van DHCP
+# Setting up login RED\Administrator
 
 # cmd.exe /c "netsh dhcp add securitygroups"
-Restart-Service DHCPServer
-Add-DhcpServerInDC -DnsName $Env:COMPUTERNAME
-# Set-ItemProperty –Path registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ServerManager\Roles\12 –Name ConfigurationState –Value 2
-
-
-# Configureren van de Scopes op de DHCP Server
-
-# --scope vlan 200--
-Add-DhcpServerV4Scope -Name "Vlan 200" -StartRange 172.18.0.2 -EndRange 172.18.0.254 -SubnetMask 255.255.255.0 -Type Both
-
-# DNS, Router, Default Gateway en mogelijk andere zaken toevoegen
-
-Set-DhcpServerV4OptionValue -DnsServer 172.18.1.66,172.18.1.67 -Router 172.18.0.1 -ScopeId 172.18.0.0
-
-# Lease time configureren
-
-Set-DhcpServerv4Scope -ScopeId 172.18.0.0 -LeaseDuration (New-TimeSpan -Days 2)
-
-# Restart DHCP Server
-Restart-service dhcpserver
+$Username = "RED\Administrator"
+$Password = "vagrant" 
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultUserName -Value $Username
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultPassword -Value $Password
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogon -Value 1
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name ForceAutoLogon -Value 1
