@@ -1,11 +1,23 @@
 ### Technische documentatie
 
 1. Installeer windows server 2016 (opslag 50GB) + ADDS (om te testen zonder alpha2/bravo2). Maak snapshot in VirtualBox om instellingen makkelijk terug te plaatsen bij testen
-2. IP adres instellen voor host-only adapter: 172.18.1.68/24
+2. IP adres instellen voor host-only adapter: 172.18.1.68/27
 3. AD joinen
 4. Powershell code:
 
 ```
+Write-host "Changing NIC adapter name to LAN" -ForeGroundColor "Green"
+Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName "LAN"
+#ip adres instellen (nog bekijken)
+New-NetIPAddress -InterfaceAlias "LAN" -IPAddress "172.18.1.68" -PrefixLength 27
+#AD als dns instellen
+Set-DnsClientServerAddress -InterfaceAlias "LAN" -ServerAddress "172.18.1.66"
+#firewall uitzetten
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+#naam instellen
+Rename-Computer -NewName Charlie2 -Force -restart
+#Join AD
+Add-Computer -ComputerName 'Charlie2' -DomainName 'red.local'-Credential red.local\Administrator -Restart
 #Chocolatey installeren
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 #.NET 4.7.2 installeren
@@ -80,7 +92,13 @@ Start-Process "C:\Users\Administrator\Downloads\Ucma.exe" -ArgumentList "/quiet 
    .\Setup.exe /mode:Install /role:Mailbox /OrganizationName:'test' /IAcceptExchangeServerLicenseTerms
    ```
 
-   
+
+
+
+Troubleshooting:
+
+- Indien je niet kan pingen naar ander domein => kijken via ipconfig/all of ipv4 autoconfiguration aan staat => oplossingen zie: 
+- Controleren of je in domein zit?: Get-ADComputer -Filter *
 
 
 
