@@ -30,6 +30,12 @@ Add-Computer -DomainName $domain -Credential $credential -Restart -Force
 
 Install-WindowsFeature -Name DHCP -IncludeManagementTools
 
+#Authorize dhcp
+Add-DhcpServerInDC
+
+# Restart DHCP Server
+Restart-service dhcpserver
+
 # Configureren van de Scopes op de DHCP Server
 
 # --scope vlan 200--

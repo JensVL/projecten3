@@ -107,6 +107,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       end
 
       # Run configuration script for the VM
+      config.vm. :reload
       node.vm.provision 'shell', path: 'provisioning/' + host['name'] + '.ps1' 
     end
   end
