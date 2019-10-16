@@ -29,6 +29,15 @@ New-SmbShare -Name "ShareVerkoop" -Path "Z:\" -ChangeAccess AvalonSoft\Administr
 #Configure shadow storage voor adminData
 vssadmin add shadowstorage /for=h: /on=h: /maxsize=2000mb
 #Hier komt ps code voor dagleijske schaduw copy te maken
+Import-Module -Name "ScheduledTasks"
+$Sta = New-ScheduledTaskAction -Execute "powershell" -Argument ".\ShadowCopy.ps1" -WorkingDirectory "C:\vagrant\provisioning"
+$Stt = New-ScheduledTaskTrigger -Daily -At 5pm
+#Zorgt ervoor dat de taak met "highest privileges" wordt gexecuted.
+$Stp = New-ScheduledTaskPrincipal -UserId "vagrant" -RunLevel Highest
+$StTaskName="TEST10"
+$StDescript="test"
+#Registreer de taak in de task scheduler 
+Register-ScheduledTask -TaskName $StTaskName -Action $Sta -Description $StDescript -Trigger $Stt -Principal $Stp
 
 New-FsrmQuota -Path "D:\" -Description "limit usage to 0.2GB" -Size 200MB
 
