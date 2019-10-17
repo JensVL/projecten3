@@ -38,8 +38,8 @@ Set-DnsServerPrimaryZone -Name "red.local" -SecureSecondaries "TransferToZoneNam
 # MX record -MailExchange option moet pointen naar bestaande A record (Zie -Mail Exchange optie Microsoft docs Add-DnsServerResourceRecordMX)
 Write-host "Adding DNS A and MX records for the servers of red.local" -ForeGroundColor "Green"
 
-Add-DnsServerResourceRecordA -Name "Charlie2" -ZoneName "red.local" -IPv4Address "$Charlie2IP"
-Add-DnsServerResourceRecordMX -Name "Charlie2" -MailExchange "mail.red.local" -ZoneName "red.local" -Preference 100
+Add-DnsServerResourceRecordA -Name "mail" -ZoneName "red.local" -IPv4Address "$Charlie2IP"
+Add-DnsServerResourceRecordMX -Name "mail" -MailExchange "mail.red.local" -ZoneName "red.local" -Preference 100
 
 Add-DnsServerResourceRecordA -Name "Delta2" -ZoneName "red.local" -IPv4Address "$Delta2IP"
 Add-DnsServerResourceRecordA -Name "Kilo2" -ZoneName "red.local" -IPv4Address "$Kilo2IP"
