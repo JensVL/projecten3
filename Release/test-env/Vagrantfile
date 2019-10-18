@@ -112,11 +112,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       if host['name'] == "Alfa2"
         provisioning_path = ALFA2+'/Testomgeving/Scripts'
 
-        # node.vm.provision 'shell',
-        #   privileged: true,
-        #   path: provisioning_path + '/1_RUNFIRST.ps1',
-        #   args: []
-        # node.vm.provision 'shell', reboot: true
         node.vm.provision 'shell',
           privileged: true,
           path: provisioning_path + '/2_installDCDNS.ps1',
@@ -130,37 +125,30 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           privileged: true,
           path: provisioning_path + '/4_ADstructure.ps1',
           args: []
-        node.vm.provision 'shell',
-          privileged: true,
-          path: provisioning_path + '/5_AGDLP_PERMISSIONS.ps1',
-          args: []
-
+        if host['run_agdlp']
+          node.vm.provision 'shell',
+            privileged: true,
+            path: provisioning_path + '/5_AGDLP_PERMISSIONS.ps1',
+            args: []
+        end
+        if host['run_sccm_config']
+          node.vm.provision 'shell',
+            privileged: true,
+            path: provisioning_path + '/999_PrepareADforSCCM.ps1',
+            args: []
+        end
       elsif host['name'] == "Bravo2"
         provisioning_path = BRAVO2+'/Testomgeving/Scripts'
 
         node.vm.provision 'shell',
           privileged: true,
-          path: provisioning_path + '/1_RUNFIRST.ps1',
-          args: []
-        node.vm.provision 'shell', reboot: true
-        node.vm.provision 'shell',
-          privileged: true,
-          path: provisioning_path + '/2_installDCDNS.ps1',
+          path: provisioning_path + '/2_InstallDCDNS.ps1',
           args: []
         node.vm.provision 'shell', reboot: true
         node.vm.provision 'shell',
           privileged: true,
           path: provisioning_path + '/3_ConfigDCDNS.ps1',
           args: []
-        node.vm.provision 'shell',
-          privileged: true,
-          path: provisioning_path + '/4_ADstructure.ps1',
-          args: []
-        node.vm.provision 'shell',
-          privileged: true,
-          path: provisioning_path + '/5_AGDLP_PERMISSIONS.ps1',
-          args: []
-
       elsif host['name'] == "Kilo2"
         provisioning_path = KILO2+'/test-env/provisioning/'
 
