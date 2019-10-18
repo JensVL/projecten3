@@ -11,6 +11,10 @@ $DebugPreference = "Continue"
 $VerbosePreference = "Continue"
 $InformationPreference = "Continue"
 
+# VARIABLES:
+$Username = "Administrator"
+$Password = ConvertTo-SecureString "Admin2019" -AsPlainText -Force
+
 # LOG SCRIPT TO FILE (+ op het einde van het script Stop-Transcript doen):
 Start-Transcript "C:\Scriptlogs\1_RUNFIRST_LOG.txt"
 
@@ -20,15 +24,9 @@ Start-Transcript "C:\Scriptlogs\1_RUNFIRST_LOG.txt"
 # 1.1) Voeg het script toe als registry value:
 # RunOnce verwijderd deze instelling automatisch nadat het script klaar is met runnen
 Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce' -Name ResumeScript `
-         -Value 'C:\Windows\system32\WindowsPowerShell\v1.0\Powershell.exe -executionpolicy bypass -file "Z:\BenodigdeFiles\2_BasicConfig.ps1"'
+         -Value 'C:\Windows\system32\WindowsPowerShell\v1.0\Powershell.exe -executionpolicy bypass -file "Z:\2_BasicConfig.ps1"'
 
-# 1.2) Verzamel de huidige credentials in een credentials object voor de auto-reboot (aanmalden als domain admin):
-# Zal een popup window openen waarin je je passwoord moet invullen
-$CurrentCredentials = Get-Credential -UserName $env:USERNAME -Message "Credentials required for auto login"
-$Username = $CurrentCredentials.GetNetworkCredential().UserName
-$Password = $CurrentCredentials.GetNetworkCredential().Password
-
-# 1.3) Registry waardes voor username/password en autologin instellen:
+# 1.2) Registry waardes voor username/password en autologin instellen:
 # Deze zorgen ervoor dat het inloggen automatisch gebeurd met de credentials die in het vorige commando verzameld zijn.
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultUserName -Value $Username
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultPassword -Value $Password
