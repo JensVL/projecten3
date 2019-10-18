@@ -18,6 +18,7 @@ Alle userauthenticatie gebeurd via Active Directory. Dit betekent dat werkstatio
 | Laurens Blancquaert-Cassaer | AGDLP permissies implementeren  | 4 |      4        |
 | Laurens Blancquaert-Cassaer | Documentatie maken AGDLP permissies | 2 |          |
 | Laurens Blancquaert-Cassaer | AD voorbereiden op SCCM install script + opzoekingswerk | 4 |    2      |
+| Laurens Blancquaert-Cassaer | VagrantFile maken / testen / preparen voor integration | 1.5 |          |
 | Kimberly De Clercq | Opzoekingswerk AD Structuur | 2  | 1h50   |
 | Kimberly De Clercq | Opzoekingswerk Beleidsregels | 3 | 2h30   |
 | Kimberly De Clercq | AD Structuur installatie + configuratie | 8 |  4 |
