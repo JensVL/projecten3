@@ -12,14 +12,14 @@
 6. [Webconfig](#Webconfig)
 7. [Bronnen](#Bronnen)  
  
-## AchtergrondInformatie <a name="AchtergrondInformatie"></a>  
+## 1. AchtergrondInformatie <a name="AchtergrondInformatie"></a>  
 <img src="img/pfsense.png" height="75" width="255"> 
 PfSense is een open source firewall die draait op FreeBSD, een OS gebaseerd op UNIX. De software staat wereldwijd bekend omdat het heel gebruiksvriendelijk en gratis is. Pfsense kan ook gebruik worden als DHCP of DNS server, we kunnen na de installatie nog extra packages installeren in de shell.  
 We kunnen PfSense laten werken op een PC of VM. De configuratie gebeurd op de shell zelf of via een web-interface. In deze documentatie gaan we gebruik maken van VirtualBox (testomgeving) om de installatiestappen gemakkelijk uit te leggen.
 In de productie omgeving moeten we echter hyperV gebruiken maar dit duurt een beetje langer.
 Automatie is deels mogelijk door een voorgeconfigureerd XML bestand te laden in de installatie of een XML bestand in de WebGUI te laden na de Installatie. Door de vlotte installatie dat PfSense voorziet gaan we niet gebruik maken van een vagrant box.
 
-## Installatie <a name="Installatie"></a>  
+## 2. Installatie <a name="Installatie"></a>  
 
 - Downloaden ISO file  
     1. Ga naar de download page van [PfSense](https://www.pfsense.org/download/).  
@@ -30,7 +30,7 @@ Automatie is deels mogelijk door een voorgeconfigureerd XML bestand te laden in 
     3. Download (664mb)  
 	
 
-## VirtualBox <a name="Virtualbox"></a>  
+## 3. VirtualBox <a name="Virtualbox"></a>  
 
 - Create FreeBSD Virtual Machine
    1. Type > BSD , Version > FreeBSD(64bit), Default settings  
@@ -45,13 +45,13 @@ Automatie is deels mogelijk door een voorgeconfigureerd XML bestand te laden in 
 PfSense staat nu op de hardeschijf met de [Defaultconfiguration](https://docs.netgate.com/pfsense/en/latest/install/installing-pfsense.html#pfsense-default-configuration).  
 We moeten nu de firewall verder configureren via de shell menu of de WebGUI.
 
-## Hyper-V <a name="Hyper-V"></a>  
+## 4. Hyper-V <a name="Hyper-V"></a>  
 
 Deze handleiding veronderstelt dat Hyper-V ingeschakelt is op het hostsysteem. Indien dit niet het geval is open een Powershell-venster met administratorprivileges, voer het volgende commando uit, en herstart hierna het hostsysteem:
 
 `Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All`
 
-### Aanmaken Virtuele Switches <a name="Switch"></a>  
+### 4.1 Aanmaken Virtuele Switches <a name="Switch"></a>  
 
  1. Start het Hyper-V beheerscherm op.
  2. Navigeer naar **Actie > Virtual Switch Manager...**
@@ -63,7 +63,7 @@ Deze handleiding veronderstelt dat Hyper-V ingeschakelt is op het hostsysteem. I
  6. Navigeer naar deze nieuwe toegevoegde switch, verander de naam naar `WAN`, geef een beschrijving in, geef de correcte netwerkadapter voor het WAN-netwerk, en pas de wijzigingen toe.
  ![img3](img/Hyper-V/image3.png)
  
-### Aanmaken Virtuele Machine <a name="Machine"></a>  
+### 4.2 Aanmaken Virtuele Machine <a name="Machine"></a>  
 
  1. Navigeer naar **Actie > Nieuw > Virtuele machine...** in het Hyper-V beheerscherm.
  2. Geef een naam in voor de nieuwe virtuele machine en ga door.
@@ -80,7 +80,7 @@ Deze handleiding veronderstelt dat Hyper-V ingeschakelt is op het hostsysteem. I
  ![img9](img/Hyper-V/image9.png)
  8. Voltooi de installatie.
  
-### Configuratie Virtuele Machine <a name="CMachine"></a>  
+### 4.4 Configuratie Virtuele Machine <a name="CMachine"></a>  
 
  1. Navigeer naar de **Instellingen** van de nieuwe virtuele machine.
  2. Navigeer naar **Hardware toevoegen**, selecteer de optie **Netwerkadaptor**, en bevestig met **Toevoegen**.
@@ -92,7 +92,7 @@ Deze handleiding veronderstelt dat Hyper-V ingeschakelt is op het hostsysteem. I
  5. Navigeer naar **Beveiliging**, schakel **Secure Boot** uit, en pas de wijzigingen toe.
  ![img24](img/Hyper-V/image24.png)
  
-### Installatie pfsense <a name="InstallatieP"></a>  
+### 4.5 Installatie pfsense <a name="InstallatieP"></a>  
 
  1. Verbind met de virtuele machine via **Actie > Verbindinging maken...** en **Start** de virtuele machine.
  2. Wacht terwijl de virtuele machine opstart van de ISO.
@@ -118,7 +118,7 @@ Deze handleiding veronderstelt dat Hyper-V ingeschakelt is op het hostsysteem. I
  12. Wacht tot de installatie van pfsense compleet is en het hoofdmenu van pfsense wordt weergegeven. Je kan nu beginnen met de pfsense-configuratie.
  ![img22](img/Hyper-V/image22.png)
 
-## Initiële Configuratie <a name="Config"></a>  
+## 5. Initiële Configuratie <a name="Config"></a>  
 Na de installatie zien we dit menu:  
 ![postinstall](img/postinstall.png)  
 We kunnen vanaf hier al extra packages installeren of commands invoeren via de shell (12) of andere devices pingen binnen het netwerk (7).
@@ -134,7 +134,7 @@ Druk Ctrl + C in om de configuratie te eindigen en terug naar het menu te gaan.
  
  
  
-## Webconfig <a name="Webconfig"></a>  
+## 6. Webconfig <a name="Webconfig"></a>  
 Maak een nieuwe VM aan dat toegang heeft tot een webbrowsers en dat in het zelfde netwerk ligt als de firewall.  
 - Toegang tot WebGUI  
   1. Settings > Network:  
@@ -148,7 +148,7 @@ Maak een nieuwe VM aan dat toegang heeft tot een webbrowsers en dat in het zelfd
   ![menu](img/menu.png)  
        
 
-## Bronnen <a name="Bronnen"></a>  
+## 7. Bronnen <a name="Bronnen"></a>  
 <https://bertvv.github.io/notes-to-self/2015/09/29/virtualbox-networking-an-overview/>
 <https://docs.netgate.com/pfsense/en/latest/install/installing-pfsense.html>  
 <https://docs.netgate.com/pfsense/en/latest/virtualization/virtualizing-pfsense-with-hyper-v.html>  
