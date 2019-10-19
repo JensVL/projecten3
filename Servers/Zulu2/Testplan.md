@@ -72,4 +72,3 @@ Password: pfsense
 
 *Verwacht*: Het systeem wordt herstart en het systeem is volledig geconfigureerd.  
 
-- Gemaakt door Alister Adutwum
