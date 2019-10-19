@@ -27,9 +27,7 @@ Write-Host "Waiting 30 seconds before starting script:" -ForeGroundColor "Green"
 Start-Sleep -s 30
 
 # 1) Stel forward primary lookup zones in voor alle servers in het red domein:
-# TODO: Checken of DC2 / DNS2 automatisch een NS record heeft (voor replicatie TransferToZoneNameServer) TODO TODO TODO TODO
-Write-host "Adding DNS primary zone for red.local" -ForeGroundColor "Green"
-Add-DnsServerPrimaryZone -Name "red.local" -ReplicationScope "Domain" -DynamicUpdate "Secure"
+Write-host "Setting DNS primary zone for red.local" -ForeGroundColor "Green"
 Set-DnsServerPrimaryZone -Name "red.local" -SecureSecondaries "TransferToZoneNameServer"
 
 # 2) Voeg de servers als AAAA records toe met hun ip adres in de aangemaakte primary zone: (name to ip address)
