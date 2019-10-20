@@ -1,11 +1,13 @@
 start-transcript "C:\ScriptLogs\1.txt"
 
-$VBOXdrive = "Z:\"
+# remove script restrictions
+
+ Set-ExecutionPolicy Unrestricted -force
 
 # Auto run script prerquisites na reboot
 
 Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce' -Name ResumeScript `
-                -Value 'C:\Windows\system32\WindowsPowerShell\v1.0\Powershell.exe -executionpolicy bypass -file "$VBOXdrive\scripts voor mike2\prerequisites.ps1"'
+                -Value 'C:\Windows\system32\WindowsPowerShell\v1.0\Powershell.exe -executionpolicy bypass -file "Z:\scripts voor mike2\prerequisites.ps1"'
 
 Write-Output "add password credentials"
 
@@ -44,7 +46,7 @@ start-sleep -s 15
 
 Write-Output "set computername to mike2 and add to domain red"
 
-add-Computer -DomainName red.local -ComputerName "$env:computername" -newname mike2v6 -DomainCredential $Cred
+add-Computer -DomainName red.local -ComputerName "$env:computername" -newname mike2 -DomainCredential $Cred
 
 
 

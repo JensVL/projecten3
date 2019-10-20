@@ -1,4 +1,6 @@
-$password = ConvertTo-SecureString "Admin19" -AsPlainText -Force
+Add-PSSnapin microsoft.sharepoint.powershell
+
+$password = ConvertTo-SecureString "Admin2019" -AsPlainText -Force
 
 $farmcredentials = (New-Object System.Management.Automation.PSCredential ($DOMAIN + "\" + "Administrator"),($password))
 
