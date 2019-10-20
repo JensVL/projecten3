@@ -3,29 +3,29 @@
 ## Aanwezigen week 4:
 | Naam                          | Aanwezig |
 | :---                          | :---   |
-| Alister Adutwum               | x |
-| Laurens Blancquart-Cassaer    | x |
-| Nathan Cammerman              | x |
-| Rik Claeyssens                | x |
-| Kimberly De Clercq            | x |
-| Tim Grijp                     | x |
-| Yngvar Samyn                  | x |
-| Joachim Van de Keere          | x |
-| Matthias Van de Velde         | x |
-| Robin Van de Walle            | x |
-| Jens Van Liefferinge          | x |
-| Jannes Van Wonterghem         | x |
-| Sean Vancompernolle           | x |
-| Jonas Vandegehuchte           | x |
-| Tibo Vanhercke                | x |
-| Ferre Verstichelen            | x |
-| Elias Waterschoot             | x |
-| Robby Daelman                 | x |
-| Cedric Detemmerman            | x |
-| Levi Goessens                 | x |
-| Aron Marckx                   | x |
-| Cédric Van den Eede           | x |
-| Arno Van Nieuwenhove          | x |
+| Alister Adutwum               | V |
+| Laurens Blancquart-Cassaer    | V |
+| Nathan Cammerman              | V |
+| Rik Claeyssens                | V |
+| Kimberly De Clercq            | V |
+| Tim Grijp                     | V |
+| Yngvar Samyn                  | V |
+| Joachim Van de Keere          | V |
+| Matthias Van de Velde         | V |
+| Robin Van de Walle            | V |
+| Jens Van Liefferinge          | V |
+| Jannes Van Wonterghem         | V |
+| Sean Vancompernolle           | V |
+| Jonas Vandegehuchte           | V |
+| Tibo Vanhercke                | V |
+| Ferre Verstichelen            | V |
+| Elias Waterschoot             | V |
+| Robby Daelman                 | V |
+| Cedric Detemmerman            | V |
+| Levi Goessens                 | V |
+| Aron Marckx                   | V |
+| Cédric Van den Eede           | V |
+| Arno Van Nieuwenhove          | V |
 
 ## Algemeen
 - Verslag vorige stand-up overlopen
@@ -49,11 +49,11 @@
     - premade box van Vagrant Cloud 
     - zelf box maken adhv Packer 
     - HyperV op server installeren met box `gusztavvargadr/windows-server`
-  - Iedereen komt aan het woord: Duidelijk vermelden wat klaar is en wat nog moet gedaan worden
-  - Problemen/Vragen?
+- Iedereen komt aan het woord: Duidelijk vermelden wat klaar is en wat nog moet gedaan worden
+- Problemen/Vragen?
 
 ## Gerealiseerd week 3
-* Alpha
+* Alfa
   * GPO moet nog gebeuren
   * Moet nog getest worden
 * Bravo
@@ -100,4 +100,4 @@
   - plan van aanpak voor testdag: timing van pert-chart maken => best in gant-chart
   - 
 
-© Author - Kimberly De Clercq & Matthias Van De Velde
+© Author - Kimberly De Clercq, Matthias Van De Velde en Jannes Van Wonterghem
