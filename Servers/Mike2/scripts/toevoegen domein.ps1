@@ -27,6 +27,11 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 Write-Output "configure hostonlyadapter"
 New-NetIPAddress -IPAddress 172.18.1.3 -PrefixLength 24 -InterfaceIndex (Get-NetAdapter -Name "Ethernet").InterfaceIndex
 
+
+#Disable Firewall
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+
+
 # configure dns 
 Write-Output "configure dns"
 Set-DnsClientServerAddress -interfaceAlias "Ethernet" -serveraddresses 172.18.1.66
