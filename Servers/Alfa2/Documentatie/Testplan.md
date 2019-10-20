@@ -116,6 +116,9 @@ Auteur(s) testplan: Kimberly De Clercq en Laurens Blancquaert-Cassaer
 | 3 | Heeft elke gebruiker zijn werkstation? | Ja/Nee |
 
 ## Beleidsregels
+De beleidsregels moeten handmatig in de GUI ingesteld worden.   
+Volg hiervoor eerst het stappenplan in het verslag onder `Stappenplan beleidsregels`.   
+
 | Nr test | Wat moet er getest worden | In orde? |
 | :--- | :--- | :--- |
 | 1 | Heeft de `IT_Administratie` toegang tot het control panel? | Ja/Nee |
