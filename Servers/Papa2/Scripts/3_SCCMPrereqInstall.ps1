@@ -1,5 +1,6 @@
 # Dit script zal eerst de prerequisites voor SCCM installeren / configureren en daarna SCCM zelf:
 # Elke stap wordt uitgelegd met zijn eigen comment
+# TODO: 2e schijf (:E) instellen!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 # VARIABLES:
 $VBOXdrive = "Z:"
@@ -197,3 +198,50 @@ Write-host "Installation necessary Windows features completed!" -ForeGroundColor
 # 4) Firewall uitzetten (want we gebruiken hardware firewall):
 Write-Host "Turning firewall off:" -ForeGroundColor "Green"
 Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+
+# 5) Voorbereiding op SCCM installatie zelf:
+# 5.1) Aangezien we SCCM op de D: drive gaan installeren ipv de System (C:) drive moeten we op de root van de C: drive
+# Het volgende bestand aanmaken. Dan zal SCCM alles op de gekozen drive (D:) installeren:
+New-Item -Path "C:\" -Name "no_sms_on_drive.SMS" -ItemType "file"
+
+# 5.2) Copy SCCM installatie required files van VirtualBox Shared folder naar desktop\SCCMrequiredFiles:
+Write-Host "Copying SCCM installation required files to desktop/SCCMrequiredfiles:" -ForeGroundColor "Green"
+Copy-Item "Z:\SCCMrequiredFiles" -Destination "C:\Users\SCCMadmin\Desktop\SCCMrequiredFiles" -Recurse -verbose
+Write-Host "Copying SCCM installation required files completed!" -ForeGroundColor "Green"
+
+# 5.3) Installatie van SCCM zelf. Dit heb ik met een try catch block gedaan omdat er veel kan foutlopen tijdens deze installatie,
+# door op deze manier te werken wordt de error naar de console geschreven als er een nonzero exit status is:
+# LET OP DUURT ONGEVEER 86 MINUTEN !!!!!!
+Write-Host "Starting installation of SCCM (Takes +/- 80-90 minutes)" -ForeGroundColor "Green"
+Copy-Item "Z:\SCCM 1902 Installation" -Destination "C:\Users\SCCMadmin\Desktop\SCCM 1902 Installation" -Recurse -verbose
+Start-Sleep -s 20
+Set-Location "C:\Users\SCCMadmin\Desktop\SCCM 1902 Installation\SMSSETUP\BIN\X64"
+
+Start-Process "Setup.exe" -ArgumentList "/script Z:\SCCMsilentInstallSettings.ini" -wait
+# .\Setup.exe /script "Z:\SCCMsilentInstallSettings.ini" | Out-Null TODO TODO Deze lijn mag weg indien bovenstaande werkt.
+# Out-Null zodat Powershell wacht tot installatie klaar is voor hij verder gaat
+
+If ($?) {
+  Write-Host "Installation Windows SCCM completed!" -ForeGroundColor "Green"
+} else {
+  Write-Host "Installation Windows SCCM FAILED!" -ForeGroundColor "Red" -BackGroundColor "White"
+}
+
+# 5.4) Configureer MDT integratie met SCCM (met een kleine applicatie "configMgr Integration")
+# Deze applicatie heeft geen cmdlets/options dus moet je het automatiseren met volgende cmds:
+$SiteCode   = "RED"
+$SiteServer = "Papa2.red.local"
+$MDT  = "C:\Program Files\Microsoft Deployment Toolkit"
+$SCCM = "D:\SCCM\AdminConsole"
+$MOF  = "$SCCM\Bin\Microsoft.BDD.CM12Actions.mof"
+
+Copy-Item "$MDT\Bin\Microsoft.BDD.CM12Actions.dll" "$SCCM\Bin\Microsoft.BDD.CM12Actions.dll"
+Copy-Item "$MDT\Bin\Microsoft.BDD.Workbench.dll" "$SCCM\Bin\Microsoft.BDD.Workbench.dll"
+Copy-Item "$MDT\Bin\Microsoft.BDD.ConfigManager.dll" "$SCCM\Bin\Microsoft.BDD.ConfigManager.dll"
+Copy-Item "$MDT\Bin\Microsoft.BDD.CM12Wizards.dll" "$SCCM\Bin\Microsoft.BDD.CM12Wizards.dll"
+Copy-Item "$MDT\Bin\Microsoft.BDD.PSSnapIn.dll" "$SCCM\Bin\Microsoft.BDD.PSSnapIn.dll"
+Copy-Item "$MDT\Bin\Microsoft.BDD.Core.dll" "$SCCM\Bin\Microsoft.BDD.Core.dll"
+Copy-Item "$MDT\SCCM\Microsoft.BDD.CM12Actions.mof" $MOF
+Copy-Item "$MDT\Templates\CM12Extensions\*" "$SCCM\XmlStorage\Extensions\" -Force -Recurse
+(Get-Content $MOF).Replace('%SMSSERVER%', $SiteServer).Replace('%SMSSITECODE%', $SiteCode) | Set-Content $MOF
+& "C:\Windows\System32\wbem\mofcomp.exe" "$SCCM\Bin\Microsoft.BDD.CM12Actions.mof"
