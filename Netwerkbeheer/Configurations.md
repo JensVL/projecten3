@@ -90,7 +90,7 @@
 - exit
 - service password-encryption
 
-- ### ! Internet on outside interface via DHCP -- NAT
+### ! Internet on outside interface via DHCP -- NAT
 (internal interface)
 - int s0/1/0
 - ip address 172.18.2.1 255.255.255.252
@@ -98,22 +98,23 @@
 - no shut
 - 
 (external interface)
+
 - int s0/1/1
 - ip address dhcp
 - ip nat outside
 - no shut
 - exit
-
+-
 - access-list 1 permit 172.18.2.0 0.0.0.3
 - ip nat inside source list 1 interface s0/1/0 overload
-
+-
 - do show ip nat translations
-
 #
 - router ospf 10
 - router id 4.4.4.4
 - network 172.18.2.0 0.0.0.3 area 0
 - exit
+-
 #
 - ip route 172.18.1.65 255.255.255.224 s0/1/0
 - ip route 172.18.101.30 255.255.255.252 s0/1/0
@@ -151,6 +152,7 @@
 - 
 # 
 - ip route 0.0.0.0 0.0.0.0 int s0/0/0
+-
 #
 - router ospf 10
 - router id 5.5.5.5
@@ -255,7 +257,7 @@
 - exit
 - 
 
-### Optional VLAN
+### VLAN
 
 - vlan 300
 - name vlan300
@@ -287,7 +289,7 @@
 - exit
 - 
 
-### Optional VLAN
+### VLAN
 
 - vlan 500
 - name vlan500
