@@ -19,12 +19,13 @@ Uit te voeren via script 'toevoegen domein.ps1'
 ## Controleer of firewall is uitgeschakeld
 * De firewall zou uitgeschakeld moeten zijn
 
+
 # SharePoint installatie
 
-- Installatie windows features 'roles.ps1'
-- Installatie prerequisites via 'prerequisites.ps1'
-- Runnen van de setup 'SPsetup.ps1'
-- Creatie SharePoint Farm 'SPfarm.ps1'
+- Installatie windows features `roles.ps1`
+- Installatie prerequisites via `prerequisites.ps1`
+- Runnen van de setup `SPsetup.ps1`
+- Creatie SharePoint Farm `SPfarm.ps1`
 
 ## Controleer of de installatie en configuratie van SharePoint correct verlopen is.
 * Probeer sharepoint central administration te openen 
