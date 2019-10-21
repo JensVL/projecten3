@@ -25,7 +25,8 @@ set-timezone -Name "Romance Standard Time"
 
 # 2) Zorgen voor juist LAN adapter. Via intern netwerk.
 Write-host "Changing NIC adapter names:" -ForeGroundColor "Green"
-Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName $AdapterNaam
+Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName 'NAT'
+Get-NetAdapter -Name "Ethernet 2" | Rename-NetAdapter -NewName $AdapterNaam
 
 # 3) LAN adapter instellen
 Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
@@ -34,6 +35,7 @@ New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixL
 # 4) DNS van LAN van Alfa2 instellen op Hogent DNS servers:
 # Eventueel commenten tijdens testen in demo omgeving
 # Set-DnsClientServerAddress -InterfaceAlias "$AdapterNaam" -ServerAddress "$IpAlfa2","$IpAddress"
+Set-DnsClientServerAddress -InterfaceAlias "NAT" -ResetServerAddresses
 Set-DnsClientServerAddress -InterfaceAlias "$AdapterNaam" -ServerAddress "$IpAlfa2","$IpAddress"
 
 # disable ipv6 on both nics
