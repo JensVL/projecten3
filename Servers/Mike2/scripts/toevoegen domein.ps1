@@ -33,3 +33,21 @@ New-NetIPAddress -IPAddress 172.18.1.3 -PrefixLength 24 -InterfaceIndex (Get-Net
 #Disable Firewall
 Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 
+# configure dns 
+Write-Output "configure dns"
+Set-DnsClientServerAddress -interfaceAlias "Ethernet" -serveraddresses 172.18.1.66
+
+Write-host "Waiting 15 seconds before continuing"
+start-sleep -s 15
+
+
+# change computername met adds credentials
+
+Write-Output "set computername to mike2 and add to domain red"
+
+add-Computer -DomainName red.local -ComputerName "$env:computername" -newname mike2 -DomainCredential $Cred
+
+
+
+stop-transcript
+
