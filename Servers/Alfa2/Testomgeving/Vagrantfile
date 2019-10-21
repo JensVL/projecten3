@@ -101,6 +101,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         node.vm.provision 'shell',
           privileged: true,
           path: 'Scripts/' + '2_InstallDCDNS.ps1'
+        end
     end
   end
 end
