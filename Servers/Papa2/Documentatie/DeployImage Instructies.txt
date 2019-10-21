@@ -1,0 +1,6 @@
+In SCCM Task Sequence Maken
+Stappen:
+
+1:  Software Library -> Operating Systems -> Task Seaquences (rechtermuisklik) -> Create Task Sequence
+2:  SELECTEER "Create a new Custom Task Sequence" -> Next
+3: 
