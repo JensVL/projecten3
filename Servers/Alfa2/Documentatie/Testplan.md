@@ -4,35 +4,51 @@
 
 Auteur(s) testplan: Kimberly De Clercq en Laurens Blancquaert-Cassaer
 
-## Uit te voeren stappen
+## AD/DNS configuratie en installatie
+# Uit te voeren stappen:
+Checken of dat Alfa2 een domeincontroller is:
+Server Manager > tools > Active Directory Users and Computers > Papa2.red.local > Domain Controllers (container)
+Hierin zou Alfa2 als computerobject moeten staan
 
-1. Maak een Virtuele Machine aan.
-2. 
-
-## DNS configuratie en installatie
+Checken of er een DNS primary zone geïnstalleerd is (met de naam red.local):
+Server Manager > Tools > DNS Manager > forward lookup zone
+Hier zou je "red.local" moeten zien staan
 
 | Nr test | Wat moet er getest worden | In orde? |
 | :--- | :--- | :--- |
-| 1 | Is DNS geïnstalleerd op de VM? | Ja/Nee |
-| 2 | Is er een DNS primary zone geïnstalleerd op de VM? | Ja/Nee |
-| 3 | ... | Ja/Nee |
+| 1 | Is Alfa2 een domeincontroller? | Ja/Nee |
+| 2 |Is DNS geïnstalleerd op de VM? | Ja/Nee |
+| 3 | Is er een DNS primary zone geïnstalleerd op de VM? | Ja/Nee |
+| 4 | Zijn alle DNS records correct aangemaakt volgens onderstaande tabel? | Ja/Nee |
 
-## IP-adresserings tabel
 
-| Device | Soort | IP-address | 
+##  DNS records tabel:
+# Uit te voeren stappen:
+Check of deze  DNS records bestaan in server manager > tools > DNS Manager >Forward Lookup Zones > red.local
+Let op: Alle records moeten een A record zijn behalve Alfa2 en Bravo2 deze zijn een NS record.
+De Exchange server Charlie2 bevat naast een A record ook een MX en Cname record.
+
+| Device | Soort DNS record | IP-address | 
 | :--: | :--: | :--: | 
-| alfa2 | DC1 / DNS1 |  | 
-| bravo2 | DC2 / DNS2 |  | 
-| charlie2 | Exchange Webserver |  | 
-| delta2 | IIS Webserver | 172.18.1.69 | 
-| kilo2 | DHCP Server | 172.18.1.1 | 
-| lima2 | File Server | 172.18.1.2 | 
-| mike2 | Intranet Sharepoint Server | 172.18.1.3 | 
-| november2 | SQL Server | 172.18.1.4 | 
-| oscar2 | Monitoring Server | 172.18.1.5 | 
-| papa2 | SCCM Server | 172.18.1.6 | 
+| alfa2 | NS | 172.18.1.66 | 
+| bravo2 | NS | 172.18.1.67 (zie je pas na installatie Bravo2 server) | 
+| charlie2 | A + MX + Cname |172.18.1.68  | 
+| delta2 | A | 172.18.1.69 | 
+| kilo2 | A | 172.18.1.1 | 
+| lima2 | A | 172.18.1.2 | 
+| mike2 | A | 172.18.1.3 | 
+| november2 | A | 172.18.1.4 | 
+| oscar2 | A | 172.18.1.5 | 
+| papa2 | A | 172.18.1.6 | 
 
-## AD configuratie en installatie
+## AD en DNS Replication tussen Alfa2 en Bravo2 (Tweede domeincontroller) KAN PAS GETEST WORDEN SAMEN MET BRAVO2
+
+| Nr test | Wat moet er getest worden | In orde? |
+| :--- | :--- | :--- |
+| 1 | Werkt de replicatie tussen Alfa2 en Bravo2 zijn Active Directory zoals het hoort? | Ja/Nee |
+| 2 |Is DNS geïnstalleerd op de VM? | Ja/Nee |
+| 3 | Is er een DNS primary zone geïnstalleerd op de VM? | Ja/Nee |
+| 4 | Zijn alle DNS records correct aangemaakt volgens onderstaande tabel? | Ja/Nee |
 
 ### Organizational Units
 
