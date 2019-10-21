@@ -43,6 +43,7 @@ Write-host "Adding DNS A and MX records for the servers of red.local" -ForeGroun
 
 Add-DnsServerResourceRecordA -Name "mail" -ZoneName "red.local" -IPv4Address "$Charlie2IP"
 Add-DnsServerResourceRecordMX -Name "mail" -MailExchange "mail.red.local" -ZoneName "red.local" -Preference 100
+Add-DnsServerResourceRecordCName -Name "owa" -HostNameAlias "mail.red.local" -ZoneName "red.local"
 
 Add-DnsServerResourceRecordA -Name "Delta2" -ZoneName "red.local" -IPv4Address "$Delta2IP"
 Add-DnsServerResourceRecordA -Name "Kilo2" -ZoneName "red.local" -IPv4Address "$Kilo2IP"
