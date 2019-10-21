@@ -120,6 +120,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           privileged: true,
           path: provisioning_path + 'Kilo2_2.ps1',
           args: []
+        node.vm.provision 'shell', reboot: true
       end
     end
   end
