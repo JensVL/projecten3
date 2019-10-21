@@ -32,15 +32,4 @@ $credential = New-Object System.Management.Automation.PSCredential($username, $p
 Add-Computer -DomainName $domain -Credential $credential -Force
 Write-Host "Server added to Domain"
 
-
-
-
-# Setting up login RED\Administrator
-
-# cmd.exe /c "netsh dhcp add securitygroups"
-$Username = "RED\Administrator"
-$Password = "vagrant" 
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultUserName -Value $Username
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultPassword -Value $Password
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogon -Value 1
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name ForceAutoLogon -Value 1
+Wait-Job -Name InstallDHCP
