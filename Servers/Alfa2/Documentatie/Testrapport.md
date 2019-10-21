@@ -4,16 +4,46 @@
 
 Auteur(s) testrapport: Kimberly De Clercq 
 
-## Test DNS installatie en configuratie
+## Test AD/DNS installatie en configuratie
 Labo gemaakt door: 
 Uitvoerder(s) test:   
 Uitgevoerd op: 
 Github commit:   
 
 ### Uit te voeren testen
+| Nr test | Wat moet er getest worden | In orde? |
+| :--- | :--- | :--- |
+| 1 | Is Alfa2 een domeincontroller? | Ja/Nee |
+| 2 |Is DNS geïnstalleerd op de VM? | Ja/Nee |
+| 3 | Is er een DNS primary zone geïnstalleerd op de VM? | Ja/Nee |
+| 4 | Zijn alle DNS records correct aangemaakt volgens onderstaande tabel? | Ja/Nee |
 
 ### Opmerkingen
+| Device | Soort DNS record | IP-address | 
+| :--: | :--: | :--: | 
+| alfa2 | NS | 172.18.1.66 | 
+| bravo2 | NS | 172.18.1.67 (zie je pas na installatie Bravo2 server) | 
+| charlie2 | A + MX + Cname |172.18.1.68  | 
+| delta2 | A | 172.18.1.69 | 
+| kilo2 | A | 172.18.1.1 | 
+| lima2 | A | 172.18.1.2 | 
+| mike2 | A | 172.18.1.3 | 
+| november2 | A | 172.18.1.4 | 
+| oscar2 | A | 172.18.1.5 | 
+| papa2 | A | 172.18.1.6 | 
 
+
+## Test AD en DNS Replication tussen Alfa2 en Bravo2 (Tweede domeincontroller)
+Labo gemaakt door: 
+Uitvoerder(s) test:   
+Uitgevoerd op: 
+Github commit:   
+
+### Uit te voeren testen
+| Nr test | Wat moet er getest worden | In orde? |
+| :--- | :--- | :--- |
+| 1 | Werkt de replicatie tussen Alfa2 en Bravo2 hun Active Directory zoals het hoort? | Ja/Nee |
+| 2 | Staat de DNS primary zone "red.local" ook op Bravo2 met alle records? | Ja/Nee |
 
 
 ## Test ADstructuur en beleidsregels
@@ -99,6 +129,9 @@ Uitgevoerd op:
 Github commit:   
 
 ### Uit te voeren testen
-
-### Opmerkingen
+| Nr test | Wat moet er getest worden | In orde? |
+| :--- | :--- | :--- |
+| 1 | Is de SCCM admin useraccount aangemaakt en zit hij in de domain admin group? | Ja/Nee |
+| 2 |Is de System Management container (voor SCCM) correct aangemaakt? | Ja/Nee |
+| 3 | Is het AD schema succesfully extended? | Ja/Nee |
 
