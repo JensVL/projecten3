@@ -4,6 +4,7 @@
 
 Auteur(s) testplan: Tim Grijp, Elias Waterschoot
 
+<<<<<<< Updated upstream
 # Server Configuratie
 
 Uit te voeren via script 'toevoegen domein.ps1'
@@ -30,4 +31,20 @@ Uit te voeren via script 'toevoegen domein.ps1'
 ## Controleer of de installatie en configuratie van SharePoint correct verlopen is.
 * Probeer sharepoint central administration te openen 
 
+=======
+
+## controleer lan ip en dns ip
+* lan ip moet 172.18.1.3 zijn
+* dns ip moet 172.18.1.66 zijn
+## toevoegen aan het domein red hiervoor moet server alfa2 draaien
+* log in als administrator van domein red
+* kijk in server manager -> local server
+* controleer of de computername "mike2" noemt
+* controleer of de server toegevoegd is aan het domein red.local
+
+## controleer sharepoint toegang en installatie
+
+* probeer sharepoint central administration te openen 
+
+>>>>>>> Stashed changes
 

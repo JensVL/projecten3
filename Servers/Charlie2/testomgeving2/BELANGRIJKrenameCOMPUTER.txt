@@ -1,0 +1,2 @@
+Rename-Computer -NewName Alfa2 -Force
+Daarna moet de server wel reboot worden

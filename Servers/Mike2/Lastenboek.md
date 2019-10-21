@@ -21,6 +21,7 @@ Als inhoud voor deze CMS server voorzie je alle Windows documentatie van dit pro
 | Tim Grijp        | SharePoint installatie        |                |
 | Elias Waterschoot | SharePoint installatie       |                |
 | Tim Grijp        | script prerequisites          |                |
+<<<<<<< Updated upstream
 | Elias Waterschoot | script SPfarm.ps1      |                |
 | Tim Grijp       | Opstellen testplan             |                |
 | Tim Grijp       | script toevoegen domein |            |
@@ -32,6 +33,11 @@ Als inhoud voor deze CMS server voorzie je alle Windows documentatie van dit pro
 | Tim Grijp | aanpassingen scripts ||
 | Elias Waterschoot | verder aanvullen testplan ||
 | Tim Grijp |  ||
+=======
+| Elias Waterschoot | script SP automatisatie      |                |
+| Tim Grijp       | Opstellen testplan             |                |
+||||
+>>>>>>> Stashed changes
 
 
 ## Vragen
