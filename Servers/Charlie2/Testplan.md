@@ -15,9 +15,11 @@ Wanneer er iets fout loopt, dan kunt u alle logbestanden terugvinden in de map `
 
 Controleer zeker ook volgende zaken:
 
-- Kan je pingen naar Alfa2 (172.18.1.66)?
-  - Indien je niet kan pingen naar ander domein => kijken via ipconfig/all of ipv4 autoconfiguration aan staat => oplossingen zie: 
-- Controleren of je in domein zit?: Get-ADComputer -Filter *
+- Kan je pingen naar Alfa2 (172.18.1.66)? Indien nee,
+  - Kijk via ipconfig/all of ipv4 autoconfiguration aan staat => oplossingen zie: <https://community.spiceworks.com/how_to/62077-how-to-disable-ip-autoconfiguration-in-core-server>
+  - Kijk of je ip-instellingen correct zijn
+- Zit Charlie2 in het domein red.local
+  - Controleren in powershell via: Get-ADComputer -Filter *
 - Indien mail blijft vastzitten in draft => 'Mail exchange transport' service herstarten
 
 

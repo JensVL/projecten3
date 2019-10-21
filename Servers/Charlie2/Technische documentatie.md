@@ -13,6 +13,7 @@ recente versie. Het moet mogelijk zijn mails te versturen en te ontvangen tussen
 2. Voer de installatieschijf van [Exchange Server 2016 CU14](https://download.microsoft.com/download/f/4/e/f4e4b3a0-925b-4eff-8cc7-8b5932d75b49/ExchangeServer2016-x64-cu14.iso) in
 3. Maak een gedeelde folder in virtualbox met de map "p3ops-1920-red\Servers\Charlie2\scripts" uit de GitHub-repository.
 4. Run het powershellscript '1_RenameServer.ps1' in de gedeelde schijf "Z:" als administrator, bevestig de wijzigingen aan de 'execution policy' door de vraag met 'A' te beantwoorden.
+5. 
 
 
 
@@ -110,9 +111,6 @@ Hieronder vindt u meer uitleg over de powershellcode. Naast onderstaande code, i
     & d:\Setup.exe /mode:Install /role:Mailbox /OrganizationName:'red' /IAcceptExchangeServerLicenseTerms
     ```
 
-14. Troubleshooting:
-
-- 
 
 
 
@@ -129,6 +127,6 @@ https://download.microsoft.com/download/2/C/4/2C47A5C1-A1F3-4843-B9FE-84C0032C61
 
 
 
-Geheimpje 2019
+Geheimpje2019
 
 Add-DnsServerResourceRecordCName -Name "owa" -HostNameAlias "mail.red.local" -ZoneName "red.local"
