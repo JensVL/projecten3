@@ -47,15 +47,6 @@ New-SmbShare -Name "ShareVerkoop" -Path "Q:\Shares\ShareVerkoop" -ChangeAccess "
 #Configure shadow storage voor adminData
 vssadmin add shadowstorage /for=h: /on=h: /maxsize=2000mb
 #Hier komt ps code voor dagleijske schaduw copy te maken
-Import-Module -Name "ScheduledTasks"
-$Sta = New-ScheduledTaskAction -Execute "powershell" -Argument ".\ShadowCopy.ps1" -WorkingDirectory "C:\vagrant\provisioning"
-$Stt = New-ScheduledTaskTrigger -Daily -At 5pm
-#Zorgt ervoor dat de taak met "highest privileges" wordt gexecuted.
-$Stp = New-ScheduledTaskPrincipal -UserId "vagrant" -RunLevel Highest
-$StTaskName="TEST10"
-$StDescript="test"
-#Registreer de taak in de task scheduler 
-Register-ScheduledTask -TaskName $StTaskName -Action $Sta -Description $StDescript -Trigger $Stt -Principal $Stp
 
 Start-sleep 10
 
@@ -93,7 +84,7 @@ Set-Acl D:/Shares/VerkoopData -AclObject $acl1
 
 Start-sleep 5
 
-$acl1 = Get-Acl E:/Shares
+$acl1 = Get-Acl E:/Shares/OntwikkelingData
 $newRule1 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesVerkoopDeny)
 $newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesITAllow)
 $newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieDeny)
@@ -109,7 +100,7 @@ Set-Acl E:/Shares/VerkoopData -AclObject $acl1
 
 Start-sleep 5
 
-$acl1 = Get-Acl F:/Shares
+$acl1 = Get-Acl F:/Shares/ItData
 $newRule1 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesVerkoopDeny)
 $newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesITAllow)
 $newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieDeny)
@@ -125,7 +116,7 @@ Set-Acl F:/Shares/VerkoopData -AclObject $acl1
 
 Start-sleep 5
 
-$acl1 = Get-Acl G:/Shares
+$acl1 = Get-Acl G:/Shares/directory
 $newRule1 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesVerkoopDeny)
 $newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesITAllow)
 $newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieAllow)
@@ -141,7 +132,7 @@ Set-Acl G:/Shares/VerkoopData -AclObject $acl1
 
 Start-sleep 5
 
-$acl1 = Get-Acl H:/Shares
+$acl1 = Get-Acl H:/Shares/AdminData
 $newRule1 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesVerkoopDeny)
 $newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesITAllow)
 $newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieDeny)
@@ -157,7 +148,7 @@ Set-Acl H:/Shares/VerkoopData -AclObject $acl1
 
 Start-sleep 5
 
-$acl1 = Get-Acl Y:/Shares
+$acl1 = Get-Acl Y:/Shares/HomeDirs
 $newRule1 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesVerkoopAllow)
 $newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesITAllow)
 $newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieAllow)
@@ -173,7 +164,7 @@ Set-Acl Y:/Shares/VerkoopData -AclObject $acl1
 
 Start-sleep 5
 
-$acl1 = Get-Acl Z:/Shares
+$acl1 = Get-Acl Z:/Shares/ProfileDirs
 $newRule1 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesVerkoopAllow)
 $newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesITAllow)
 $newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieAllow)
@@ -189,7 +180,7 @@ Set-Acl Z:/Shares/VerkoopData -AclObject $acl1
 
 Start-sleep 5
 
-$acl8 = Get-Acl Q:/Shares
+$acl8 = Get-Acl Q:/Shares/ShareVerkoop
 $newRule1 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesVerkoopAllow)
 $newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesITAllow)
 $newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieDeny)
