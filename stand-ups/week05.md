@@ -90,6 +90,6 @@
 - Weinig respons ivm planning gantchart (momenteel nog maar 2 antwoorden)
 
 ## Volgende stand-up:
-- 
+- Servers afwerken + testplannen opstellen!
 
 © Author - Kimberly De Clercq
