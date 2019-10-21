@@ -51,3 +51,6 @@ add-Computer -DomainName red.local -ComputerName "$env:computername" -newname mi
 
 stop-transcript
 
+
+restart-computer
+
