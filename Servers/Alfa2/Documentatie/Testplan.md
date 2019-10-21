@@ -167,8 +167,16 @@ Hierin zou SCCMadmin als userobject moeten staan
 klik rechtermuisknop op het SCCMadmin object en kies properties. Ga naar de "member of" tab. Hij moet in de domain admin group zitten
 
 Checken of de System Management container (voor SCCM) correct aangemaakt is:
-Server Manager > Tools > ADSIedit 
-Hier zou je "red.local" moeten zien staan
+1) Server Manager > Tools > ADSIedit 
+2) Rechtermuisknop op "ADSIedit" en doe "connecto to.."
+3) Laat default settings staan en druk op ok
+4) Ga naar: Default naming context > DC=red, DC=local > CN=System
+Hierin zou je de container "System Management moeten zien staan
+
+De System Management container zijn permissies moeten allemaal kunnen beheerd worden door de Papa2 server dit check je zo:
+1) Rechtermuisknop op System Management container en kies properties
+2) Ga naar de "security" tab
+3) In de lijst van groups/users moet je Papa2 zien staan en de permissies moeten op "Full Control" staan
 
 Checken of de AD schema succesfully extended is:
 Dit doe je best door de automatisch aangemaakte logfile te checken die je op vind in de volgende locatie:
