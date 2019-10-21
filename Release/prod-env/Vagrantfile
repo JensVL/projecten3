@@ -1,0 +1,151 @@
+# -*- mode: ruby -*-
+# vi: ft=ruby :
+
+require 'rbconfig'
+require 'yaml'
+
+DEFAULT_BASE_BOX = 'bento/centos-7.6'
+
+VAGRANTFILE_API_VERSION = '2'
+PROJECT_NAME = '/' + File.basename(Dir.getwd)
+
+hosts = YAML.load_file('vagrant-hosts.yml')
+
+# Server dirs {{{
+ALFA2 = '../../Servers/Alfa2'
+# }}}
+
+# {{{ Helper functions
+
+# Set options for the network interface configuration. All values are
+# optional, and can include:
+# - ip (default = DHCP)
+# - netmask (default value = 255.255.255.0
+# - mac
+# - auto_config (if false, Vagrant will not configure this network interface
+# - intnet (if true, an internal network adapter will be created instead of a
+#   host-only adapter)
+def network_options(host)
+  options = {}
+
+  if host.has_key?('ip')
+    options[:ip] = host['ip']
+    options[:netmask] = host['netmask'] ||= '255.255.255.0'
+  else
+    options[:type] = 'dhcp'
+  end
+
+  if host.has_key?('mac')
+    options[:mac] = host['mac'].gsub(/[-:]/, '')
+  end
+  if host.has_key?('auto_config')
+    options[:auto_config] = host['auto_config']
+  end
+  if host.has_key?('intnet') && host['intnet']
+    options[:virtualbox__intnet] = true
+  end
+
+  options
+end
+
+def custom_synced_folders(vm, host)
+  if host.has_key?('synced_folders')
+    folders = host['synced_folders']
+
+    vm.synced_folder ".", "/vagrant", disabled: true
+
+    folders.each do |folder|
+      vm.synced_folder folder['src'], folder['dest'], folder['options']
+    end
+  end
+end
+
+# Adds forwarded ports to your Vagrant machine
+#
+# example:
+#  forwarded_ports:
+#    - guest: 88
+#      host: 8080
+def forwarded_ports(vm, host)
+  if host.has_key?('forwarded_ports')
+    ports = host['forwarded_ports']
+
+    ports.each do |port|
+      vm.network "forwarded_port", guest: port['guest'], host: port['host']
+    end
+  end
+end
+
+# }}}
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.ssh.insert_key = false
+  hosts.each do |host|
+    config.vm.define host['name'] do |node|
+      node.vm.box = host['box'] ||= DEFAULT_BASE_BOX
+      # node.vm.box_version = host['version'] if host.key? 'version'
+
+      node.vm.hostname = host['name']
+      node.vm.network :private_network, network_options(host)
+      custom_synced_folders(node.vm, host)
+      forwarded_ports(node.vm, host)
+
+      node.vm.provider :virtualbox do |vb|
+        vb.gui    = host['gui']
+        vb.cpus   = host['cpus'] if host.key? 'cpus'
+        vb.memory = host['memory'] if host.key? 'memory'
+        
+        # WARNING: if the name of the current directory is the same as the
+        # host name, this will fail.
+        vb.customize ['modifyvm', :id, '--groups', PROJECT_NAME]
+      end
+
+      node.vm.provider :vmware_esxi do |esxi|
+        esxi.esxi_hostname = '172.22.2.4'
+        esxi.esxi_username = 'root'
+        esxi.esxi_password = 'file:~/Repositories/Hogent/p3ops-1920-red/Release/prod-env/sshkey'
+
+        #esxi.esxi_virtual_network = ['VM Network','VM Network2','VM Network3','VM Network4']
+
+        esxi.guest_memsize = host['cpus'] if host.key? 'cpus'
+        esxi.guest_numvcpus = host['memory'] if host.key? 'memory'
+      end
+
+      config.winrm.timeout         = 3600
+      config.vm.boot_timeout       = 3600
+      config.winrm.transport       = :plaintext
+      config.winrm.basic_auth_only = true
+
+      if host['name'] == "Alfa2"
+        provisioning_path = ALFA2+'/Testomgeving/Scripts'
+
+        node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + '/2_installDCDNS.ps1',
+          args: []
+        node.vm.provision 'shell', reboot: true
+        node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + '/3_ConfigDCDNS.ps1',
+          args: []
+        node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + '/4_ADstructure.ps1',
+          args: []
+        if host['run_agdlp']
+          node.vm.provision 'shell',
+            privileged: true,
+            path: provisioning_path + '/5_AGDLP_PERMISSIONS.ps1',
+            args: []
+        end
+        if host['run_sccm_config']
+          node.vm.provision 'shell',
+            privileged: true,
+            path: provisioning_path + '/999_PrepareADforSCCM.ps1',
+            args: []
+        end
+      end
+    end
+  end
+end
+
