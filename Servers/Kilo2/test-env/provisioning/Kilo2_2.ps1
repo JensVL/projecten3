@@ -13,8 +13,9 @@ Add-DhcpServerV4Scope -Name "Vlan 200" -StartRange 172.18.0.2 -EndRange 172.18.0
 
 # DNS, Router, Default Gateway en mogelijk andere zaken toevoegen
 
-Set-DhcpServerV4OptionValue -DnsServer 172.18.1.66 -Router 172.18.0.1 -ScopeId 172.18.0.0
-
+Set-DhcpServerV4OptionValue -DnsServer 172.18.1.66, 172.18.1.67 -DnsDomain "red.local" -Router 172.18.0.1 -ScopeId 172.18.0.0 -Force
+Set-DhcpServerV4OptionValue -OptionId 066 -Value 172.18.1.6 # Value kan mogelijks nog veranderen
+Set-DhcpServerV4OptionValue -OptionId 067 -Value "\smsboot\x64\wdsnbp.com" # Value kan mogelijks nog veranderen
 # Lease time configureren
 
 Set-DhcpServerv4Scope -ScopeId 172.18.0.0 -LeaseDuration (New-TimeSpan -Days 2)
