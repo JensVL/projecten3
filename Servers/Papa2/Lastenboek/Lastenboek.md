@@ -13,8 +13,8 @@ Papa2 is de SCCM server. Deze zal de client workstations deployen en zorgt ook v
 | Laurens Blancquaert-Cassaer | Opzoekingswerk Prerequisites SCCM   |  2      |               |
 | Laurens Blancquaert-Cassaer | Prerequisites SCCM (scripts + GUI)   |  3 |     2          |
 | Laurens Blancquaert-Cassaer | Documentatie Prerequisites SCCM |  1.5    |               |
-| Laurens Blancquaert-Cassaer | Opzoekingswerk SCCM installatie | 3 |              |
-| Laurens Blancquaert-Cassaer | Implementatie SCCM installatie (scripts + GUI  | 4 |      2        |
+| Laurens Blancquaert-Cassaer | Opzoekingswerk SCCM installatie + configuratie | 3 |              |
+| Laurens Blancquaert-Cassaer | Implementatie SCCM installatie + configuratie (scripts + GUI  | 5 |      2        |
 | Laurens Blancquaert-Cassaer | Documentatie maken SCCM installatie | 1.5 |          |
 | Laurens Blancquaert-Cassaer | WSUS configuratie (opzoekingswerk + documentatie + scripts) | 3 |          |
 | Ferre Verstichelen | |   |    |
@@ -24,9 +24,9 @@ Papa2 is de SCCM server. Deze zal de client workstations deployen en zorgt ook v
 | Laurens Blancquaert-Cassaer  | Testplan opstellen (+ zelf testen) Papa2 server | 4 |  |
 | Ferre Verstichelen  | Testplan opstellen (+ zelf testen) Papa2 server |  |  |
 
+**
 
 
-Tests van de PAPA2 server wordt gedaan door: **TEAMLID_DIE_TESTRAPPORT_ALFA2_DOET_HIER**
-
+Tests van de PAPA2 server wordt gedaan door: **TEAMLID_DIE_TESTRAPPORT_ALFA2_DOET_HIER
 ## Vragen
 /
