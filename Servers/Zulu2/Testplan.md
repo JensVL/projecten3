@@ -1,7 +1,24 @@
-# Testplan PfSense:
+# Testplan Zulu2
+
+## Doel
+### Installatie PfSense
+- Download de PfSense Iso
+- Maak de Virtualbox VM aan
+- Installeer PfSense op de VM
+### Configuratatie PfSense
+- Stel de IPv4 interfaces in
+- Navigeer naar de WebGUI
+- Log in op de WebGUI
+- Laad het PfSense configuratiebestand
+
+## Te Testen
+
+We testen deze firewall met behulp van een Virtualbox VM. Indien nodig kan extra informatie gevonden worden in de documentatie voor [installatie](Documentatie Installatie.md) en [configuratie.](Documentatie Configuratie.md)
+
+### Installatie PfSense
 
 1. Download de [PfSense](https://www.pfsense.org/download/) Iso file.
-2. Maak een VM in Virualbox met de juiste configuratie.
+2. Maak een VM in Virtualbox met de juiste configuratie.
 * Name : Zulu2
 * Type : BSD 
 * Version : FreeBSD (64-bit)
@@ -28,7 +45,9 @@ Adapter 2: Host-only Adapter (die je juist hebt gemaakt)
 * Je wenst geen manuele modificatie uit te voeren, selecteer No.  
 * Reboot de VM en verwijder iso file uit Virtual Machine. 
 
-*Verwacht*: PfSense is geïnstalleerd op de VM en de gebruiker staat op het menu.  
+*Verwacht*: PfSense is geïnstalleerd op de VM en de gebruiker staat op het menu.
+
+### Configuratatie PfSense
 
 4. Zet IPv4 interfaces:  
 ```
@@ -61,7 +80,6 @@ Username: admin
 Password: pfsense  
 ```
 *Verwacht*: De gebruiker ziet het dashboard.  
- 
 
 7. Laad de configuratie file.  
 
@@ -70,5 +88,4 @@ Password: pfsense
 * Configuration file: [Zulu2.xml](/test-env/Zulu2.xml)
 * Click restore configuration.
 
-*Verwacht*: Het systeem wordt herstart en het systeem is volledig geconfigureerd.  
-
+*Verwacht*: Het systeem wordt herstart en het systeem is volledig geconfigureerd.
