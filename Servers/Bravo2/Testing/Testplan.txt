@@ -34,4 +34,15 @@ Bovenstaande kan getest worden via de gui of "ifconfig /all".
         - DNS: - 172.18.1.66
                - 172.18.1.67
  
- 4. 
+ 4. De DNS controleren. 
+    Via volgend commando: Get-DnsClientServerAddress
+    Het IP van DNS dat je zou moeten uitkomen is 
+ 
+ 5. ADDS controleren gaat als volgt. Onderstaande commando gaat testen of er wordt aangemeld met administrator, DNS geïnstalleerd is en of DSRM goed is ingesteld. 
+    Commando: Test-ADDSDomainControllerInstallation -InstallDns -Credential (Get-Credential) -DomainName (Read-Host "Domain to promote into")
+ 
+ 6. Controle of firewall uitstaat. Deze zou op "off" moeten staan.
+    Commando: netsh advfirewall show private|public|domain
+ 
+ 7. Controle of domein "red.local" gejoind is.
+    Commando: Get-WmiObject -Class Win32_ComputerSystem
