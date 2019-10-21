@@ -43,16 +43,16 @@ Server manager > tools > DNS Manager >Forward Lookup Zones > red.local
 | oscar2 | A | 172.18.1.5 | 
 | papa2 | A | 172.18.1.6 | 
 
-## AD en DNS Replication tussen Alfa2 en Bravo2 (Tweede domeincontroller) KAN PAS GETEST WORDEN SAMEN MET BRAVO2
+## AD en DNS Replication tussen Alfa2 en Bravo2 (Tweede domeincontroller)
 ### Uit te voeren stappen:
-##### Checken of de replicatie tussen Alfa2 en Bravo2 hun Active Directory goed werkt:
+Checken of de replicatie tussen Alfa2 en Bravo2 hun Active Directory goed werkt:
 1) Open Powershell ISE als administrator.
 2) Voer volgend commando in:
 
        repadmin /showrepl
 4) De output hiervan moet bij alle lijnen successful weergeven
 
-##### Checken of de primary DNS zone "red.local" ook op Bravo2 staat met alle records:
+Checken of de primary DNS zone "red.local" ook op Bravo2 staat met alle records:
 Dit moet je uiteraard op Bravo2 doen. Je kan Alfa2 en Bravo2 als VM in virtualbox met elkaar verbinden (Gewoon de scripts uitvoeren die de servers configureren)
 Server manager > tools > DNS Manager >Forward Lookup Zones > red.local
 
