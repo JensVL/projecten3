@@ -49,7 +49,7 @@ def custom_synced_folders(vm, host)
     folders = host['synced_folders']
 
     folders.each do |folder|
-      vm.synced_folder folder['Scripts/'], folder['Z:/'], folder['options']
+      vm.synced_folder folder['Scripts/'], folder['Z:/Scripts'], folder['options']
     end
   end
 end
