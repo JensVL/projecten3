@@ -6,7 +6,6 @@
 		<optimization>normal</optimization>
 		<hostname>Zulu2</hostname>
 		<domain>red.local</domain>
-		<dnsallowoverride>on</dnsallowoverride>
 		<group>
 			<name>all</name>
 			<description><![CDATA[All Users]]></description>
@@ -40,6 +39,8 @@
 			<ssl-certref>5dac6b19a9d7c</ssl-certref>
 			<althostnames></althostnames>
 			<dashboardcolumns>2</dashboardcolumns>
+			<webguicss>pfSense.css</webguicss>
+			<logincss>1e3f75;</logincss>
 		</webgui>
 		<disablenatreflection>yes</disablenatreflection>
 		<disablesegmentationoffloading></disablesegmentationoffloading>
@@ -54,6 +55,14 @@
 		</bogons>
 		<already_run_config_upgrade></already_run_config_upgrade>
 		<timezone>Europe/Brussels</timezone>
+		<language>en_US</language>
+		<dnsserver>172.18.1.66</dnsserver>
+		<dnsserver>172.18.1.67</dnsserver>
+		<dnsallowoverride></dnsallowoverride>
+		<dns1gw>WANGW</dns1gw>
+		<dns1host>ns1</dns1host>
+		<dns2gw>WANGW</dns2gw>
+		<dns2host>ns2</dns2host>
 	</system>
 	<interfaces>
 		<wan>
@@ -95,11 +104,34 @@
 	<staticroutes></staticroutes>
 	<dhcpd>
 		<lan>
-			<enable></enable>
 			<range>
 				<from>192.168.1.10</from>
 				<to>192.168.1.245</to>
 			</range>
+			<failover_peerip></failover_peerip>
+			<dhcpleaseinlocaltime></dhcpleaseinlocaltime>
+			<defaultleasetime></defaultleasetime>
+			<maxleasetime></maxleasetime>
+			<netmask></netmask>
+			<gateway></gateway>
+			<domain></domain>
+			<domainsearchlist></domainsearchlist>
+			<ddnsdomain></ddnsdomain>
+			<ddnsdomainprimary></ddnsdomainprimary>
+			<ddnsdomainkeyname></ddnsdomainkeyname>
+			<ddnsdomainkeyalgorithm>hmac-md5</ddnsdomainkeyalgorithm>
+			<ddnsdomainkey></ddnsdomainkey>
+			<mac_allow></mac_allow>
+			<mac_deny></mac_deny>
+			<ddnsclientupdates>allow</ddnsclientupdates>
+			<tftp></tftp>
+			<ldap></ldap>
+			<nextserver></nextserver>
+			<filename></filename>
+			<filename32></filename32>
+			<filename64></filename64>
+			<rootpath></rootpath>
+			<numberoptions></numberoptions>
 		</lan>
 	</dhcpd>
 	<dhcpdv6>
@@ -202,9 +234,9 @@
 		</rule>
 		<rule>
 			<id></id>
-			<tracker>1571655138</tracker>
+			<tracker>1571662165</tracker>
 			<type>pass</type>
-			<interface>lan</interface>
+			<interface>wan</interface>
 			<ipprotocol>inet</ipprotocol>
 			<tag></tag>
 			<tagged></tagged>
@@ -220,189 +252,25 @@
 				<any></any>
 			</source>
 			<destination>
-				<address>172.18.1.67</address>
-				<port>RPCPorts</port>
-			</destination>
-			<descr></descr>
-			<updated>
-				<time>1571655138</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</updated>
-			<created>
-				<time>1571655138</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</created>
-		</rule>
-		<rule>
-			<id></id>
-			<tracker>1571655102</tracker>
-			<type>pass</type>
-			<interface>lan</interface>
-			<ipprotocol>inet</ipprotocol>
-			<tag></tag>
-			<tagged></tagged>
-			<max></max>
-			<max-src-nodes></max-src-nodes>
-			<max-src-conn></max-src-conn>
-			<max-src-states></max-src-states>
-			<statetimeout></statetimeout>
-			<statetype><![CDATA[keep state]]></statetype>
-			<os></os>
-			<protocol>udp</protocol>
-			<source>
-				<any></any>
-			</source>
-			<destination>
-				<address>172.18.1.67</address>
-				<port>NATTPorts</port>
-			</destination>
-			<descr></descr>
-			<updated>
-				<time>1571655102</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</updated>
-			<created>
-				<time>1571655102</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</created>
-		</rule>
-		<rule>
-			<id></id>
-			<tracker>1571655085</tracker>
-			<type>pass</type>
-			<interface>lan</interface>
-			<ipprotocol>inet</ipprotocol>
-			<tag></tag>
-			<tagged></tagged>
-			<max></max>
-			<max-src-nodes></max-src-nodes>
-			<max-src-conn></max-src-conn>
-			<max-src-states></max-src-states>
-			<statetimeout></statetimeout>
-			<statetype><![CDATA[keep state]]></statetype>
-			<os></os>
-			<protocol>udp</protocol>
-			<source>
-				<any></any>
-			</source>
-			<destination>
-				<address>172.18.1.67</address>
-				<port>IPsecISAKMP</port>
-			</destination>
-			<descr></descr>
-			<updated>
-				<time>1571655085</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</updated>
-			<created>
-				<time>1571655085</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</created>
-		</rule>
-		<rule>
-			<id></id>
-			<tracker>1571655071</tracker>
-			<type>pass</type>
-			<interface>lan</interface>
-			<ipprotocol>inet</ipprotocol>
-			<tag></tag>
-			<tagged></tagged>
-			<max></max>
-			<max-src-nodes></max-src-nodes>
-			<max-src-conn></max-src-conn>
-			<max-src-states></max-src-states>
-			<statetimeout></statetimeout>
-			<statetype><![CDATA[keep state]]></statetype>
-			<os></os>
-			<protocol>tcp</protocol>
-			<source>
-				<any></any>
-			</source>
-			<destination>
-				<address>172.18.1.67</address>
-				<port>SMBPorts</port>
-			</destination>
-			<descr></descr>
-			<updated>
-				<time>1571655071</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</updated>
-			<created>
-				<time>1571655071</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</created>
-		</rule>
-		<rule>
-			<id></id>
-			<tracker>1571655051</tracker>
-			<type>pass</type>
-			<interface>lan</interface>
-			<ipprotocol>inet</ipprotocol>
-			<tag></tag>
-			<tagged></tagged>
-			<max></max>
-			<max-src-nodes></max-src-nodes>
-			<max-src-conn></max-src-conn>
-			<max-src-states></max-src-states>
-			<statetimeout></statetimeout>
-			<statetype><![CDATA[keep state]]></statetype>
-			<os></os>
-			<protocol>tcp/udp</protocol>
-			<source>
-				<any></any>
-			</source>
-			<destination>
-				<address>172.18.1.67</address>
-				<port>LDAPPorts</port>
-			</destination>
-			<descr></descr>
-			<updated>
-				<time>1571655051</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</updated>
-			<created>
-				<time>1571655051</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</created>
-		</rule>
-		<rule>
-			<id></id>
-			<tracker>1571655036</tracker>
-			<type>pass</type>
-			<interface>lan</interface>
-			<ipprotocol>inet</ipprotocol>
-			<tag></tag>
-			<tagged></tagged>
-			<max></max>
-			<max-src-nodes></max-src-nodes>
-			<max-src-conn></max-src-conn>
-			<max-src-states></max-src-states>
-			<statetimeout></statetimeout>
-			<statetype><![CDATA[keep state]]></statetype>
-			<os></os>
-			<protocol>tcp</protocol>
-			<source>
-				<any></any>
-			</source>
-			<destination>
-				<address>172.18.1.67</address>
+				<address>DomeinControllers</address>
 				<port>GCPorts</port>
 			</destination>
+			<log></log>
 			<descr></descr>
-			<updated>
-				<time>1571655036</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</updated>
 			<created>
-				<time>1571655036</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
+				<time>1571662165</time>
+				<username>admin@192.168.1.55 (Local Database)</username>
 			</created>
+			<updated>
+				<time>1571662199</time>
+				<username>admin@192.168.1.55 (Local Database)</username>
+			</updated>
 		</rule>
 		<rule>
 			<id></id>
-			<tracker>1571655024</tracker>
+			<tracker>1571662115</tracker>
 			<type>pass</type>
-			<interface>lan</interface>
+			<interface>wan</interface>
 			<ipprotocol>inet</ipprotocol>
 			<tag></tag>
 			<tagged></tagged>
@@ -418,24 +286,25 @@
 				<any></any>
 			</source>
 			<destination>
-				<address>172.18.1.67</address>
+				<address>DomeinControllers</address>
 				<port>ADWSPorts</port>
 			</destination>
+			<log></log>
 			<descr></descr>
 			<updated>
-				<time>1571655024</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
+				<time>1571662115</time>
+				<username>admin@192.168.1.55 (Local Database)</username>
 			</updated>
 			<created>
-				<time>1571655024</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
+				<time>1571662115</time>
+				<username>admin@192.168.1.55 (Local Database)</username>
 			</created>
 		</rule>
 		<rule>
 			<id></id>
-			<tracker>1571654991</tracker>
+			<tracker>1571662240</tracker>
 			<type>pass</type>
-			<interface>lan</interface>
+			<interface>wan</interface>
 			<ipprotocol>inet</ipprotocol>
 			<tag></tag>
 			<tagged></tagged>
@@ -451,189 +320,93 @@
 				<any></any>
 			</source>
 			<destination>
-				<address>172.18.1.67</address>
-				<port>DNSServer</port>
-			</destination>
-			<descr></descr>
-			<updated>
-				<time>1571654991</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</updated>
-			<created>
-				<time>1571654991</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</created>
-		</rule>
-		<rule>
-			<id></id>
-			<tracker>1571654863</tracker>
-			<type>pass</type>
-			<interface>lan</interface>
-			<ipprotocol>inet</ipprotocol>
-			<tag></tag>
-			<tagged></tagged>
-			<max></max>
-			<max-src-nodes></max-src-nodes>
-			<max-src-conn></max-src-conn>
-			<max-src-states></max-src-states>
-			<statetimeout></statetimeout>
-			<statetype><![CDATA[keep state]]></statetype>
-			<os></os>
-			<protocol>udp</protocol>
-			<source>
-				<any></any>
-			</source>
-			<destination>
-				<address>172.18.1.66</address>
-				<port>IPsecISAKMP</port>
-			</destination>
-			<descr></descr>
-			<created>
-				<time>1571654863</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</created>
-			<updated>
-				<time>1571654894</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</updated>
-		</rule>
-		<rule>
-			<id></id>
-			<tracker>1571654845</tracker>
-			<type>pass</type>
-			<interface>lan</interface>
-			<ipprotocol>inet</ipprotocol>
-			<tag></tag>
-			<tagged></tagged>
-			<max></max>
-			<max-src-nodes></max-src-nodes>
-			<max-src-conn></max-src-conn>
-			<max-src-states></max-src-states>
-			<statetimeout></statetimeout>
-			<statetype><![CDATA[keep state]]></statetype>
-			<os></os>
-			<protocol>udp</protocol>
-			<source>
-				<any></any>
-			</source>
-			<destination>
-				<address>172.18.1.66</address>
-				<port>NATTPorts</port>
-			</destination>
-			<descr></descr>
-			<created>
-				<time>1571654845</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</created>
-			<updated>
-				<time>1571654882</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</updated>
-		</rule>
-		<rule>
-			<id></id>
-			<tracker>1571654816</tracker>
-			<type>pass</type>
-			<interface>lan</interface>
-			<ipprotocol>inet</ipprotocol>
-			<tag></tag>
-			<tagged></tagged>
-			<max></max>
-			<max-src-nodes></max-src-nodes>
-			<max-src-conn></max-src-conn>
-			<max-src-states></max-src-states>
-			<statetimeout></statetimeout>
-			<statetype><![CDATA[keep state]]></statetype>
-			<os></os>
-			<protocol>tcp</protocol>
-			<source>
-				<any></any>
-			</source>
-			<destination>
-				<address>172.18.1.66</address>
-				<port>RPCPorts</port>
-			</destination>
-			<descr></descr>
-			<updated>
-				<time>1571654816</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</updated>
-			<created>
-				<time>1571654816</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</created>
-		</rule>
-		<rule>
-			<id></id>
-			<tracker>1571654802</tracker>
-			<type>pass</type>
-			<interface>lan</interface>
-			<ipprotocol>inet</ipprotocol>
-			<tag></tag>
-			<tagged></tagged>
-			<max></max>
-			<max-src-nodes></max-src-nodes>
-			<max-src-conn></max-src-conn>
-			<max-src-states></max-src-states>
-			<statetimeout></statetimeout>
-			<statetype><![CDATA[keep state]]></statetype>
-			<os></os>
-			<protocol>tcp</protocol>
-			<source>
-				<any></any>
-			</source>
-			<destination>
-				<address>172.18.1.66</address>
-				<port>SMBPorts</port>
-			</destination>
-			<descr></descr>
-			<updated>
-				<time>1571654802</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</updated>
-			<created>
-				<time>1571654802</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</created>
-		</rule>
-		<rule>
-			<id></id>
-			<tracker>1571654774</tracker>
-			<type>pass</type>
-			<interface>lan</interface>
-			<ipprotocol>inet</ipprotocol>
-			<tag></tag>
-			<tagged></tagged>
-			<max></max>
-			<max-src-nodes></max-src-nodes>
-			<max-src-conn></max-src-conn>
-			<max-src-states></max-src-states>
-			<statetimeout></statetimeout>
-			<statetype><![CDATA[keep state]]></statetype>
-			<os></os>
-			<protocol>tcp/udp</protocol>
-			<source>
-				<any></any>
-			</source>
-			<destination>
-				<address>172.18.1.66</address>
+				<address>DomeinControllers</address>
 				<port>LDAPPorts</port>
 			</destination>
+			<log></log>
 			<descr></descr>
-			<created>
-				<time>1571654774</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</created>
 			<updated>
-				<time>1571654913</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
+				<time>1571662240</time>
+				<username>admin@192.168.1.55 (Local Database)</username>
 			</updated>
+			<created>
+				<time>1571662240</time>
+				<username>admin@192.168.1.55 (Local Database)</username>
+			</created>
 		</rule>
 		<rule>
 			<id></id>
-			<tracker>1571654751</tracker>
+			<tracker>1571662268</tracker>
 			<type>pass</type>
-			<interface>lan</interface>
+			<interface>wan</interface>
+			<ipprotocol>inet</ipprotocol>
+			<tag></tag>
+			<tagged></tagged>
+			<max></max>
+			<max-src-nodes></max-src-nodes>
+			<max-src-conn></max-src-conn>
+			<max-src-states></max-src-states>
+			<statetimeout></statetimeout>
+			<statetype><![CDATA[keep state]]></statetype>
+			<os></os>
+			<protocol>udp</protocol>
+			<source>
+				<any></any>
+			</source>
+			<destination>
+				<address>DomeinControllers</address>
+				<port>IPsecISAKMP</port>
+			</destination>
+			<log></log>
+			<descr></descr>
+			<updated>
+				<time>1571662268</time>
+				<username>admin@192.168.1.55 (Local Database)</username>
+			</updated>
+			<created>
+				<time>1571662268</time>
+				<username>admin@192.168.1.55 (Local Database)</username>
+			</created>
+		</rule>
+		<rule>
+			<id></id>
+			<tracker>1571662301</tracker>
+			<type>pass</type>
+			<interface>wan</interface>
+			<ipprotocol>inet</ipprotocol>
+			<tag></tag>
+			<tagged></tagged>
+			<max></max>
+			<max-src-nodes></max-src-nodes>
+			<max-src-conn></max-src-conn>
+			<max-src-states></max-src-states>
+			<statetimeout></statetimeout>
+			<statetype><![CDATA[keep state]]></statetype>
+			<os></os>
+			<protocol>udp</protocol>
+			<source>
+				<any></any>
+			</source>
+			<destination>
+				<address>DomeinControllers</address>
+				<port>NATTPorts</port>
+			</destination>
+			<log></log>
+			<descr></descr>
+			<updated>
+				<time>1571662301</time>
+				<username>admin@192.168.1.55 (Local Database)</username>
+			</updated>
+			<created>
+				<time>1571662301</time>
+				<username>admin@192.168.1.55 (Local Database)</username>
+			</created>
+		</rule>
+		<rule>
+			<id></id>
+			<tracker>1571662328</tracker>
+			<type>pass</type>
+			<interface>wan</interface>
 			<ipprotocol>inet</ipprotocol>
 			<tag></tag>
 			<tagged></tagged>
@@ -649,24 +422,25 @@
 				<any></any>
 			</source>
 			<destination>
-				<address>172.18.1.66</address>
-				<port>GCPorts</port>
+				<address>DomeinControllers</address>
+				<port>RPCPorts</port>
 			</destination>
+			<log></log>
 			<descr></descr>
 			<updated>
-				<time>1571654751</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
+				<time>1571662328</time>
+				<username>admin@192.168.1.55 (Local Database)</username>
 			</updated>
 			<created>
-				<time>1571654751</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
+				<time>1571662328</time>
+				<username>admin@192.168.1.55 (Local Database)</username>
 			</created>
 		</rule>
 		<rule>
 			<id></id>
-			<tracker>1571654720</tracker>
+			<tracker>1571662344</tracker>
 			<type>pass</type>
-			<interface>lan</interface>
+			<interface>wan</interface>
 			<ipprotocol>inet</ipprotocol>
 			<tag></tag>
 			<tagged></tagged>
@@ -682,24 +456,25 @@
 				<any></any>
 			</source>
 			<destination>
-				<address>172.18.1.66</address>
-				<port>ADWSPorts</port>
+				<address>DomeinControllers</address>
+				<port>SMBPorts</port>
 			</destination>
+			<log></log>
 			<descr></descr>
 			<updated>
-				<time>1571654720</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
+				<time>1571662344</time>
+				<username>admin@192.168.1.55 (Local Database)</username>
 			</updated>
 			<created>
-				<time>1571654720</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
+				<time>1571662344</time>
+				<username>admin@192.168.1.55 (Local Database)</username>
 			</created>
 		</rule>
 		<rule>
 			<id></id>
-			<tracker>1571654668</tracker>
+			<tracker>1571662361</tracker>
 			<type>pass</type>
-			<interface>lan</interface>
+			<interface>wan</interface>
 			<ipprotocol>inet</ipprotocol>
 			<tag></tag>
 			<tagged></tagged>
@@ -715,24 +490,25 @@
 				<any></any>
 			</source>
 			<destination>
-				<address>172.18.1.66</address>
+				<address>DomeinControllers</address>
 				<port>DNSServer</port>
 			</destination>
+			<log></log>
 			<descr></descr>
-			<created>
-				<time>1571654668</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</created>
 			<updated>
-				<time>1571655166</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
+				<time>1571662361</time>
+				<username>admin@192.168.1.55 (Local Database)</username>
 			</updated>
+			<created>
+				<time>1571662361</time>
+				<username>admin@192.168.1.55 (Local Database)</username>
+			</created>
 		</rule>
 		<rule>
 			<id></id>
-			<tracker>1571654469</tracker>
+			<tracker>1571662591</tracker>
 			<type>pass</type>
-			<interface>lan</interface>
+			<interface>wan</interface>
 			<ipprotocol>inet</ipprotocol>
 			<tag></tag>
 			<tagged></tagged>
@@ -743,56 +519,24 @@
 			<statetimeout></statetimeout>
 			<statetype><![CDATA[keep state]]></statetype>
 			<os></os>
-			<protocol>tcp</protocol>
+			<protocol>icmp</protocol>
+			<icmptype>any</icmptype>
 			<source>
-				<any></any>
+				<address>172.16.0.0/16</address>
 			</source>
 			<destination>
-				<address>172.18.1.5</address>
-				<port>ADWSPorts</port>
-			</destination>
-			<descr></descr>
-			<updated>
-				<time>1571654469</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</updated>
-			<created>
-				<time>1571654469</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</created>
-		</rule>
-		<rule>
-			<id></id>
-			<tracker>1571654445</tracker>
-			<type>pass</type>
-			<interface>lan</interface>
-			<ipprotocol>inet</ipprotocol>
-			<tag></tag>
-			<tagged></tagged>
-			<max></max>
-			<max-src-nodes></max-src-nodes>
-			<max-src-conn></max-src-conn>
-			<max-src-states></max-src-states>
-			<statetimeout></statetimeout>
-			<statetype><![CDATA[keep state]]></statetype>
-			<os></os>
-			<protocol>tcp</protocol>
-			<source>
 				<any></any>
-			</source>
-			<destination>
-				<address>172.18.1.5</address>
-				<port>PRTGPorts</port>
 			</destination>
+			<log></log>
 			<descr></descr>
-			<updated>
-				<time>1571654445</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
-			</updated>
 			<created>
-				<time>1571654445</time>
-				<username>admin@172.18.156.171 (Local Database)</username>
+				<time>1571662591</time>
+				<username>admin@192.168.1.55 (Local Database)</username>
 			</created>
+			<updated>
+				<time>1571663060</time>
+				<username>admin@192.168.1.55 (Local Database)</username>
+			</updated>
 		</rule>
 		<rule>
 			<type>pass</type>
@@ -822,25 +566,12 @@
 		</rule>
 		<separator>
 			<wan></wan>
+			<lan></lan>
 		</separator>
 	</filter>
 	<shaper></shaper>
 	<ipsec></ipsec>
 	<aliases>
-		<alias>
-			<name>Mailserver</name>
-			<type>port</type>
-			<address>143 993 110 995</address>
-			<descr><![CDATA[Ports for mailserver]]></descr>
-			<detail><![CDATA[IMAP||IMAP/S||POP3||POP/S]]></detail>
-		</alias>
-		<alias>
-			<name>Webserver</name>
-			<type>port</type>
-			<address>443 80</address>
-			<descr><![CDATA[Ports for webserver]]></descr>
-			<detail><![CDATA[https||http]]></detail>
-		</alias>
 		<alias>
 			<name>ADWSPorts</name>
 			<type>port</type>
@@ -849,18 +580,18 @@
 			<detail><![CDATA[Active Directory Web Services]]></detail>
 		</alias>
 		<alias>
-			<name>DHCPServer</name>
-			<type>port</type>
-			<address>67 2535 647</address>
-			<descr><![CDATA[Ports for DHCP Server]]></descr>
-			<detail><![CDATA[DHCP Server||MADCAP||DHCP Failover]]></detail>
-		</alias>
-		<alias>
 			<name>DNSServer</name>
 			<type>port</type>
 			<address>53</address>
 			<descr><![CDATA[Ports for DNS Server]]></descr>
 			<detail><![CDATA[DNS]]></detail>
+		</alias>
+		<alias>
+			<name>DomeinControllers</name>
+			<type>host</type>
+			<address>172.18.1.66 172.18.1.67</address>
+			<descr></descr>
+			<detail><![CDATA[Entry added Mon, 21 Oct 2019 14:45:16 +0200||Entry added Mon, 21 Oct 2019 14:45:16 +0200]]></detail>
 		</alias>
 		<alias>
 			<name>GCPorts</name>
@@ -882,6 +613,13 @@
 			<address>389 636</address>
 			<descr><![CDATA[Ports for LDAP]]></descr>
 			<detail><![CDATA[LDAP Server||LDAP Secure]]></detail>
+		</alias>
+		<alias>
+			<name>Mailserver</name>
+			<type>port</type>
+			<address>143 993 110 995 25 587 2525 465 25025</address>
+			<descr><![CDATA[Ports for Mailserver]]></descr>
+			<detail><![CDATA[IMAP||IMAP/S||POP3||POP/S||SMTP||SMTP||SMTP||SMTP/S||SMTP/S]]></detail>
 		</alias>
 		<alias>
 			<name>NATTPorts</name>
@@ -910,6 +648,13 @@
 			<address>445</address>
 			<descr><![CDATA[Ports for SMB]]></descr>
 			<detail><![CDATA[SMB]]></detail>
+		</alias>
+		<alias>
+			<name>Webserver</name>
+			<type>port</type>
+			<address>443 80</address>
+			<descr><![CDATA[Ports for webserver]]></descr>
+			<detail><![CDATA[https||http]]></detail>
 		</alias>
 	</aliases>
 	<proxyarp></proxyarp>
@@ -1023,7 +768,6 @@
 	<openvpn></openvpn>
 	<dnshaper></dnshaper>
 	<unbound>
-		<enable></enable>
 		<dnssec></dnssec>
 		<active_interface>all</active_interface>
 		<outgoing_interface>all</outgoing_interface>
@@ -1037,9 +781,9 @@
 		<system_domain_local_zone_type>transparent</system_domain_local_zone_type>
 	</unbound>
 	<revision>
-		<time>1571578316</time>
-		<description><![CDATA[admin@192.168.1.10 (Local Database): /interfaces.php made unknown change]]></description>
-		<username>admin@192.168.1.10 (Local Database)</username>
+		<time>1571663849</time>
+		<description><![CDATA[admin@192.168.1.55 (Local Database): System: ]]></description>
+		<username>admin@192.168.1.55 (Local Database)</username>
 	</revision>
 	<cert>
 		<refid>5dac6b19a9d7c</refid>
@@ -1076,4 +820,9 @@
 		</gateway_item>
 		<defaultgw4>WANGW</defaultgw4>
 	</gateways>
+	<dhcrelay>
+		<enable></enable>
+		<interface>lan</interface>
+		<server>172.18.1.1</server>
+	</dhcrelay>
 </pfsense>
