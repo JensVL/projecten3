@@ -1,0 +1,2 @@
+Kan iedereen de firewall uitzetten met volgende commando (Doet dit Nadat je PC de laatste keer heeft gereboot niet meer moet rebooten)
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
