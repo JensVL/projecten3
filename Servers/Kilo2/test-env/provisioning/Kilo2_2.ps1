@@ -1,3 +1,10 @@
+# Creating security groups
+
+Write-Host "Creating security groups..."
+cmd.exe /c "netsh dhcp add securitygroups"
+Write-Host "Security Groups created"
+Restart-Service dhcpserver
+
 # Configureren van de Scopes op de DHCP Server
 
 # --scope vlan 200--
@@ -24,8 +31,6 @@ Start-Job -Name AuthorizeDHCP -Credential $credential -ScriptBlock {
 }
 
 Wait-Job -Name AuthorizeDHCP
-
-Write-Host "DHCP server authorized"
 
 # Restart DHCP Server
 Restart-service dhcpserver
