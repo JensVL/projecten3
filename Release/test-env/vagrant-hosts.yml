@@ -137,7 +137,8 @@
   include_linter: $false
 
 - name: Win10-client01
-  box: gusztavvargadr/windows-10
+  # box: gusztavvargadr/windows-10
+  box: StefanScherer/windows_10
   ip: 172.18.0.5
   netmask: 255.255.255.0
   gui: false
@@ -148,7 +149,8 @@
       host: '3395'
 
 - name: Win10-client02
-  box: gusztavvargadr/windows-10
+  # box: gusztavvargadr/windows-10
+  box: StefanScherer/windows_10
   ip: 172.18.0.6
   netmask: 255.255.255.0
   gui: false
