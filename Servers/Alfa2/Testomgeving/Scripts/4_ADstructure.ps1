@@ -1,9 +1,9 @@
 # PREFERENCE VARIABLES: (Om Debug,Verbose en informaation info in de Start-Transcript log files te zien)
-$DebugPreference = "Continue"
-$VerbosePreference = "Continue"
-$InformationPreference = "Continue"
+# $DebugPreference = "Continue"
+# $VerbosePreference = "Continue"
+# $InformationPreference = "Continue"
 
-Start-Transcript "C:\ScriptLogs\4_ADstructure.txt"
+# Start-Transcript "C:\ScriptLogs\4_ADstructure.txt"
 Import-Module ActiveDirectory
 
 ## Organizational Units aanmaken
@@ -308,4 +308,4 @@ New-ADComputer "ITAdministratie_005" -SamAccountName "ITAdmin005" -Path "CN=Comp
 # DisableNetworkadapters
 # Group Policy Management Editor > User Configuration > Policies > Administratieve Templates: Policy definitions > Network > Network Connections > Prohibit access to properties of a LAN connection > Disabled > Apply
 
-Stop-Transcript
+# Stop-Transcript

@@ -10,18 +10,18 @@ $CIDR = "27"
 $AdapterNaam = "LAN"
 
 # PREFERENCE VARIABLES: (Om Debug,Verbose en informaation info in de Start-Transcript log files te zien)
-$DebugPreference = "Continue"
-$VerbosePreference = "Continue"
-$InformationPreference = "Continue"
+# $DebugPreference = "Continue"
+# $VerbosePreference = "Continue"
+# $InformationPreference = "Continue"
 
 # LOG SCRIPT TO FILE (+ op het einde van het script Stop-Transcript doen):
-Start-Transcript "C:\ScriptLogs\2_InstallDCDNSlog.txt"
+# Start-Transcript "C:\ScriptLogs\2_InstallDCDNSlog.txt"
 
 # Start-Sleep zal 10 seconden wachten voor hij aan het eerste commando van dit script begint
 # om zeker te zijn dat de server klaar is met het starten van zijn services na de reboot
-Write-host "Waiting 15 seconds before executing script" -ForeGroundColor "Green"
-start-sleep -s 15
-Write-host "Starting script now:" -ForeGroundColor "Green"
+# Write-host "Waiting 15 seconds before executing script" -ForeGroundColor "Green"
+# start-sleep -s 15
+# Write-host "Starting script now:" -ForeGroundColor "Green"
 
 # 1) Stel Datum/tijd correct in:
 # Romance standard time = Brusselse tijd
@@ -35,9 +35,9 @@ set-timezone -Name "Romance Standard Time"
 # LAN = de adapter met static IP instellingen die alle servers met elkaar verbind.
 Write-host "Changing NIC adapter names:" -ForeGroundColor "Green"
 # TODO:                                                                                                                      TODO: Vervang door:
-Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName $AdapterNaam
-#Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName NAT
-#Get-NetAdapter -Name "Ethernet 2" | Rename-NetAdapter -NewName $AdapterNaam
+# Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName $AdapterNaam
+Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName "NAT"
+Get-NetAdapter -Name "Ethernet 2" | Rename-NetAdapter -NewName $AdapterNaam
 ###################################################################################################### ENKEL VOOR VIRTUALBOX LAB TESTING DEMO HEEFT 1 NIC (LAN)
 
 #                                                                          ############################# TODO: SWITCH IP ADRES INSTELLEN ALS Def. Gateway
@@ -58,23 +58,25 @@ import-module ADDSDeployment
 # 5) Idem aan het 1_RUNFIRST.ps1 script zal deze registry instelling ervoor zorgen dat ons volgende script automatisch wordt geladen
 # Want het installeren van de ADDS role herstart automatisch onze server
 # RunOnce verwijderd deze instelling automatisch nadat het script klaar is met runnen
-Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce' -Name ResumeScript `
-                -Value "C:\Windows\system32\WindowsPowerShell\v1.0\Powershell.exe -executionpolicy bypass -file `"$VBOXdrive\3_ConfigDCDNS.ps1`""
+# Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce' -Name ResumeScript `
+#                 -Value "C:\Windows\system32\WindowsPowerShell\v1.0\Powershell.exe -executionpolicy bypass -file `"$VBOXdrive\3_ConfigDCDNS.ps1`""
 
 # 6) Voeg de Alfa2 server toe aan het nieuwe domain: red.local
 # 6.1) Maak een CredentialsOBject aan voor de user om zijn DSRM password te vragen (Admin2019)
 # Zal een popup window openen waarin je je passwoord moet invullen dit passwoord wordt dan in het commando in stap 7 gebruikt
-$CurrentCredentials = Get-Credential -UserName $env:USERNAME -Message "Geef je gewenste DSRM passwoord in"
-$DSRM = $CurrentCredentials.Password
+# $CurrentCredentials = Get-Credential -UserName $env:USERNAME -Message "Geef je gewenste DSRM passwoord in"
+# $DSRM = $CurrentCredentials.Password
+$DSRM = ConvertTo-SecureString "Admin2019" -asPlainText -force
+Set-LocalUser -Name Administrator -AccountNeverExpires -Password $DSRM -PasswordNeverExpires:$true -UserMayChangePassword:$true
 
 # 6.2) Vanaf dat ik met red/administrator was ingelogd had ik het probleem dat ik geen permissie had om de netwerkadapters te wijzigen.
 # De oplossing hiervoor is in gpedit.msc "User Account Control: Admin approval mode for the builtin Administrator account" te ENABLEN
 # Dit doe je in powershell met volgende command die de juiste registry instelling zal wijzigen:
 # De eerste command zorgt ervoor dat je je als admin niet steeds moet inloggen wanneer je wijzigingen wil doen:
-set-itemproperty -Path "REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System" `
-                -name "ConsentPromptBehaviorAdmin" -value 0
-Set-ItemProperty -Path "REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System" `
-                -Name "FilterAdministratorToken" -value 1
+# set-itemproperty -Path "REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System" `
+#                 -name "ConsentPromptBehaviorAdmin" -value 0
+# Set-ItemProperty -Path "REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System" `
+#                 -Name "FilterAdministratorToken" -value 1
 
 # 7) Aanmaken van ons nieuw domain:
 #     Forestmode/DomainMode => 7 is = Windows Server 2016 (de oudste Windows Server versie in onze opstelling)
@@ -86,7 +88,8 @@ install-ADDSForest -DomainName "red.local" `
                   -DomainMode 7 `
                   -installDns:$true `
                   -createDNSDelegation:$false `
+                  -NoRebootOnCompletion:$true `
                   -SafeModeAdministratorPassword $DSRM `
                   -force:$true
 
-Stop-Transcript
+# Stop-Transcript

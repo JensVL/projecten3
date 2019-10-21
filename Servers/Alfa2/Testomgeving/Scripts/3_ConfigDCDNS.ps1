@@ -17,15 +17,20 @@ $VBOXdrive = "Z:"
 
 
 # PREFERENCE VARIABLES: (Om Debug,Verbose en informaation info in de Start-Transcript log files te zien)
-$DebugPreference = "Continue"
-$VerbosePreference = "Continue"
-$InformationPreference = "Continue"
+# $DebugPreference = "Continue"
+# $VerbosePreference = "Continue"
+# $InformationPreference = "Continue"
 
 # LOG SCRIPT TO FILE (+ op het einde van het script Stop-Transcript doen):
-Start-Transcript "C:\ScriptLogs\3_ConfigDCDNSlog.txt"
-Write-Host "Waiting 30 seconds before starting script:" -ForeGroundColor "Green"
-Start-Sleep -s 30
-
+# Start-Transcript "C:\ScriptLogs\3_ConfigDCDNSlog.txt"
+while ($true) {
+    try {
+        Get-ADDomain | Out-Null
+        break
+    } catch {
+        Start-Sleep -Seconds 10
+    }
+}
 # 1) Stel forward primary lookup zones in voor alle servers in het red domein:
 Write-host "Setting DNS primary zone for red.local" -ForeGroundColor "Green"
 Set-DnsServerPrimaryZone -Name "red.local" -SecureSecondaries "TransferToZoneNameServer"
@@ -53,6 +58,6 @@ Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 
 # 5) Start het 4_ADstructure.ps1 script als Administrator:
 Write-host "Running next script 4_ADSTRUCTURE.ps1 as admin:" -ForeGroundColor "Green"
-Start-Process powershell -Verb runAs -ArgumentList "$VBOXdrive\4_ADstructure.ps1"
+# Start-Process powershell -Verb runAs -ArgumentList "$VBOXdrive\4_ADstructure.ps1"
 
-Stop-Transcript
+# Stop-Transcript
