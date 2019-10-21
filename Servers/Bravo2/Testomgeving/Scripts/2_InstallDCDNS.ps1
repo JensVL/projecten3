@@ -60,7 +60,7 @@ Set-ItemProperty -Path "REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\
 # 8) Firewall uitschakelen
 Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 
-# 9) Joinen van domein "Red.local":
+# 9) Joinen van domein "red.local":
 Write-host "Starting configuration of red.local domain:" -ForeGroundColor "Green"
 install-ADDSDomainController -DomainName "red.local" `
                   -ReplicationSourceDC "Alfa2.red.local" `
