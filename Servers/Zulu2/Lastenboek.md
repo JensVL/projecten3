@@ -15,17 +15,17 @@ We moeten gebruik maken van PfSense en zorgen dat:
 ## Done
 | TeamLid                     | Deeltaak | Time Estimated           | Time spent  |
 | --------------              | --------------    | -------------- |      --------------        |
-| Alister & Sean | Opzoekingswerk PfSense   |        8        |       7        |
-| Alister | Test Omgeving   |    6            |       1        |
-| Alister | Documentatie testomgeving  |      4          |       2        |
-| Alister | Testplan   |      3          |       1.5        |
+| Alister & Sean | Opzoekingswerk PfSense   |        8        |       8        |
+| Alister | Test Omgeving   |    6            |       5        |
+| Alister | Documentatie testomgeving  |      4          |       4        |
+| Alister | Testplan   |      3          |       2.5        |
 | Sean | Documentatie Productieomgeving |         1       |     0.8          |
 | Sean | Installatie Productieomgeving |  3 |  2  |
-| Alister & Sean | Documentatie configuratie  |      4          |       0        |
+| Alister & Sean | Documentatie configuratie  |      4          |       1        |
 
 ## To do
- - Configuratie via Webconfig
- - Documentatie aanvullen
+ - XML testen in hyperV
+ - Documentatie configuratie afwerken
 
 ## Vragen
 ...
