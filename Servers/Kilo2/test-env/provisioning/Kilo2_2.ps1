@@ -24,7 +24,7 @@ Write-Host "VLAN 200 configured"
 Write-Host "Authorizing DHCP server..."
 
 $password = "vagrant" | ConvertTo-SecureString -AsPlainText -Force
-$username = "Administrator"
+$username = "RED\Administrator"
 $credential = New-Object System.Management.Automation.PSCredential($username, $password)
 
 Start-Job -Name AuthorizeDHCP -Credential $credential -ScriptBlock {
