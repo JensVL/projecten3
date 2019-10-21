@@ -1,3 +1,10 @@
+# Creating security groups
+
+Write-Host "Creating security groups..."
+cmd.exe /c "netsh dhcp add securitygroups"
+Write-Host "Security Groups created"
+Restart-Service dhcpserver
+
 # Configureren van de Scopes op de DHCP Server
 
 # --scope vlan 200--
@@ -15,11 +22,15 @@ Set-DhcpServerv4Scope -ScopeId 172.18.0.0 -LeaseDuration (New-TimeSpan -Days 2)
 Write-Host "VLAN 200 configured"
 Write-Host "Authorizing DHCP server..."
 
-Start-Sleep -Seconds 10
+$password = "vagrant" | ConvertTo-SecureString -AsPlainText -Force
+$username = "Administrator"
+$credential = New-Object System.Management.Automation.PSCredential($username, $password)
 
-Add-DhcpServerInDC -DnsName "Kilo2.red.local"
+Start-Job -Name AuthorizeDHCP -Credential $credential -ScriptBlock {
+    Add-DhcpServerInDC -DnsName "Kilo2.red.local"
+}
 
-Write-Host "DHCP server authorized"
+Wait-Job -Name AuthorizeDHCP
 
 # Restart DHCP Server
 Restart-service dhcpserver

@@ -1,5 +1,10 @@
 # IP Configuraties
 
+# DHCP rol installeren
+Start-Job -Name InstallDHCP -ScriptBlock {
+    Install-WindowsFeature -Name DHCP -IncludeManagementTools
+}
+
 Write-Host "Configuring IP..."
 $IP = "172.18.1.1"
 $DefaultGateway = "172.18.1.66"
@@ -27,18 +32,4 @@ $credential = New-Object System.Management.Automation.PSCredential($username, $p
 Add-Computer -DomainName $domain -Credential $credential -Force
 Write-Host "Server added to Domain"
 
-# DHCP rol installeren
-Write-Host "Installing DHCP feature..."
-Install-WindowsFeature -Name DHCP -IncludeManagementTools
-Write-Host "DHCP feature installed"
-
-
-# Setting up login RED\Administrator
-
-# cmd.exe /c "netsh dhcp add securitygroups"
-$Username = "RED\Administrator"
-$Password = "vagrant" 
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultUserName -Value $Username
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultPassword -Value $Password
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogon -Value 1
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name ForceAutoLogon -Value 1
+Wait-Job -Name InstallDHCP
