@@ -5,7 +5,7 @@
 Auteur(s) testplan: Kimberly De Clercq en Laurens Blancquaert-Cassaer
 
 ## AD/DNS configuratie en installatie
-# Uit te voeren stappen:
+### Uit te voeren stappen:
 Checken of dat Alfa2 een domeincontroller is:
 Server Manager > tools > Active Directory Users and Computers > Papa2.red.local > Domain Controllers (container)
 Hierin zou Alfa2 als computerobject moeten staan
@@ -23,10 +23,12 @@ Hier zou je "red.local" moeten zien staan
 
 
 ##  DNS records tabel:
-# Uit te voeren stappen:
-Check of deze  DNS records bestaan in server manager > tools > DNS Manager >Forward Lookup Zones > red.local
-Let op: Alle records moeten een A record zijn behalve Alfa2 en Bravo2 deze zijn een NS record.
-De Exchange server Charlie2 bevat naast een A record ook een MX en Cname record.
+### Uit te voeren stappen:
+Checken of de DNS records bestaan: 
+Server manager > tools > DNS Manager >Forward Lookup Zones > red.local
+
+    Let op: Alle records moeten een A record zijn behalve Alfa2 en Bravo2 deze zijn een NS record.
+    De Exchange server Charlie2 bevat naast een A record ook een MX en Cname record.
 
 | Device | Soort DNS record | IP-address | 
 | :--: | :--: | :--: | 
@@ -42,13 +44,23 @@ De Exchange server Charlie2 bevat naast een A record ook een MX en Cname record.
 | papa2 | A | 172.18.1.6 | 
 
 ## AD en DNS Replication tussen Alfa2 en Bravo2 (Tweede domeincontroller) KAN PAS GETEST WORDEN SAMEN MET BRAVO2
+### Uit te voeren stappen:
+##### Checken of de replicatie tussen Alfa2 en Bravo2 hun Active Directory goed werkt:
+1) Open Powershell ISE als administrator.
+2) Voer volgend commando in:
 
+       repadmin /showrepl
+4) De output hiervan moet bij alle lijnen successful weergeven
+
+##### Checken of de primary DNS zone "red.local" ook op Bravo2 staat met alle records:
+Dit moet je uiteraard op Bravo2 doen. Je kan Alfa2 en Bravo2 als VM in virtualbox met elkaar verbinden (Gewoon de scripts uitvoeren die de servers configureren)
+Server manager > tools > DNS Manager >Forward Lookup Zones > red.local
+
+    
 | Nr test | Wat moet er getest worden | In orde? |
 | :--- | :--- | :--- |
-| 1 | Werkt de replicatie tussen Alfa2 en Bravo2 zijn Active Directory zoals het hoort? | Ja/Nee |
-| 2 |Is DNS geïnstalleerd op de VM? | Ja/Nee |
-| 3 | Is er een DNS primary zone geïnstalleerd op de VM? | Ja/Nee |
-| 4 | Zijn alle DNS records correct aangemaakt volgens onderstaande tabel? | Ja/Nee |
+| 1 | Werkt de replicatie tussen Alfa2 en Bravo2 hun Active Directory zoals het hoort? | Ja/Nee |
+| 2 | Staat de DNS primary zone "red.local" ook op Bravo2 met alle records? | Ja/Nee |
 
 ### Organizational Units
 
