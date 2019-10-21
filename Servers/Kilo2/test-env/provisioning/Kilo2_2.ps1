@@ -15,9 +15,15 @@ Set-DhcpServerv4Scope -ScopeId 172.18.0.0 -LeaseDuration (New-TimeSpan -Days 2)
 Write-Host "VLAN 200 configured"
 Write-Host "Authorizing DHCP server..."
 
-Start-Sleep -Seconds 10
+$password = "vagrant" | ConvertTo-SecureString -AsPlainText -Force
+$username = "Administrator"
+$credential = New-Object System.Management.Automation.PSCredential($username, $password)
 
-Add-DhcpServerInDC -DnsName "Kilo2.red.local"
+Start-Job -Name AuthorizeDHCP -Credential $credential -ScriptBlock {
+    Add-DhcpServerInDC -DnsName "Kilo2.red.local"
+}
+
+Wait-Job -Name AuthorizeDHCP
 
 Write-Host "DHCP server authorized"
 
