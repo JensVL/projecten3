@@ -18,19 +18,16 @@ Alle userauthenticatie gebeurd via Active Directory. Dit betekent dat werkstatio
 | Laurens Blancquaert-Cassaer | AGDLP permissies implementeren  | 4 |      4        |
 | Laurens Blancquaert-Cassaer | Documentatie maken AGDLP permissies | 2 |          |
 | Laurens Blancquaert-Cassaer | AD voorbereiden op SCCM install script + opzoekingswerk | 4 |    2      |
+| Laurens Blancquaert-Cassaer | VagrantFile maken / testen / preparen voor integration | 1h30 |   1       |
+| Laurens Blancquaert-Cassaer  | Testplan opstellen (+ zelf testen) alfa2 server | 4 |  1h30 |
 | Kimberly De Clercq | Opzoekingswerk AD Structuur | 2  | 1h50   |
-| Kimberly De Clercq | Opzoekingswerk Beleidsregels | 3 | 2h30   |
-| Kimberly De Clercq | AD Structuur installatie + configuratie | 8 |  4 |
-| Kimberly De Clercq | Beleidsregels installatie + configuratie | 12 |  3h30  |
-| Laurens Blancquaert-Cassaer  | Testplan opstellen (+ zelf testen) alfa2 server | 4 |  1.5 |
-| Kimberly De Clercq  | Testplan opstellen (+ zelf testen) alfa2 server | 4  | 2  |
+| Kimberly De Clercq | Opzoekingswerk Beleidsregels | 3 | 3h30   |
+| Kimberly De Clercq | AD Structuur installatie + configuratie | 8 |  5 |
+| Kimberly De Clercq | Beleidsregels installatie + configuratie | 12 |  4h30  |
+| Kimberly De Clercq | Documentatie AD structuur + Beleidsregels | 3 |  1h30    |
+| Kimberly De Clercq  | Testplan opstellen (+ zelf testen) alfa2 server | 4  | 4  |
 
-Tests van de ALFA2 server wordt gedaan door: **TEAMLID_DIE_TESTRAPPORT_ALFA2_DOET_HIER**
+Tests van de ALFA2 server wordt gedaan door: **Alister Adutwum**
 
 ## Vragen
 Waarvoor staat "ns1" ?   => Name Server 1 = DNS  
-
-Group Policies (GPO) in Powershell?   
-1. Group Policy Management Editor > DisablingGameLink > User Configuration > Policies > Administratieve Templates: Policy definitions > Control Panel > Display > `Disable the Display Control Panel`
-2. Group Policy Management Editor > DisablingGameLink > User Configuration > Policies > Administratieve Templates: Policy definitions > Start Menu and Taskbar > `Remove Games link from Start Menu`
-3. Group Policy Management Editor > DisableNetwerkadapters > User Configuration > Policies > Administratieve Templates: Policy definitions > Network > Network Connections > `Prohibit access to properties of a LAN connection`

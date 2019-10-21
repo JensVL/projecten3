@@ -17,19 +17,22 @@ $VBOXdrive = "Z:"
 
 
 # PREFERENCE VARIABLES: (Om Debug,Verbose en informaation info in de Start-Transcript log files te zien)
-$DebugPreference = "Continue"
-$VerbosePreference = "Continue"
-$InformationPreference = "Continue"
+# $DebugPreference = "Continue"
+# $VerbosePreference = "Continue"
+# $InformationPreference = "Continue"
 
 # LOG SCRIPT TO FILE (+ op het einde van het script Stop-Transcript doen):
-Start-Transcript "C:\ScriptLogs\3_ConfigDCDNSlog.txt"
-Write-Host "Waiting 30 seconds before starting script:" -ForeGroundColor "Green"
-Start-Sleep -s 30
-
+# Start-Transcript "C:\ScriptLogs\3_ConfigDCDNSlog.txt"
+while ($true) {
+    try {
+        Get-ADDomain | Out-Null
+        break
+    } catch {
+        Start-Sleep -Seconds 10
+    }
+}
 # 1) Stel forward primary lookup zones in voor alle servers in het red domein:
-# TODO: Checken of DC2 / DNS2 automatisch een NS record heeft (voor replicatie TransferToZoneNameServer) TODO TODO TODO TODO
-Write-host "Adding DNS primary zone for red.local" -ForeGroundColor "Green"
-Add-DnsServerPrimaryZone -Name "red.local" -ReplicationScope "Domain" -DynamicUpdate "Secure"
+Write-host "Setting DNS primary zone for red.local" -ForeGroundColor "Green"
 Set-DnsServerPrimaryZone -Name "red.local" -SecureSecondaries "TransferToZoneNameServer"
 
 # 2) Voeg de servers als AAAA records toe met hun ip adres in de aangemaakte primary zone: (name to ip address)
@@ -38,8 +41,9 @@ Set-DnsServerPrimaryZone -Name "red.local" -SecureSecondaries "TransferToZoneNam
 # MX record -MailExchange option moet pointen naar bestaande A record (Zie -Mail Exchange optie Microsoft docs Add-DnsServerResourceRecordMX)
 Write-host "Adding DNS A and MX records for the servers of red.local" -ForeGroundColor "Green"
 
-Add-DnsServerResourceRecordA -Name "Charlie2" -ZoneName "red.local" -IPv4Address "$Charlie2IP"
-Add-DnsServerResourceRecordMX -Name "Charlie2" -MailExchange "mail.red.local" -ZoneName "red.local" -Preference 100
+Add-DnsServerResourceRecordA -Name "mail" -ZoneName "red.local" -IPv4Address "$Charlie2IP"
+Add-DnsServerResourceRecordMX -Name "mail" -MailExchange "mail.red.local" -ZoneName "red.local" -Preference 100
+Add-DnsServerResourceRecordCName -Name "owa" -HostNameAlias "mail.red.local" -ZoneName "red.local"
 
 Add-DnsServerResourceRecordA -Name "Delta2" -ZoneName "red.local" -IPv4Address "$Delta2IP"
 Add-DnsServerResourceRecordA -Name "Kilo2" -ZoneName "red.local" -IPv4Address "$Kilo2IP"
@@ -55,6 +59,6 @@ Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 
 # 5) Start het 4_ADstructure.ps1 script als Administrator:
 Write-host "Running next script 4_ADSTRUCTURE.ps1 as admin:" -ForeGroundColor "Green"
-Start-Process powershell -Verb runAs -ArgumentList "$VBOXdrive\4_ADstructure.ps1"
+# Start-Process powershell -Verb runAs -ArgumentList "$VBOXdrive\4_ADstructure.ps1"
 
-Stop-Transcript
+# Stop-Transcript

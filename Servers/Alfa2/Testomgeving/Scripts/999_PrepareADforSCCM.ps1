@@ -1,4 +1,4 @@
-# Dit script moet uitgevoerd worden na de installatie van beide DC'S en nadat Papa2 (SCCM Deployment Server) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! NIET VERGETEN UIT TE VOEREN NADAT PAPA2 IN DOMEIN ZIT EN VOOR SCCM INSTALLATIe!
+﻿# Dit script moet uitgevoerd worden na de installatie van beide DC'S en nadat Papa2 (SCCM Deployment Server) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! NIET VERGETEN UIT TE VOEREN NADAT PAPA2 IN DOMEIN ZIT EN VOOR SCCM INSTALLATIe!
 # aan het domein is toegevoegd Het script zal de AD voorbereiden op de installatie van SCCM
 # en ervoor zorgen dat alles goed werkt
 # Elke stap wordt uitgelegd met zijn eigen comment
@@ -97,6 +97,6 @@ Remove-Item -Path "C:\Users\Administrator.red\Desktop\ExtendADschema" -Force
 # Verplaats bovengenoemde log naar desktop van domain admin:
 Move-item -Path "C:\ExtADSch.log" -Destination "C:\Users\Administrator.red\Desktop"
 
-Set-ExecutionPolicy -ExecutionPolicy "Restricted"
+ 
 
 Stop-Transcript

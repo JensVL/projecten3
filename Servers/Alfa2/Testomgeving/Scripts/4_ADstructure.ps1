@@ -1,9 +1,9 @@
 # PREFERENCE VARIABLES: (Om Debug,Verbose en informaation info in de Start-Transcript log files te zien)
-$DebugPreference = "Continue"
-$VerbosePreference = "Continue"
-$InformationPreference = "Continue"
+# $DebugPreference = "Continue"
+# $VerbosePreference = "Continue"
+# $InformationPreference = "Continue"
 
-Start-Transcript "C:\ScriptLogs\4_ADstructure.txt"
+# Start-Transcript "C:\ScriptLogs\4_ADstructure.txt"
 Import-Module ActiveDirectory
 
 ## Organizational Units aanmaken
@@ -282,12 +282,30 @@ New-ADComputer "ITAdministratie_005" -SamAccountName "ITAdmin005" -Path "CN=Comp
 
 ####################################################################################################################################### TODO MAG WSS WEG
 
-# Group Policy - GUI
+# Group Policy 
+# De GPO's worden in de GUI ingesteld. 
 # 1. Verbied iedereen uit alle afdelingen behalve IT Administratie de toegang tot het control panel
-# Group Policy Management Editor > DisablingGameLink > User Configuration > Policies > Administratieve Templates: Policy definitions > Control Panel > Display > Disable the Display Control Panel
 # 2. Verwijder het games link menu uit het start menu voor alle afdelingen
-# Group Policy Management Editor > DisablingGameLink > User Configuration > Policies > Administratieve Templates: Policy definitions > Start Menu and Taskbar > Remove Games link from Start Menu
 # 3. Verbied iedereen uit de afdelingen Administratie en Verkoop de toegang tot de eigenschappen van de netwerkadapters
-# Group Policy Management Editor > DisableNetwerkadapters > User Configuration > Policies > Administratieve Templates: Policy definitions > Network > Network Connections > Prohibit access to properties of a LAN connection
 
-Stop-Transcript
+# Eerst worden de GPO's (DisableControlPanel, RemoveGameLink en DisableNetworkadapters) gemaakt. 
+# Group Policy Management > Forest: red.local > Domains > red.local > rechtsklik > "Create a GPO in this domain, and Link it here..."
+
+# De GPO linken aan de juiste afdelingen
+# Group Policy Management > Forest: red.local > Domains > red.local > "Afdeling" > rechtsklik > "Link an Existing GPO..."
+# IT_Administratie: RemoveGameLink
+# Administratie: DisableControlPanel, RemoveGameLink, DisableNetworkadapters
+# Directie: DisableControlPanel, RemoveGameLink
+# Verkoop: DisableControlPanel, RemoveGameLink, DisableNetworkadapters
+# Ontwikkeling: DisableControlPanel, RemoveGameLink
+
+# GPO's configureren
+# Group Policy Management > Forest: red.local > Domains > red.local > Group Policy Objects > "GPO" > rechtsklik > "Edit..."
+# DisableControlPanel
+# Group Policy Management Editor > User Configuration > Policies > Administratieve Templates: Policy definitions > Control Panel > Display > Disable the Display Control Panel > Enabled > Apply
+# RemoveGameLink
+# Group Policy Management Editor > User Configuration > Policies > Administratieve Templates: Policy definitions > Start Menu and Taskbar > Remove Games link from Start Menu > Disabled > Apply
+# DisableNetworkadapters
+# Group Policy Management Editor > User Configuration > Policies > Administratieve Templates: Policy definitions > Network > Network Connections > Prohibit access to properties of a LAN connection > Disabled > Apply
+
+# Stop-Transcript
