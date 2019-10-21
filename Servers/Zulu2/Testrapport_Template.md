@@ -6,14 +6,14 @@
 
 ## Doel
 ### Installatie PfSense
-[ ] Download de PfSense Iso
-[ ] Maak de Virtualbox VM aan
-[ ] Installeer PfSense op de VM
+- [ ] Download de PfSense Iso
+- [ ] Maak de Virtualbox VM aan
+- [ ] Installeer PfSense op de VM
 ### Configuratatie PfSense
-[ ] Stel de IPv4 interfaces in
-[ ] Navigeer naar de WebGUI
-[ ] Log in op de WebGUI
-[ ] Laad het PfSense configuratiebestand
+- [ ] Stel de IPv4 interfaces in
+- [ ] Navigeer naar de WebGUI
+- [ ] Log in op de WebGUI
+- [ ] Laad het PfSense configuratiebestand
 
 ### Installatie PfSense
 
