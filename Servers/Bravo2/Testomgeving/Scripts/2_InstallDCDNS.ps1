@@ -25,7 +25,7 @@ set-timezone -Name "Romance Standard Time"
 
 # 2) Zorgen voor juist LAN adapter. Via intern netwerk.
 Write-host "Changing NIC adapter names:" -ForeGroundColor "Green"
-Get-NetAdapter -Name "Ethernet 2" | Rename-NetAdapter -NewName $AdapterNaam
+Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName $AdapterNaam
 
 # 3) LAN adapter instellen
 Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
