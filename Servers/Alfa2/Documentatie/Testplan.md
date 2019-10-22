@@ -160,7 +160,7 @@ TODO WANNEER LIMA2 SERVER KLAAR IS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ## Prepare AD for SCCM:
 ### Uit te voeren stappen:
-Checken de SCCM admin useraccount aangemaakt is en of hij in de domain admin group zit:
+Checken of de SCCM admin useraccount aangemaakt is en of hij in de domain admin group zit:
 1) Server Manager > tools > Active Directory Users and Computers > Papa2.red.local > Users
 Hierin zou SCCMadmin als userobject moeten staan
 2) Voor te kijken of de SCCMadmin in de Domain Admins group zit:
