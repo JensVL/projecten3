@@ -1,6 +1,6 @@
 # Dit script zal eerst de prerequisites voor SCCM installeren / configureren en daarna SCCM zelf:
 # Elke stap wordt uitgelegd met zijn eigen comment
-# TODO: 2e schijf (:E) instellen!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#################################################################################### TODO: 2e schijf (:E) instellen!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 # VARIABLES:
 $VBOXdrive = "Z:"
@@ -245,3 +245,161 @@ Copy-Item "$MDT\SCCM\Microsoft.BDD.CM12Actions.mof" $MOF
 Copy-Item "$MDT\Templates\CM12Extensions\*" "$SCCM\XmlStorage\Extensions\" -Force -Recurse
 (Get-Content $MOF).Replace('%SMSSERVER%', $SiteServer).Replace('%SMSSITECODE%', $SiteCode) | Set-Content $MOF
 & "C:\Windows\System32\wbem\mofcomp.exe" "$SCCM\Bin\Microsoft.BDD.CM12Actions.mof"
+
+# 6) Configureer Boundaries & Boundary groups voor SCCM
+# We hebben boundaries nodig voor site assignment (= clients krijgen policies toegewezen van een specifieke SCCM site (wij hebben er maar 1))
+# En voor content location (clients krijgen content van de distribution point en boundaries zorgen ervoor dat ze de juiste content
+# van de juiste source krijgen)
+# Boundaries doen niks zonder dat ze aangewezen zijn aan een boundary group. Dus dit is een belangrijke stap om niet te vergeten.
+
+# 6.1) Import SCCM cmdlets module:
+# Om SCCM powershell cmds te gebruiken moeten we eerst de SCCM cmdlets module importeren en naar onze aangemaakte site gaan (site naam = RED):
+Set-Location -Path "C:\SCCM\AdminConsole\bin"
+Import-Module .\ConfigurationManager.psd1
+New-PSDrive -Name "RED" -PsProvider "AdminUI.PS.Provider\CMSite" -Root "Papa2.red.local" `
+            -Description "RED site drive" | Out-Null
+
+# RED = sitecode
+Write-Host "Opening RED: site please wait..........." -BackGroundColor "Green"
+Start-Sleep -s 30
+Set-Location -Path RED:
+
+# 6.2) Maak de boundary en boundary group aan en link ze aan elkaar (type = Active Directory Site):
+Write-Host "Creating Config Manager boundaries and boundary groups:" -ForeGroundColor "Green"
+New-CMBoundary -Type ADSite -DisplayName "Active Directory Site" -Value "Default-First-Site-Name"
+New-CMBoundaryGroup -Name "ADsite"
+
+# Papa2 wordt ingesteld als site system server (= deze server zal degene zijn dat content provide voor deze boundary group)
+Set-CMBoundaryGroup -Name "ADsite" -AddSiteSystemServerName "Papa2.red.local" -DefaultSiteCode "RED"
+Add-CMBoundaryToGroup -BoundaryGroupName "ADSite" -BoundaryName "Active Directory Site"
+Write-Host "boundaries/groups Creation completed!" -ForeGroundColor "Green"
+
+# 7) Configureer client settings en network access account:
+# De network access account is de account die clients gebruiken wanneer ze hun lokale user niet kunnen gebruiken om content te krijgen
+# van de distribution points
+# Zet "RED" als bedrijfsnaam voor alle clients:
+Set-CMClientSettingComputerAgent -BrandingTitle "RED" -DefaultSetting
+
+# Configureer de network access account (dit is de SCCMadmin account)
+# Met Read-Host password opvragen van SCCMadmin en deze als network access account instellen voor de clients:
+Write-Host "Configuring Network Access account " -ForeGroundColor "Green"
+New-CMAccount -UserName "$username" -Password "$password" -SiteCode "RED"
+Set-CMSoftwareDistributionComponent -SiteCode "RED" -AddNetworkAccessAccountName "RED\SCCMadmin"
+Write-Host "Network access account configured!" -ForeGroundColor "Green"
+
+# 8) Zet discovery methods (AD users, AD groups, AD systems en Network discovery aan):
+# Dit zal om de 7 dagen automatisch scannen naar nieuwe users,groups,systems en ip adressen in je domain:
+Set-CMDiscoveryMethod -ActiveDirectoryForestDiscovery -SiteCode "RED" -Enabled $true
+Set-CMDiscoveryMethod -NetworkDiscovery -SiteCode "RED" -Enabled $true -NetworkDiscoveryType ToplogyAndClient
+Set-CMDiscoveryMethod -ActiveDirectorySystemDiscovery -SiteCode "RED" -Enabled $true -ActiveDirectoryContainer "LDAP://DC=red,DC=local"
+Set-CMDiscoveryMethod -ActiveDirectoryUserDiscovery -SiteCode "RED" -Enabled $true -ActiveDirectoryContainer "LDAP://DC=red,DC=local"
+
+$discoveryScope = New-CMADGroupDiscoveryScope -LDAPlocation "LDAP://DC=red,DC=local" -Name "ADdiscoveryScope" -RecursiveSearch $true
+Set-CMDiscoveryMethod -ActiveDirectoryGroupDiscovery -SiteCode "RED" -Enabled $true -AddGroupDiscoveryScope $discoveryScope
+
+# 9) Stel PXE in zodat clients hun ip adres van DHCP kunnen krijgen wanneer WIndows 10 gedeployed wordt:
+# PXE stel je in SCCM in op een distribution point (properties > PXE)
+
+# Eerst nieuwe boot image voor X64 aanmaken:
+Write-Host "Creating Windows 10 64 bit boot image (takes a few minutes):" -ForeGroundColor "Green"
+
+New-CMBootImage -Path "\\Papa2\sms_RED\OSD\boot\x64\boot.wim" -Name "Windows10x64" -Index 5 -verbose
+
+Write-Host "Configuring PXE boot:" -ForeGroundColor "Green"
+
+Set-CMDistributionPoint -SiteSystemServerName "Papa2.red.local" -enablePXE $true -AllowPxeResponse $true `
+                        -EnableUnknownComputerSupport $true -RespondToAllNetwork
+
+Write-Host "PXE boot configured!" -ForeGroundColor "Green"
+
+# 10) Distribute de boot image (die standaard is aangemaakt bij SCCM installatie) naar een Distribution Point:
+Start-CMContentDistribution -BootImageId "RED00005" -DistributionPointName "Papa2.red.local"
+
+##########                        ##########
+#          WSUS / WINWDOWS UPDATES         #
+##########                        ##########
+
+# 11) Installeer WSUS role:
+Write-Host "Installing WSUS role with SQL integration:" -ForeGroundColor "Green"
+Install-WindowsFeature -Name UpdateServices-DB, UpdateServices-Services -IncludeManagementTools
+New-Item -Path "E:\" -ItemType Directory -Name "WSUS" # WSUS content locatie
+Write-Host "Installation WSUS completed!" -ForeGroundColor "Green"
+
+# Post deployment configuratie instellen: (content location + SQL Server aan WSUS linken):
+Write-Host "Configuring WSUS with SQL server and setting WSUS content location:" -ForeGroundColor "Green"
+Set-Location -Path "C:\Program Files\Update Services\Tools"
+# LET OP: aangezien we een default instance gebruikt hebben (bij installatie SQL server) laat je instance name hieronder leeg
+# Normaal doe je SERVER_NAME\INSTANCE_NAME maar bij ons is het dus gewoon SERVER_NAME
+ ######################################################################################## TODO TODO aanpassen naar November2 TODO TODO
+.\wsusutil.exe postinstall SQL_INSTANCE_NAME="Papa2" CONTENT_DIR=E:\WSUS
+
+If ($?) {
+  Write-Host "Post-deployment configuration WSUS completed!" -ForeGroundColor "Green"
+} else {
+  Write-Host "Post-deployment configuration WSUS FAILED!" -ForeGroundColor "Red" -BackGroundColor "White"
+}
+
+# 12) Maak en configureer een Software Update point role in SCCM:
+Set-Location RED:
+# 12.1) Installeer de Software Update Point role op Papa2:
+Write-Host "Creating Software Update Point Role in SCCM:" -ForeGroundColor "Green"
+Add-CMSoftwareUpdatePoint -SiteCode "RED" -SiteSystemServerName "Papa2.red.local" -ClientConnectionType "Intranet"
+
+# 12.2) Configureer WSUS via SCCM met volgende settings:
+# -SynchronizeAction staat op sync with microsoft servers, Enkele kleinere updates geselecteerd, ReportingEvents staan af
+Set-CMSoftwareUpdatePointComponent -SynchronizeAction "SynchronizeFromMicrosoftUpdate" -ReportingEvent "DoNotCreateWsusReportingEvents" `
+                                   -RemoveUpdateClassification "Service Packs","Upgrades","Update Rollups","Tools","Driver sets", `
+                                   "Applications","Drivers","Feature Packs","Definition Updates","Security Updates" `
+                                   -AddUpdateClassification "Updates" -RemoveProductFamily "Office","Windows" -SiteCode "RED" -verbose
+
+# 12.3) Verwijder alle talen buiten engels en alle producten buiten Windows 10 (zodat de WSUS content folder niet te groot wordt):
+Write-Host "Configuring which updates will be synchronized (Only English language updates):" -ForeGroundColor "Green"
+
+$WSUSserver = Get-WSUSserver
+$WSUSconfig = $WSUSserver.GetConfiguration()
+$WSUSconfig.AllUpdateLanguagesEnabled = $false
+$WSUSconfig.SetEnabledUpdateLanguages("en")
+$WSUSconfig.Save()
+
+
+# 13) Synchroniseer de gekozen software updates met de Microsoft Servers:
+# CHECK PROGRESS in C:\SCCM\logs\wsyncmgr.log
+Write-Host "Starting syncronization of WSUS updates (in SCCM) in 300 seconds:" -ForeGroundColor "Green"
+
+$beforeSync = Get-Date
+
+  Restart-Service -Name sms_executive
+  Sync-CMSoftwareUpdate -FullSync $true
+
+  ### Wachten tot sync cycle klaar is: ###
+  Start-Sleep -Seconds 300
+  Write-host "Starting sync now:" -ForeGroundColor "Green"
+  $syncStatus = Get-CMSoftwareUpdateSyncStatus
+  Sync-CMSoftwareUpdate -FullSync $true
+
+
+  $maxSeconds = (60*70)
+  $endWait = $beforeSync.AddSeconds($maxSeconds)
+  $intervalSeconds = 60
+
+  Write-Host "  Waiting on Software Update Sync Cycle..."
+  while($now -lt $endWait){
+    $now = Get-Date
+    $syncStatus = Get-CMSoftwareUpdateSyncStatus
+
+
+    if($null -eq $syncStatus.LastSuccessfulSyncTime -or
+       $syncStatus.LastSuccessfulSyncTime -lt $beforeSync)
+    {
+      continue
+    }else{
+      Write-Host "Sync completed!" -ForeGroundColor "Green"
+      break
+    }
+  }
+
+  # Nieuw product (Windows 10) toevoegen na de sync:
+  Set-CMSoftwareUpdatePointComponent -SiteCode "RED" `
+    -AddProduct "Windows 10, version 1809 and later, Upgrade & Servicing Drivers"
+
+Stop-Transcript
