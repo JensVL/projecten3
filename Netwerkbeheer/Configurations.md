@@ -14,7 +14,7 @@
 - login
 - exit
 - service password-encryption
-- int g0/0
+- int g0/0/0
 - ip address 172.18.1.105 255.255.255.252
 - no shut
 - int s0/1/0
@@ -24,14 +24,14 @@
 - 
 #
 - router ospf 10
-- router id 1.1.1.1
+- router-id 1.1.1.1
 - network 172.18.1.104 0.0.0.3 area 0
 - network 172.18.3.0 0.0.0.3 area 0
 - exit
 - 
 #
-- ip route 172.18.1.65 255.255.255.224 g0/0
-- ip route 172.18.101.30 255.255.255.252 g0/0
+- ip route 172.18.1.64 255.255.255.224 g0/0
+- ip route 172.18.1.100 255.255.255.252 g0/0
 - ip route 172.18.1.0 255.255.255.192 g0/0
 - ip route 172.18.0.0 255.255.255.0 g0/0
 - ip route 0.0.0.0 0.0.0.0 s0/1/0
@@ -61,7 +61,7 @@
 - 
 #
 - router ospf 10
-- router id 1.1.1.1
+- router-id 3.3.3.3
 - network 172.18.2.0 0.0.0.3 area 0
 - network 172.18.3.0 0.0.0.3 area 0
 - exit
@@ -99,29 +99,29 @@
 - 
 (external interface)
 
-- int s0/1/1
+- int g0/0/0
 - ip address dhcp
-- ip nat outside
+- ip nat outside 
 - no shut
 - exit
--
+- 
 - access-list 1 permit 172.18.2.0 0.0.0.3
 - ip nat inside source list 1 interface s0/1/0 overload
--
+- 
 - do show ip nat translations
 #
 - router ospf 10
-- router id 4.4.4.4
+- router-id 4.4.4.4
 - network 172.18.2.0 0.0.0.3 area 0
 - exit
--
+- 
 #
-- ip route 172.18.1.65 255.255.255.224 s0/1/0
-- ip route 172.18.101.30 255.255.255.252 s0/1/0
+- ip route 172.18.1.64 255.255.255.224 s0/1/0
+- ip route 172.18.1.100 255.255.255.252 s0/1/0
 - ip route 172.18.1.0 255.255.255.192 s0/1/0
 - ip route 172.18.0.0 255.255.255.0 s0/1/0
-- ip route 172.18.1.105 255.255.255.252 s0/1/0
-- ip route 172.18.3.1 255.255.255.252 s0/1/0
+- ip route 172.18.1.104 255.255.255.252 s0/1/0
+- ip route 172.18.3.0 255.255.255.252 s0/1/0
 - ip route 0.0.0.0 0.0.0.0 s0/1/1
 - 
 
@@ -139,32 +139,32 @@
 - login
 - exit
 - service password-encryption
-- int g0/0
-- ip address 172.18.1.65 255.255.255.224
+- int g0/0/0
+- ip address 172.18.0.1 255.255.255.0
 - no shut
-- int g0/1
-- ip address 172.18.1.101 255.255.255.252
+- int g0/0/1
+- ip address 172.18.1.7 255.255.255.192
 - no shut
 - int s0/0/0
-- ip address 172.18.1.98 255.255.255.252
+- ip address 172.18.1.97 255.255.255.252
 - no shut
 - exit
 - 
 # 
 - ip route 0.0.0.0 0.0.0.0 int s0/0/0
--
+- 
 #
 - router ospf 10
-- router id 5.5.5.5
+- router-id 5.5.5.5
 - network 172.18.1.0 0.0.0.63 area 0
 - network 172.18.0.0 0.0.0.255 area 0
 - network 172.18.1.96 0.0.0.3 area 0
 - exit
 - 
 #
-- ip route 172.18.1.65 255.255.255.224 s0/0/0
-- ip route 172.18.101.30 255.255.255.252 s0/0/0
-- ip route 0.0.0.0 0.0.0.0 s0/0/0
+- ip route 172.18.1.65 255.255.255.224 s0/1/0
+- ip route 172.18.1.100 255.255.255.252 s0/1/0
+- ip route 0.0.0.0 0.0.0.0 s0/1/0
 - 
 
 ## Router 6 (Formerly L3 Switch6)
@@ -181,28 +181,28 @@
 - login
 - exit
 - service password-encryption
-- int g0/0
-- ip address 172.18.0.1 255.255.255.0
+- int g0/0/0
+- ip address 172.18.1.65 255.255.255.224
 - no shut
-- int g0/1
-- ip address 172.18.1.7 255.255.255.192
+- int g0/0/1
+- ip address 172.18.1.101 255.255.255.252
 - no shut
 - int s0/0/0
-- ip address 172.18.1.97 255.255.255.252
+- ip address 172.18.1.98 255.255.255.252
 - no shut
 - exit
 - 
 #
 - router ospf 10
-- router id 6.6.6.6
+- router-id 6.6.6.6
 - network 172.18.1.100 0.0.0.3 area 0
 - network 172.18.1.64 0.0.0.31 area 0
 - network 172.18.1.96 0.0.0.3 area 0
 - exit
 - 
 #
-- ip route 172.18.1.0 255.255.255.192 s0/0/0
-- ip route 172.18.0.0 255.255.255.0 s0/0/0
+- ip route 172.18.1.0 255.255.255.192 s0/1/0
+- ip route 172.18.0.0 255.255.255.0 s0/1/0
 - ip route 0.0.0.0 0.0.0.0 g0/1
 - 
 
@@ -225,7 +225,7 @@
 - exit
 - 
 
-### Optional VLAN
+### VLAN
 
 - vlan 200
 - name vlan200
@@ -262,6 +262,7 @@
 - vlan 300
 - name vlan300
 - end
+- conf t
 - int range f0/1-f0/6
 - switchport mode access
 - switchport access vlan 300
