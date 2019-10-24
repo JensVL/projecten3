@@ -1,6 +1,6 @@
 Write-host "Installatie Exchange Server Script 1" -ForeGroundColor "Red"
 # VARIABELEN
-$VBOXdrive = "Z:"
+$VBOXdrive = "\\VBOXSVR\scripts"
 
 # PREFERENCE VARIABLES: (Om Debug,Verbose en informaation info in de Start-Transcript log files te zien)
 $DebugPreference = "Continue"
@@ -37,8 +37,8 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 
 #Netwerkadapters hernoemen
 Write-host "Naam netwerkadapters wijzigen" -ForeGroundColor "Green"
-Get-NetAdapter -Name "Ethernet 2" | Rename-NetAdapter -NewName "NAT"
-Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName "LAN"
+Get-NetAdapter -Name "Ethernet 2" | Rename-NetAdapter -NewName "LAN"
+Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName "NAT"
 #ip adres instellen (nog bekijken)
 Write-host "ip adres LAN instellen" -ForeGroundColor "Green"
 New-NetIPAddress -InterfaceAlias "LAN" -IPAddress "172.18.1.68" -PrefixLength 27

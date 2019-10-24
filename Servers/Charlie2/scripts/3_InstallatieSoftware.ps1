@@ -1,7 +1,7 @@
 Write-host "Installatie Exchange Server Script 3" -ForeGroundColor "Red"
 
 # VARIABELEN
-$VBOXdrive = "Z:"
+$VBOXdrive = "\\VBOXSVR\scripts"
 
 # LOG SCRIPT TO FILE (+ op het einde van het script Stop-Transcript doen):
 Start-Transcript "C:\ScriptLogs\3_InstallatieSoftwarelog.txt"
