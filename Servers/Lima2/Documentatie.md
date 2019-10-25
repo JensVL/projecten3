@@ -58,8 +58,11 @@ New-SmbShare -Name "ProfileDirs" -Path "Z:\"
 3. Het maakt nieuwe partities aan en formateert de volumes.
 4. Vervolgens worden de nieuwe shares aangemaakt.
 5. Enkele afbeelding hoe de server eruit ziet na de uitvoering van het script.
+6. Volumes:
 ![Volumes](https://github.com/HoGentTIN/p3ops-1920-logboek-RobbyDaelman/blob/master/images/Volumes.PNG)
+7. Shares:
 ![Shares](https://github.com/HoGentTIN/p3ops-1920-logboek-RobbyDaelman/blob/master/images/Shares.PNG)
+8. Om na te kijken of de shares toegankelijk zijn heb ik tijdelijk een host-only adapter toegevoegd. In de verkenner "\\naamServer" uitvoeren. Dit is het resultaat:
 ![SharesOpHostSysteem](https://github.com/HoGentTIN/p3ops-1920-logboek-RobbyDaelman/blob/master/images/SharesOpHostSysteem.PNG)
 
 ## Configuratie dagelijkse shadow copy
