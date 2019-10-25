@@ -59,5 +59,35 @@ New-SmbShare -Name "ProfileDirs" -Path "Z:\"
 4. Vervolgens worden de nieuwe shares aangemaakt.
 5. Enkele afbeelding hoe de server eruit ziet na de uitvoering van het script.
 ![Volumes](https://github.com/HoGentTIN/p3ops-1920-logboek-RobbyDaelman/blob/master/images/Volumes.PNG)
-![Volumes](https://github.com/HoGentTIN/p3ops-1920-logboek-RobbyDaelman/blob/master/images/Shares.PNG)
-![Volumes](https://github.com/HoGentTIN/p3ops-1920-logboek-RobbyDaelman/blob/master/images/SharesOpHostSysteem.PNG)
+![Shares](https://github.com/HoGentTIN/p3ops-1920-logboek-RobbyDaelman/blob/master/images/Shares.PNG)
+![SharesOpHostSysteem](https://github.com/HoGentTIN/p3ops-1920-logboek-RobbyDaelman/blob/master/images/SharesOpHostSysteem.PNG)
+
+## Configuratie dagelijkse shadow copy
+
+1. De server moet dagelijske een shaduw kopie maken van adminData. Om dit te automatiseren wordt er gebruik gemaakt van de scheduler.
+2. Powershell code:
+
+```
+Import-Module -Name "ScheduledTasks"
+$Sta = New-ScheduledTaskAction -Execute "powershell" -Argument ".\ShadowCopy.ps1" -WorkingDirectory "C:\vagrant\provisioning"
+$Stt = New-ScheduledTaskTrigger -Daily -At 5pm
+#Zorgt ervoor dat de taak met "highest privileges" wordt gexecuted.
+$Stp = New-ScheduledTaskPrincipal -UserId "vagrant" -RunLevel Highest
+$StTaskName="TEST10"
+$StDescript="test"
+#Registreer de taak in de task scheduler 
+Register-ScheduledTask -TaskName $StTaskName -Action $Sta -Description $StDescript -Trigger $Stt -Principal $Stp
+```
+
+3. Deze code in het script maakt een nieuwe taak aan en voegt deze toe aan de scheduler. Deze taak runt dagelijks om 5pm het script "ShadowCopy.ps1".
+4. Powershell code van ShadowCopy.ps1:
+
+```
+vssadmin create shadow /for=h:
+```
+
+5. De code in dit script is simpel. Het maakt rechtstreeks een schaduw kopie van adminData.
+6. Als het eerste script is uitgevoerd, dan ziet de Task Scheduler er zo uit:
+![TaskScheduler](https://github.com/HoGentTIN/p3ops-1920-logboek-RobbyDaelman/blob/master/images/TaskScheduler.PNG)
+7. Vanaf 5pm wordt de toegevoegde taak een eerste keer uitgevoerd. het resultaat hiervan is te zien op de volgende afbeelding:
+![SchaduwKopie](https://github.com/HoGentTIN/p3ops-1920-logboek-RobbyDaelman/blob/master/images/SchaduwKopie.PNG)
