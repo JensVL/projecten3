@@ -46,3 +46,8 @@ Bovenstaande kan getest worden via de gui of "ifconfig /all".
  
  7. Controle of domein "red.local" gejoind is.
     Commando: Get-WmiObject -Class Win32_ComputerSystem
+
+### 3_ConfigDCDNS.ps1
+1. Kijken of DNS repliceert:
+   Commando: Get-WMIObject –namespace “Root\MicrosoftDNS” –class MicrosoftDNS_Zone | Format-List Name
+   Commando: 
