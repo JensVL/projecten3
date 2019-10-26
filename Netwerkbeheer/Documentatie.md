@@ -5,6 +5,7 @@
 - Switch / Router telnet(vty) password: Telnet2019
 - No L3 switches available on site: replaced with router + L2 switch
 - PINGS WON'T WORK on Hogent environment
+- OSPF needed
 - Configure NAT on outside & inside interfaces
 - Use PAT and ACL to ensure connectivity
 - Workaround for patch panel not working: insert cable on island from internetport to management port (eg 2 -> 14)
@@ -12,19 +13,13 @@
 
 ## TODO
 
-- ACL lists
-- VLAN 400, 600, 700
+- VLAN 600, 700 (need zulu2 server)
 - Discuss Router4 with Linuxteam
 - Routers
-  - Configuration continued
-  - Ensure overall connection
+  - Ensure overall connection (physical testing needed)
   - Router1: Site to site VPN -> Router0 ?
   - Router4: ISP Google ?
   - Router3: ISP red.be ?
-  - OSPF
-- Switches
-  - VLANs continued
-  - ...
 
 ## DONE
 
@@ -32,26 +27,29 @@
 - Added firewall server
 - Rearranged using L2 switches
 - VLAN 200 + 300 + 500 created + assigned to interfaces
-- Ping between clients & router in VLAN 200 OK (NO DHCP yet - PC5 has static IP to test)
+- Ping between clients & router in VLAN 200 OK
 - Ping between servers & router in VLAN 300 OK
 - Ping between servers & router in VLAN 500 OK
 - Ping between VLAN 500 & VLAN 300 OK
+- Overall ping OK
 - Routers
   - Add serial connections
   - Hostname
   - Console password
   - Configuration password
   - Telnet(VTY) lines password
-  - Copy running config -> startup config
-  - Provisional IPs on interfaces
-  - EIGRP base (deprecated)
+  - Copy running config -> startup config (not in practice)
+  - IPs on interfaces
+  - OSPF
+  - ACL on edge router
 - Switches
   - Hostname
   - Console password
   - Configuration password
   - Telnet(VTY) lines password
-  - Copy running config -> startup config
+  - Copy running config -> startup config (not in practice)
   - Disabled unused interfaces
+  - VLANs
 - Clients & Servers 
   - IP configuration (DHCP + static)
   - DNS configuration

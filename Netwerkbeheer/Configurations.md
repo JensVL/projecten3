@@ -25,7 +25,12 @@
 #
 - router ospf 10
 - router-id 1.1.1.1
-- network 172.18.1.104 0.0.0.3 area 0
+- end
+- clear ip ospf process
+- y
+- conf t
+- router ospf 10
+- network 172.18.1.100 0.0.0.3 area 0
 - network 172.18.3.0 0.0.0.3 area 0
 - exit
 - 
@@ -62,6 +67,11 @@
 #
 - router ospf 10
 - router-id 3.3.3.3
+- end
+- clear ip ospf process
+- y
+- conf t
+- router ospf 10
 - network 172.18.2.0 0.0.0.3 area 0
 - network 172.18.3.0 0.0.0.3 area 0
 - exit
@@ -112,6 +122,11 @@
 #
 - router ospf 10
 - router-id 4.4.4.4
+- end
+- clear ip ospf process
+- y
+- conf t
+- router ospf 10
 - network 172.18.2.0 0.0.0.3 area 0
 - exit
 - 
@@ -156,9 +171,17 @@
 #
 - router ospf 10
 - router-id 5.5.5.5
+- end
+- clear ip ospf process
+- y
+- conf t
+- router ospf 10
 - network 172.18.1.0 0.0.0.63 area 0
 - network 172.18.0.0 0.0.0.255 area 0
 - network 172.18.1.96 0.0.0.3 area 0
+- passive-interface g0/0/0
+- passive-interface g0/0/1
+
 - exit
 - 
 #
@@ -195,9 +218,15 @@
 #
 - router ospf 10
 - router-id 6.6.6.6
+- end
+- clear ip ospf process
+- y
+- conf t
+- router ospf 10
 - network 172.18.1.100 0.0.0.3 area 0
 - network 172.18.1.64 0.0.0.31 area 0
 - network 172.18.1.96 0.0.0.3 area 0
+- passive-interface g0/0/0
 - exit
 - 
 #
