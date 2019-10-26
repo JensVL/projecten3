@@ -50,4 +50,4 @@ Bovenstaande kan getest worden via de gui of "ifconfig /all".
 ### 3_ConfigDCDNS.ps1
 1. Kijken of DNS repliceert:
    Commando: Get-WMIObject –namespace “Root\MicrosoftDNS” –class MicrosoftDNS_Zone | Format-List Name
-   Commando: Get-WMIObject –namespace “Root\MicrosoftDNS” –class MicrosoftDNS_Zone | Where-Object {$_.Name –eq “red.local”}
+   Nadien commando: Get-WMIObject –namespace “Root\MicrosoftDNS” –class MicrosoftDNS_Zone | Where-Object {$_.Name –eq “red.local”}
