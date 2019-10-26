@@ -25,3 +25,4 @@ https://community.spiceworks.com/topic/2020022-trying-to-migrate-domain-controll
 https://www.windowscentral.com/how-enable-or-disable-wi-fi-and-ethernet-network-adapters-windows-10
 
 ## Vagrant box
+https://app.vagrantup.com/gusztavvargadr/boxes/windows-server
