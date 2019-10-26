@@ -9,6 +9,7 @@ https://www.red-gate.com/simple-talk/sysadmin/exchange/active-directory-manageme
 
 ## DNS checks, dc en forest
 https://mcpmag.com/articles/2016/03/24/active-directory-forest-and-domain.aspx
+http://mctexpert.blogspot.com/2011/09/how-to-force-dns-zone-to-replicate-with.html
 
 ## Permissies
 https://blog.it-koehler.com/en/Archive/2032
