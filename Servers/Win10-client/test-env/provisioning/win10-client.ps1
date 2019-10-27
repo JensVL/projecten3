@@ -42,8 +42,9 @@ debug "downloadpath = $downloadpath"
 ensure_download_path $downloadpath
 
 debug 'Setting DNS to Alfa2'
-$domaincontrollerip='172.18.1.66'
-Set-DnsClientServerAddress -InterfaceAlias "Ethernet 2" -ServerAddresses $domaincontrollerip
+$primaryDNS='172.18.1.66'
+$secondaryDNS='172.18.1.67'
+Set-DnsClientServerAddress -InterfaceAlias "Ethernet 2" -ServerAddresses ($primaryDNS, $secondaryDNS)
 
 $strUser = "RED\Administrator"
 $strDomain = "red.local"
@@ -51,4 +52,4 @@ $strPassword = ConvertTo-SecureString "Admin2019" -AsPlainText -Force
 $Credentials = New-Object System.Management.Automation.PsCredential($strUser,$strPassword)
 
 debug "Joining domain $strDomain"
-Add-computer -DomainName $strDomain -Credential $Credentials
+Add-computer -DomainName $strDomain -Credential $Credentials -Verbose
