@@ -72,7 +72,7 @@ We gaan DHCP requests relayen naar de DHCP server in ons domein. (zorg dat DHCP 
 * Navigeer naar Services -> DHCP Relay  
   * Vink Enable DHCP relay on interface aan  
   * Kies LAN interface  
-  * Destination Server: 178.18.1.1  
+  * Destination Server: 172.18.1.1  
   
   ![web9](img/web9.png)  
   
