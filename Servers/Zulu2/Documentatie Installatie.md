@@ -115,8 +115,11 @@ Deze handleiding veronderstelt dat Hyper-V ingeschakelt is op het hostsysteem. I
  10. Wanneer gevraagd wordt om de VLANs op te zetten weiger door `n` in te geven en bevestig met enter.
  ![img20](img/Hyper-V/image20.png)
  11. Waneer gevraagd wordt om de interfaces in te geven, geef `hn0` in voor **WAN**, `hn1` in voor **LAN**, en bevestig nadien met `y`. Bevestig steeds met enter.
- ![img21](img/Hyper-V/image21.png)
+ <p align="center">
+  <img src="img/Hyper-V/image21.png">
+ </p>
  12. Wacht tot de installatie van pfsense compleet is en het hoofdmenu van pfsense wordt weergegeven. Je kan nu beginnen met de pfsense-configuratie.
+ 
  ![img22](img/Hyper-V/image22.png)
  
 ### 4.6 Wijzigen Hyper-V LAN Adapter Host (Optioneel) <a name="Adapter">
@@ -126,7 +129,9 @@ Deze stap is enkel nodig indien je als LAN-switch type **Intern** gekozen hebt v
  2. Rechtsklik op de **Hyper-V LAN Switch** en kies **Eigenschappen.**
  3. Ga op het tabblad **Netwerken** naar de optie **Internet protocol versie 4 (TCP/IPv4)** in de lijst en selecteer **Eigenschappen.**
  4. Indien nodig selecteer de optie **Het volgend IP-adres gebruiken** om een statisch IP toe te wijzen. Geef als IP-adres een adres in dat in hetzelfde subnet ligt als het LAN IP-adres dat de pfsense VM in de vorige stap heeft weergegeven (in mijn geval 192.168.1.1/24), alsook hetzelfde subnetmasker. De standaardgateway, alsook DNS-serveradressen, mogen worden leegelaten. Bevestig met **Ok** en **Sluiten.**
- ![img25](img/Hyper-V/image25.png)
+<p align="center">
+  <img src="img/Hyper-V/image25.png">
+</p>
  
 Je kan nu vanop de host de pfsense Web GUI via het LAN-adres bereiken.
 
