@@ -69,6 +69,9 @@
   cpus: 2
   default_gateway: 172.18.1.98
   alfa2: 172.18.1.66
+  synced_folders: 
+    - src: '../../Servers/Bravo2/Testomgeving/Scripts'
+      dest: '/vagrant'
   forwarded_ports:
     - guest: '3389'
       host: '3390'
@@ -80,6 +83,9 @@
   gui: false
   memory: 2048
   cpus: 2
+  synced_folders: 
+    - src: '../../Servers/Kilo2/Testomgeving/Scripts'
+      dest: '/vagrant'
   forwarded_ports:
     - guest: '3389'
       host: '3391'
@@ -91,6 +97,9 @@
   gui: false
   memory: 2048
   cpus: 2
+  synced_folders: 
+    - src: '../../Servers/November2/Testomgeving/Scripts'
+      dest: '/vagrant'
   forwarded_ports:
     - guest: '3389'
       host: '3392'
@@ -102,6 +111,9 @@
   gui: false
   memory: 2048
   cpus: 2
+  synced_folders: 
+    - src: '../../Servers/Lima2/Testomgeving/Scripts'
+      dest: '/vagrant'
   forwarded_ports:
     - guest: '3389'
       host: '3393'
@@ -167,4 +179,3 @@
   forwarded_ports:
     - guest: '3389'
       host: '3396'
-
