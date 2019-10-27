@@ -5,9 +5,9 @@
 Auteur(s) testrapport: Kimberly De Clercq 
 
 ## Test AD/DNS installatie en configuratie
-Labo gemaakt door: 
+Labo gemaakt door:   
 Uitvoerder(s) test:   
-Uitgevoerd op: 
+Uitgevoerd op:   
 Github commit:   
 
 ### Uit te voeren testen
@@ -34,9 +34,9 @@ Github commit:
 
 
 ## Test AD en DNS Replication tussen Alfa2 en Bravo2 (Tweede domeincontroller)
-Labo gemaakt door: 
+Labo gemaakt door:   
 Uitvoerder(s) test:   
-Uitgevoerd op: 
+Uitgevoerd op:   
 Github commit:   
 
 ### Uit te voeren testen
@@ -47,9 +47,9 @@ Github commit:
 
 
 ## Test ADstructuur en beleidsregels
-Labo gemaakt door: Kimberly De Clercq
+Labo gemaakt door: Kimberly De Clercq  
 Uitvoerder(s) test:   
-Uitgevoerd op: 
+Uitgevoerd op:   
 Github commit:   
 
 ### Uit te voeren testen Organizational Units
@@ -112,9 +112,9 @@ Github commit:
 
 
 ## Test AGDLP Permissions
-Labo gemaakt door: 
+Labo gemaakt door:  
 Uitvoerder(s) test:   
-Uitgevoerd op: 
+Uitgevoerd op:  
 Github commit:   
 
 ### Uit te voeren testen
@@ -123,9 +123,9 @@ Github commit:
 
 
 ## Test Prepare AD for SCCM
-Labo gemaakt door: 
+Labo gemaakt door:  
 Uitvoerder(s) test:   
-Uitgevoerd op: 
+Uitgevoerd op:  
 Github commit:   
 
 ### Uit te voeren testen

@@ -1,36 +1,143 @@
 # PREFERENCE VARIABLES: (Om Debug,Verbose en informaation info in de Start-Transcript log files te zien)
-# $DebugPreference = "Continue"
-# $VerbosePreference = "Continue"
-# $InformationPreference = "Continue"
+$DebugPreference = "Continue"
+$VerbosePreference = "Continue"
+$InformationPreference = "Continue"
 
-# Start-Transcript "C:\ScriptLogs\4_ADstructure.txt"
+Start-Transcript "C:\ScriptLogs\4_ADstructure.txt"
 Import-Module ActiveDirectory
 
 ## Organizational Units aanmaken
+$makeOUVerkoop = [adsi]::Exists("LDAP://OU=Verkoop,DC=red,DC=local")
+$makeOUOntwikkeling = [adsi]::Exists("LDAP://OU=Ontwikkeling,DC=red,DC=local")
+$makeOUAdministratie = [adsi]::Exists("LDAP://OU=Administratie,DC=red,DC=local")
+$makeOUIT_Administratie = [adsi]::Exists("LDAP://OU=IT_Administratie,DC=red,DC=local")
+$makeOUDirectie = [adsi]::Exists("LDAP://OU=Directie,DC=red,DC=local")
+
 Write-Host "Make Organizational Unit Verkoop..." -ForeGroundColor "Green"
-New-ADOrganizationalUnit -Name "Verkoop" -Description "Organizational Unit voor Verkoop"
+# Get-ADOrganizationalUnit -Identity "OU=Verkoop,DC=red,DC=local"
+if(!($makeOUVerkoop)) {
+    New-ADOrganizationalUnit -Name "Verkoop" -Description "Organizational Unit voor Verkoop"
+}
+else {
+    Write-Host "OU Verkoop already exists..." -ForegroundColor "Gray"
+}
 Write-Host "Make Organizational Unit Ontwikkeling..." -ForeGroundColor "Green"
-New-ADOrganizationalUnit -Name "Ontwikkeling" -Description "Organizational Unit voor Ontwikkeling"
+if(!($makeOUOntwikkeling)) {
+    New-ADOrganizationalUnit -Name "Ontwikkeling" -Description "Organizational Unit voor Ontwikkeling"
+}
+else {
+    Write-Host "OU Ontwikkeling already exists..." -ForegroundColor "Gray"
+}
 Write-Host "Make Organizational Unit Directie..." -ForeGroundColor "Green"
-New-ADOrganizationalUnit -Name "Directie" -Description "Organizational Unit voor Directie"
+if(!($makeOUAdministratie)) {
+    New-ADOrganizationalUnit -Name "Administratie" -Description "Organizational Unit voor Directie"
+}
+else {
+    Write-Host "OU Administratie already exists..." -ForegroundColor "Gray"
+}
 Write-Host "Make Organizational Unit Administratie..." -ForeGroundColor "Green"
-New-ADOrganizationalUnit -Name "Administratie" -Description "Organizational Unit voor Administratie"
-Write-Host "Make Organizational Unit IT Administratie..." -ForeGroundColor "Green"
-New-ADOrganizationalUnit -Name "IT_Administratie" -Description "Organizational Unit voor IT Administratie"
+if(!($makeOUIT_Administratie)) {
+    New-ADOrganizationalUnit -Name "IT_Administratie" -Description "Organizational Unit voor Administratie"
+}
+else {
+    Write-Host "OU IT_Administratie already exists..." -ForegroundColor "Gray"
+}
+Write-Host "Make Organizational Unit IT Administratie..." -ForeGroundColor 
+if(!($makeOUDirectie)) {
+    New-ADOrganizationalUnit -Name "Directie" -Description "Organizational Unit voor IT Administratie"
+}
+else {
+    Write-Host "OU Directie already exists..." -ForegroundColor "Gray"
+}
 
 # Groepen aanmaken
+$makeVerkoop = [adsi]::Exists("LDAP://CN=Verkoop,OU=Verkoop,DC=red,DC=local")
+$makeOntwikkeling = [adsi]::Exists("LDAP://CN=Ontwikkeling,OU=Ontwikkeling,DC=red,DC=local")
+$makeAdministratie = [adsi]::Exists("LDAP://CN=Administratie,OU=Administratie,DC=red,DC=local")
+$makeIT_Administratie = [adsi]::Exists("LDAP://CN=IT_Administratie,OU=IT_Administratie,DC=red,DC=local")
+$makeDirectie = [adsi]::Exists("LDAP://CN=Directie,OU=Directie,DC=red,DC=local")
+
 Write-Host "Make AD Groups..." -ForeGroundColor "Green"
-New-ADGroup -Name "Administratie" -DisplayName "Administratie" -Path "OU=Administratie,DC=red,DC=local" -GroupCategory Security -GroupScope Global
-New-ADGroup -Name "Directie" -DisplayName "Directie" -Path "OU=Directie,DC=red,DC=local" -GroupCategory Security -GroupScope Global
-New-ADGroup -Name "Ontwikkeling" -DisplayName "Ontwikkeling" -Path "OU=Ontwikkeling,DC=red,DC=local" -GroupCategory Security -GroupScope Global
-New-ADGroup -Name "Verkoop" -DisplayName "Verkoop" -Path "OU=Verkoop,DC=red,DC=local" -GroupCategory Security -GroupScope Global
-New-ADGroup -Name "IT_Administratie" -DisplayName "IT_Administratie" -Path "OU=IT_Administratie,DC=red,DC=local" -GroupCategory Security -GroupScope Global
+if(!($makeVerkoop)) {
+    New-ADGroup -Name "Verkoop" -DisplayName "Verkoop" -Path "OU=Verkoop,DC=red,DC=local" -GroupCategory Security -GroupScope Global
+}
+else {
+    Write-Warning "Group Verkoop already exists..." -ForegroundColor "Gray"
+}
+if(!($makeOntwikkeling)) {
+    New-ADGroup -Name "Ontwikkeling" -DisplayName "Ontwikkeling" -Path "OU=Ontwikkeling,DC=red,DC=local" -GroupCategory Security -GroupScope Global
+}
+else {
+    Write-Warning "Group Ontwikkeling already exists..." -ForegroundColor "Gray"
+}
+if(!($makeAdministratie)) {
+    New-ADGroup -Name "Administratie" -DisplayName "Administratie" -Path "OU=Administratie,DC=red,DC=local" -GroupCategory Security -GroupScope Global
+}
+else {
+    Write-Warning "Group Administratie already exists..." -ForegroundColor "Gray"
+}
+if(!($makeIT_Administratie)) {
+    New-ADGroup -Name "IT_Administratie" -DisplayName "IT_Administratie" -Path "OU=IT_Administratie,DC=red,DC=local" -GroupCategory Security -GroupScope Global
+}
+else {
+    Write-Warning "Group IT_Administratie already exists..." -ForegroundColor "Gray"
+}
+if(!($makeDirectie)) {
+    New-ADGroup -Name "Directie" -DisplayName "Directie" -Path "OU=Directie,DC=red,DC=local" -GroupCategory Security -GroupScope Global
+}
+else {
+    Write-Warning "Group Directie already exists..." -ForegroundColor "Gray"
+}
 
 # Gebruikers
 # Er wordt telkens een gebruiker aangemaakt, specifiek de manager van elke Organizational Unit.
 # Wachtwoord "Admin2019" gaf foutmeldingen. 
 $paswoord=ConvertTo-SecureString "Administrator2019" -asPlainText -force
-Write-Host "Create users for OU Directie..." -ForeGroundColor "Green"
+
+<# Om performanten te maken: (WERKT NOG NIET!!) #>
+$header='Name', 'Surname', 'SamAccountName', 'Department', 'Description', 'DisplayName', 'GivenName', 'State', 'City', 'PostalCode', 'EmailAddress', 'Office', 'EmployeeID', 'HomePhone', 'Initials', 'Path', 'AccountPassword'
+$ADUsers=Import-Csv -Path "\\VBOXSVR\Scripts\ExtendADschema\users3.csv" -Header $header
+
+Write-Host "Create users for Organizational Units..." -ForeGroundColor "Green"
+
+Import-Csv -Path "\\VBOXSVR\Scripts\ExtendADschema\users3.csv" -Header $header
+
+Import-Csv -Path "\\VBOXSVR\Scripts\ExtendADschema\users3.csv" | ForEach-Object {
+    $Name = $_.Firstname
+    $Surname = $_.Surname
+    $SamAccountName = $_.SamAccountName
+    $Department = $_.Department
+    $Description = $_.Description
+    $DisplayName = $_.DisplayName
+    $GivenName = $_.GivenName
+    $State = $_.State
+    $City = $_.City
+    $PostalCode = $_.PostalCode
+    $EmailAddress = $_.EmailAddress
+    $Office = $_.Office
+    $EmployeeID = $_.EmployeeID
+    $HomePhone = $_.HomePhone
+    $Initials = $_.Initials
+    $Path = $_.Path
+    $AccountPassword = $_.Password
+}
+
+
+foreach($User in $ADUsers) {
+    $Name = $User.Name
+    
+}
+if (Get-ADUser -F {SamAccountName -eq $SamAccountName}) {
+    Write-Warning "A user account with username $SamAccountName already exists in Active Directory."
+}
+else {
+    New-ADUser -Name $Name -Surname $Surname -SamAccountName $SamAccountName -Department $Department `
+    -Description $Description -DisplayName $DisplayName -GivenName $Givenname `
+    -State $State -City $_.City -PostalCode $PostalCode -EmailAddress $EmailAddress -Office $Office -EmployeeID $EmployeeID `
+    -HomePhone $HomePhone -Initials $Initials -Path $Path -AccountPassword $AccountPassword 
+}
+#> 
+<# Om te testen het volgende uitvoeren: (DIT WERKT!!!) #>
 New-AdUser -Name "Kimberly" -Surname "De Clercq" -SamAccountName "KimberlyDC" -Department "Manager" -Description "Account voor Kimberly" -DisplayName "KimberlyDC" `
            -GivenName "Kimberly" -State "West-Vlaanderen"  -City "Ingelmunster" -PostalCode "8770" -EmailAddress "kimberly@red.local" `
            -Office "B0.001" -EmployeeID "1004" -HomePhone "0444727272" -Initials "KDC" -Path "OU=Directie,DC=red,DC=local" -AccountPassword $paswoord
@@ -90,16 +197,16 @@ New-AdUser -Name "Jonas" -Surname "Vandegehuchte" -SamAccountName "JonasV"-Depar
            -GivenName "Jonas" -State "Vlaams-Brabant" -City "Bierbeek" -PostalCode "3360" -EmailAddress "jonas@red.local" `
            -Office "B1.018" -EmployeeID "1578" -HomePhone "0444727291" -Initials "JV" -Path "OU=Ontwikkeling,DC=red,DC=local" -AccountPassword $paswoord
 
-New-AdUser -Name "CÃ©dric" -Surname "Van den Eede" -SamAccountName "CedricVDE"-Department "Development" -Description "Account voor CÃ©dric" -DisplayName "CedricVDE" `
-           -GivenName "CÃ©dric" -State "Oost-Vlaanderen" -City "Meldert" -PostalCode "9310" -EmailAddress "cedric@red.local" `
+New-AdUser -Name "Cédric" -Surname "Van den Eede" -SamAccountName "CedricVDE"-Department "Development" -Description "Account voor Cédric" -DisplayName "CedricVDE" `
+           -GivenName "Cédric" -State "Oost-Vlaanderen" -City "Meldert" -PostalCode "9310" -EmailAddress "cedric@red.local" `
            -Office "B1.018" -EmployeeID "5079" -HomePhone "0444727292" -Initials "CVDE" -Path "OU=Ontwikkeling,DC=red,DC=local" -AccountPassword $paswoord
 
 New-AdUser -Name "CedricD" -Surname "Detemmerman" -SamAccountName "CedricD"-Department "Development" -Description "Account voor Cedric" -DisplayName "CedricD" `
-           -GivenName "Cedric" -State "Oost-Vlaanderen" -City "Haaltert" -PostalCode "3360" -EmailAddress "cedricd@red.local" `
+           -GivenName "Cedric" -State "Oost-Vlaanderen" -City "Haaltert" -PostalCode "9451" -EmailAddress "cedricd@red.local" `
            -Office "B1.018" -EmployeeID "1558" -HomePhone "0444727293" -Initials "CD" -Path "OU=Ontwikkeling,DC=red,DC=local" -AccountPassword $paswoord
 
 New-AdUser -Name "Robin" -Surname "Van de Walle" -SamAccountName "RobinVDW"-Department "Development" -Description "Account voor Robin" -DisplayName "RobinVDW" `
-           -GivenName "Robin" -State "Oost-Vlaanderen" -City "Haaltert" -PostalCode "3360" -EmailAddress "robin@red.local" `
+           -GivenName "Robin" -State "Oost-Vlaanderen" -City "Haaltert" -PostalCode "9451" -EmailAddress "robin@red.local" `
            -Office "B1.018" -EmployeeID "1658" -HomePhone "0444727295" -Initials "RVDW" -Path "OU=Ontwikkeling,DC=red,DC=local" -AccountPassword $paswoord
 
 Write-Host "Create users for Verkoop..." -ForeGroundColor "Green"
@@ -107,7 +214,7 @@ New-AdUser -Name "Matthias" -Surname "Van de Velde" -SamAccountName "MatthiasVDV
            -GivenName "Matthias" -State "West-Vlaanderen" -City "Koksijde" -PostalCode "8670" -EmailAddress "matthias@red.local" `
            -Office "B0.015" -EmployeeID "4732" -HomePhone "0444727200" -Initials "MVDV" -Path "OU=Verkoop,DC=red,DC=local" -AccountPassword $paswoord
 
-New-AdUser -Name "Robby" -Surname "Daelman" -SamAccountName "RobbyD" -Department "Sale" -Description "Account voor Roby" -DisplayName "RobbyD" `
+New-AdUser -Name "Robby" -Surname "Daelman" -SamAccountName "RobbyD" -Department "Sale" -Description "Account voor Robby" -DisplayName "RobbyD" `
            -GivenName "Robby" -State "Oost-Vlaanderen" -City "Lede" -PostalCode "9340" -EmailAddress "robby@red.local" `
            -Office "B0.015" -EmployeeID "4736" -HomePhone "0444727204" -Initials "RD" -Path "OU=Verkoop,DC=red,DC=local" -AccountPassword $paswoord
 
@@ -137,7 +244,7 @@ Add-ADGroupMember -Identity "CN=Directie,OU=Directie,DC=red,DC=local" -Members "
 Add-ADGroupMember -Identity "CN=Administratie,OU=Administratie,DC=red,DC=local" -Members "CN=Joachim,OU=Administratie,DC=red,DC=local", "CN=Tibo,OU=Administratie,DC=red,DC=local", "CN=Yngvar,OU=Administratie,DC=red,DC=local", "CN=Tim,OU=Administratie,DC=red,DC=local", "CN=Rik,OU=Administratie,DC=red,DC=local"
 Add-ADGroupMember -Identity "CN=IT_Administratie,OU=IT_Administratie,DC=red,DC=local" -Members "CN=Laurens,OU=IT_Administratie,DC=red,DC=local", "CN=Ferre,OU=IT_Administratie,DC=red,DC=local", "CN=Levi,OU=IT_Administratie,DC=red,DC=local", "CN=Aron,OU=IT_Administratie,DC=red,DC=local", "CN=Jens,OU=IT_Administratie,DC=red,DC=local"
 Add-ADGroupMember -Identity "CN=Verkoop,OU=Verkoop,DC=red,DC=local" -Members "CN=Matthias,OU=Verkoop,DC=red,DC=local", "CN=Robby,OU=Verkoop,DC=red,DC=local", "CN=Nathan,OU=Verkoop,DC=red,DC=local", "CN=Elias,OU=Verkoop,DC=red,DC=local", "CN=Alister,OU=Verkoop,DC=red,DC=local"
-Add-ADGroupMember -Identity "CN=Ontwikkeling,OU=Ontwikkeling,DC=red,DC=local" -Members "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local", "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local", "CN=CÃ©dric,OU=Ontwikkeling,DC=red,DC=local", "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local", "CN=Robin,OU=Ontwikkeling,DC=red,DC=local"
+Add-ADGroupMember -Identity "CN=Ontwikkeling,OU=Ontwikkeling,DC=red,DC=local" -Members "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local", "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local", "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local", "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local", "CN=Robin,OU=Ontwikkeling,DC=red,DC=local"
 
 ## Managers per OU toekennen
 Write-Host "Allocate managers to OU's..." -ForeGroundColor "Green"
@@ -169,7 +276,7 @@ Set-ADUser -Identity "CN=Rik,OU=Administratie,DC=red,DC=local" -Manager "CN=Joac
 
 Write-Host "Allocate manager OU Ontwikkeling Jannes..." -ForeGroundColor "Green"
 Set-ADUser -Identity "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local" -Manager "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
-Set-ADUser -Identity "CN=CÃ©dric,OU=Ontwikkeling,DC=red,DC=local" -Manager "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
+Set-ADUser -Identity "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local" -Manager "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
 Set-ADUser -Identity "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local" -Manager "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
 Set-ADUser -Identity "CN=Robin,OU=Ontwikkeling,DC=red,DC=local" -Manager "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
 
@@ -181,6 +288,18 @@ Set-ADUser -Identity "CN=Alister,OU=Verkoop,DC=red,DC=local" -Manager "CN=Matthi
 
 # Elk user-account unlocken.
 Write-Host "Unlock accounts..." -ForeGroundColor "Green"
+<# Om performanten te maken: 
+$ADUsers=Import-Csv -Path "\\VBOXSVR\Scripts\ExtendADschema\users2.csv" -Header $header
+
+Write-Host "Make AD Groups..." -ForeGroundColor "Green"
+foreach($User in $ADUsers) {
+   Enable-ADAccount -Identity $($User.Path) 
+}
+else {
+    Write-Warning "Account $User.name already unlock..." -ForegroundColor "Gray"
+}
+#>
+
 Enable-ADAccount -Identity "CN=Kimberly,OU=Directie,DC=red,DC=local"
 Enable-ADAccount -Identity "CN=Arno,OU=Directie,DC=red,DC=local"
 Enable-ADAccount -Identity "CN=Laurens,OU=IT_Administratie,DC=red,DC=local"
@@ -195,7 +314,7 @@ Enable-ADAccount -Identity "CN=Tim,OU=Administratie,DC=red,DC=local"
 Enable-ADAccount -Identity "CN=Rik,OU=Administratie,DC=red,DC=local"
 Enable-ADAccount -Identity "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
 Enable-ADAccount -Identity "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local"
-Enable-ADAccount -Identity "CN=CÃ©dric,OU=Ontwikkeling,DC=red,DC=local"
+Enable-ADAccount -Identity "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local"
 Enable-ADAccount -Identity "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local"
 Enable-ADAccount -Identity "CN=Robin,OU=Ontwikkeling,DC=red,DC=local"
 Enable-ADAccount -Identity "CN=Matthias,OU=Verkoop,DC=red,DC=local"
@@ -205,7 +324,7 @@ Enable-ADAccount -Identity "CN=Elias,OU=Verkoop,DC=red,DC=local"
 Enable-ADAccount -Identity "CN=Alister,OU=Verkoop,DC=red,DC=local"
 
 # Computers
-# Voeg minstens 5 werkstations toe (Ã©Ã©n in elke afdeling).
+# Voeg minstens 5 werkstations toe (één in elke afdeling).
 Write-Host "Create workstations for Directie..." -ForeGroundColor "Green"
 New-ADComputer "Directie_001" -SamAccountName "Directie001" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Kimberly,OU=Directie,DC=red,DC=local"
 New-ADComputer "Directie_002" -SamAccountName "Directie002" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "CN=Arno,OU=Directie,DC=red,DC=local"
@@ -227,7 +346,7 @@ New-ADComputer "Verkoop_005" -SamAccountName "Verkoop005" -Path "CN=Computers,DC
 Write-Host "Create workstations for Ontwikkeling..." -ForeGroundColor "Green"
 New-ADComputer "Ontwikkeling_001" -SamAccountName "Ontwikkeling001" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
 New-ADComputer "Ontwikkeling_002" -SamAccountName "Ontwikkeling002" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local"
-New-ADComputer "Ontwikkeling_003" -SamAccountName "Ontwikkeling003" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "CN=CÃ©dric,OU=Ontwikkeling,DC=red,DC=local"
+New-ADComputer "Ontwikkeling_003" -SamAccountName "Ontwikkeling003" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local"
 New-ADComputer "Ontwikkeling_004" -SamAccountName "Ontwikkeling004" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local"
 New-ADComputer "Ontwikkeling_005" -SamAccountName "Ontwikkeling005" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Robin,OU=Ontwikkeling,DC=red,DC=local"
 
@@ -269,7 +388,7 @@ New-ADComputer "ITAdministratie_005" -SamAccountName "ITAdmin005" -Path "CN=Comp
 # Write-Host "Configure the profile path for Ontwikkeling..." -ForeGroundColor "Green"
 # Set-ADUser -Identity "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\jannes"
 # Set-ADUser -Identity "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\jonas"
-# Set-ADUser -Identity "CN=CÃ©dric,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\cÃ©dric"
+# Set-ADUser -Identity "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\cédric"
 # Set-ADUser -Identity "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\cedricD"
 # Set-ADUser -Identity "CN=Robin,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\robin"
 #
@@ -308,4 +427,4 @@ New-ADComputer "ITAdministratie_005" -SamAccountName "ITAdmin005" -Path "CN=Comp
 # DisableNetworkadapters
 # Group Policy Management Editor > User Configuration > Policies > Administratieve Templates: Policy definitions > Network > Network Connections > Prohibit access to properties of a LAN connection > Disabled > Apply
 
-# Stop-Transcript
+Stop-Transcript

@@ -124,6 +124,7 @@ Server manager > tools > DNS Manager >Forward Lookup Zones > red.local
 | Verkoop | Nathan Cammerman | Nee | Gent |
 | Verkoop | Elias Waterschoot | Nee | Gent |
 | Verkoop | Alister Adutwum | Nee | Gent |
+| Verkoop | Sean Vancompernolle | Nee | Gent |
 
 ### Indeling Active Directory Office
 
