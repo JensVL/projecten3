@@ -13,8 +13,6 @@ Param(
 # Variables
 #------------------------------------------------------------------------------
 $provisioning_scripts="c:\vagrant\provisioning"
-# pwd
-# ls /vagrant/provision
 
 #------------------------------------------------------------------------------
 # Imports
@@ -43,4 +41,14 @@ debug "downloadpath = $downloadpath"
 # Ensure download path for installation files exists
 ensure_download_path $downloadpath
 
+debug 'Setting DNS to Alfa2'
+$domaincontrollerip='172.18.1.66'
+Set-DnsClientServerAddress -InterfaceAlias "Ethernet 2" -ServerAddresses $domaincontrollerip
 
+$strUser = "RED\Administrator"
+$strDomain = "red.local"
+$strPassword = ConvertTo-SecureString "Admin2019" -AsPlainText -Force
+$Credentials = New-Object System.Management.Automation.PsCredential($strUser,$strPassword)
+
+debug "Joining domain $strDomain"
+Add-computer -DomainName $strDomain -Credential $Credentials

@@ -131,7 +131,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       # This is needed to communicate with Alfa2 and Bravo2 after they become Domaincontroller
       # NOTE: This needs to be disabled when launching the Win10 clients 
       #       since this cause a WinRM error
-      # config.winrm.transport        = :plaintext
+      # NOTE: After joining the Win10 hosts this can be enabled again
+      config.winrm.transport        = :plaintext
       config.winrm.basic_auth_only    = true
 
       if host['name'] == "Alfa2"
@@ -186,7 +187,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         # TODO
         provisioning_path = NOVEMBER2+'/test-env/provisioning/'
 
-      elsif host['name'] == "Dima2"
+      elsif host['name'] == "Lima2"
         # TODO
         provisioning_path = LIMA2+'/test-env/provisioning/'
 
@@ -224,6 +225,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           privileged: true,
           path: provisioning_path + 'win10-client.ps1',
           args: []
+        node.vm.provision 'shell', reboot: true
       end
     end
   end
