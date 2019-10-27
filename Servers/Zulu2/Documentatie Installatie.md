@@ -59,7 +59,9 @@ Deze handleiding veronderstelt dat Hyper-V ingeschakelt is op het hostsysteem. I
  3. Navigeer naar **Nieuwe virtuele netwerkswitch**, kies als type **Extern**, en bevestig met **Virtuele switch maken**. Indien je de Hyper-V omgeving wil testen via je lokale host kies dan als type **Intern** zoals in de afbeelding hieronder:
  ![img1](img/Hyper-V/image1.png)
  4. Navigeer naar deze nieuwe toegevoegde switch, verander de naam naar `LAN`, geef een beschrijving in, geef de correcte netwerkadapter voor het LAN-netwerk in indien je voor een **Extern** type hebt gekozen, en pas de wijzigingen toe.
+ 
  ![img2](img/Hyper-V/image2.png)
+ 
  5. Voeg opnieuw een nieuwe netwerkswitch toe zoals in **3.**, kies deze keer als type **Extern**.
  6. Navigeer naar deze nieuwe toegevoegde switch, verander de naam naar `WAN`, geef een beschrijving in, geef de correcte netwerkadapter voor het WAN-netwerk in, en pas de wijzigingen toe.
  ![img3](img/Hyper-V/image3.png)
