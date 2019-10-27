@@ -7,7 +7,8 @@
    1. [Aanmaken Virtuele Switches](#Switch)  
    2. [Aanmaken Virtuele Machine](#Machine)  
    3. [Configuratie Virtuele Machine](#CMachine)  
-   4. [Installatie pfsense](#InstallatieP) 
+   4. [Installatie pfsense](#InstallatieP)
+   5. [Wijzigen Hyper-V LAN Adapter Host (Optioneel)](#Adapter)
 5. [Initiële Configuratie](#Config)  
 6. [Webconfig](#Webconfig)
 7. [Bronnen](#Bronnen)  
@@ -55,12 +56,12 @@ Deze handleiding veronderstelt dat Hyper-V ingeschakelt is op het hostsysteem. I
 
  1. Start het Hyper-V beheerscherm op.
  2. Navigeer naar **Actie > Virtual Switch Manager...**
- 3. Navigeer naar **Nieuwe virtuele netwerkswitch**, kies als type **Intern**, en bevestig met **Virtuele switch maken**.
+ 3. Navigeer naar **Nieuwe virtuele netwerkswitch**, kies als type **Extern**, en bevestig met **Virtuele switch maken**. Indien je de Hyper-V omgeving wil testen via je lokale host kies dan als type **Intern** zoals in de afbeelding hieronder:
  ![img1](img/Hyper-V/image1.png)
- 4. Navigeer naar deze nieuwe toegevoegde switch, verander de naam naar `LAN`, geef een beschrijving in, verander het type naar **Particulier netwerk**, en pas de wijzigingen toe.
+ 4. Navigeer naar deze nieuwe toegevoegde switch, verander de naam naar `LAN`, geef een beschrijving in, geef de correcte netwerkadapter voor het LAN-netwerk in indien je voor een **Extern** type hebt gekozen, en pas de wijzigingen toe.
  ![img2](img/Hyper-V/image2.png)
- 5. Voeg opnieuw een nieuwe netwerkswitch toe zoals in **3.**, maar kies deze keer als type **Extern**.
- 6. Navigeer naar deze nieuwe toegevoegde switch, verander de naam naar `WAN`, geef een beschrijving in, geef de correcte netwerkadapter voor het WAN-netwerk, en pas de wijzigingen toe.
+ 5. Voeg opnieuw een nieuwe netwerkswitch toe zoals in **3.**, kies deze keer als type **Extern**.
+ 6. Navigeer naar deze nieuwe toegevoegde switch, verander de naam naar `WAN`, geef een beschrijving in, geef de correcte netwerkadapter voor het WAN-netwerk in, en pas de wijzigingen toe.
  ![img3](img/Hyper-V/image3.png)
  
 ### 4.2 Aanmaken Virtuele Machine <a name="Machine"></a>  
@@ -117,6 +118,17 @@ Deze handleiding veronderstelt dat Hyper-V ingeschakelt is op het hostsysteem. I
  ![img21](img/Hyper-V/image21.png)
  12. Wacht tot de installatie van pfsense compleet is en het hoofdmenu van pfsense wordt weergegeven. Je kan nu beginnen met de pfsense-configuratie.
  ![img22](img/Hyper-V/image22.png)
+ 
+### 4.6 Wijzigen Hyper-V LAN Adapter Host (Optioneel) <a name="Adapter">
+
+Deze stap is enkel nodig indien je als LAN-switch type **Intern** gekozen hebt voor lokaal testen, zodat je de *pfsense Web GUI* via het LAN-netwerk kan bereiken vanop de host.
+ 1. Navigeer op het hostsysteem naar het tabblad **Netwerkverbinding** van het **Configuratiescherm.** Men kan dit ook vinden via **Alle Instellingen** > **Netwerk en Internet** > **Status** > **Adapteropties wijzigen.**
+ 2. Rechtsklik op de **Hyper-V LAN Switch** en kies **Eigenschappen.**
+ 3. Ga op het tabblad **Netwerken** naar de optie **Internet protocol versie 4 (TCP/IPv4)** in de lijst en selecteer **Eigenschappen.**
+ 4. Indien nodig selecteer de optie **Het volgend IP-adres gebruiken** om een statisch IP toe te wijzen. Geef als IP-adres een adres in dat in hetzelfde subnet ligt als het LAN IP-adres dat de pfsense VM in de vorige stap heeft weergegeven (in mijn geval 192.168.1.1/24), alsook hetzelfde subnetmasker. De standaardgateway, alsook DNS-serveradressen, mogen worden leegelaten. Bevestig met **Ok** en **Sluiten.**
+ ![img25](img/Hyper-V/image25.png)
+ 
+Je kan nu vanop de host de pfsense Web GUI via het LAN-adres bereiken.
 
 ## 5. Initiële Configuratie <a name="Config"></a>  
 Na de installatie zien we dit menu:  
