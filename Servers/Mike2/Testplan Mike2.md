@@ -4,15 +4,48 @@
 
 Auteur(s) testplan: Tim Grijp, Elias Waterschoot
 
-<<<<<<< Updated upstream
-# Server Configuratie
 
-Uit te voeren via script 'toevoegen domein.ps1'
+## Voor je begint met het uitvoeren van scripts:
+
+- Download sharepoint iso file: https://www.microsoft.com/en-us/download/details.aspx?id=57462
+- Er moet een Active Directory opstaan met domein `red.local`
+- De AD moet ip address `172.18.1.66` hebben
+- Voor de zekerheid controleren onder tools -> AD users and computers of Mike2 er niet al staat (indien ja, verwijderen!)
+- Voor de Mike2 server kan er niet gewerkt worden met snapshots, dit zorgt voor een fatale error
+
+
+## Aanmaken Mike2
+
+Maak de Mike 2 server aan in VirtualBox
+- paswoord: `Admin2019`
+- Zorg ervoor dat de 'host-only adapter' als 'ethernet' staat, de andere is dan voor NAT (kan je controleren door in VirtualBox           cable connected uit te vinken)
+- Voor de Mike2 server kan er niet gewerkt worden met snapshots, dit zorgt voor een fatale error
+- Maak een shared folder aan met een map 'scripts voor mike2' en een map 'sharepoint'
+- De scripts moeten hier staan: `Z:/scripts voor mike2`
+- Sharepoint iso file moet uitgepakt (rechtermuisknop - uitpakken) worden in: `Z:/sharepoint`
+
+
+## Uitvoeren scripts
+
+De scripts zijn zo ingsteld dat er automatisch opnieuw wordt opgestart en dat het volgende script automatisch start na uitvoeren van het huidige script
+- Voer script `toevoegen domein` uit
+    - deze zorgt voor de Mike2 instellingen en voegt het toe aan domein `red.local`
+    - er kan in het begin een foutmelding verschijnen maar deze kan je negeren
+    - computer start automatisch opnieuw op en logt automatisch in
+- Script `prerequisites` wordt uitgevoerd
+    - installatie van de prerequisites
+    - restart automatisch
+- Script `SPsetup` wordt uitgevoerd
+    - installatie van SharePoint via `SPinstallation`
+    - Database account wordt gevraagd
+
+
+# Controleren scripts
 
 ## Controleer lan ip en dns ip
 * Het lan ip moet 172.18.1.3 zijn
 * Het dns ip moet 172.18.1.66 zijn
-## Toevoegen aan het domein red hiervoor moet server alfa2 draaien
+## Controleren van naam en domein
 * Log in als administrator van domein red
 * Kijk in server manager -> local server
 * Controleer of de computername "mike2" noemt
@@ -20,31 +53,11 @@ Uit te voeren via script 'toevoegen domein.ps1'
 ## Controleer of firewall is uitgeschakeld
 * De firewall zou uitgeschakeld moeten zijn
 
-
-# SharePoint installatie
-
-- Installatie windows features `roles.ps1`
-- Installatie prerequisites via `prerequisites.ps1`
-- Runnen van de setup `SPsetup.ps1`
-- Creatie SharePoint Farm `SPfarm.ps1`
-
 ## Controleer of de installatie en configuratie van SharePoint correct verlopen is.
 * Probeer sharepoint central administration te openen 
 
-=======
-
-## controleer lan ip en dns ip
-* lan ip moet 172.18.1.3 zijn
-* dns ip moet 172.18.1.66 zijn
-## toevoegen aan het domein red hiervoor moet server alfa2 draaien
-* log in als administrator van domein red
-* kijk in server manager -> local server
-* controleer of de computername "mike2" noemt
-* controleer of de server toegevoegd is aan het domein red.local
 
 ## controleer sharepoint toegang en installatie
-
 * probeer sharepoint central administration te openen 
 
->>>>>>> Stashed changes
 
