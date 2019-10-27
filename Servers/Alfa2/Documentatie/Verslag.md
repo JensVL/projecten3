@@ -50,6 +50,7 @@ De volgende tabel toont de instellingen van de gebruikers.
 | 7215 | Alister | Adutwum | AlisterA | Verkoop | Matthias | B0.015 | alister@red.local | 0444727206 | OU=Verkoop,DC=red,DC=local | Torhout |
 | 8424 | Aron | Marckx | AronM | IT_Administratie | Laurens | B4.037 | aron@red.local | 0444727285 | OU=IT_Administratie,DC=red,DC=local | Meldert |
 | 8425 | Ferre | Verstichelen | FerreV | IT_Administratie | Laurens | B4.037 | ferre@red.local |  0444727281 | OU=IT_Administratie,DC=red,DC=local | Wervik |
+| 8486 | Sean | Vancompernolle | SeanV | Verkoop | Matthias | B1.015 | sean@red.local |  0444727207 | OU=Verkoop,DC=red,DC=local | Ieper |
 | 8653 | Jens | Van Liefferinge | JensVL | IT_Administratie | Laurens| B4.037 | jens@red.local | 0444727282 | OU=IT_Administratie,DC=red,DC=local | Lokeren |
 
 ## Stappenplan beleidsregels
