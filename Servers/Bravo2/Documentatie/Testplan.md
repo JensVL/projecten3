@@ -1,4 +1,4 @@
-# **Testplan Bravo 2**
+﻿# **Testplan Bravo 2**
 
 ## Bravo 2 is een backup domein controller, daarom moet eerst Alfa 2 draaien, zodat Bravo 2 het domein kan joinen en kan repliceren van Alfa2.
 
@@ -26,7 +26,7 @@ Bovenstaande kan getest worden via de gui of "ipconfig /all".
 
 2. De adapternaam zou "LAN" moeten zijn. Dit kan getest worden door in Powershell het volgende in te geven: C:\> Get-NetAdapter -Name "*"
 
-3. Netwerkinstellingen.
+3. Netwerkinstellingen. 
     - **ipconfig:**
         - IP-address: 172.18.1.67
         - Subnetmask: 255.255.255.224
