@@ -9,7 +9,6 @@
 
 require 'rbconfig'
 require 'yaml'
-disk = 'Test2.vdi'
 
 # set default LC_ALL for all BOXES
 ENV["LC_ALL"] = "en_US.UTF-8"
