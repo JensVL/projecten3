@@ -13,7 +13,7 @@
 
 ## Te Testen
 
-We testen deze firewall met behulp van een Virtualbox VM. Indien nodig kan extra informatie gevonden worden in de documentatie voor [installatie](Documentatie Installatie.md) en [configuratie.](Documentatie Configuratie.md)
+We testen deze firewall met behulp van een Virtualbox VM. Indien nodig kan extra informatie gevonden worden in de documentatie voor [installatie](Documentatie%20Installatie.md) en [configuratie.](Documentatie%20Configuratie.md)
 
 ### Installatie PfSense
 
