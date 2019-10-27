@@ -14,4 +14,3 @@ Auteurs: Levi Goessens en Arno Van Nieuwenhove
 2. Aangezien Bravo 2 repliceert van Alfa 2, moeten deze scripts helemaal doorlopen zijn voor de scripts van Bravo 2 uitgevoerd mogen worden.
 3. Eens de scripts van Alfa 2 doorlopen zijn, voer je in volgorde de scripts van Bravo 2 uit: 1_RUNFIRST.ps1, 2_InstallDCDNS.ps1 en ten slotte 3_ConfigDCDNS.ps1
 
-### Toepassen beleidsregels
