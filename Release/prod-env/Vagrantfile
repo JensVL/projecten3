@@ -83,7 +83,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   hosts.each do |host|
     config.vm.define host['name'] do |node|
       node.vm.box = host['box'] ||= DEFAULT_BASE_BOX
-      # node.vm.box_version = host['version'] if host.key? 'version'
+      # node.vm.box_version = "2018.03.14"
+      node.vm.box_version = host['version'] if host.key? 'version'
 
       node.vm.hostname = host['name']
       node.vm.network :private_network, network_options(host)
@@ -105,16 +106,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         esxi.esxi_username = 'root'
         esxi.esxi_password = 'file:~/Repositories/Hogent/p3ops-1920-red/Release/prod-env/sshkey'
 
-        #esxi.esxi_virtual_network = ['VM Network','VM Network2','VM Network3','VM Network4']
+        # TODO: create networks in ESXi
+        # esxi.esxi_virtual_network = ['VM Network','VM Network2','VM Network3','VM Network4']
 
-        esxi.guest_memsize = host['cpus'] if host.key? 'cpus'
-        esxi.guest_numvcpus = host['memory'] if host.key? 'memory'
+        esxi.guest_numvcpus = host['cpus'] if host.key? 'cpus'
+        esxi.guest_memsize = host['memory'] if host.key? 'memory'
       end
 
-      config.winrm.timeout         = 3600
-      config.vm.boot_timeout       = 3600
-      config.winrm.transport       = :plaintext
-      config.winrm.basic_auth_only = true
+      config.vm.communicator          = "winrm"
+      config.winrm.timeout            = 3600
+      config.vm.graceful_halt_timeout = 3600
+      config.vm.boot_timeout          = 3600
+      config.winrm.transport          = :plaintext
+      config.winrm.basic_auth_only    = true
 
       if host['name'] == "Alfa2"
         provisioning_path = ALFA2+'/Testomgeving/Scripts'
