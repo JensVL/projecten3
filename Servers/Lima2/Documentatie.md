@@ -94,3 +94,145 @@ vssadmin create shadow /for=h:
 ![TaskScheduler](https://github.com/HoGentTIN/p3ops-1920-logboek-RobbyDaelman/blob/master/images/TaskScheduler.PNG)
 7. Vanaf 5pm wordt de toegevoegde taak een eerste keer uitgevoerd. het resultaat hiervan is te zien op de volgende afbeelding:
 ![SchaduwKopie](https://github.com/HoGentTIN/p3ops-1920-logboek-RobbyDaelman/blob/master/images/SchaduwKopie.PNG)
+
+## Fileshare permissies
+
+
+```
+$permessiesVerkoopDeny = "red\Verkoop","FullControl","Deny"
+$permessiesOntwikkelingDeny = "red\Ontwikkeling","FullControl","Deny"
+#$permessiesITDeny = "red\IT_Administratie","FullControl","Deny"
+$permessiesDirectieDeny = "red\Directie","FullControl","Deny"
+
+$permessiesVerkoopAllow = "red\Verkoop","Write","Allow"
+$permessiesOntwikkelingAllow = "red\Ontwikkeling","Write","Allow"
+$permessiesITAllow = "red\IT_Administratie","FullControl","Allow"
+$permessiesDirectieAllow = "red\Directie","FullControl","Allow"
+$permessiesOntwikkelingRead = "red\Directie","FullControl","Allow"
+
+$acl1 = Get-Acl D:/Shares/VerkoopData
+$newRule1 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesVerkoopAllow)
+$newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesITAllow)
+$newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieDeny)
+$newRule4 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesOntwikkelingDeny)
+$acl1.SetAccessRule($newRule1)
+Set-Acl D:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule2)
+Set-Acl D:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule3)
+Set-Acl D:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule4)
+Set-Acl D:/Shares/VerkoopData -AclObject $acl1
+Start-sleep 5
+$acl1 = Get-Acl E:/Shares/OntwikkelingData
+$newRule1 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesVerkoopDeny)
+$newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesITAllow)
+$newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieDeny)
+$newRule4 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesOntwikkelingAllow)
+$acl1.SetAccessRule($newRule1)
+Set-Acl E:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule2)
+Set-Acl E:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule3)
+Set-Acl E:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule4)
+Set-Acl E:/Shares/VerkoopData -AclObject $acl1
+Start-sleep 5
+$acl1 = Get-Acl F:/Shares/ItData
+$newRule1 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesVerkoopDeny)
+$newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesITAllow)
+$newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieDeny)
+$newRule4 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesOntwikkelingDeny)
+$acl1.SetAccessRule($newRule1)
+Set-Acl F:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule2)
+Set-Acl F:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule3)
+Set-Acl F:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule4)
+Set-Acl F:/Shares/VerkoopData -AclObject $acl1
+Start-sleep 5
+$acl1 = Get-Acl G:/Shares/directory
+$newRule1 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesVerkoopDeny)
+$newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesITAllow)
+$newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieAllow)
+$newRule4 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesOntwikkelingDeny)
+$acl1.SetAccessRule($newRule1)
+Set-Acl G:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule2)
+Set-Acl G:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule3)
+Set-Acl G:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule4)
+Set-Acl G:/Shares/VerkoopData -AclObject $acl1
+Start-sleep 5
+$acl1 = Get-Acl H:/Shares/AdminData
+$newRule1 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesVerkoopDeny)
+$newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesITAllow)
+$newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieDeny)
+$newRule4 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesOntwikkelingDeny)
+$acl1.SetAccessRule($newRule1)
+Set-Acl H:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule2)
+Set-Acl H:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule3)
+Set-Acl H:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule4)
+Set-Acl H:/Shares/VerkoopData -AclObject $acl1
+Start-sleep 5
+$acl1 = Get-Acl Y:/Shares/HomeDirs
+$newRule1 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesVerkoopAllow)
+$newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesITAllow)
+$newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieAllow)
+$newRule4 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesOntwikkelingAllow)
+$acl1.SetAccessRule($newRule1)
+Set-Acl Y:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule2)
+Set-Acl Y:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule3)
+Set-Acl Y:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule4)
+Set-Acl Y:/Shares/VerkoopData -AclObject $acl1
+Start-sleep 5
+$acl1 = Get-Acl Z:/Shares/ProfileDirs
+$newRule1 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesVerkoopAllow)
+$newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesITAllow)
+$newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieAllow)
+$newRule4 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesOntwikkelingAllow)
+$acl1.SetAccessRule($newRule1)
+Set-Acl Z:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule2)
+Set-Acl Z:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule3)
+Set-Acl Z:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule4)
+Set-Acl Z:/Shares/VerkoopData -AclObject $acl1
+Start-sleep 5
+$acl8 = Get-Acl Q:/Shares/ShareVerkoop
+$newRule1 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesVerkoopAllow)
+$newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesITAllow)
+$newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieDeny)
+$newRule4 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesOntwikkelingRead)
+$acl1.SetAccessRule($newRule1)
+Set-Acl Y:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule2)
+Set-Acl Y:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule3)
+Set-Acl Y:/Shares/VerkoopData -AclObject $acl1
+$acl1.SetAccessRule($newRule4)
+Set-Acl Y:/Shares/VerkoopData -AclObject $acl1
+Start-sleep 5
+
+```
+8. Elke blok in deze code configureerd de ACL toegangs permissies voor elke share.
+9. alle permissie mogelijkheden zijn bonevaan gedefinëerd voor een vlot verloop van dit proces
+
+## Maximum capaciteit shares
+```
+New-FSRMQuotaTemplate -Name "AdminData Quota" -Size 100MB
+New-FSRMQuotaTemplate -Name "VerkoopData Quota" -Size 100MB
+New-FSRMQuotaTemplate -Name "DirDATA Quota" -Size 100MB
+New-FSRMQuotaTemplate -Name "OntwikkelingData Quota" -Size 200MB
+New-FSRMQuotaTemplate -Name "ITData Quota" -Size 200MB
+```
+10. deze quota's stellen de maximum capaciteiten in voor de shares die een maximum moesten ingesteld hebben.
