@@ -137,6 +137,16 @@ These are compatible with vmware_desktop, which on its turn should be usable for
 * StefanScherer/windows_10
 * StefanScherer/windows_2019
 
+## Problem with "Unsupported hardware family 'vmx-14'"
+
+Version of vmware-tools the box was built with
+
+
+## Problem with "Waiting for state running"
+
+Atm no clue how this happens. The github page of the plugin states it needs vmware-tools installed.
+While this is installed, the error persists.
+A solution might be to make a box with packer using another version of vmware-tools
 
 ## Resources
 
@@ -147,3 +157,7 @@ These are compatible with vmware_desktop, which on its turn should be usable for
 * https://hunter2.gitbook.io/darthsidious/building-a-lab/building-a-lab-with-esxi-and-vagrant
 
 * https://www.vagrantup.com/docs/networking/public_network.html
+
+vmware box compatibility
+* https://kb.vmware.com/s/article/1003746
+* https://kb.vmware.com/s/article/2007240
