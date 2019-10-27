@@ -31,7 +31,9 @@
 ---
 
 - name: Alfa2
-  box: gusztavvargadr/windows-server
+  # box: gusztavvargadr/windows-server
+  box: StefanScherer/windows_2016
+  box_version: '2018.03.14'
   ip: 172.18.1.66
   netmask: 255.255.255.224
   netmask_cidr: 27
