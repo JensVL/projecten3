@@ -1,8 +1,8 @@
 ﻿# **Testplan Bravo 2**
 
-## Bravo 2 is een backup domein controller, daarom moet eerst Alfa 2 draaien, zodat Bravo 2 het domein kan joinen en kan repliceren van Alfa2.
+Bravo 2 is een backup domein controller, daarom moet eerst Alfa 2 draaien, zodat Bravo 2 het domein kan joinen en kan repliceren van Alfa2.
 
-### Voer het script 1_RUNFIRST.ps1 uit
+## Voer het script 1_RUNFIRST.ps1 uit
 
 1. Het script zorgt ervoor dat de aanmelding automatisch gebeurd met volgende waarden:
     - **Username:** Administrator
@@ -12,7 +12,7 @@
 3. Kan gechecked worden met het volgende commando in powershell: $env:computername | Select-Object
 4. Als bravo2 teruggegeven wordt is de naam goed geconfigureerd.
 
-### Voer het script 2_InstallDCDNS.ps1 uit
+## Voer het script 2_InstallDCDNS.ps1 uit
 
 Het script gaat het volgende doen:
 
@@ -47,7 +47,7 @@ Bovenstaande kan getest worden via de gui of "ipconfig /all".
  7. Controle of domein "red.local" gejoind is.
     Commando: Get-WmiObject -Class Win32_ComputerSystem
 
-###  Voer het script 3_ConfigDCDNS.ps1 uit
+##  Voer het script 3_ConfigDCDNS.ps1 uit
 1. Kijken of DNS repliceert:
    Commando: Get-WMIObject –namespace “Root\MicrosoftDNS” –class MicrosoftDNS_Zone | Format-List Name
    Nadien commando: Get-WMIObject –namespace “Root\MicrosoftDNS” –class MicrosoftDNS_Zone | Where-Object {$_.Name –eq “red.local”}
