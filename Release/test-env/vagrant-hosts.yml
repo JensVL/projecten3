@@ -139,25 +139,31 @@
   include_linter: $false
 
 - name: Win10-client01
-  # box: gusztavvargadr/windows-10
-  box: StefanScherer/windows_10
+  box: gusztavvargadr/windows-10
+  # box: StefanScherer/windows_10
   ip: 172.18.0.5
   netmask: 255.255.255.0
   gui: false
   memory: 2048
   cpus: 2
+  synced_folders: 
+    - src: '../../Servers/Win10-client/test-env'
+      dest: '/vagrant'
   forwarded_ports:
     - guest: '3389'
       host: '3395'
 
 - name: Win10-client02
-  # box: gusztavvargadr/windows-10
-  box: StefanScherer/windows_10
+  box: gusztavvargadr/windows-10
+  # box: StefanScherer/windows_10
   ip: 172.18.0.6
   netmask: 255.255.255.0
   gui: false
   memory: 2048
   cpus: 2
+  synced_folders: 
+    - src: '../../Servers/Win10-client/test-env'
+      dest: '/vagrant'
   forwarded_ports:
     - guest: '3389'
       host: '3396'

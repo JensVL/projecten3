@@ -18,6 +18,7 @@ KILO2 = '../../Servers/Kilo2'
 NOVEMBER2 = '../../Servers/November2'
 LIMA2 = '../../Servers/Lima2'
 DELTA2 = '../../Servers/Delta2'
+CLIENT = '../../Servers/Win10-client'
 # }}}
 
 # {{{ Helper functions
@@ -57,7 +58,8 @@ def custom_synced_folders(vm, host)
   if host.has_key?('synced_folders')
     folders = host['synced_folders']
 
-    vm.synced_folder ".", "/vagrant", disabled: false
+    # NOTE: This is needed for ESXi
+    # vm.synced_folder ".", "/vagrant", disabled: true
 
     folders.each do |folder|
       vm.synced_folder folder['src'], folder['dest'], folder['options']
@@ -126,7 +128,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       config.winrm.timeout            = 3600
       config.vm.graceful_halt_timeout = 3600
       config.vm.boot_timeout          = 3600
-      config.winrm.transport          = :plaintext
+      # This is needed to communicate with Alfa2 and Bravo2 after they become Domaincontroller
+      # NOTE: This needs to be disabled when launching the Win10 clients 
+      #       since this cause a WinRM error
+      # config.winrm.transport        = :plaintext
       config.winrm.basic_auth_only    = true
 
       if host['name'] == "Alfa2"
@@ -211,11 +216,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             webapp['packagelocation'],
             host['include_linter']
           ]
-      elsif host['name'].match(/win10-client/)
+      elsif host['name'].match(/Win10-client/)
         # TODO
+        provisioning_path = CLIENT+'/test-env/provisioning/'
+
         node.vm.provision 'shell',
           privileged: true,
-          path: provisioning_path + host['name'] + '.ps1',
+          path: provisioning_path + 'win10-client.ps1',
           args: []
       end
     end
