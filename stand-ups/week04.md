@@ -3,7 +3,6 @@
 ## Aanwezigen week 4:
 | Naam                          | Aanwezig |
 | :---                          | :---   |
-<<<<<<< Updated upstream
 | Alister Adutwum               | V |
 | Laurens Blancquart-Cassaer    | V |
 | Nathan Cammerman              | V |
@@ -27,31 +26,6 @@
 | Aron Marckx                   | V |
 | Cédric Van den Eede           | V |
 | Arno Van Nieuwenhove          | V |
-=======
-| Alister Adutwum               |        |
-| Laurens Blancquart-Cassaer    |        |
-| Nathan Cammerman              |        |
-| Rik Claeyssens                |        |
-| Kimberly De Clercq            |        |
-| Tim Grijp                     |        |
-| Yngvar Samyn                  |        |
-| Joachim Van de Keere          |        |
-| Matthias Van de Velde         |        |
-| Robin Van de Walle            |        |
-| Jens Van Liefferinge          |        |
-| Jannes Van Wonterghem         |        |
-| Sean Vancompernolle           |        |
-| Jonas Vandegehuchte           |        |
-| Tibo Vanhercke                |        |
-| Ferre Verstichelen            |        |
-| Elias Waterschoot             |        |
-| Robby Daelman                 |        |
-| Cedric Detemmerman            |        |
-| Levi Goessens                 |        |
-| Aron Marckx                   |        |
-| Cédric Van den Eede           |        |
-| Arno Van Nieuwenhove          |        |
->>>>>>> Stashed changes
 
 ## Algemeen
 - Verslag vorige stand-up overlopen
@@ -75,7 +49,6 @@
     - premade box van Vagrant Cloud 
     - zelf box maken adhv Packer 
     - HyperV op server installeren met box `gusztavvargadr/windows-server`
-<<<<<<< Updated upstream
 - Iedereen komt aan het woord: Duidelijk vermelden wat klaar is en wat nog moet gedaan worden
 - Problemen/Vragen?
 
@@ -117,36 +90,6 @@
 * Netwerkinfra
   * Opstelling aangepast omdat er geen L3-switches zijn
   * Vandaag eerste test
-=======
-  - Iedereen komt aan het woord: Duidelijk vermelden wat klaar is en wat nog moet gedaan worden
-  - Problemen/Vragen?
-
-## Gerealiseerd week 3
-* Alpha
-  * 
-* Bravo
-  * 
-* Charlie
-  * 
-* Delta
-  * 
-* Kilo
-  * 
-* Lima
-  * 
-* Mike
-  * 
-* November
-  * 
-* Oscar
-  * 
-* Papa
-  * 
-* Zulu
-  * 
-* Netwerkinfra
-  * 
->>>>>>> Stashed changes
 
 ## Problemen
 * Degene die available zijn, mogen de server Papa2 op zich nemen.
@@ -154,12 +97,7 @@
 
 ## Volgende stand-up:
   - Voorbereiden draaiboek
-<<<<<<< Updated upstream
   - plan van aanpak voor testdag: timing van pert-chart maken => best in gant-chart
   - 
 
 © Author - Kimberly De Clercq, Matthias Van De Velde en Jannes Van Wonterghem
-=======
-
-© Author - Kimberly De Clercq & Matthias Van De Velde
->>>>>>> Stashed changes

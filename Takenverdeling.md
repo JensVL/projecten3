@@ -1,6 +1,6 @@
 ### Takenverdeling
 
-Alpha2
+Alfa2
 
 - Kimberly De Clercq
 - Laurens Blancquart-Cassaer
@@ -58,14 +58,15 @@ Netwerk
 Firewall
 
 - Alister Adutwum
+- Sean Vancompernolle
 
 
 ## Voorlopige versie testrapport
 
-Alpha2
+Alfa2
 
 - Alister Adutwum
-- 
+- Sean Vancompernolle
 
 Bravo2
 
