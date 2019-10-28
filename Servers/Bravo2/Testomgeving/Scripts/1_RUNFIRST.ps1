@@ -1,3 +1,4 @@
+Set-ExecutionPolicy Unrestricted
 # VARIABLES:
 $VBOXdrive = "Z:\"
 
