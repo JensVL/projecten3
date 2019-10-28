@@ -54,7 +54,7 @@ Servers afwerken + testplannen opstellen!
 * Charlie 
   * Afgewerkt
   * Testplan opgesteld. Troubleshooting moet nog afgewerkt worden
-  * Moet nog getest worden (testrapport)
+  * Testrapport opgesteld
 * Delta 
   * Afgewerkt
   * Moet nog getest worden (testrapport), afhankelijk van november
