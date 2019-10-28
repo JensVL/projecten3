@@ -41,12 +41,12 @@ set-location 'C:\Users\SCCMadmin\Desktop\SQL Server 2017 Installation'
              /AGTSVCACCOUNT='RED\SCCMAdmin' /AGTSVCPASSWORD=$SCCMPassword `
              /FTSVCACCOUNT='RED\SCCMAdmin' /FTSVCPASSWORD=$SCCMPassword `
              /SQLSYSADMINACCOUNTS='RED\SCCMAdmin' 'RED\Administrator' `
-             /INSTALLSQLDATADIR=E:\SQLServer `
-             /SQLUSERDBDIR=E:\Database `
-             /SQLUSERDBLOGDIR=E:\DBlogs `
-             /SQLBACKUPDIR=E:\Backup `
-             /SQLTEMPDBDIR=E:\TempDB `
-             /SQLTEMPDBLOGDIR=E:\TempDBlog `
+             /INSTALLSQLDATADIR=D:\SQLServer `
+             /SQLUSERDBDIR=D:\Database `
+             /SQLUSERDBLOGDIR=D:\DBlogs `
+             /SQLBACKUPDIR=D:\Backup `
+             /SQLTEMPDBDIR=D:\TempDB `
+             /SQLTEMPDBLOGDIR=D:\TempDBlog `
              /TCPENABLED=1 `
              /NPENABLED=1
 
@@ -254,7 +254,7 @@ Copy-Item "$MDT\Templates\CM12Extensions\*" "$SCCM\XmlStorage\Extensions\" -Forc
 
 # 6.1) Import SCCM cmdlets module:
 # Om SCCM powershell cmds te gebruiken moeten we eerst de SCCM cmdlets module importeren en naar onze aangemaakte site gaan (site naam = RED):
-Set-Location -Path "C:\SCCM\AdminConsole\bin"
+Set-Location -Path "D:\SCCM\AdminConsole\bin"
 Import-Module .\ConfigurationManager.psd1
 New-PSDrive -Name "RED" -PsProvider "AdminUI.PS.Provider\CMSite" -Root "Papa2.red.local" `
             -Description "RED site drive" | Out-Null
@@ -322,7 +322,7 @@ Start-CMContentDistribution -BootImageId "RED00005" -DistributionPointName "Papa
 # 11) Installeer WSUS role:
 Write-Host "Installing WSUS role with SQL integration:" -ForeGroundColor "Green"
 Install-WindowsFeature -Name UpdateServices-DB, UpdateServices-Services -IncludeManagementTools
-New-Item -Path "E:\" -ItemType Directory -Name "WSUS" # WSUS content locatie
+New-Item -Path "D:\" -ItemType Directory -Name "WSUS" # WSUS content locatie
 Write-Host "Installation WSUS completed!" -ForeGroundColor "Green"
 
 # Post deployment configuratie instellen: (content location + SQL Server aan WSUS linken):
@@ -331,7 +331,7 @@ Set-Location -Path "C:\Program Files\Update Services\Tools"
 # LET OP: aangezien we een default instance gebruikt hebben (bij installatie SQL server) laat je instance name hieronder leeg
 # Normaal doe je SERVER_NAME\INSTANCE_NAME maar bij ons is het dus gewoon SERVER_NAME
  ######################################################################################## TODO TODO aanpassen naar November2 TODO TODO
-.\wsusutil.exe postinstall SQL_INSTANCE_NAME="Papa2" CONTENT_DIR=E:\WSUS
+.\wsusutil.exe postinstall SQL_INSTANCE_NAME="Papa2" CONTENT_DIR=D:\WSUS
 
 If ($?) {
   Write-Host "Post-deployment configuration WSUS completed!" -ForeGroundColor "Green"

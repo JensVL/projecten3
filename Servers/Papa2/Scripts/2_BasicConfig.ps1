@@ -5,8 +5,17 @@
 $VBOXdrive = "Z:"
 $Land = "eng-BE"
 $IpAddress = "172.18.1.6"
-$DefaultGateway = "172.18.1.97"
-$CIDR = "26"
+
+##################################################################################################################
+# ECHTE CIDR EN DEFAULTGATEWAY VOOR INTEGRATIE DEMO:
+# $DefaultGateway = "172.18.1.97"
+# $CIDR = "26"
+
+# TEST CIDR EN DEFAULTGATEWAY VOOR VIRTUALBOX TESTING:
+$DefaultGateway = "172.18.1.65"
+$CIDR = "27"
+##################################################################################################################
+
 $AdapterNaam = "LAN"
 
 $Username = "RED\SCCMAdmin" # LET OP SCCMADMIN ZAL SCCM INSTALLEREN EN ALLE RECHTEN EROP HEBBEN !
@@ -49,8 +58,6 @@ Set-DnsClientServerAddress -InterfaceAlias LAN -ServerAddresses ("172.18.1.66","
 # 4) Idem aan het 1_RUNFIRST.ps1 script zal deze registry instelling ervoor zorgen dat ons volgende script automatisch wordt geladen
 # Want het joinen van een domein herstart automatisch onze server
 # RunOnce verwijderd deze instelling automatisch nadat het script klaar is met runnen
-Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce' -Name ResumeScript `
-                -Value 'C:\Windows\system32\WindowsPowerShell\v1.0\Powershell.exe -executionpolicy bypass -file "Z:\3_SCCMprereqInstall.ps1"'
 
 # 6) Voeg de Papa2 server toe aan het domain: red.local
 # 6.1) Maak een CredentialsObject aan met username SCCMAdmin en password Admin2019
