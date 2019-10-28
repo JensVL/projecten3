@@ -34,12 +34,12 @@
   box: gusztavvargadr/windows-server
   ip: 172.18.1.66
   netmask: 255.255.255.224
-  gui: false
+  gui: true
   memory: 4096
   cpus: 2
   forwarded_ports:
     - guest: '3389'
       host: '3390'
-  synced_folders: 
+  synced_folders:
     - src: './Scripts'
       dest: '/vagrant'

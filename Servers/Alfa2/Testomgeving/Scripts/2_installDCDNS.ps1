@@ -31,31 +31,33 @@ set-timezone -Name "Romance Standard Time"
 Write-host "Changing NIC adapter names"
 # TODO: conditional that checks if adapter names already exists does
 #       not correctly checks for equal strings
-$adaptercount=(Get-NetAdapter | measure).count
-if ($adaptercount -eq 1) {
-    echo "1"
-    $adapter1_name=(Get-NetAdapter)[0].Name
+Get-NetAdapter -Name "Ethernet 2" | Rename-NetAdapter -NewName "$lan_adapter_name"
 
-    echo "2"
-    if ("$adapter1_name" -ne $lan_adapter_name) {
-        echo "3"
-        (Get-NetAdapter)[0] | Rename-NetAdapter -NewName $lan_adapter_name
-    }
-} elseif ($adaptercount -eq 2) {
-    echo "4"
-    $adapter1_name=(Get-NetAdapter)[0].Name
-    if ("$adapter1_name" -ne 'NAT') {
-        echo "5"
-        (Get-NetAdapter)[0] | Rename-NetAdapter -NewName "NAT"
-    }
-
-    $adapter2_name=(Get-NetAdapter)[1].Name
-    echo "6"
-    if ("$adapter2_name" -ne $lan_adapter_name) {
-        echo "7"
-        (Get-NetAdapter)[1] | Rename-NetAdapter -NewName $lan_adapter_name
-    }       
-}
+# $adaptercount=(Get-NetAdapter | measure).count
+# if ($adaptercount -eq 1) {
+#     echo "1"
+#     $adapter1_name=(Get-NetAdapter)[0].Name
+#
+#     echo "2"
+#     if ("$adapter1_name" -ne $lan_adapter_name) {
+#         echo "3"
+#         (Get-NetAdapter)[0] | Rename-NetAdapter -NewName $lan_adapter_name
+#     }
+# } elseif ($adaptercount -eq 2) {
+#     echo "4"
+#     $adapter1_name=(Get-NetAdapter)[0].Name
+#     if ("$adapter1_name" -ne 'NAT') {
+#         echo "5"
+#         (Get-NetAdapter)[0] | Rename-NetAdapter -NewName "NAT"
+#     }
+#
+#     $adapter2_name=(Get-NetAdapter)[1].Name
+#     echo "6"
+#     if ("$adapter2_name" -ne $lan_adapter_name) {
+#         echo "7"
+#         (Get-NetAdapter)[1] | Rename-NetAdapter -NewName $lan_adapter_name
+#     }
+# }
 
 # Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.224)
 $existing_ip=(Get-NetAdapter -Name $lan_adapter_name | Get-NetIPAddress -AddressFamily IPv4).IPAddress
