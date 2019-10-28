@@ -87,7 +87,7 @@ Copy-Item "$VBOXdrive\ExtendADschema" -Destination "C:\Users\Administrator.red\D
 
 # 4.2) Dan voer je het script (ALS ADMINISTRATOR!) uit om de AD schema te extenden:
 Write-Host "Extending AD Schema:" -ForeGroundColor "Green"
-Start-Process -Verb RunAs C:\Users\Administrator.red\Desktop\ExtendADschema\extadsch.exe
+Start-Process -Verb RunAs "C:\Users\Administrator.red\Desktop\ExtendADschema\extadsch.exe"
 
 # NOG STEEDS FAILED TO EXTEND AD SCHEMA ERROR Error 8224?
 # Oplossing was: Tweede DomainController stond niet aan. Deze moet aanstaan (voor replication redenen)
@@ -97,6 +97,6 @@ Remove-Item -Path "C:\Users\Administrator.red\Desktop\ExtendADschema" -Force
 # Verplaats bovengenoemde log naar desktop van domain admin:
 Move-item -Path "C:\ExtADSch.log" -Destination "C:\Users\Administrator.red\Desktop"
 
- 
+
 
 Stop-Transcript
