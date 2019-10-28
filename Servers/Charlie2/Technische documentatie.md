@@ -9,11 +9,13 @@ recente versie. Het moet mogelijk zijn mails te versturen en te ontvangen tussen
 
 #### Stappenplan
 
-1. Installeer [Windows Server 2016](https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO) (opslag 50GB) met een Host-only adapter in het netwerk 172.18.1./27. Voor testen zonder integratie met het netwerk moet je ook een NAT adapter instellen.
-2. Voer de installatieschijf van [Exchange Server 2016 CU14](https://download.microsoft.com/download/f/4/e/f4e4b3a0-925b-4eff-8cc7-8b5932d75b49/ExchangeServer2016-x64-cu14.iso) in
+1. Installeer [Windows Server 2016](https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO) (opslag 50GB) met een Host-only adapter in het netwerk 172.18.1.64/27. Voor testen zonder integratie met het netwerk moet je ook een NAT adapter instellen.
+2. Voer de installatieschijf van [Exchange Server 2016 CU14](https://download.microsoft.com/download/f/4/e/f4e4b3a0-925b-4eff-8cc7-8b5932d75b49/ExchangeServer2016-x64-cu14.iso) in, schakel de server uit, wijzig de opstartvolgorde van de schijven zodat de harde schijf op de eerste plaats staat en start de server opnieuw op.
 3. Maak een gedeelde folder in virtualbox met de map "p3ops-1920-red\Servers\Charlie2\scripts" uit de GitHub-repository.
 4. Run het powershellscript '1_RenameServer.ps1' in de gedeelde schijf "Z:" als administrator, bevestig de wijzigingen aan de 'execution policy' door de vraag met 'A' te beantwoorden.
-5. 
+5. Open een browser op de server of op de host (dan moet je wel de dns-server instellen op Alfa2) en ga naar het Exchange-beheercentrum via https://mail.red.local/ecp. Log in met de login-gegevens van de AD-administrator. Selecteer de gewenste taal en tijdszone en ga verder.
+6. Selecteer in de linkerkolom 'servers' en klik op het potlood-icoon/wijzigen voor server Charlie2. Ga vervolgens naar 'DNS-zoekopdrachten'.
+7. Controleer of het correcte DNS-adres verschijnt en selecteer indien nodig de juiste netwerkadapter, zowel voor interne als externe zoekopdrachten zodat het ip-adres van de dns-server Alfa2 verschijnt. Sla vervolgens de wijzigingen op.
 
 
 
@@ -98,20 +100,34 @@ Hieronder vindt u meer uitleg over de powershellcode. Naast onderstaande code, i
     Install-WindowsFeature NET-Framework-45-Features, RPC-over-HTTP-proxy, RSAT-Clustering, RSAT-Clustering-CmdInterface, RSAT-Clustering-Mgmt, RSAT-Clustering-PowerShell, Web-Mgmt-Console, WAS-Process-Model, Web-Asp-Net45, Web-Basic-Auth, Web-Client-Auth, Web-Digest-Auth, Web-Dir-Browsing, Web-Dyn-Compression, Web-Http-Errors, Web-Http-Logging, Web-Http-Redirect, Web-Http-Tracing, Web-ISAPI-Ext, Web-ISAPI-Filter, Web-Lgcy-Mgmt-Console, Web-Metabase, Web-Mgmt-Console, Web-Mgmt-Service, Web-Net-Ext45, Web-Request-Monitor, Web-Server, Web-Stat-Compression, Web-Static-Content, Web-Windows-Auth, Web-WMI, Windows-Identity-Foundation, RSAT-ADDS
     ```
 
-12. AD voorbereiden (d = naam schijf exchange server)
+12. AD voorbereiden ("d" = naam schijf exchange server)
 
     ```
     & d:\setup.exe /PrepareSchema /IAcceptExchangeServerLicenseTerms
     & d:\Setup.exe /PrepareAD /OrganizationName:'red' /IAcceptExchangeServerLicenseTerms
     ```
 
-13. Exchange Server 2016 installeren
+13. Exchange Server 2016 installeren ("d" = naam schijf exchange server)
 
     ```
     & d:\Setup.exe /mode:Install /role:Mailbox /OrganizationName:'red' /IAcceptExchangeServerLicenseTerms
     ```
 
+14. Een mailbox activeren voor alle AD-gebruikers
 
+    ```
+    Add-PSSnapin Microsoft.Exchange.Management.PowerShell.SnapIn
+    $ADUsers = Get-ADUser -filter {userAccountControl -eq 512} -properties *
+    $ADUsers | foreach{enable-mailbox -Identity $_.Name}
+    ```
+
+15. Send-connector aanmaken
+
+    ```
+    New-SendConnector -Name 'E-mail SMTP' -AddressSpaces * -Internet -SourceTransportServer Charlie2.red.local
+    ```
+
+    
 
 
 
@@ -124,9 +140,3 @@ https://download.microsoft.com/download/2/C/4/2C47A5C1-A1F3-4843-B9FE-84C0032C61
 <https://emg.johnshopkins.edu/?p=1072> (Meer controles bij installatie ucma.exe)
 
 <https://www.youtube.com/watch?v=Z7nA0mpaSWQ>
-
-
-
-Geheimpje2019
-
-Add-DnsServerResourceRecordCName -Name "owa" -HostNameAlias "mail.red.local" -ZoneName "red.local"

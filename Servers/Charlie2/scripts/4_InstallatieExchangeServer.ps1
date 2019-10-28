@@ -1,7 +1,16 @@
 Write-host "Installatie Exchange Server Script 4" -ForeGroundColor "Red"
 
+# VARIABELEN
+$VBOXdrive = "\\VBOXSVR\scripts"
+
 # LOG SCRIPT TO FILE (+ op het einde van het script Stop-Transcript doen):
 Start-Transcript "C:\ScriptLogs\4_InstallatieExchangeServer.txt"
+
+# Idem aan het 1_RenameServer.ps1 script zal deze registry instelling ervoor zorgen dat ons volgende script automatisch wordt geladen
+# RunOnce verwijderd deze instelling automatisch nadat het script klaar is met runnen
+Write-host "Volgend script inladen in register" -ForeGroundColor "Green"
+Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce' -Name ResumeScript `
+                -Value "C:\Windows\system32\WindowsPowerShell\v1.0\Powershell.exe -executionpolicy bypass -file `"$VBOXdrive\5_configureExchangeServer.ps1`""
 
 #Features installeren
 Write-host "Features installeren" -ForeGroundColor "Green"
@@ -17,12 +26,7 @@ Invoke-Expression "& d:\Setup.exe /PrepareAD /OrganizationName:'red' /IAcceptExc
 Write-host "Exchange Server 2016 installeren" -ForeGroundColor "Green"
 Invoke-Expression "& d:\Setup.exe /mode:Install /role:Mailbox /OrganizationName:'red' /IAcceptExchangeServerLicenseTerms"
 
-Write-host "Auto-login uitschakelen" -ForeGroundColor "Green"
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultPassword -Value ""
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogon -Value 0
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name ForceAutoLogon -Value 0
 
-Write-host "Installatie is beëindigd" -ForeGroundColor "Red"
 Stop-Transcript
 
 Restart-Computer
