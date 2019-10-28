@@ -10,9 +10,8 @@
 param(
     [string]$land             = "eng-BE",
     [string]$local_ip         = "172.18.1.66",
-    [string]$default_gateway  = "172.18.1.98",
+    [string]$default_gateway  = "172.18.1.65",
     [string]$lan_prefix       = "27",
-    [string]$wan_adapter_name = "NAT",
     [string]$lan_adapter_name = "LAN"
 )
 
@@ -34,28 +33,28 @@ Write-host "Changing NIC adapter names"
 #       not correctly checks for equal strings
 $adaptercount=(Get-NetAdapter | measure).count
 if ($adaptercount -eq 1) {
-    echo "1"
-    $adapter1_name=(Get-NetAdapter)[0].Name
+    # echo "1"
+    # $adapter1_name=(Get-NetAdapter)[0].Name
 
-    echo "2"
-    if ("$adapter1_name" -ne $lan_adapter_name) {
-        echo "3"
+    # echo "2"
+    # if ("$adapter1_name" -ne $lan_adapter_name) {
+    #     echo "3"
         (Get-NetAdapter)[0] | Rename-NetAdapter -NewName $lan_adapter_name
-    }
+    # }
 } elseif ($adaptercount -eq 2) {
-    echo "4"
-    $adapter1_name=(Get-NetAdapter)[0].Name
-    if ("$adapter1_name" -ne $wan_adapter_name) {
-        echo "5"
+    # echo "4"
+    # $adapter1_name=(Get-NetAdapter)[0].Name
+    # if ("$adapter1_name" -ne $wan_adapter_name) {
+        # echo "5"
         (Get-NetAdapter)[0] | Rename-NetAdapter -NewName $wan_adapter_name
-    }
+    # }
 
-    $adapter2_name=(Get-NetAdapter)[1].Name
-    echo "6"
-    if ("$adapter2_name" -ne $lan_adapter_name) {
-        echo "7"
+    # $adapter2_name=(Get-NetAdapter)[1].Name
+    # echo "6"
+    # if ("$adapter2_name" -ne $lan_adapter_name) {
+        # echo "7"
         (Get-NetAdapter)[1] | Rename-NetAdapter -NewName $lan_adapter_name
-    }       
+    # }       
 }
 
 # Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.224)
@@ -67,12 +66,12 @@ if("$existing_ip" -ne "$local_ip") {
 
 # DNS van LAN van Alfa2 instellen op Hogent DNS servers:
 # Eventueel commenten tijdens testen in demo omgeving
-Set-DnsClientServerAddress -InterfaceAlias "$lan_adapter_name" -ServerAddress "193.190.173.1","193.190.173.2"
+Set-DnsClientServerAddress -InterfaceAlias "$lan_adapter_name" -ServerAddress "172.18.1.66","172.18.1.67"
 
 # Installeer de Active Directory Domain Services role om van de server een DC te kunnen maken:
 
 # Set default password
-$DSRM = ConvertTo-SecureString "Admin2019" -asPlainText -force
+$DSRM = ConvertTo-SecureString "Administrator2019" -asPlainText -force
 
 # Configure Administrator account
 Set-LocalUser -Name Administrator -AccountNeverExpires -Password $DSRM -PasswordNeverExpires:$true -UserMayChangePassword:$true

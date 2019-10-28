@@ -66,7 +66,7 @@ make_ou "Directie"
 # else {
 #     Write-Host "OU IT_Administratie already exists..." -ForegroundColor "Gray"
 # }
-# Write-Host "Make Organizational Unit IT Administratie..." -ForeGroundColor 
+# Write-Host "Make Organizational Unit IT Administratie..." -ForeGroundColor
 # if(!($makeOUDirectie)) {
 #     New-ADOrganizationalUnit -Name "Directie" -Description "Organizational Unit voor IT Administratie"
 # }
@@ -87,7 +87,7 @@ function make_group() {
     )
     $group_exists = [adsi]::Exists("LDAP://CN=$group_name,OU=$group_name,DC=red,DC=local")
 
-    if(!($group_name)) {
+    if(!($group_exists)) {
         Write-Host ">>> Make AD Group $group_name"
         New-ADGroup -Name $group_name -DisplayName $group_name -Path "OU=$group_name,DC=red,DC=local" -GroupCategory Security -GroupScope Global
     }
@@ -135,7 +135,7 @@ make_group "Directie"
 
 # Gebruikers
 # Er wordt telkens een gebruiker aangemaakt, specifiek de manager van elke Organizational Unit.
-# Wachtwoord "Admin2019" gaf foutmeldingen. 
+# Wachtwoord "Admin2019" gaf foutmeldingen.
 $password=ConvertTo-SecureString "Administrator2019" -asPlainText -force
 
 # Om performanten te maken: (WERKT NOG NIET --> Fout bij SamAccountName)
@@ -182,11 +182,11 @@ Import-Csv -Path "C:\vagrant\ExtendADschema\users3.csv" | ForEach-Object {
     #     New-ADUser -Name $_.Firstname -Surname $_.Lastname -SamAccountName $_.SamAccountName -Department $_.Department `
     #     -Description $_.Description -DisplayName $_.DisplayName -GivenName $_.Givenname `
     #     -State $_.State -City $_.City -PostalCode $_.PostalCode -EmailAddress $_.EmailAddress -Office $_.Office -EmployeeID $_.EmployeeID `
-    #     -HomePhone $_.Phone -Initials $_.Initials -Path $_.Path -AccountPassword $password 
+    #     -HomePhone $_.Phone -Initials $_.Initials -Path $_.Path -AccountPassword $password
     # }
 }
 <#
-# OF # 
+# OF #
 Import-Csv -Path "\\VBOXSVR\Scripts\ExtendADschema\users2.csv" -Header $header
 
 foreach($User in $ADUsers) {
@@ -217,7 +217,7 @@ foreach($User in $ADUsers) {
         -HomePhone $HomePhone -Initials $Initials -Path $Path -AccountPassword $password
     }
 }
-#> 
+#>
 <# Om te testen het volgende uitvoeren: (DIT WERKT!!!) #>
 # New-AdUser -Name "Kimberly" -Surname "De Clercq" -SamAccountName "KimberlyDC" -Department "Manager" -Description "Account voor Kimberly" -DisplayName "KimberlyDC" `
 #            -GivenName "Kimberly" -State "West-Vlaanderen"  -City "Ingelmunster" -PostalCode "8770" -EmailAddress "kimberly@red.local" `
@@ -315,6 +315,7 @@ foreach($User in $ADUsers) {
 #            -GivenName "Sean" -State "West-Vlaanderen" -City "Ieper" -PostalCode "8900" -EmailAddress "sean@red.local" `
 #            -Office "B0.015" -EmployeeID "8486" -HomePhone "0444727207" -Initials "SV" -Path "OU=Verkoop,DC=red,DC=local" -AccountPassword $paswoord
 
+
 # ## Managers per groep toekennen
 # Write-Host "Allocate managers to groups..." -ForeGroundColor "Green"
 # Set-ADGroup -Identity "CN=Administratie,OU=Administratie,DC=red,DC=local" -ManagedBy "CN=Joachim,OU=Administratie,DC=red,DC=local"
@@ -324,12 +325,12 @@ foreach($User in $ADUsers) {
 # Set-ADGroup -Identity "CN=IT_Administratie,OU=IT_Administratie,DC=red,DC=local" -ManagedBy "CN=Laurens,OU=IT_Administratie,DC=red,DC=local"
 
 # ## Groepmembers maken
-# Write-Host "Add members to groups..." -ForeGroundColor "Green"
-# Add-ADGroupMember -Identity "CN=Directie,OU=Directie,DC=red,DC=local" -Members "CN=Kimberly,OU=Directie,DC=red,DC=local", "CN=Arno,OU=Directie,DC=red,DC=local"
-# Add-ADGroupMember -Identity "CN=Administratie,OU=Administratie,DC=red,DC=local" -Members "CN=Joachim,OU=Administratie,DC=red,DC=local", "CN=Tibo,OU=Administratie,DC=red,DC=local", "CN=Yngvar,OU=Administratie,DC=red,DC=local", "CN=Tim,OU=Administratie,DC=red,DC=local", "CN=Rik,OU=Administratie,DC=red,DC=local"
-# Add-ADGroupMember -Identity "CN=IT_Administratie,OU=IT_Administratie,DC=red,DC=local" -Members "CN=Laurens,OU=IT_Administratie,DC=red,DC=local", "CN=Ferre,OU=IT_Administratie,DC=red,DC=local", "CN=Levi,OU=IT_Administratie,DC=red,DC=local", "CN=Aron,OU=IT_Administratie,DC=red,DC=local", "CN=Jens,OU=IT_Administratie,DC=red,DC=local"
-# Add-ADGroupMember -Identity "CN=Verkoop,OU=Verkoop,DC=red,DC=local" -Members "CN=Matthias,OU=Verkoop,DC=red,DC=local", "CN=Robby,OU=Verkoop,DC=red,DC=local", "CN=Nathan,OU=Verkoop,DC=red,DC=local", "CN=Elias,OU=Verkoop,DC=red,DC=local", "CN=Alister,OU=Verkoop,DC=red,DC=local", "CN=Sean,OU=Verkoop,DC=red,DC=local"
-# Add-ADGroupMember -Identity "CN=Ontwikkeling,OU=Ontwikkeling,DC=red,DC=local" -Members "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local", "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local", "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local", "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local", "CN=Robin,OU=Ontwikkeling,DC=red,DC=local"
+Write-Host "Add members to groups..." -ForeGroundColor "Green"
+Add-ADGroupMember -Identity "CN=Directie,OU=Directie,DC=red,DC=local" -Members "CN=Kimberly,OU=Directie,DC=red,DC=local", "CN=Arno,OU=Directie,DC=red,DC=local"
+Add-ADGroupMember -Identity "CN=Administratie,OU=Administratie,DC=red,DC=local" -Members "CN=Joachim,OU=Administratie,DC=red,DC=local", "CN=Tibo,OU=Administratie,DC=red,DC=local", "CN=Yngvar,OU=Administratie,DC=red,DC=local", "CN=Tim,OU=Administratie,DC=red,DC=local", "CN=Rik,OU=Administratie,DC=red,DC=local"
+Add-ADGroupMember -Identity "CN=IT_Administratie,OU=IT_Administratie,DC=red,DC=local" -Members "CN=Laurens,OU=IT_Administratie,DC=red,DC=local", "CN=Ferre,OU=IT_Administratie,DC=red,DC=local", "CN=Levi,OU=IT_Administratie,DC=red,DC=local", "CN=Aron,OU=IT_Administratie,DC=red,DC=local", "CN=Jens,OU=IT_Administratie,DC=red,DC=local"
+Add-ADGroupMember -Identity "CN=Verkoop,OU=Verkoop,DC=red,DC=local" -Members "CN=Matthias,OU=Verkoop,DC=red,DC=local", "CN=Robby,OU=Verkoop,DC=red,DC=local", "CN=Nathan,OU=Verkoop,DC=red,DC=local", "CN=Elias,OU=Verkoop,DC=red,DC=local", "CN=Alister,OU=Verkoop,DC=red,DC=local", "CN=Sean,OU=Verkoop,DC=red,DC=local"
+Add-ADGroupMember -Identity "CN=Ontwikkeling,OU=Ontwikkeling,DC=red,DC=local" -Members "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local", "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local", "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local", "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local", "CN=Robin,OU=Ontwikkeling,DC=red,DC=local"
 
 # ## Managers per OU toekennen
 # Write-Host "Allocate managers to OU's..." -ForeGroundColor "Green"
@@ -374,12 +375,12 @@ foreach($User in $ADUsers) {
 
 # Elk user-account unlocken.
 # Write-Host "Unlock accounts..." -ForeGroundColor "Green"
-<# Om performanten te maken: 
+<# Om performanten te maken:
 $ADUsers=Import-Csv -Path "\\VBOXSVR\Scripts\ExtendADschema\users2.csv" -Header $header
 
 Write-Host "Make AD Groups..." -ForeGroundColor "Green"
 foreach($User in $ADUsers) {
-   Enable-ADAccount -Identity $($User.Path) 
+   Enable-ADAccount -Identity $($User.Path)
 }
 else {
     Write-Warning "Account $User.name already unlock..." -ForegroundColor "Gray"
@@ -490,13 +491,13 @@ else {
 
 ####################################################################################################################################### TODO MAG WSS WEG
 
-# Group Policy 
-# De GPO's worden in de GUI ingesteld. 
+# Group Policy
+# De GPO's worden in de GUI ingesteld.
 # 1. Verbied iedereen uit alle afdelingen behalve IT Administratie de toegang tot het control panel
 # 2. Verwijder het games link menu uit het start menu voor alle afdelingen
 # 3. Verbied iedereen uit de afdelingen Administratie en Verkoop de toegang tot de eigenschappen van de netwerkadapters
 
-# Eerst worden de GPO's (DisableControlPanel, RemoveGameLink en DisableNetworkadapters) gemaakt. 
+# Eerst worden de GPO's (DisableControlPanel, RemoveGameLink en DisableNetworkadapters) gemaakt.
 # Group Policy Management > Forest: red.local > Domains > red.local > rechtsklik > "Create a GPO in this domain, and Link it here..."
 
 # De GPO linken aan de juiste afdelingen
