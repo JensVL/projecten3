@@ -11,14 +11,14 @@ Auteur(s) testplan: Tim Grijp, Elias Waterschoot
 - Er moet een Active Directory opstaan met domein `red.local`
 - De AD moet ip address `172.18.1.66` hebben
 - Voor de zekerheid controleren onder tools -> AD users and computers of Mike2 er niet al staat (indien ja, verwijderen!)
-- Voor de Mike2 server kan er niet gewerkt worden met snapshots, dit zorgt voor een fatale error
-
+- Het kan zijn dat als je met snapshots wekt in virtualbox dat hij een fatale error geeft. 
+- Voor de configuratie van sharepoint moet er een sql server zijn genaamd november2, die het account Red\Administrator de rechten geeft om een databank aan te maken en te wijzigen. Dit is niet nodig voor de installatie. 
 
 ## Aanmaken Mike2
 
 Maak de Mike 2 server aan in VirtualBox
 - paswoord: `Admin2019`
-- Zorg ervoor dat de 'host-only adapter' als 'ethernet' staat, de andere is dan voor NAT (kan je controleren door in VirtualBox           cable connected uit te vinken)
+- Zorg ervoor dat de 'host-only adapter' als 'ethernet' staat (dit is normaal de eerste adapter in virtualbox) , de andere is dan voor NAT (kan je controleren door in VirtualBox cable connected uit te vinken)
 - Voor de Mike2 server kan er niet gewerkt worden met snapshots, dit zorgt voor een fatale error
 - Maak een shared folder aan met een map 'scripts voor mike2' en een map 'sharepoint'
 - De scripts moeten hier staan: `Z:/scripts voor mike2`
@@ -38,6 +38,8 @@ De scripts zijn zo ingsteld dat er automatisch opnieuw wordt opgestart en dat he
 - Script `SPsetup` wordt uitgevoerd
     - installatie van SharePoint via `SPinstallation`
     - Database account wordt gevraagd
+    - dit scherm kan je sluiten de installatie is hier compleet.
+-Voor de configuratie voer je het script `SPFarm` uit. Hiervoor moet je kunnen connecteren met sql server `november2` 
 
 
 # Controleren scripts
