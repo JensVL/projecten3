@@ -44,10 +44,10 @@ Hieronder vindt u meer uitleg over de powershellcode. Naast onderstaande code, i
    New-NetIPAddress -InterfaceAlias "LAN" -IPAddress "172.18.1.68" -PrefixLength 27
    ```
 
-3. AD als DNS-server instellen
+3. Alfa2 en Bravo2 als DNS-server instellen
 
    ```
-   Set-DnsClientServerAddress -InterfaceAlias "LAN" -ServerAddress "172.18.1.66"
+   Set-DnsClientServerAddress -InterfaceAlias "LAN" -ServerAddress ("172.18.1.66","172.18.1.67")
    ```
 
 4. Firewall uitschakelen

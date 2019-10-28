@@ -44,7 +44,7 @@ Write-host "ip adres LAN instellen" -ForeGroundColor "Green"
 New-NetIPAddress -InterfaceAlias "LAN" -IPAddress "172.18.1.68" -PrefixLength 27
 #AD als DNS instellen
 Write-host "DNS adres LAN instellen" -ForeGroundColor "Green"
-Set-DnsClientServerAddress -InterfaceAlias "LAN" -ServerAddress "172.18.1.66"
+Set-DnsClientServerAddress -InterfaceAlias "LAN" -ServerAddress ("172.18.1.66","172.18.1.67")
 #firewall uitzetten
 Write-host "Firewall uitzetten" -ForeGroundColor "Green"
 Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
