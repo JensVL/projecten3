@@ -10,18 +10,12 @@ Taak team:
 Week: 05
 
 ## Opdrachtomschrijving
-...
 
-## Done
-| TeamLid        | Omschrijving Taak | Uren           |
-| -------------- | -------------- | -------------- |
-|                |                |                |
-|                |                |                |
-|                |                |                |
-|                |                |                |
+![week05](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/Lastenboek/Screenshots%20lastenboek/week05.png)
 
-## To do
-...
+## Planning voor volgende week
+
+- Scripting probleem oplossing!
 
 ## Vragen
-- geen
+- Zie mail Meneer De Bodt.
