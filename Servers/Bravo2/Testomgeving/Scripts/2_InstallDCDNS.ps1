@@ -32,6 +32,13 @@ Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName $AdapterNaam
 Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
 New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR
 
+# Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.224)
+$existing_ip=(Get-NetAdapter -Name $AdapterNaam | Get-NetIPAddress -AddressFamily IPv4).IPAddress
+if("$existing_ip" -ne "$IpAddress") {
+    Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
+    New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $lan_prefix -DefaultGateway "$default_gateway"
+}
+
 # 4) DNS van LAN van Alfa2 instellen op Hogent DNS servers:
 # Eventueel commenten tijdens testen in demo omgeving
 # Set-DnsClientServerAddress -InterfaceAlias "$AdapterNaam" -ServerAddress "$IpAlfa2","$IpAddress"
