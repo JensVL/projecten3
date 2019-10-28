@@ -96,13 +96,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       config.winrm.timeout = 3600
       config.vm.boot_timeout = 3600
 
-      if host['name'] == "Bravo2"
+      #if host['name'] == "Bravo2"
                 # Run configuration script for the VM
-                node.vm.provision 'shell', path: 'Testomgeving/Scripts/1_RUNFIRST.ps1'
-                node.vm.provision 'shell', reboot: true
-                node.vm.provision 'shell', path: 'Testomgeving/Scripts/2_InstallDCDNS.ps1'
-                node.vm.provision 'shell', path: 'Testomgeving/Scripts/3_ConfigDCDNS.ps1'
-        end
+      node.vm.provision 'shell', path: 'Testomgeving/Scripts/1_RUNFIRST.ps1'
+      node.vm.provision 'shell', reboot: true
+      node.vm.provision 'shell', path: 'Testomgeving/Scripts/2_InstallDCDNS.ps1'
+      node.vm.provision 'shell', path: 'Testomgeving/Scripts/3_ConfigDCDNS.ps1'
     end
   end
 end
