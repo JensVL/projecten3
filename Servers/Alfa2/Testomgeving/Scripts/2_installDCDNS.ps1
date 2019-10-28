@@ -10,9 +10,8 @@
 param(
     [string]$land             = "eng-BE",
     [string]$local_ip         = "172.18.1.66",
-    [string]$default_gateway  = "172.18.1.98",
+    [string]$default_gateway  = "172.18.1.65",
     [string]$lan_prefix       = "27",
-    [string]$wan_adapter_name = "NAT",
     [string]$lan_adapter_name = "LAN"
 )
 
@@ -69,7 +68,7 @@ if("$existing_ip" -ne "$local_ip") {
 
 # DNS van LAN van Alfa2 instellen op Hogent DNS servers:
 # Eventueel commenten tijdens testen in demo omgeving
-Set-DnsClientServerAddress -InterfaceAlias "$lan_adapter_name" -ServerAddress "193.190.173.1","193.190.173.2"
+Set-DnsClientServerAddress -InterfaceAlias "$lan_adapter_name" -ServerAddress "172.18.1.66","172.18.1.67"
 
 # Installeer de Active Directory Domain Services role om van de server een DC te kunnen maken:
 

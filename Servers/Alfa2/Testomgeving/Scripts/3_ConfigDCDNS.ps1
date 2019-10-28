@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Description
 #------------------------------------------------------------------------------
-# Installatiescript dat de configuratie doet van de DNS 
+# Installatiescript dat de configuratie doet van de DNS
 #   (primary forward en reversed lookup zones maken + Forwarder)
 
 #------------------------------------------------------------------------------
@@ -42,12 +42,12 @@ Set-DnsClientServerAddress -InterfaceAlias $wan_adapter_name -ResetServerAddress
 Write-host "Setting DNS primary zone for red.local" -ForeGroundColor "Green"
 Set-DnsServerPrimaryZone -Name "red.local" -SecureSecondaries "TransferToZoneNameServer"
 
-# Voeg de servers als AAAA records toe met hun ip adres 
+# Voeg de servers als AAAA records toe met hun ip adres
 #   in de aangemaakte primary zone: (name to ip address)
 # NOTE: Charlie2 Exchange (mail) server = MX record ipv AAAA record
 #   en Bravo2 DC2 = NS record (NS record niet zelf aanmaken gebeurd
 #   automatisch volgens AD-integration zones)
-# NOTE: MX record -MailExchange option moet pointen naar 
+# NOTE: MX record -MailExchange option moet pointen naar
 #   bestaande A record
 #   (Zie -Mail Exchange optie Microsoft docs Add-DnsServerResourceRecordMX)
 Write-host "Adding DNS A and MX records for the servers of red.local" -ForeGroundColor "Green"
@@ -111,8 +111,11 @@ add_dns_record -record_name "Papa2" -record_zone_name "red.local" -record_type "
 # Add-DnsServerResourceRecordA -Name "Papa2" -ZoneName "red.local" -IPv4Address "$Papa2IP"
 
 # Firewall uitzetten (want we gebruiken hardware firewall):
-# Write-Host "Turning firewall off:" -ForeGroundColor "Green"
-# Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+ Write-Host "Turning firewall off:" -ForeGroundColor "Green"
+ Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+
+# DNS forwarder instellen op Hogent DNS servers:
+Add-DnsServerForwarder -IPAddress 193.190.173.1,193.190.173.2
 
 # 5) Start het 4_ADstructure.ps1 script als Administrator:
 # Write-host "Running next script 4_ADSTRUCTURE.ps1 as admin:" -ForeGroundColor "Green"

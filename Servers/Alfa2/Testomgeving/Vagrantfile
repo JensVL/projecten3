@@ -105,9 +105,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                args: [
                  "eng-BE",
                  "172.18.1.66",
-                 "172.18.1.98",
+                 "172.18.1.65",
                  "27",
-                 "NAT",
                  "LAN"
                ]
              node.vm.provision 'shell', reboot: true
