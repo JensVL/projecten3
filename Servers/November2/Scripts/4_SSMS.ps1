@@ -1,6 +1,6 @@
 # Set file and folder path for SSMS installer .exe
 $folderpath="C:\Users\Administrator\Desktop"
-$filepath="$folderpath\SSDT-Setup-ENU.exe"
+$filepath="$folderpath\SSMT-Setup-ENU.exe"
  
 #If SSMS not present, download
 if (!(Test-Path $filepath)){
