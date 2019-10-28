@@ -4,7 +4,7 @@ $Land = "eng-BE"
 $IpAddress = "172.18.1.67"
 $IpAlfa2 = "172.18.1.66"
 $CIDR = "27"
-$default_gateway  = "172.18.1.65",
+$default_gateway  = "172.18.1.65"
 # $DefaultGateWay = "172.18.1.98"
 $AdapterNaam = "LAN"
 $DSRM = ConvertTo-SecureString "Admin2019" -asPlainText -force
@@ -30,8 +30,8 @@ Write-host "Changing NIC adapter names:" -ForeGroundColor "Green"
 Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName $AdapterNaam
 
 # 3) LAN adapter instellen
-Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
-New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR
+<# Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
+New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR #>
 
 # Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.224)
 $existing_ip=(Get-NetAdapter -Name $AdapterNaam | Get-NetIPAddress -AddressFamily IPv4).IPAddress
