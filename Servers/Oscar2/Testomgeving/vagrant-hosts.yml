@@ -31,7 +31,7 @@
 ---
 
 
-- name: srv001
-  ip: 192.168.56.32
+- name: Oscar2
+  ip: 127.18.1.5
   box: gusztavvargadr/windows-server
   shell: .ps1
