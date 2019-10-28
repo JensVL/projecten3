@@ -44,7 +44,7 @@ Write-host "Setting correct ipv4 adapter settings (including DNS and Default gat
 New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR -DefaultGateway "$DefaultGateway"
 
 # Beide DNS servers van de NIC worden ook ingesteld op de ip van Hogent DNS servers met volgend commando:
-Set-DnsClientServerAddress -InterfaceAlias LAN -ServerAddresses ("193.190.173.1","193.190.173.2")
+Set-DnsClientServerAddress -InterfaceAlias LAN -ServerAddresses ("172.18.1.66","172.18.1.67")
 
 # 4) Idem aan het 1_RUNFIRST.ps1 script zal deze registry instelling ervoor zorgen dat ons volgende script automatisch wordt geladen
 # Want het joinen van een domein herstart automatisch onze server
