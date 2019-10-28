@@ -104,7 +104,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                     path: 'Scripts/' + '2_installDCDNS.ps1',
                     args: [
                       "eng-BE",
-                      "172.18.1.68",
+                      "172.18.1.67",
                       "172.18.1.65",
                       "27",
                       "NAT",
@@ -116,7 +116,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                     path: 'Scripts/' + '3_ConfigDCDNS.ps1',
                     args: [
 
-                      "172.18.1.68",
+                      "172.18.1.67",
                       "NAT"
                     ]
                   end
