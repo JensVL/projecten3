@@ -6,8 +6,8 @@ $prefix = "26"
 $ipalfa = "172.18.1.66"
 $ipbravo = "172.18.1.67"
 
-New-NetIPAddress -InterfaceAlias Ethernet0 -IPAddress $ip -DefaultGateway $defaultgateway -PrefixLength $prefix
-Set-DnsClientServerAddress -InterfaceAlias Ethernet0 -ServerAddresses $ipalfa, $ipbravo
+New-NetIPAddress -InterfaceAlias Ethernet -IPAddress $ip -DefaultGateway $defaultgateway -PrefixLength $prefix
+Set-DnsClientServerAddress -InterfaceAlias Ethernet -ServerAddresses $ipalfa, $ipbravo
 
 #Firewall
 Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
