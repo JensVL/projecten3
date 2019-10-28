@@ -49,7 +49,7 @@ def custom_synced_folders(vm, host)
     folders = host['synced_folders']
 
     folders.each do |folder|
-      vm.synced_folder folder['Scripts/'], folder['Z:/Scripts'], folder['options']
+      vm.synced_folder folder['src'], folder['dest'], folder['options']
     end
   end
 end
@@ -84,8 +84,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       forwarded_ports(node.vm, host)
 
       node.vm.provider :virtualbox do |vb|
-        vb.gui = host['gui']
-        vb.cpus = host['cpus'] if host.key? 'cpus'
+        vb.gui    = host['gui']
+        vb.cpus   = host['cpus'] if host.key? 'cpus'
         vb.memory = host['memory'] if host.key? 'memory'
 
         # WARNING: if the name of the current directory is the same as the
@@ -93,15 +93,25 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         vb.customize ['modifyvm', :id, '--groups', PROJECT_NAME]
       end
 
-      config.winrm.timeout = 3600
-      config.vm.boot_timeout = 3600
+      config.vm.communicator          = "winrm"
+      config.winrm.timeout            = 3600
+      config.vm.graceful_halt_timeout = 3600
+      config.vm.boot_timeout          = 3600
+      config.winrm.transport          = :plaintext
+      config.winrm.basic_auth_only    = true
 
       if host['name'] == "Alfa2"
-
         node.vm.provision 'shell',
           privileged: true,
-          path: 'Scripts/' + '2_InstallDCDNS.ps1'
-        end
+          path: 'Scripts/' + '2_installDCDNS.ps1'
+        node.vm.provision 'shell', reboot: true
+        node.vm.provision 'shell',
+          privileged: true,
+          path: 'Scripts/' + '3_ConfigDCDNS.ps1'
+        node.vm.provision 'shell',
+          privileged: true,
+          path: 'Scripts/' + '4_ADstructure.ps1'
+      end
     end
   end
 end
