@@ -6,7 +6,13 @@ Auteurs: Levi Goessens en Arno Van Nieuwenhove
 1. Download een Windows Server 2019 ISO file.
 2. Maak 2 VM's aan in VirtualBox, Alfa 2 en Bravo 2.
 3. Start de VM's en installeer de Guest Additions.
-4. Na de reboot voegen we een shared folder toe. Klik in het menu op 'Apparaten', vervolgens kiezen we voor 'Instellingen gedeelde mappen' bij 'Gedeelde mappen'. Klik op 'voegt gedeelde map toe', geef vervolgens het pad mee waar de scripts voor respectievelijk Alfa 2 of Bravo 2 staan en vink zowel 'Automatisch koppelen' als 'Permanent maken' aan. Wanneer we nu op 'OK' duwen is de shared folder aangemaakt.
+4. Toevoegen van een shared folder
+	- Klik op **Apparaten** in het menu
+	- Kies voor **Gedeelde mappen** en dan **Instellingen gedeelde mappen**
+	- Selecteer **Voegt gedeelde map toe**
+	- selecteer het **path** waar de script voor respectievelijk Alfa2 en Bravo2 staan
+	- vink **Automatisch koppelen** en **Permanent maken** aan
+	- Druk op ok, de folder is aangemaakt
 5. Klik op File explorer en vervolgens op Network en sta Network Discovery toe. We zien nu de map VBOXSVR, met hierin onze scripts.
 
 ### Uitvoeren scripts
