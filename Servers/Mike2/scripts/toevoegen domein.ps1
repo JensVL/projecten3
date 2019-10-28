@@ -27,7 +27,7 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 # configure hostonlyadapter
 
 Write-Output "configure hostonlyadapter"
-New-NetIPAddress -IPAddress 172.18.1.3 -PrefixLength 24 -InterfaceIndex (Get-NetAdapter -Name "Ethernet").InterfaceIndex
+New-NetIPAddress -IPAddress 172.18.1.3 -PrefixLength 26 -InterfaceIndex (Get-NetAdapter -Name "Ethernet").InterfaceIndex
 
 
 #Disable Firewall
