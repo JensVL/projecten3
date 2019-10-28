@@ -1,4 +1,4 @@
-# VARIABLES:
+<# # VARIABLES:
 $VBOXdrive = "Z:\"
 
 # LOG SCRIPT TO FILE (+ op het einde van het script Stop-Transcript doen):
@@ -21,4 +21,4 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 #Rename-Computer -NewName Bravo2 -Force 
 Stop-Transcript
 
-Restart-Computer -Force
+Restart-Computer -Force #>
