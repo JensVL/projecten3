@@ -50,35 +50,44 @@ Servers afwerken + testplannen opstellen!
   * Wordt performanter gemaakt
   * Moet nog getest worden (testrapport)
 * Bravo 
-  *  
+  *  vagrant-omgeving opgezet. Dat werkt. 
+  *  Testplan opgesteld
 * Charlie 
-  * Afgewerkt
-  * Testplan opgesteld. Troubleshooting moet nog afgewerkt worden
-  * Testrapport opgesteld
+  * Afgewerkt, nog verder geautomatiseerd deze week
+  * Testplan opgesteld
 * Delta 
   * Afgewerkt
   * Moet nog getest worden (testrapport), afhankelijk van november
+  * Gant-chart: nog 4/5 servers => stuurt nog een berichtje
+    * Ook testplannen worden opgenomen
 * Kilo 
-  * Bijna af
+  * Is af, moet juist nog getest worden
 * Lima 
-  * 
+  * Testplan opgesteld.
+  * Toevoegen van Server aan domein moet nog geautomatiseerd worden => kijk eens naar script 2 charlie2
 * Mike 
-  * Configuratie van de sharepoint moet nog gebeuren
-  * Moet nog getest worden (testrapport), afhankelijk van november
+  * Afgewerkt
+  * Willen configuratie van sharepoint nog 
+  * Testplan is vandaag afgewerkt
 * November 
-  * 
+  * Nog wat problemen in script, krijgen hulp van bravo2
+  * Midden deze week afgewerkt
 * Oscar 
-  * 
+  * Hebben vandaag kunnen testen of prtg de sensors en servers vind op het netwerk
+  * Moeten nog bekijken hoe ze het testplan 
 * Papa 
-  * 
+  * SCCM installatie en configuratie is af
+  * Task sequence moet nog aangemaakt
+  * Vandaag of morgen wordt het testplan gemaakt 
 * Zulu 
-  * Moet nog getest worden (testrapport) 
-  * Documentatie afwerken
+  * Functioneel afgewerkt
+  * Documentatie en testplan afgewerkt
+  * Volgende week: Alfa2 testen + 
 * Netwerkinfrastructuur 
-  * 
+  * Is afgewerkt => 
 
 ## Problemen
-- 
+- Netwerkinfra: Zijn er mensen in Aalst die vandaag kunnen helpen met daar de netwerkinfrastructuur te testen.
 
 ## Volgende stand-up:
 - Alle servers zijn afgewerkt
