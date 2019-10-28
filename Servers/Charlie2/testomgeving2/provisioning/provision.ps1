@@ -9,6 +9,7 @@ Install-WindowsFeature Server-Media-Foundation
 
 choco install dotnet4.7.2 -n
 
+choco install vcredist2013 -n
 # install Microsoft Unified Communications Managed API 4.0
 choco install ucma4 -n
 
@@ -18,10 +19,12 @@ choco install ucma4 -n
 # Rename-Computer -NewName Charlie2 -Force
 # (Daarna moet de server wel reboot worden)
 
-d:
+Set-Location "D:"
 .\setup.exe /PrepareSchema /IAcceptExchangeServerLicenseTerms
 
 .\Setup.exe /PrepareAD /OrganizationName:"RED" /IAcceptExchangeServerLicenseTerms
 
-.\Setup.exe /mode:Install /role:Mailbox /OrganizationName: /IAcceptExchangeServerLicenseTerms
+./Setup.exe /PrepareAllDomains /IAcceptExchangeServerLicenseTerms
+
+.\Setup.exe /mode:Install /role:Mailbox /OrganizationName:"RED" /IAcceptExchangeServerLicenseTerms
 
