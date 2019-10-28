@@ -3,4 +3,19 @@ Stappen:
 
 1:  Software Library -> Operating Systems -> Task Seaquences (rechtermuisklik) -> Create Task Sequence
 2:  SELECTEER "Create a new Custom Task Sequence" -> Next
-3: 
+3:  SELECTEER de "Windows10 x64" boot image -> Next
+4: Task Sequence AANGEMAAKT
+5: Applicaties invoeren: "Application Management" -> RECHTERMUIS "APPLICATIONS"
+6: SELECTEER "Create Application" -> IMPORTEER VANAF SERVER (\\DC1\sharedfolder\setup.msi)
+7: Vul velden in, CONTROLEER de COMMAND LINE voor de INSTALLATIE
+8: VOEG TOE  aan INSTALLATION PROGRAM: "/norestart"
+9: SELECTEER bij "Install Behavior": "INSTALL FOR SYSTEM" -> NEXT -> NEXT
+10: RECHTERMUIS op Applicatie, "PROPERTIES",  VINK AAN:
+	"Allow this application to be installed..." -> APPLY -> OK
+11: RECHTERMUIS op Application -> Deploy -> "COLLECTION": BROWSE -> All Users
+
+
+
+
+5: rechtermuisklik op aangemaakte "Task Sequence", dan "Edit"
+6: SELECTEER "ADD" -> "SOFTWARE" ->  "INSTALL APPLICATION"
