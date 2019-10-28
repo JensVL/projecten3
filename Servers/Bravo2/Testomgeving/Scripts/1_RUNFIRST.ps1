@@ -1,4 +1,3 @@
-powershell –ExecutionPolicy Bypass
 # VARIABLES:
 $VBOXdrive = "Z:\"
 
