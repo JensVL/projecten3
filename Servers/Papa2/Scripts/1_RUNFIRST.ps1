@@ -13,7 +13,7 @@ $InformationPreference = "Continue"
 
 # VARIABLES:
 $Username = "Administrator"
-$Password = ConvertTo-SecureString "Admin2019" -AsPlainText -Force
+$Password = "Admin2019"
 
 # LOG SCRIPT TO FILE (+ op het einde van het script Stop-Transcript doen):
 Start-Transcript "C:\Scriptlogs\1_RUNFIRST_LOG.txt"
