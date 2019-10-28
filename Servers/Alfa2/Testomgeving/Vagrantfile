@@ -94,6 +94,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       end
 
       config.winrm.timeout = 3600
+      config.winrm.transport = :plaintext
+      config.winrm.basic_auth_only = true
       config.vm.boot_timeout = 3600
 
       if host['name'] == "Alfa2"
