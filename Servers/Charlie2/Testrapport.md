@@ -11,10 +11,10 @@ De Virtuele Machine vervolgens opstarten.
 Na uitvoering van alle scripts, is de Exchange Server succesvol geïnstalleerd. De uitvoering van alles scripts hebben net iets meer dan 3 uur geduurd. (6GB RAM meegegeven)
 
 ### Resultaat:
-![](2019-10-28-09-19-27.png)
-![](2019-10-28-09-20-08.png)
-![](2019-10-28-09-20-55.png)
-![](2019-10-28-09-18-38.png)
+![](images/2019-10-28-09-19-27.png)
+![](images/2019-10-28-09-20-08.png)
+![](images/2019-10-28-09-20-55.png)
+![](images/2019-10-28-09-18-38.png)
 
 
 #### Uitvoerder test: Joachim Van de Keere
