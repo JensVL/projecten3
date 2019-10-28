@@ -11,7 +11,7 @@ Week: 04
 
 ## Opdrachtomschrijving
 
-![week04]https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/Lastenboek/Screenshots%20lastenboek/week04.png
+![week04](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/Lastenboek/Screenshots%20lastenboek/week04.png)
 
 ## Planning van volgende week
 - Scripting afwerken
