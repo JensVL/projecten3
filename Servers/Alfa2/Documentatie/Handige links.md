@@ -7,6 +7,9 @@
 [Managing OUs](https://blog.netwrix.com/2018/06/26/managing-ous-and-moving-their-objects-with-powershell/)  
 [New-ADComputer](https://docs.microsoft.com/en-us/powershell/module/addsadministration/new-adcomputer?view=win10-ps)    
 [Roaming profiles](https://sid-500.com/2017/08/27/active-directory-configuring-roaming-profiles-using-gui-and-powershell/)   
+[Import-Csv](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-csv?view=powershell-6)  
+[CSV Multiple New-ADUser](http://woshub.com/new-aduser-create-active-directory-users-powershell/)  
+[Check ADUser exists](https://www.powershelladmin.com/wiki/Check_if_an_AD_user_exists_with_Get-ADUser)  
 
 ## Beleidsregels op gebruikersniveau
 [Link GPO to OU](https://www.manageengine.com/products/active-directory-audit/kb/how-to/how-to-link-a-gpo-to-an-ou.html)  
@@ -31,11 +34,8 @@ Get-AppxPackage \*Xbox\* | Remove-AppxPackage
 ### Zorg voor de juiste toegangsgroepen voor de fileserver (Modify/Read/Full) en voeg de juiste personen en/of groepen toe.  
 [Set-GPPermission](https://docs.microsoft.com/en-us/powershell/module/grouppolicy/Set-GPPermission?view=win10-ps)  
 
-### Maak gebruik van AGDLP (Account, Global, Domain Local, Permission) voor het uitwerken van de groepsstructuur.
-
 ## Andere
-### Opslaan bureaublad: path
-"C:\Users\Administrator.red\Desktop"    
-
+- Opslaan bureaublad: path = "C:\Users\Administrator.red\Desktop"  
+- ... 
 
 © Authors:  Kimberly De Clercq

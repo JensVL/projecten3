@@ -34,11 +34,12 @@
   box: gusztavvargadr/windows-server
   ip: 172.18.1.66
   netmask: 255.255.255.224
-  gui: true
+  gui: false
   memory: 4096
   cpus: 2
   forwarded_ports:
     - guest: '3389'
       host: '3390'
-  downloadpath: 'D:\VagrantVMS\Alfa2'
-  intnet: true
+  synced_folders: 
+    - src: './Scripts'
+      dest: '/vagrant'

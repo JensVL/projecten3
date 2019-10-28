@@ -4,35 +4,63 @@
 
 Auteur(s) testplan: Kimberly De Clercq en Laurens Blancquaert-Cassaer
 
-## Uit te voeren stappen
+## AD/DNS configuratie en installatie
+### Uit te voeren stappen:
+Checken of dat Alfa2 een domeincontroller is:
+Server Manager > tools > Active Directory Users and Computers > Papa2.red.local > Domain Controllers (container)
+Hierin zou Alfa2 als computerobject moeten staan
 
-1. Maak een Virtuele Machine aan.
-2. 
-
-## DNS configuratie en installatie
+Checken of er een DNS primary zone geïnstalleerd is (met de naam red.local):
+Server Manager > Tools > DNS Manager > forward lookup zone
+Hier zou je "red.local" moeten zien staan
 
 | Nr test | Wat moet er getest worden | In orde? |
 | :--- | :--- | :--- |
-| 1 | Is DNS geïnstalleerd op de VM? | Ja/Nee |
-| 2 | Is er een DNS primary zone geïnstalleerd op de VM? | Ja/Nee |
-| 3 | ... | Ja/Nee |
+| 1 | Is Alfa2 een domeincontroller? | Ja/Nee |
+| 2 |Is DNS geïnstalleerd op de VM? | Ja/Nee |
+| 3 | Is er een DNS primary zone geïnstalleerd op de VM? | Ja/Nee |
+| 4 | Zijn alle DNS records correct aangemaakt volgens onderstaande tabel? | Ja/Nee |
 
-## IP-adresserings tabel
 
-| Device | Soort | IP-address | 
+##  DNS records tabel:
+### Uit te voeren stappen:
+Checken of de DNS records bestaan: 
+Server manager > tools > DNS Manager >Forward Lookup Zones > red.local
+
+    Let op: Alle records moeten een A record zijn behalve Alfa2 en Bravo2 deze zijn een NS record.
+    De Exchange server Charlie2 bevat naast een A record ook een MX en Cname record.
+
+| Device | Soort DNS record | IP-address | 
 | :--: | :--: | :--: | 
-| alfa2 | DC1 / DNS1 |  | 
-| bravo2 | DC2 / DNS2 |  | 
-| charlie2 | Exchange Webserver |  | 
-| delta2 | IIS Webserver | 172.18.1.69 | 
-| kilo2 | DHCP Server | 172.18.1.1 | 
-| lima2 | File Server | 172.18.1.2 | 
-| mike2 | Intranet Sharepoint Server | 172.18.1.3 | 
-| november2 | SQL Server | 172.18.1.4 | 
-| oscar2 | Monitoring Server | 172.18.1.5 | 
-| papa2 | SCCM Server | 172.18.1.6 | 
+| alfa2 | NS | 172.18.1.66 | 
+| bravo2 | NS | 172.18.1.67 (zie je pas na installatie Bravo2 server) | 
+| charlie2 | A + MX + Cname |172.18.1.68  | 
+| delta2 | A | 172.18.1.69 | 
+| kilo2 | A | 172.18.1.1 | 
+| lima2 | A | 172.18.1.2 | 
+| mike2 | A | 172.18.1.3 | 
+| november2 | A | 172.18.1.4 | 
+| oscar2 | A | 172.18.1.5 | 
+| papa2 | A | 172.18.1.6 | 
 
-## AD configuratie en installatie
+## AD en DNS Replication tussen Alfa2 en Bravo2 (Tweede domeincontroller)
+### Uit te voeren stappen:
+Checken of de replicatie tussen Alfa2 en Bravo2 hun Active Directory goed werkt:
+1) Open Powershell ISE als administrator.
+2) Voer volgend commando in:
+
+       repadmin /showrepl
+4) De output hiervan moet bij alle lijnen successful weergeven
+
+Checken of de primary DNS zone "red.local" ook op Bravo2 staat met alle records:
+Dit moet je uiteraard op Bravo2 doen. Je kan Alfa2 en Bravo2 als VM in virtualbox met elkaar verbinden (Gewoon de scripts uitvoeren die de servers configureren)
+Server manager > tools > DNS Manager >Forward Lookup Zones > red.local
+
+    
+| Nr test | Wat moet er getest worden | In orde? |
+| :--- | :--- | :--- |
+| 1 | Werkt de replicatie tussen Alfa2 en Bravo2 hun Active Directory zoals het hoort? | Ja/Nee |
+| 2 | Staat de DNS primary zone "red.local" ook op Bravo2 met alle records? | Ja/Nee |
 
 ### Organizational Units
 
@@ -96,6 +124,7 @@ Auteur(s) testplan: Kimberly De Clercq en Laurens Blancquaert-Cassaer
 | Verkoop | Nathan Cammerman | Nee | Gent |
 | Verkoop | Elias Waterschoot | Nee | Gent |
 | Verkoop | Alister Adutwum | Nee | Gent |
+| Verkoop | Sean Vancompernolle | Nee | Gent |
 
 ### Indeling Active Directory Office
 
@@ -128,4 +157,35 @@ Volg hiervoor eerst het stappenplan in het verslag onder `Stappenplan beleidsreg
 | 5 | Hebben de afdelingen `Administratie` en `Verkoop` geen toegang tot de eigenschappen van de netwerkadapters? | Ja/Nee |
 
 ## AGDLP (Account, Global, Domain Local, Permission)
+TODO WANNEER LIMA2 SERVER KLAAR IS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+## Prepare AD for SCCM:
+### Uit te voeren stappen:
+Checken of de SCCM admin useraccount aangemaakt is en of hij in de domain admin group zit:
+1) Server Manager > tools > Active Directory Users and Computers > Papa2.red.local > Users
+Hierin zou SCCMadmin als userobject moeten staan
+2) Voor te kijken of de SCCMadmin in de Domain Admins group zit:
+klik rechtermuisknop op het SCCMadmin object en kies properties. Ga naar de "member of" tab. Hij moet in de domain admin group zitten
+
+Checken of de System Management container (voor SCCM) correct aangemaakt is:
+1) Server Manager > Tools > ADSIedit 
+2) Rechtermuisknop op "ADSIedit" en doe "connecto to.."
+3) Laat default settings staan en druk op ok
+4) Ga naar: Default naming context > DC=red, DC=local > CN=System
+Hierin zou je de container "System Management moeten zien staan
+
+De System Management container zijn permissies moeten allemaal kunnen beheerd worden door de Papa2 server dit check je zo:
+1) Rechtermuisknop op System Management container en kies properties
+2) Ga naar de "security" tab
+3) In de lijst van groups/users moet je Papa2 zien staan en de permissies moeten op "Full Control" staan
+
+Checken of de AD schema succesfully extended is:
+Dit doe je best door de automatisch aangemaakte logfile te checken die je op vind in de volgende locatie:
+De test is geslaagd als hier geen errors in staan
+
+    C:\ExtADSch.log
+| Nr test | Wat moet er getest worden | In orde? |
+| :--- | :--- | :--- |
+| 1 | Is de SCCM admin useraccount aangemaakt en zit hij in de domain admin group? | Ja/Nee |
+| 2 |Is de System Management container (voor SCCM) correct aangemaakt? | Ja/Nee |
+| 3 | Is het AD schema succesfully extended? | Ja/Nee |
