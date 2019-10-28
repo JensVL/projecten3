@@ -31,16 +31,16 @@
 ---
 
 - name: Alfa2
-  # box: gusztavvargadr/windows-server
-  box: StefanScherer/windows_2016
-  box_version: '2018.03.14'
+  box: gusztavvargadr/windows-server
+  # box: StefanScherer/windows_2016
+  # box_version: '2018.03.14'
   ip: 172.18.1.66
   netmask: 255.255.255.224
   netmask_cidr: 27
   gui: false
   memory: 2048
   cpus: 2
-  default_gateway: 172.18.1.98
+  default_gateway: 172.18.1.65
   bravo2: 172.18.1.67
   charlie2: 172.18.1.68
   delta2: 172.18.1.69
@@ -153,11 +153,19 @@
 - name: Win10-client01
   box: gusztavvargadr/windows-10
   # box: StefanScherer/windows_10
-  ip: 172.18.0.5
-  netmask: 255.255.255.0
+  # ip: 172.18.0.5
+  ip: 172.18.1.68
+  # netmask: 255.255.255.0
+  netmask: 255.255.255.224
   gui: false
   memory: 2048
   cpus: 2
+  primary_dns: 172.18.1.66
+  secondary_dns: 172.18.1.67
+  domain: 'red.local'
+  domain_user: 'RED\Administrator'
+  domain_pw: 'Admin2019'
+  downloadpath: 'C:\SetupMedia'
   synced_folders: 
     - src: '../../Servers/Win10-client/test-env'
       dest: '/vagrant'

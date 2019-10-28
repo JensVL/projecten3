@@ -4,7 +4,12 @@
 # Parameters
 #------------------------------------------------------------------------------
 Param(
-    [string]$downloadpath       = 'C:\SetupMedia'
+    [string]$downloadpath  = "C:\SetupMedia",
+    [string]$primary_dns   = "172.18.1.66",
+    [string]$secondary_dns = "172.18.1.67",
+    [string]$domain        = "red.local",
+    [string]$domain_user   = "RED\Administrator",
+    [string]$domain_pw     = "Administrator2019"
 
 #     [string]$include_linter     = "$false"
 )
@@ -42,14 +47,14 @@ debug "downloadpath = $downloadpath"
 ensure_download_path $downloadpath
 
 debug 'Setting DNS to Alfa2'
-$primaryDNS='172.18.1.66'
-$secondaryDNS='172.18.1.67'
-Set-DnsClientServerAddress -InterfaceAlias "Ethernet 2" -ServerAddresses ($primaryDNS, $secondaryDNS)
+# $primaryDNS='172.18.1.66'
+# $secondaryDNS='172.18.1.67'
+Set-DnsClientServerAddress -InterfaceAlias "Ethernet 2" -ServerAddresses ($primary_dns, $secondary_dns)
 
-$strUser = "RED\Administrator"
-$strDomain = "red.local"
-$strPassword = ConvertTo-SecureString "Admin2019" -AsPlainText -Force
-$Credentials = New-Object System.Management.Automation.PsCredential($strUser,$strPassword)
+# $strUser = "RED\Administrator"
+# $strDomain = "red.local"
+$secure_domain_pw = ConvertTo-SecureString $domain_pw -AsPlainText -Force
+$credentials = New-Object System.Management.Automation.PsCredential($domain_user,$secure_domain_pw)
 
-debug "Joining domain $strDomain"
-Add-computer -DomainName $strDomain -Credential $Credentials -Verbose
+debug "Joining domain $domain"
+Add-computer -DomainName $domain -DomainCredential $credentials -Verbose
