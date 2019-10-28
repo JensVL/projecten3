@@ -12,6 +12,7 @@ param(
     [string]$local_ip         = "172.18.1.66",
     [string]$default_gateway  = "172.18.1.98",
     [string]$lan_prefix       = "27",
+    [string]$wan_adapter_name = "NAT",
     [string]$lan_adapter_name = "LAN"
 )
 
