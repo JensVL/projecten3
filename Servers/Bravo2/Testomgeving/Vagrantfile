@@ -105,7 +105,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                     args: [
                       "eng-BE",
                       "172.18.1.68",
-                      "172.18.1.98",
+                      "172.18.1.65",
                       "27",
                       "NAT",
                       "LAN"
@@ -117,6 +117,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                     args: [
 
                       "172.18.1.68",
+                      "NAT"
                     ]
                   end
     end
