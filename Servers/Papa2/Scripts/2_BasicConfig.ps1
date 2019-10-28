@@ -10,7 +10,7 @@ $CIDR = "26"
 $AdapterNaam = "LAN"
 
 $Username = "RED\SCCMAdmin" # LET OP SCCMADMIN ZAL SCCM INSTALLEREN EN ALLE RECHTEN EROP HEBBEN !
-$Password = ConvertTo-SecureString "Admin2019" -AsPlainText -Force
+$Password = "Admin2019" | ConvertTo-SecureString -AsPlainText -Force
 
 # PREFERENCE VARIABLES: (Om Debug,Verbose en informaation info in de Start-Transcript log files te zien)
 $DebugPreference = "Continue"
@@ -54,13 +54,13 @@ Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce'
 
 # 6) Voeg de Papa2 server toe aan het domain: red.local
 # 6.1) Maak een CredentialsObject aan met username SCCMAdmin en password Admin2019
-$SCCMcredentials = New-Object System.Management.Automation.PSCredential($Username, $Password)
+$SCCMcredentials = New-Object System.Management.Automation.PSCredential($Username,$Password)
 
 # 6.2) Registry waardes voor username/password en autologin instellen:
 # Deze zorgen ervoor dat het inloggen automatisch gebeurd met de credentials die in het vorige commando verzameld zijn.
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultUserName -Value $Username
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultPassword -Value $Password
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogon -Value 1
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogon -Value 0
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name ForceAutoLogon -Value 1
 
 # 7) Papa2 toevoegen aan het bestaande domein als member server:
