@@ -11,7 +11,7 @@ Auteur(s) testplan: Tim Grijp, Elias Waterschoot
 - Er moet een Active Directory opstaan met domein `red.local`
 - De AD moet ip address `172.18.1.66` hebben
 - Voor de zekerheid controleren onder tools -> AD users and computers of Mike2 er niet al staat (indien ja, verwijderen!)
-- Het kan zijn dat als je met snapshots wekt in virtualbox dat hij een fatale error geeft. 
+- Het kan zijn dat als je met snapshots werkt in virtualbox dat hij een fatale error geeft. 
 - Voor de configuratie van sharepoint moet er een sql server zijn genaamd november2, die het account Red\Administrator de rechten geeft om een databank aan te maken en te wijzigen. Dit is niet nodig voor de installatie. 
 
 ## Aanmaken Mike2
