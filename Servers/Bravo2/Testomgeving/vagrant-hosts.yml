@@ -32,6 +32,7 @@
 
 - name: Bravo2
   ip: 172.18.1.67
+  netmask: 255.255.255.224
   box: gusztavvargadr/windows-server
   memory: 1536
   cpus: 2
