@@ -15,7 +15,7 @@ Week: 05
 
 ## Planning voor volgende week
 
-- Scripting probleem oplossing!
+- Scripting probleem oplossen!
 
 ## Vragen
 - Zie mail Meneer De Bodt.
