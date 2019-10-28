@@ -16,7 +16,8 @@ param(
     [string]$Mike2IP     = "172.18.1.3", # Intranet Sharepoint Server
     [string]$November2IP = "172.18.1.4", # SQL Server
     [string]$Oscar2IP    = "172.18.1.5", # Monitoring Server
-    [string]$Papa2IP     = "172.18.1.6" # SCCM Server
+    [string]$Papa2IP     = "172.18.1.6", # SCCM Server
+    [string]$wan_adapter_name = "NAT"
 )
 
 #------------------------------------------------------------------------------
@@ -34,6 +35,9 @@ while ($true) {
 #------------------------------------------------------------------------------
 # Configure DNS
 #------------------------------------------------------------------------------
+# Fix adapters
+Set-DnsClientServerAddress -InterfaceAlias $wan_adapter_name -ResetServerAddresses
+
 # Stel forward primary lookup zones in voor alle servers in het red domein:
 Write-host "Setting DNS primary zone for red.local" -ForeGroundColor "Green"
 Set-DnsServerPrimaryZone -Name "red.local" -SecureSecondaries "TransferToZoneNameServer"

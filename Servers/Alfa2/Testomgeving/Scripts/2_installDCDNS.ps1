@@ -12,6 +12,7 @@ param(
     [string]$local_ip         = "172.18.1.66",
     [string]$default_gateway  = "172.18.1.98",
     [string]$lan_prefix       = "27",
+    [string]$wan_adapter_name = "NAT",
     [string]$lan_adapter_name = "LAN"
 )
 
@@ -44,9 +45,9 @@ if ($adaptercount -eq 1) {
 } elseif ($adaptercount -eq 2) {
     echo "4"
     $adapter1_name=(Get-NetAdapter)[0].Name
-    if ("$adapter1_name" -ne 'NAT') {
+    if ("$adapter1_name" -ne $wan_adapter_name) {
         echo "5"
-        (Get-NetAdapter)[0] | Rename-NetAdapter -NewName "NAT"
+        (Get-NetAdapter)[0] | Rename-NetAdapter -NewName $wan_adapter_name
     }
 
     $adapter2_name=(Get-NetAdapter)[1].Name
