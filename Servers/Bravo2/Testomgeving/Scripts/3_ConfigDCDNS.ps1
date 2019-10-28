@@ -14,7 +14,15 @@ $Bravo2IP = "172.18.1.67" # DC2
 Write-Host "Waiting 30 seconds before starting script:" -ForeGroundColor "Green"
 Start-Sleep -s 30
 
-# 7.1) Check domaincontroller informatie en forest
+
+# Firewall uitzetten (want we gebruiken hardware firewall):
+ Write-Host "Turning firewall off:" -ForeGroundColor "Green"
+ Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+
+# DNS forwarder instellen op Hogent DNS servers:
+Add-DnsServerForwarder -IPAddress 193.190.173.1,193.190.173.2
+
+#Check domaincontroller informatie en forest
 Get-ADDomainController 
 Get-ADTrust -Filter  *
 
