@@ -4,11 +4,12 @@
 # Elke stap wordt uitgelegd met zijn eigen comment
 
 ############################################## BELANGRIJK #####################################################################################
-# VOER DIT SCRIPT UIT ALS ADMINISTRATOR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# VOER DIT SCRIPT UIT ALS ADMINISTRATOR ACCOUNT TIJDENS DE DEMO
 ############################################## BELANGRIJK #####################################################################################
 
 # VARIABLES:
-$VBOXdrive = "Z:"
+$VBOXdrive = "C:\Vagrant"
+
 $SCCMAdmin = "SCCMadmin"
 
 # PREFERENCE VARIABLES: (Om Debug,Verbose en informaation info in de Start-Transcript log files te zien)
@@ -20,15 +21,12 @@ $InformationPreference = "Continue"
 Start-Transcript "C:\ScriptLogs\999_PrepareADforSCCMlog.txt"
 
 # 1) Maakt een admin account aan voor SCCM (SCCMAdmin) en maak hem lid van de Domain Admin group:
-# 1.1) Met het Get-Credential command openen we opnieuw een prompt zodat het wachtwoord van deze account
-# kan ingegeven worden (password wordt opgeslaan in $SCCMPassword en wordt daarna converted naar een secure string)
-$CurrentCredentials = Get-Credential -UserName $env:USERNAME -Message "Credentials required for SCCMAdmin account"
-$SCCMPassword = $CurrentCredentials.GetNetworkCredential().Password
-$SecureStringPwd = ConvertTo-SecureString "$SCCMPassword" -AsPlainText -Force
+# 1.1) Password instellen op Admin2019
+$password=ConvertTo-SecureString "Admin2019" -asPlainText -force
 
 # 1.2) Het aanmaken van de SCCM account zelf:
 Write-Host "Creating SCCMAdmin account in the AD for the Papa2 server:" -ForeGroundColor "Green"
-New-ADUser -GivenName "SCCM" -Surname "Admin" -Name "$SCCMAdmin" -PasswordNeverExpires $true -AccountPassword $SecureStringPwd
+New-ADUser -GivenName "SCCM" -Surname "Admin" -Name "$SCCMAdmin" -PasswordNeverExpires $true -AccountPassword $password
 New-ADComputer -Name "Papa2"
 set-adUser -Enabled $true -Identity "$SCCMAdmin"
 
@@ -36,6 +34,9 @@ set-adUser -Enabled $true -Identity "$SCCMAdmin"
 Write-host "Adding SCCMAdmin to Domain Admin en Administrators group:" -ForeGroundColor "Green"
 Add-ADGroupMember -Identity "Domain Admins" -Members "$SCCMAdmin"
 Add-ADGroupMember -Identity "Administrators" -Members "$SCCMAdmin"
+Add-ADGroupMember -Identity "Domain Admins" -Members "Vagrant"
+Add-ADGroupMember -Identity "Schema Admins" -Members "Vagrant"
+Add-ADGroupMember -Identity "Administrators" -Members "Vagrant"
 
 # 2) Nu moeten we in ADSIedit (Waar al de instellingen van ADDS staan) een System Management container maken onder de "System"
 # 2.1) Verbind met ADSIedit:
@@ -83,20 +84,17 @@ $SystemManagementCN.psbase.commitchanges()
 
 #4.1) Eerst de folder "ExtendADSchema" uit de VB share folder lokaal kopiëren naar Alfa2 server:
 # Dit moet omdat je anders een warning "This file might be unsafe" krijgt.
-Copy-Item "$VBOXdrive\ExtendADschema" -Destination "C:\Users\Administrator.red\Desktop" -Recurse
+Copy-Item "$VBOXdrive\ExtendADschema" -Destination "C:\Users\Administrator\Desktop" -Recurse
 
 # 4.2) Dan voer je het script (ALS ADMINISTRATOR!) uit om de AD schema te extenden:
 Write-Host "Extending AD Schema:" -ForeGroundColor "Green"
-Start-Process -Verb RunAs "C:\Users\Administrator.red\Desktop\ExtendADschema\extadsch.exe"
+Start-Process "C:\Users\Administrator\Desktop\ExtendADschema\extadsch.exe"
 
 # NOG STEEDS FAILED TO EXTEND AD SCHEMA ERROR Error 8224?
 # Oplossing was: Tweede DomainController stond niet aan. Deze moet aanstaan (voor replication redenen)
 # C:\ExtADSch.log check deze log file om te zien of extenden van het AD schema succesvol was
 
-Remove-Item -Path "C:\Users\Administrator.red\Desktop\ExtendADschema" -Force
 # Verplaats bovengenoemde log naar desktop van domain admin:
-Move-item -Path "C:\ExtADSch.log" -Destination "C:\Users\Administrator.red\Desktop"
-
-
+Move-item -Path "C:\ExtADSch.log" -Destination "C:\Users\Administrator\Desktop"
 
 Stop-Transcript
