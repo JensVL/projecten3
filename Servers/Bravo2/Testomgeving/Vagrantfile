@@ -98,10 +98,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
       #if host['name'] == "Bravo2"
                 # Run configuration script for the VM
-      node.vm.provision 'shell', path: 'Testomgeving/Scripts/1_RUNFIRST.ps1'
+      node.vm.provision 'shell', path: 'Scripts/1_RUNFIRST.ps1'
       node.vm.provision 'shell', reboot: true
-      node.vm.provision 'shell', path: 'Testomgeving/Scripts/2_InstallDCDNS.ps1'
-      node.vm.provision 'shell', path: 'Testomgeving/Scripts/3_ConfigDCDNS.ps1'
+      node.vm.provision 'shell', path: 'Scripts/2_InstallDCDNS.ps1'
+      node.vm.provision 'shell', path: 'Scripts/3_ConfigDCDNS.ps1'
     end
   end
 end
