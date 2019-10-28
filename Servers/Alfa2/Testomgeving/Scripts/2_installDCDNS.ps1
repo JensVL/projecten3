@@ -1,72 +1,79 @@
-# Installatiescript dat de initiële configuratie doet en de ADDS role installeert:
-# Elke stap wordt uitgelegd met zijn eigen comment
+#------------------------------------------------------------------------------
+# Description
+#------------------------------------------------------------------------------
+# Installatiescript dat zorgt voor de initiële configuratie
+# en de installatie van de ADDS role
 
-# VARIABLES:
-$VBOXdrive = "Z:"
-$Land = "eng-BE"
-$IpAddress = "172.18.1.66"
-$DefaultGateway = "172.18.1.98"
-$CIDR = "27"
-$AdapterNaam = "LAN"
+#------------------------------------------------------------------------------
+# Variables
+#------------------------------------------------------------------------------
+param(
+    [string]$land             = "eng-BE",
+    [string]$local_ip         = "172.18.1.66",
+    [string]$default_gateway  = "172.18.1.98",
+    [string]$lan_prefix       = "27",
+    [string]$lan_adapter_name = "LAN"
+)
 
-# PREFERENCE VARIABLES: (Om Debug,Verbose en informaation info in de Start-Transcript log files te zien)
-# $DebugPreference = "Continue"
-# $VerbosePreference = "Continue"
-# $InformationPreference = "Continue"
 
-# LOG SCRIPT TO FILE (+ op het einde van het script Stop-Transcript doen):
-# Start-Transcript "C:\ScriptLogs\2_InstallDCDNSlog.txt"
-
-# Start-Sleep zal 10 seconden wachten voor hij aan het eerste commando van dit script begint
-# om zeker te zijn dat de server klaar is met het starten van zijn services na de reboot
-# Write-host "Waiting 15 seconds before executing script" -ForeGroundColor "Green"
-# start-sleep -s 15
-# Write-host "Starting script now:" -ForeGroundColor "Green"
-
-# 1) Stel Datum/tijd correct in:
+#------------------------------------------------------------------------------
+# Initial config
+#------------------------------------------------------------------------------
 # Romance standard time = Brusselse tijd
-# Eerste commando zal tijd naar 24uur formaat instellen (eng zorgt dat taal op engels blijft maar regio komt op BE)
-Write-host "Setting correct timezone and time format settings:" -ForeGroundColor "Green"
-Set-Culture -CultureInfo $Land
+# Eerste commando zal tijd naar 24uur formaat instellen
+#   (eng zorgt dat taal op engels blijft maar regio komt op BE)
+Write-host ">>> Setting correct timezone and time format settings"
+Set-Culture -CultureInfo $land
 set-timezone -Name "Romance Standard Time"
 
-###################################################################################################### ENKEL VOOR VIRTUALBOX LAB TESTING DEMO HEEFT 1 NIC (LAN)
-# 2) Hernoem de netwerkadapters. NAT = de adapter die met het internet verbind
+# NAT = de adapter die met het internet verbinding
 # LAN = de adapter met static IP instellingen die alle servers met elkaar verbind.
-Write-host "Changing NIC adapter names:" -ForeGroundColor "Green"
-# TODO:                                                                                                                      TODO: Vervang door:
-# Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName $AdapterNaam
-Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName "NAT"
-Get-NetAdapter -Name "Ethernet 2" | Rename-NetAdapter -NewName $AdapterNaam
-###################################################################################################### ENKEL VOOR VIRTUALBOX LAB TESTING DEMO HEEFT 1 NIC (LAN)
+Write-host "Changing NIC adapter names"
+# TODO: conditional that checks if adapter names already exists does
+#       not correctly checks for equal strings
+$adaptercount=(Get-NetAdapter | measure).count
+if ($adaptercount -eq 1) {
+    echo "1"
+    $adapter1_name=(Get-NetAdapter)[0].Name
 
-#                                                                          ############################# TODO: SWITCH IP ADRES INSTELLEN ALS Def. Gateway
-# 3) Geef de LAN adapter de correcte IP instellingen volgens de opdracht:
+    echo "2"
+    if ("$adapter1_name" -ne $lan_adapter_name) {
+        echo "3"
+        (Get-NetAdapter)[0] | Rename-NetAdapter -NewName $lan_adapter_name
+    }
+} elseif ($adaptercount -eq 2) {
+    echo "4"
+    $adapter1_name=(Get-NetAdapter)[0].Name
+    if ("$adapter1_name" -ne 'NAT') {
+        echo "5"
+        (Get-NetAdapter)[0] | Rename-NetAdapter -NewName "NAT"
+    }
+
+    $adapter2_name=(Get-NetAdapter)[1].Name
+    echo "6"
+    if ("$adapter2_name" -ne $lan_adapter_name) {
+        echo "7"
+        (Get-NetAdapter)[1] | Rename-NetAdapter -NewName $lan_adapter_name
+    }       
+}
+
 # Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.224)
-Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
-New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR -DefaultGateway "$DefaultGateway"
+$existing_ip=(Get-NetAdapter -Name $lan_adapter_name | Get-NetIPAddress -AddressFamily IPv4).IPAddress
+if("$existing_ip" -ne "$local_ip") {
+    Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
+    New-NetIPAddress -InterfaceAlias "$lan_adapter_name" -IPAddress "$local_ip" -PrefixLength $lan_prefix -DefaultGateway "$default_gateway"
+}
 
-# 4) DNS van LAN van Alfa2 instellen op Hogent DNS servers:
+# DNS van LAN van Alfa2 instellen op Hogent DNS servers:
 # Eventueel commenten tijdens testen in demo omgeving
-Set-DnsClientServerAddress -InterfaceAlias "$AdapterNaam" -ServerAddress "193.190.173.1","193.190.173.2"
+Set-DnsClientServerAddress -InterfaceAlias "$lan_adapter_name" -ServerAddress "193.190.173.1","193.190.173.2"
 
-# 4) Installeer de Active Directory Domain Services role om van de server een DC te kunnen maken:
-Write-host "Starting installation of ADDS role:" -ForeGroundColor "Green"
-Install-WindowsFeature AD-domain-services -IncludeManagementTools
-import-module ADDSDeployment
+# Installeer de Active Directory Domain Services role om van de server een DC te kunnen maken:
 
-# 5) Idem aan het 1_RUNFIRST.ps1 script zal deze registry instelling ervoor zorgen dat ons volgende script automatisch wordt geladen
-# Want het installeren van de ADDS role herstart automatisch onze server
-# RunOnce verwijderd deze instelling automatisch nadat het script klaar is met runnen
-# Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce' -Name ResumeScript `
-#                 -Value "C:\Windows\system32\WindowsPowerShell\v1.0\Powershell.exe -executionpolicy bypass -file `"$VBOXdrive\3_ConfigDCDNS.ps1`""
-
-# 6) Voeg de Alfa2 server toe aan het nieuwe domain: red.local
-# 6.1) Maak een CredentialsOBject aan voor de user om zijn DSRM password te vragen (Admin2019)
-# Zal een popup window openen waarin je je passwoord moet invullen dit passwoord wordt dan in het commando in stap 7 gebruikt
-# $CurrentCredentials = Get-Credential -UserName $env:USERNAME -Message "Geef je gewenste DSRM passwoord in"
-# $DSRM = $CurrentCredentials.Password
+# Set default password
 $DSRM = ConvertTo-SecureString "Admin2019" -asPlainText -force
+
+# Configure Administrator account
 Set-LocalUser -Name Administrator -AccountNeverExpires -Password $DSRM -PasswordNeverExpires:$true -UserMayChangePassword:$true
 
 # 6.2) Vanaf dat ik met red/administrator was ingelogd had ik het probleem dat ik geen permissie had om de netwerkadapters te wijzigen.
@@ -78,12 +85,38 @@ Set-LocalUser -Name Administrator -AccountNeverExpires -Password $DSRM -Password
 # Set-ItemProperty -Path "REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System" `
 #                 -Name "FilterAdministratorToken" -value 1
 
+#------------------------------------------------------------------------------
+# Install ADDS and promote to first domain controller of forest
+#------------------------------------------------------------------------------
 # 7) Aanmaken van ons nieuw domain:
 #     Forestmode/DomainMode => 7 is = Windows Server 2016 (de oudste Windows Server versie in onze opstelling)
 #     DNS role laten aanmaken en DNSdelegation uitzetten om later onze eigen DNS server in te stellen
 #     Force forceert negeren van bevestigingen
-Write-host "Starting configuration of red.local domain:" -ForeGroundColor "Green"
-install-ADDSForest -DomainName "red.local" `
+
+$is_AD_domainservices_installed=(Get-WindowsFeature AD-Domain-Services).Installed
+if ("$is_AD_domainservices_installed" -eq 'False') {
+    Write-Host 'Installing AD-Domain-Services'
+    Install-WindowsFeature AD-Domain-Services
+}
+
+$is_RSAT_admincenter_installed=(Get-WindowsFeature RSAT-AD-AdminCenter).Installed
+if ("$is_RSAT_admincenter_installed" -eq 'False') {
+    Write-Host 'Installing RSAT-AD-AdminCenter'
+    Install-WindowsFeature RSAT-AD-AdminCenter
+}
+
+$is_RSAT_addstools_installed=(Get-WindowsFeature RSAT-ADDS-Tools).Installed
+if ("$is_RSAT_addstools_installed" -eq 'False') {
+    Write-Host 'Installing RSAT-ADDS-Tools'
+    Install-WindowsFeature RSAT-ADDS-Tools
+}
+
+$domaincontroller_installed=nltest.exe /dsgetdc:$domain 2> $null
+if (!"$domaincontroller_installed") {
+    Write-Host 'Installing AD forest and adding Alfa2 as first DC'
+    Import-Module ADDSDeployment
+
+    install-ADDSForest -DomainName "red.local" `
                   -ForestMode 7 `
                   -DomainMode 7 `
                   -installDns:$true `
@@ -92,4 +125,5 @@ install-ADDSForest -DomainName "red.local" `
                   -SafeModeAdministratorPassword $DSRM `
                   -force:$true
 
+}
 # Stop-Transcript
