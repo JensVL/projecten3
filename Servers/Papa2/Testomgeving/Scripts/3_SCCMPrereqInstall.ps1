@@ -5,8 +5,8 @@
 # VARIABLES:
 $VBOXdrive = "C:\Vagrant"
 
-$Username = "RED\Vagrant"  # LET OP RED\VAGRANT ZAL SCCM INSTALLEREN EN ALLE RECHTEN EROP HEBBEN !
-$Password = ConvertTo-SecureString "vagrant" -AsPlainText -Force
+$Username = "RED\SCCMadmin"  # LET OP RED\SCCMadmin ZAL SCCM INSTALLEREN EN ALLE RECHTEN EROP HEBBEN !
+$Password = ConvertTo-SecureString "Admin2019" -AsPlainText -Force
 
 # Password voor SQL installatie + Network access account (LIJN NIET WEG DOEN)
 $SCCMPassword = [System.Runtime.Interopservices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($Password))
@@ -31,16 +31,16 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 
 ############################################################################################################################### NOTE ENKEL VOOR TEST ENV.
 Write-Host "Copying SQL Server to local desktop. This might take a while..." -ForeGroundColor "Green"
-Copy-Item "$VBOXdrive\BenodigdeFiles\SQL Server 2017 Installation" -Destination "C:\Users\Vagrant\Desktop\SQL Server 2017 Installation" -Recurse -Verbose
+Copy-Item "$VBOXdrive\BenodigdeFiles\SQL Server 2017 Installation" -Destination "C:\Users\sccmadmin\Desktop\SQL Server 2017 Installation" -Recurse -Verbose
 
 Write-Host "Starting Installation of SQL Server 2017 Developpers edition (THIS TAKES A LONG TIME!)" -ForeGroundColor "Green"
 
-set-location 'C:\Users\Vagrant\Desktop\SQL Server 2017 Installation'
+set-location 'C:\Users\sccmadmin\Desktop\SQL Server 2017 Installation'
 .\SETUP.EXE /Q /ACTION=Install /IACCEPTSQLSERVERLICENSETERMS /Features=SQL /INSTANCENAME=MSSQLSERVER /INSTANCEID=MSSQLSERVER `
-             /SQLSVCACCOUNT='RED\Vagrant' /SQLSVCPASSWORD=$SCCMPassword `
-             /AGTSVCACCOUNT='RED\Vagrant' /AGTSVCPASSWORD=$SCCMPassword `
-             /FTSVCACCOUNT='RED\Vagrant' /FTSVCPASSWORD=$SCCMPassword `
-             /SQLSYSADMINACCOUNTS='RED\Vagrant' 'RED\Administrator' `
+             /SQLSVCACCOUNT='RED\SCCMadmin' /SQLSVCPASSWORD=$SCCMPassword `
+             /AGTSVCACCOUNT='RED\SCCMadmin' /AGTSVCPASSWORD=$SCCMPassword `
+             /FTSVCACCOUNT='RED\SCCMadmin' /FTSVCPASSWORD=$SCCMPassword `
+             /SQLSYSADMINACCOUNTS='RED\SCCMadmin' 'RED\Administrator' `
              /INSTALLSQLDATADIR=C:\SQLServer `
              /SQLUSERDBDIR=C:\Database `
              /SQLUSERDBLOGDIR=C:\DBlogs `
@@ -65,12 +65,12 @@ New-NetFirewallRule -DisplayName "SQL Debugger RPC" -Direction Inbound -Protocol
 # 4) Installeer SQL Server Management studio:
 # 4.1) Download SSMS in /SSMS directory op desktop van domain admin:
 Write-Host "Copying SQL Server Management studio r to local desktop. This might take a while..." -ForeGroundColor "Green"
-Copy-Item "$VBOXdrive\BenodigdeFiles\SSMS" -Destination "C:\Users\Vagrant\Desktop\SSMS" -Recurse -Verbose
+Copy-Item "$VBOXdrive\BenodigdeFiles\SSMS" -Destination "C:\Users\sccmadmin\Desktop\SSMS" -Recurse -Verbose
 
 # 4.2) Installeer SSMS en wacht 200 seconden voor het script verder gaat:
 Write-Host "Starting installation of SQL Server Management studio (Takes a while!)" -ForeGroundColor "Green"
 
-Set-location 'C:\Users\Vagrant\Desktop\SSMS'
+Set-location 'C:\Users\sccmadmin\Desktop\SSMS'
 Start-Process "SSMS-Setup-ENU.exe" -ArgumentList "/Install", "/Quiet" -wait
 Start-Sleep -s 15
 Write-host "Continuing script now:" -ForeGroundColor "Green"
@@ -82,7 +82,7 @@ Write-host "Continuing script now:" -ForeGroundColor "Green"
 
 # 5.1) Kopiêer ADK 1903 naar desktop:
 Write-Host "Copying ADK 1903 to desktop/ADK1903:" -ForeGroundColor "Green"
-Copy-Item "$VBOXdrive\BenodigdeFiles\ADK1903" -Destination "C:\Users\Vagrant\Desktop\ADK1903" -Recurse -verbose
+Copy-Item "$VBOXdrive\BenodigdeFiles\ADK1903" -Destination "C:\Users\sccmadmin\Desktop\ADK1903" -Recurse -verbose
 start-sleep -s 15
 Write-Host "Copying ADK 1903 addon completed!" -ForeGroundColor "Green"
 
@@ -90,7 +90,7 @@ Write-Host "Copying ADK 1903 addon completed!" -ForeGroundColor "Green"
 # /CEIP off = Opt out customer experience program
 # De features zijn de standaard features die geselecteerd zijn als je ADKsetup als GUI install doet:
 Write-Host "Starting installation of Windows ADK 1903:" -ForeGroundColor "Green"
-set-location 'C:\Users\Vagrant\Desktop\ADK1903'
+set-location 'C:\Users\sccmadmin\Desktop\ADK1903'
 Write-host "Waiting 45 seconds for ADK to install:" -ForeGroundColor "Green"
 
 .\adksetup.exe /Quiet /norestart /ceip off `
@@ -103,7 +103,7 @@ Write-host "Continuing script now:" -ForeGroundColor "Green"
 # 5.3) Kopieer WinPe addon vanaf Virtualbox shared folder naar desktop/WindowsPE:
 # Bestand is ongeveer 4gb dus te groot om te downloaden (daarom kies ik voor een shared folder copy)
 Write-Host "Copying Windows PE to desktop/WindowsPE:" -ForeGroundColor "Green"
-Copy-Item "$VBOXdrive\BenodigdeFiles\WindowsPE" -Destination "C:\Users\Vagrant\Desktop\WindowsPE" -Recurse -verbose
+Copy-Item "$VBOXdrive\BenodigdeFiles\WindowsPE" -Destination "C:\Users\sccmadmin\Desktop\WindowsPE" -Recurse -verbose
 start-sleep -s 15
 Write-Host "Copying WindowsPE addon completed!" -ForeGroundColor "Green"
 Write-Host "Waiting a few minutes before installing WindowsPE to avoid Windows Installer error"
@@ -117,7 +117,7 @@ Start-sleep -s 2
 msiexec /REGSERVER
 Start-sleep -s 5
 
-set-location 'C:\Users\Vagrant\Desktop\WindowsPE'
+set-location 'C:\Users\sccmadmin\Desktop\WindowsPE'
 .\adkwinpesetup.exe /Quiet /Features OptionId.WindowsPreinstallationEnvironment /L "C:\Scriptlogs\WindowsPElog.txt"
 
 If ($?) {
@@ -132,13 +132,13 @@ Write-host "Continuing script now:" -ForeGroundColor "Green"
 # 6) Installeer MDT 8456:
 # 6.1) Kopiëer MDT:
 Write-Host "Copying MDT 8456 to desktop/WindowsPE:" -ForeGroundColor "Green"
-Copy-Item "$VBOXdrive\BenodigdeFiles\MDT" -Destination "C:\Users\Vagrant\Desktop\MDT" -Recurse -verbose
+Copy-Item "$VBOXdrive\BenodigdeFiles\MDT" -Destination "C:\Users\sccmadmin\Desktop\MDT" -Recurse -verbose
 start-sleep -s 15
 Write-Host "Copying MDT 8456 completed!" -ForeGroundColor "Green"
 
 # 6.2) Installeer MDT 8456 (installatie is msi bestand daarom gebruik je msiexec):
 Write-Host "Starting installation of MDT 8456:" -ForeGroundColor "Green"
-set-location 'C:\Users\Vagrant\Desktop\MDT'
+set-location 'C:\Users\sccmadmin\Desktop\MDT'
 
 Write-host "Waiting 45 seconds for MDT to install:" -ForeGroundColor "Green"
 Start-Process "MicrosoftDeploymentToolkit_X64.msi" /quiet -wait
@@ -160,8 +160,8 @@ Write-host "Continuing script now:" -ForeGroundColor "Green"
 # Windows Server install DVD en deze als sources toevoegen aan het install-windowsFeature command
 # (Path op install DVD = DVDDrive:\sources\sxs)
 # Ik heb deze source files al gekopieerd en zal deze nu lokaal kopiëeren van de VirtualBox shared folder:
-# 7.1) Kopiëer source files van virtualbox shared folder naar Vagrant\Desktop:
-Copy-Item "$VBOXdrive\BenodigdeFiles\DotNet35sources" -Destination "C:\Users\Vagrant\Desktop\DotNet35Sources" -Recurse -verbose
+# 7.1) Kopiëer source files van virtualbox shared folder naar sccmadmin\Desktop:
+Copy-Item "$VBOXdrive\BenodigdeFiles\DotNet35sources" -Destination "C:\Users\sccmadmin\Desktop\DotNet35Sources" -Recurse -verbose
 
 # 7.2) Installatie van de windows roles/features zelf:
 # -source option zal zeggen waar de sxs folder zich bevind
@@ -173,7 +173,7 @@ Install-WindowsFeature -name Web-Server, Web-WebServer, Web-Common-Http, Web-Def
                Web-Lgcy-Scripting, Net-Framework-Core, Web-WMI, NET-HTTP-Activation, NET-Non-HTTP-Activ, NET-WCF-HTTP-Activation45, `
                NET-WCF-MSMQ-Activation45, NET-WCF-Pipe-Activation45, NET-WCF-TCP-Activation45, BITS, BITS-IIS-Ext, BITS-Compact-Server, `
                RDC, Web-Asp-Net45, Web-Net-Ext45, Web-Lgcy-Mgmt-Console, Web-Scripting-Tools `
-               -source "C:\Users\Vagrant\Desktop\DotNet35sources\sxs"
+               -source "C:\Users\sccmadmin\Desktop\DotNet35sources\sxs"
 
 Write-host "Installation necessary Windows features completed!" -ForeGroundColor "Green"
 
@@ -185,16 +185,16 @@ Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 
 # 5.2) Copy SCCM installatie required files van VirtualBox Shared folder naar desktop\SCCMrequiredFiles:
 Write-Host "Copying SCCM installation required files to desktop/SCCMrequiredfiles:" -ForeGroundColor "Green"
-Copy-Item "$VBOXdrive\BenodigdeFiles\SCCMrequiredFiles" -Destination "C:\Users\Vagrant\Desktop\SCCMrequiredFiles" -Recurse -verbose
+Copy-Item "$VBOXdrive\BenodigdeFiles\SCCMrequiredFiles" -Destination "C:\Users\sccmadmin\Desktop\SCCMrequiredFiles" -Recurse -verbose
 Write-Host "Copying SCCM installation required files completed!" -ForeGroundColor "Green"
 
 # 5.3) Installatie van SCCM zelf. Dit heb ik met een try catch block gedaan omdat er veel kan foutlopen tijdens deze installatie,
 # door op deze manier te werken wordt de error naar de console geschreven als er een nonzero exit status is:
 # LET OP DUURT ONGEVEER 86 MINUTEN !!!!!!
 Write-Host "Starting installation of SCCM (Takes +/- 80-90 minutes)" -ForeGroundColor "Green"
-Copy-Item "$VBOXdrive\BenodigdeFiles\SCCM 1902 Installation" -Destination "C:\Users\Vagrant\Desktop\SCCM 1902 Installation" -Recurse -verbose
+Copy-Item "$VBOXdrive\BenodigdeFiles\SCCM 1902 Installation" -Destination "C:\Users\sccmadmin\Desktop\SCCM 1902 Installation" -Recurse -verbose
 Start-Sleep -s 20
-Set-Location "C:\Users\Vagrant\Desktop\SCCM 1902 Installation\SMSSETUP\BIN\X64"
+Set-Location "C:\Users\sccmadmin\Desktop\SCCM 1902 Installation\SMSSETUP\BIN\X64"
 Add-LocalGroupMember -Group "Administrators" -Member "$username"
 
 Start-Process "Setup.exe" -ArgumentList "/script $VBOXdrive\SCCMsilentInstallSettings.ini" -wait
@@ -260,11 +260,11 @@ Write-Host "boundaries/groups Creation completed!" -ForeGroundColor "Green"
 # Zet "RED" als bedrijfsnaam voor alle clients:
 Set-CMClientSettingComputerAgent -BrandingTitle "RED" -DefaultSetting
 
-# Configureer de network access account (dit is de Vagrant account)
-# Met Read-Host password opvragen van Vagrant en deze als network access account instellen voor de clients:
+# Configureer de network access account (dit is de sccmadmin account)
+# Met Read-Host password opvragen van sccmadmin en deze als network access account instellen voor de clients:
 Write-Host "Configuring Network Access account " -ForeGroundColor "Green"
 New-CMAccount -UserName "$username" -Password $password -SiteCode "RED"
-Set-CMSoftwareDistributionComponent -SiteCode "RED" -AddNetworkAccessAccountName "RED\Vagrant"
+Set-CMSoftwareDistributionComponent -SiteCode "RED" -AddNetworkAccessAccountName "RED\SCCMadmin"
 Write-Host "Network access account configured!" -ForeGroundColor "Green"
 
 # 8) Zet discovery methods (AD users, AD groups, AD systems en Network discovery aan):
