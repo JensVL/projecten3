@@ -7,7 +7,7 @@ require 'yaml'
 DEFAULT_BASE_BOX = 'gusztavvargadr/windows-server'
 
 VAGRANTFILE_API_VERSION = '2'
-PROJECT_NAME = "Papa2"
+PROJECT_NAME = '/' + File.basename(Dir.getwd)
 
 hosts = YAML.load_file('vagrant-hosts.yml')
 
@@ -75,7 +75,7 @@ end
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.insert_key = false
 # DISK SIZE VAGRANT PLUGIN (zal schijf instellen op gekozen grootte) -------------------------------- NOTE
-  config.disksize.size = '75GB'
+#  config.disksize.size = '75GB' (Niet nodig want disk was al 130gb ?)
   hosts.each do |host|
     config.vm.define host['name'] do |node|
       node.vm.box = host['box'] ||= DEFAULT_BASE_BOX
