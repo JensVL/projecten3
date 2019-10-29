@@ -9,6 +9,7 @@ https://www.red-gate.com/simple-talk/sysadmin/exchange/active-directory-manageme
 
 ## DNS checks, dc en forest
 https://mcpmag.com/articles/2016/03/24/active-directory-forest-and-domain.aspx
+http://mctexpert.blogspot.com/2011/09/how-to-force-dns-zone-to-replicate-with.html
 
 ## Permissies
 https://blog.it-koehler.com/en/Archive/2032
@@ -22,3 +23,7 @@ https://community.spiceworks.com/topic/2020022-trying-to-migrate-domain-controll
 
 ## Disable network adapters
 https://www.windowscentral.com/how-enable-or-disable-wi-fi-and-ethernet-network-adapters-windows-10
+
+## Vagrant box
+https://app.vagrantup.com/gusztavvargadr/boxes/windows-server
+https://stackoverflow.com/questions/42718527/vagrant-up-command-throwing-ssl-error

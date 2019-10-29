@@ -1,9 +1,8 @@
-# VARIABLES:
+<# # VARIABLES:
 $VBOXdrive = "Z:\"
 
 # LOG SCRIPT TO FILE (+ op het einde van het script Stop-Transcript doen):
 Start-Transcript "C:\ScriptLogs\1_RUNFIRSTlog.txt"
-
 Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce' -Name ResumeScript `
                 -Value 'C:\Windows\system32\WindowsPowerShell\v1.0\Powershell.exe -executionpolicy bypass -file "$VBOXdrive\2_installDCDNS.ps1"'
 
@@ -19,7 +18,7 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogon -Value 1
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name ForceAutoLogon -Value 1
 
-Rename-Computer -NewName Bravo2 -Force 
+#Rename-Computer -NewName Bravo2 -Force 
 Stop-Transcript
 
-Restart-Computer -Force
+Restart-Computer -Force #>
