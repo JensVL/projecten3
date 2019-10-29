@@ -10,8 +10,11 @@
 param(
     [string]$land             = "eng-BE",
     [string]$local_ip         = "172.18.1.66",
+    [string]$secondary_dc_ip  = "172.18.1.67",
     [string]$default_gateway  = "172.18.1.65",
     [string]$lan_prefix       = "27",
+    [string]$domain           = "red.local",
+    [string]$wan_adapter_name = "NAT",
     [string]$lan_adapter_name = "LAN"
 )
 
@@ -28,30 +31,38 @@ set-timezone -Name "Romance Standard Time"
 
 # NAT = de adapter die met het internet verbinding
 # LAN = de adapter met static IP instellingen die alle servers met elkaar verbind.
-Write-host "Changing NIC adapter names"
-Get-NetAdapter -Name "Ethernet 2" | Rename-NetAdapter -NewName $lan_adapter_name
+Write-host ">>> Changing NIC adapter names"
+# TODO: conditional that checks if adapter names already exists does
+#       not correctly checks for equal strings
+$adaptercount=(Get-NetAdapter | measure).count
+if ($adaptercount -eq 1) {
+    (Get-NetAdapter -Name "Ethernet") | Rename-NetAdapter -NewName $lan_adapter_name
+} 
+elseif ($adaptercount -eq 2) {
+    (Get-NetAdapter -Name "Ethernet") | Rename-NetAdapter -NewName $wan_adapter_name
+    (Get-NetAdapter -Name "Ethernet 2") | Rename-NetAdapter -NewName $lan_adapter_name
+}
 
-# 3) Geef de LAN adapter de correcte IP instellingen volgens de opdracht:
+
 # Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.224)
 # Default gateway option stelt deze in op de Layer 3 switch van VLAN 500
 Write-host "Setting correct ipv4 adapter settings (including DNS and Default gateway):" -ForeGroundColor "Green"
 $existing_ip=(Get-NetAdapter -Name $lan_adapter_name | Get-NetIPAddress -AddressFamily IPv4).IPAddress
-
-if("$existing_ip" -ne "$local_ip") {
-    Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
+if ("$existing_ip" -ne "$local_ip") {
+    Write-host ">>> Setting static ipv4 settings"
     New-NetIPAddress -InterfaceAlias "$lan_adapter_name" -IPAddress "$local_ip" -PrefixLength $lan_prefix -DefaultGateway "$default_gateway"
 }
 
-# DNS van LAN van Alfa2 instellen op Hogent DNS servers:
-# Eventueel commenten tijdens testen in demo omgeving
-Set-DnsClientServerAddress -InterfaceAlias "$lan_adapter_name" -ServerAddress "172.18.1.66","172.18.1.67"
-
-# Installeer de Active Directory Domain Services role om van de server een DC te kunnen maken:
+# Set DNS of LAN adapter
+Write-Host ">>> Settings DNS of adapter $lan_adapter_name"
+Set-DnsClientServerAddress -InterfaceAlias "$lan_adapter_name" -ServerAddresses($local_ip,$secondary_dc_ip)
 
 # Set default password
+Write-Host ">>> Setting default Administrator password"
 $DSRM = ConvertTo-SecureString "Admin2019" -asPlainText -force
 
 # Configure Administrator account
+Write-Host ">>> Configuring Administrator account"
 Set-LocalUser -Name Administrator -AccountNeverExpires -Password $DSRM -PasswordNeverExpires:$true -UserMayChangePassword:$true
 
 # 6.2) Vanaf dat ik met red/administrator was ingelogd had ik het probleem dat ik geen permissie had om de netwerkadapters te wijzigen.
@@ -73,28 +84,28 @@ Set-LocalUser -Name Administrator -AccountNeverExpires -Password $DSRM -Password
 
 $is_AD_domainservices_installed=(Get-WindowsFeature AD-Domain-Services).Installed
 if ("$is_AD_domainservices_installed" -eq 'False') {
-    Write-Host 'Installing AD-Domain-Services'
+    Write-Host ">>> Installing AD-Domain-Services"
     Install-WindowsFeature AD-Domain-Services
 }
 
 $is_RSAT_admincenter_installed=(Get-WindowsFeature RSAT-AD-AdminCenter).Installed
 if ("$is_RSAT_admincenter_installed" -eq 'False') {
-    Write-Host 'Installing RSAT-AD-AdminCenter'
+    Write-Host ">>> Installing RSAT-AD-AdminCenter"
     Install-WindowsFeature RSAT-AD-AdminCenter
 }
 
 $is_RSAT_addstools_installed=(Get-WindowsFeature RSAT-ADDS-Tools).Installed
 if ("$is_RSAT_addstools_installed" -eq 'False') {
-    Write-Host 'Installing RSAT-ADDS-Tools'
+    Write-Host ">>> Installing RSAT-ADDS-Tools"
     Install-WindowsFeature RSAT-ADDS-Tools
 }
 
-$domaincontroller_installed=nltest.exe /dsgetdc:$domain 2> $null
+$domaincontroller_installed=(Get-ADDomainController 2> $null)
 if (!"$domaincontroller_installed") {
-    Write-Host 'Installing AD forest and adding Alfa2 as first DC'
+    Write-Host ">>> Installing AD forest and adding Alfa2 as first DC"
     Import-Module ADDSDeployment
 
-    install-ADDSForest -DomainName "red.local" `
+    install-ADDSForest -DomainName $domain `
                   -ForestMode 7 `
                   -DomainMode 7 `
                   -installDns:$true `
@@ -102,6 +113,4 @@ if (!"$domaincontroller_installed") {
                   -NoRebootOnCompletion:$true `
                   -SafeModeAdministratorPassword $DSRM `
                   -force:$true
-
 }
-# Stop-Transcript
