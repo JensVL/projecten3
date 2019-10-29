@@ -30,7 +30,7 @@ if("$existing_ip" -ne "$IpAddress") {
 # 5) Overbodige Adapter disablen
 #Disable-NetAdapter -Name "Ethernet" -Confirm:$false
 
-# 6) DNS van LAN van Alfa2 instellen op Hogent DNS servers:
+# 6) DNS van LAN van Alfa2, Bravo2 instellen op Hogent DNS servers:
 Set-DnsClientServerAddress -InterfaceAlias "$AdapterNaam" -ServerAddress "$IpAlfa2","$IpAddress"
 
 # 7) Configure Administrator account
@@ -49,8 +49,9 @@ $creds = New-Object System.Management.Automation.PSCredential ("RED\Administrato
 # 10) Joinen van domein "red.local":
 Write-host "Domain joinen:" -ForeGroundColor "Green"
 
-install-ADDSDomainController 
-                  -DomainName "red.local" `
+install-ADDSDomainController
+                  -SkipPreChecks
+                  -DomainName "red" `
                   -ReplicationSourceDC "Alfa2.red.local" `
                   -credential $creds `
                   -installDns:$true `
