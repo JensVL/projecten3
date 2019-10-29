@@ -29,23 +29,15 @@ set-timezone -Name "Romance Standard Time"
 # NAT = de adapter die met het internet verbinding
 # LAN = de adapter met static IP instellingen die alle servers met elkaar verbind.
 Write-host "Changing NIC adapter names"
-# TODO: conditional that checks if adapter names already exists does
-#       not correctly checks for equal strings
-$adaptercount=(Get-NetAdapter | measure).count
-if ($adaptercount -eq 2) {
-    # echo "1"
-    # $adapter1_name=(Get-NetAdapter)[0].Name
 
-    # echo "2"
-    # if ("$adapter1_name" -ne $lan_adapter_name) {
-    #     echo "3"
-        (Get-NetAdapter)[1] | Rename-NetAdapter -NewName $lan_adapter_name
-    # }
-}
+Rename-NetAdapter -Name "Ethernet 2" -NewName $lan_adapter_name
 
-
+# 3) Geef de LAN adapter de correcte IP instellingen volgens de opdracht:
 # Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.224)
+# Default gateway option stelt deze in op de Layer 3 switch van VLAN 500
+Write-host "Setting correct ipv4 adapter settings (including DNS and Default gateway):" -ForeGroundColor "Green"
 $existing_ip=(Get-NetAdapter -Name $lan_adapter_name | Get-NetIPAddress -AddressFamily IPv4).IPAddress
+
 if("$existing_ip" -ne "$local_ip") {
     Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
     New-NetIPAddress -InterfaceAlias "$lan_adapter_name" -IPAddress "$local_ip" -PrefixLength $lan_prefix -DefaultGateway "$default_gateway"
