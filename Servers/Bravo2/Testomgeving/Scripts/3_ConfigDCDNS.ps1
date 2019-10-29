@@ -1,34 +1,46 @@
-# Installatiescript dat de configuratie doet van de DNS (primary forward en reversed lookup zones maken + Forwarder):
+#------------------------------------------------------------------------------
+# Description
+#------------------------------------------------------------------------------
+# Installatiescript dat de configuratie doet van de DNS
+#   (primary forward en reversed lookup zones maken + Forwarder)
 
-# VARIABLES:
-$VBOXdrive = "Z:"
-$Bravo2IP = "172.18.1.67" # DC2
+#------------------------------------------------------------------------------
+# Variables
+#------------------------------------------------------------------------------
+param(
+    [string]$Bravo2IP    = "172.18.1.67", # DC2 / DNS2
+    [string]$wan_adapter_name = "NAT"
+)
 
-# PREFERENCE VARIABLES: (Om Debug, Verbose en Information info in de Start-Transcript log files te kunnen bekijken)
-# $DebugPreference = "Continue"
-# $VerbosePreference = "Continue"
-# $InformationPreference = "Continue"
+#------------------------------------------------------------------------------
+# Wait for AD services to become available
+#------------------------------------------------------------------------------
+while ($true) {
+    try {
+        Get-ADDomain | Out-Null
+        break
+    } catch {
+        Start-Sleep -Seconds 10
+    }
+}
 
-# LOG SCRIPT TO FILE:
-# Start-Transcript "C:\ScriptLogs\3_ConfigDCDNSlog.txt"
-Write-Host "Waiting 30 seconds before starting script:" -ForeGroundColor "Green"
-Start-Sleep -s 30
-
+#------------------------------------------------------------------------------
+# Configure DNS
+#------------------------------------------------------------------------------
+# Fix adapters
+Set-DnsClientServerAddress -InterfaceAlias $wan_adapter_name -ResetServerAddresses
 
 # Firewall uitzetten (want we gebruiken hardware firewall):
- Write-Host "Turning firewall off:" -ForeGroundColor "Green"
- Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+# Write-Host ">>> Turning firewall off"
+# Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 
 # DNS forwarder instellen op Hogent DNS servers:
+Write-Host ">>> Set DNS forwarder to HoGent DNS"
 Add-DnsServerForwarder -IPAddress 193.190.173.1,193.190.173.2
 
-#Check domaincontroller informatie en forest
-Get-ADDomainController 
-Get-ADTrust -Filter  *
-
-# Replicatie DNS niet nodig de A records werden automatisch gerepliceerd van Alfa2 naar BRavo2
+# Check domaincontroller informatie en forest
+# Get-ADDomainController 
+# Get-ADTrust -Filter  *
 
 # DNS Check
-Test-DnsServer -IPAddress $Bravo2IP -Context RootHints
-
-# Stop-Transcript
+# Test-DnsServer -IPAddress $Bravo2IP -Context RootHints
