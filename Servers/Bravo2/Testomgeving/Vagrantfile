@@ -110,8 +110,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                       "NAT",
                       "LAN"
                     ]
-                  node.vm.provision 'shell', reboot: true
-                  node.vm.provision 'shell',
+                    node.vm.provision 'shell', reboot: true
+                    node.vm.provision 'shell',
                     privileged: true,
                     path: 'Scripts/' + '3_ConfigDCDNS.ps1',
                     args: [
@@ -119,7 +119,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                       "172.18.1.67",
                       "NAT"
                     ]
-                  end
+      end
     end
   end
 end
