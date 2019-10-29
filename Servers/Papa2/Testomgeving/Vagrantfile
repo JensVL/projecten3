@@ -7,7 +7,7 @@ require 'yaml'
 DEFAULT_BASE_BOX = 'gusztavvargadr/windows-server'
 
 VAGRANTFILE_API_VERSION = '2'
-PROJECT_NAME = '/' + File.basename(Dir.getwd)
+PROJECT_NAME = "Papa2"
 
 hosts = YAML.load_file('vagrant-hosts.yml')
 
@@ -74,10 +74,11 @@ end
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.insert_key = false
+# DISK SIZE VAGRANT PLUGIN (zal schijf instellen op gekozen grootte) -------------------------------- NOTE
+  config.disksize.size = '75GB'
   hosts.each do |host|
     config.vm.define host['name'] do |node|
       node.vm.box = host['box'] ||= DEFAULT_BASE_BOX
-
       node.vm.hostname = host['name']
       node.vm.network :private_network, network_options(host)
       custom_synced_folders(node.vm, host)
@@ -98,36 +99,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       config.winrm.basic_auth_only = true
       config.vm.boot_timeout = 3600
 
-      if host['name'] == "Alfa2"
+      if host['name'] == "Papa2"
              node.vm.provision 'shell',
                privileged: true,
-               path: 'Scripts/' + '2_installDCDNS.ps1',
-               args: [
-                 "eng-BE",
-                 "172.18.1.66",
-                 "172.18.1.65",
-                 "27",
-                 "LAN"
-               ]
+               path: 'Scripts/' + '2_BasicConfig.ps1',
+               args: []
              node.vm.provision 'shell', reboot: true
              node.vm.provision 'shell',
                privileged: true,
-               path: 'Scripts/' + '3_ConfigDCDNS.ps1',
-               args: [
-                 "172.18.1.67",
-                 "172.18.1.68",
-                 "172.18.1.69",
-                 "172.18.1.1",
-                 "172.18.1.2",
-                 "172.18.1.3",
-                 "172.18.1.4",
-                 "172.18.1.5",
-                 "172.18.1.6",
-                 "NAT"
-               ]
-             node.vm.provision 'shell',
-               privileged: true,
-               path: 'Scripts/' + '4_ADstructure.ps1',
+               path: 'Scripts/' + '3_SCCMPrereqInstall.ps1',
                args: []
         end
     end

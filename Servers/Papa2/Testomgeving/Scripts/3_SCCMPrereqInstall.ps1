@@ -3,12 +3,12 @@
 #################################################################################### TODO: 2e schijf (:E) instellen!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 # VARIABLES:
-$VBOXdrive = "Z:"
+$VBOXdrive = "C:\Vagrant"
 
 $Username = "RED\SCCMAdmin"  # LET OP SCCMADMIN ZAL SCCM INSTALLEREN EN ALLE RECHTEN EROP HEBBEN !
 $Password = ConvertTo-SecureString "Admin2019" -AsPlainText -Force
 
-# Password voor SQL installatie (TODO enkel nodig voor test environment)
+# Password voor SQL installatie + Network access account (LIJN NIET WEG DOEN)
 $SCCMPassword = [System.Runtime.Interopservices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($Password))
 
 # PREFERENCE VARIABLES: (Om Debug,Verbose en informaation info in de Start-Transcript log files te zien)
@@ -29,9 +29,9 @@ Write-host "Starting script now:" -ForeGroundColor "Green"
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogon -Value 0
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name ForceAutoLogon -Value 0
 
-################################################################################################################################### ENKEL VOOR TEST ENV.
+############################################################################################################################### NOTE ENKEL VOOR TEST ENV.
 Write-Host "Copying SQL Server to local desktop. This might take a while..." -ForeGroundColor "Green"
-Copy-Item "Z:\BenodigdeFiles\SQL Server 2017 Installation" -Destination "C:\Users\SCCMadmin\Desktop\SQL Server 2017 Installation" -Recurse -Verbose
+Copy-Item "$VBOXdrive\BenodigdeFiles\SQL Server 2017 Installation" -Destination "C:\Users\SCCMadmin\Desktop\SQL Server 2017 Installation" -Recurse -Verbose
 
 Write-Host "Starting Installation of SQL Server 2017 Developpers edition (THIS TAKES A LONG TIME!)" -ForeGroundColor "Green"
 
@@ -41,12 +41,12 @@ set-location 'C:\Users\SCCMadmin\Desktop\SQL Server 2017 Installation'
              /AGTSVCACCOUNT='RED\SCCMAdmin' /AGTSVCPASSWORD=$SCCMPassword `
              /FTSVCACCOUNT='RED\SCCMAdmin' /FTSVCPASSWORD=$SCCMPassword `
              /SQLSYSADMINACCOUNTS='RED\SCCMAdmin' 'RED\Administrator' `
-             /INSTALLSQLDATADIR=D:\SQLServer `
-             /SQLUSERDBDIR=D:\Database `
-             /SQLUSERDBLOGDIR=D:\DBlogs `
-             /SQLBACKUPDIR=D:\Backup `
-             /SQLTEMPDBDIR=D:\TempDB `
-             /SQLTEMPDBLOGDIR=D:\TempDBlog `
+             /INSTALLSQLDATADIR=C:\SQLServer `
+             /SQLUSERDBDIR=C:\Database `
+             /SQLUSERDBLOGDIR=C:\DBlogs `
+             /SQLBACKUPDIR=C:\Backup `
+             /SQLTEMPDBDIR=C:\TempDB `
+             /SQLTEMPDBLOGDIR=C:\TempDBlog `
              /TCPENABLED=1 `
              /NPENABLED=1
 
@@ -65,7 +65,7 @@ New-NetFirewallRule -DisplayName "SQL Debugger RPC" -Direction Inbound -Protocol
 # 4) Installeer SQL Server Management studio:
 # 4.1) Download SSMS in /SSMS directory op desktop van domain admin:
 Write-Host "Copying SQL Server Management studio r to local desktop. This might take a while..." -ForeGroundColor "Green"
-Copy-Item "Z:\BenodigdeFiles\SSMS" -Destination "C:\Users\SCCMadmin\Desktop\SSMS" -Recurse -Verbose
+Copy-Item "$VBOXdrive\BenodigdeFiles\SSMS" -Destination "C:\Users\SCCMadmin\Desktop\SSMS" -Recurse -Verbose
 
 # 4.2) Installeer SSMS en wacht 200 seconden voor het script verder gaat:
 Write-Host "Starting installation of SQL Server Management studio (Takes a while!)" -ForeGroundColor "Green"
@@ -74,7 +74,7 @@ Set-location 'C:\Users\SCCMadmin\Desktop\SSMS\SSMS'
 Start-Process "SSMS-Setup-ENU.exe" -ArgumentList "/Install", "/Quiet" -wait
 
 Write-host "Continuing script now:" -ForeGroundColor "Green"
-################################################################################################################################### ENKEL VOOR TEST ENV.
+########################################################################################################################### NOTE ENKEL VOOR TEST ENV.
 
 
 # 5) Installeer Windows Assessment And Deployment kit (ADK) role (+ Windows PE Addon):
@@ -82,7 +82,7 @@ Write-host "Continuing script now:" -ForeGroundColor "Green"
 
 # 5.1) Kopiêer ADK 1903 naar desktop:
 Write-Host "Copying ADK 1903 to desktop/ADK1903:" -ForeGroundColor "Green"
-Copy-Item "Z:\BenodigdeFiles\ADK1903" -Destination "C:\Users\SCCMadmin\Desktop\ADK1903" -Recurse -verbose
+Copy-Item "$VBOXdrive\BenodigdeFiles\ADK1903" -Destination "C:\Users\SCCMadmin\Desktop\ADK1903" -Recurse -verbose
 start-sleep -s 15
 Write-Host "Copying ADK 1903 addon completed!" -ForeGroundColor "Green"
 
@@ -103,7 +103,7 @@ Write-host "Continuing script now:" -ForeGroundColor "Green"
 # 5.3) Kopieer WinPe addon vanaf Virtualbox shared folder naar desktop/WindowsPE:
 # Bestand is ongeveer 4gb dus te groot om te downloaden (daarom kies ik voor een shared folder copy)
 Write-Host "Copying Windows PE to desktop/WindowsPE:" -ForeGroundColor "Green"
-Copy-Item "Z:\BenodigdeFiles\WindowsPE" -Destination "C:\Users\SCCMadmin\Desktop\WindowsPE" -Recurse -verbose
+Copy-Item "$VBOXdrive\BenodigdeFiles\WindowsPE" -Destination "C:\Users\SCCMadmin\Desktop\WindowsPE" -Recurse -verbose
 start-sleep -s 15
 Write-Host "Copying WindowsPE addon completed!" -ForeGroundColor "Green"
 Write-Host "Waiting a few minutes before installing WindowsPE to avoid Windows Installer error"
@@ -132,7 +132,7 @@ Write-host "Continuing script now:" -ForeGroundColor "Green"
 # 6) Installeer MDT 8456:
 # 6.1) Kopiëer MDT:
 Write-Host "Copying MDT 8456 to desktop/WindowsPE:" -ForeGroundColor "Green"
-Copy-Item "Z:\BenodigdeFiles\MDT" -Destination "C:\Users\SCCMadmin\Desktop\MDT" -Recurse -verbose
+Copy-Item "$VBOXdrive\BenodigdeFiles\MDT" -Destination "C:\Users\SCCMadmin\Desktop\MDT" -Recurse -verbose
 start-sleep -s 15
 Write-Host "Copying MDT 8456 completed!" -ForeGroundColor "Green"
 
@@ -161,7 +161,7 @@ Write-host "Continuing script now:" -ForeGroundColor "Green"
 # (Path op install DVD = DVDDrive:\sources\sxs)
 # Ik heb deze source files al gekopieerd en zal deze nu lokaal kopiëeren van de VirtualBox shared folder:
 # 7.1) Kopiëer source files van virtualbox shared folder naar SCCMadmin\Desktop:
-Copy-Item "Z:\BenodigdeFiles\DotNet35sources" -Destination "C:\Users\SCCMadmin\Desktop\DotNet35Sources" -Recurse -verbose
+Copy-Item "$VBOXdrive\BenodigdeFiles\DotNet35sources" -Destination "C:\Users\SCCMadmin\Desktop\DotNet35Sources" -Recurse -verbose
 
 # 7.2) Installatie van de windows roles/features zelf:
 # -source option zal zeggen waar de sxs folder zich bevind
@@ -182,25 +182,22 @@ Write-Host "Turning firewall off:" -ForeGroundColor "Green"
 Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 
 # 5) Voorbereiding op SCCM installatie zelf:
-# 5.1) Aangezien we SCCM op de D: drive gaan installeren ipv de System (C:) drive moeten we op de root van de C: drive
-# Het volgende bestand aanmaken. Dan zal SCCM alles op de gekozen drive (D:) installeren:
-New-Item -Path "C:\" -Name "no_sms_on_drive.SMS" -ItemType "file"
 
 # 5.2) Copy SCCM installatie required files van VirtualBox Shared folder naar desktop\SCCMrequiredFiles:
 Write-Host "Copying SCCM installation required files to desktop/SCCMrequiredfiles:" -ForeGroundColor "Green"
-Copy-Item "Z:\BenodigdeFiles\SCCMrequiredFiles" -Destination "C:\Users\SCCMadmin\Desktop\SCCMrequiredFiles" -Recurse -verbose
+Copy-Item "$VBOXdrive\BenodigdeFiles\SCCMrequiredFiles" -Destination "C:\Users\SCCMadmin\Desktop\SCCMrequiredFiles" -Recurse -verbose
 Write-Host "Copying SCCM installation required files completed!" -ForeGroundColor "Green"
 
 # 5.3) Installatie van SCCM zelf. Dit heb ik met een try catch block gedaan omdat er veel kan foutlopen tijdens deze installatie,
 # door op deze manier te werken wordt de error naar de console geschreven als er een nonzero exit status is:
 # LET OP DUURT ONGEVEER 86 MINUTEN !!!!!!
 Write-Host "Starting installation of SCCM (Takes +/- 80-90 minutes)" -ForeGroundColor "Green"
-Copy-Item "Z:\BenodigdeFiles\SCCM 1902 Installation" -Destination "C:\Users\SCCMadmin\Desktop\SCCM 1902 Installation" -Recurse -verbose
+Copy-Item "$VBOXdrive\BenodigdeFiles\SCCM 1902 Installation" -Destination "C:\Users\SCCMadmin\Desktop\SCCM 1902 Installation" -Recurse -verbose
 Start-Sleep -s 20
 Set-Location "C:\Users\SCCMadmin\Desktop\SCCM 1902 Installation\SMSSETUP\BIN\X64"
 
-Start-Process "Setup.exe" -ArgumentList "/script Z:\SCCMsilentInstallSettings.ini" -wait
-# .\Setup.exe /script "Z:\SCCMsilentInstallSettings.ini" | Out-Null TODO TODO Deze lijn mag weg indien bovenstaande werkt.
+Start-Process "Setup.exe" -ArgumentList "/script $VBOXdrive\SCCMsilentInstallSettings.ini" -wait
+# .\Setup.exe /script "$VBOXdrive\SCCMsilentInstallSettings.ini" | Out-Null TODO TODO Deze lijn mag weg indien bovenstaande werkt.
 # Out-Null zodat Powershell wacht tot installatie klaar is voor hij verder gaat
 
 If ($?) {
@@ -214,7 +211,7 @@ If ($?) {
 $SiteCode   = "RED"
 $SiteServer = "Papa2.red.local"
 $MDT  = "C:\Program Files\Microsoft Deployment Toolkit"
-$SCCM = "D:\SCCM\AdminConsole"
+$SCCM = "C:\SCCM\AdminConsole"
 $MOF  = "$SCCM\Bin\Microsoft.BDD.CM12Actions.mof"
 
 Copy-Item "$MDT\Bin\Microsoft.BDD.CM12Actions.dll" "$SCCM\Bin\Microsoft.BDD.CM12Actions.dll"
@@ -236,7 +233,7 @@ Copy-Item "$MDT\Templates\CM12Extensions\*" "$SCCM\XmlStorage\Extensions\" -Forc
 
 # 6.1) Import SCCM cmdlets module:
 # Om SCCM powershell cmds te gebruiken moeten we eerst de SCCM cmdlets module importeren en naar onze aangemaakte site gaan (site naam = RED):
-Set-Location -Path "D:\SCCM\AdminConsole\bin"
+Set-Location -Path "C:\SCCM\AdminConsole\bin"
 Import-Module .\ConfigurationManager.psd1
 New-PSDrive -Name "RED" -PsProvider "AdminUI.PS.Provider\CMSite" -Root "Papa2.red.local" `
             -Description "RED site drive"
@@ -304,7 +301,7 @@ Start-CMContentDistribution -BootImageId "RED00005" -DistributionPointName "Papa
 # 11) Installeer WSUS role:
 Write-Host "Installing WSUS role with SQL integration:" -ForeGroundColor "Green"
 Install-WindowsFeature -Name UpdateServices-DB, UpdateServices-Services -IncludeManagementTools
-New-Item -Path "D:\" -ItemType Directory -Name "WSUS" # WSUS content locatie
+New-Item -Path "C:\" -ItemType Directory -Name "WSUS" # WSUS content locatie
 Write-Host "Installation WSUS completed!" -ForeGroundColor "Green"
 
 # Post deployment configuratie instellen: (content location + SQL Server aan WSUS linken):
@@ -313,7 +310,7 @@ Set-Location -Path "C:\Program Files\Update Services\Tools"
 # LET OP: aangezien we een default instance gebruikt hebben (bij installatie SQL server) laat je instance name hieronder leeg
 # Normaal doe je SERVER_NAME\INSTANCE_NAME maar bij ons is het dus gewoon SERVER_NAME
  ######################################################################################## TODO TODO aanpassen naar November2 TODO TODO
-.\wsusutil.exe postinstall SQL_INSTANCE_NAME="Papa2" CONTENT_DIR=D:\WSUS
+.\wsusutil.exe postinstall SQL_INSTANCE_NAME="Papa2" CONTENT_DIR=C:\WSUS
 
 If ($?) {
   Write-Host "Post-deployment configuration WSUS completed!" -ForeGroundColor "Green"
@@ -331,8 +328,8 @@ Add-CMSoftwareUpdatePoint -SiteCode "RED" -SiteSystemServerName "Papa2.red.local
 # -SynchronizeAction staat op sync with microsoft servers, Enkele kleinere updates geselecteerd, ReportingEvents staan af
 Set-CMSoftwareUpdatePointComponent -SynchronizeAction "SynchronizeFromMicrosoftUpdate" -ReportingEvent "DoNotCreateWsusReportingEvents" `
                                    -RemoveUpdateClassification "Service Packs","Upgrades","Update Rollups","Tools","Driver sets", `
-                                   "Applications","Drivers","Feature Packs","Definition Updates","Security Updates" `
-                                   -AddUpdateClassification "Updates" -RemoveProductFamily "Office","Windows" -SiteCode "RED" -verbose
+                                   "Applications","Drivers","Feature Packs","Definition Updates", "Updates" `
+                                   -AddUpdateClassification "Security Updates" -RemoveProductFamily "Office","Windows" -SiteCode "RED" -verbose
 
 # 12.3) Verwijder alle talen buiten engels en alle producten buiten Windows 10 (zodat de WSUS content folder niet te groot wordt):
 Write-Host "Configuring which updates will be synchronized (Only English language updates):" -ForeGroundColor "Green"

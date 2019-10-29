@@ -2,10 +2,10 @@
 # Elke stap wordt uitgelegd met zijn eigen comment
 
 # VARIABLES:
-$VBOXdrive = "Z:"
+$VBOXdrive = "C:\Vagrant"
 $Land = "eng-BE"
 
-##################################################################################################################
+################################################################################################################## NOTE
 # ECHTE IP VOOR INTEGRATIE DEMO:
 # $IpAddress = "172.18.1.6"
 # $DefaultGateway = "172.18.1.97"
@@ -15,7 +15,7 @@ $Land = "eng-BE"
 $IpAddress = "172.18.1.67"
 $DefaultGateway = "172.18.1.65"
 $CIDR = "27"
-##################################################################################################################
+################################################################################################################## NOTE
 
 $AdapterNaam = "LAN"
 
@@ -45,7 +45,7 @@ set-timezone -Name "Romance Standard Time"
 
 # 2) Hernoem de netwerkadapter LAN = de adapter met static IP instellingen die alle servers met elkaar verbind.
 Write-host "Changing NIC adapter names:" -ForeGroundColor "Green"
-Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName "$AdapterNaam"
+Get-NetAdapter -Name "Ethernet 2" | Rename-NetAdapter -NewName "$AdapterNaam"
 
 # 3) Geef de LAN adapter de correcte IP instellingen volgens de opdracht:
 # Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.192)
@@ -63,13 +63,6 @@ Set-DnsClientServerAddress -InterfaceAlias LAN -ServerAddresses ("172.18.1.66","
 # 6) Voeg de Papa2 server toe aan het domain: red.local
 # 6.1) Maak een CredentialsObject aan met username SCCMAdmin en password Admin2019
 $SCCMcredentials = New-Object System.Management.Automation.PSCredential($Username,$Password)
-
-# 6.2) Registry waardes voor username/password en autologin instellen:
-# Deze zorgen ervoor dat het inloggen automatisch gebeurd met de credentials die in het vorige commando verzameld zijn.
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultUserName -Value $Username
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultPassword -Value $Password
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogon -Value 0
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name ForceAutoLogon -Value 1
 
 # 7) Papa2 toevoegen aan het bestaande domein als member server:
 Write-Host "Joining RED.local domain as a member server:" -ForeGroundColor "Green"
