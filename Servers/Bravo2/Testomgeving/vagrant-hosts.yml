@@ -34,5 +34,17 @@
   ip: 172.18.1.67
   netmask: 255.255.255.224
   box: gusztavvargadr/windows-server
-  memory: 1536
+  gui: false
+  memory: 2048
   cpus: 2
+  primary_dc_ip: 172.18.1.66
+  primary_dc_hostname: Alfa2
+  default_gateway: 172.18.1.65
+  netmask_cidr: 27
+  domain: 'red.local'
+  forwarded_ports:
+    - guest: '3389'
+      host: '3390'
+  synced_folders:
+    - src: './Scripts'
+      dest: '/vagrant'
