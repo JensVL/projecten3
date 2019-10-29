@@ -32,16 +32,16 @@ Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 Write-host "Changing NIC adapter names:" -ForeGroundColor "Green"
 Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName $AdapterNaam
 
-<# # 3) LAN adapter instellen
+# 3) LAN adapter instellen
 Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
-New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR #>
+New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR -DefaultGateWay $default_gateway
 
-# 4) Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.224)
+<# # 4) Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.224)
 $existing_ip=(Get-NetAdapter -Name $AdapterNaam | Get-NetIPAddress -AddressFamily IPv4).IPAddress
 if("$existing_ip" -ne "$IpAddress") {
     Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
     New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR -DefaultGateway "$default_gateway"
-}
+} #>
 
 # 5) Overbodige Adapter disablen
 Disable-NetAdapter -Name "Ethernet 2" -Confirm:$false
@@ -87,4 +87,4 @@ install-ADDSDomainController -DomainName "red.local" `
                   -force:$true
 
 
-# Stop-Transcript
+#Stop-Transcript
