@@ -29,8 +29,7 @@ set-timezone -Name "Romance Standard Time"
 # NAT = de adapter die met het internet verbinding
 # LAN = de adapter met static IP instellingen die alle servers met elkaar verbind.
 Write-host "Changing NIC adapter names"
-
-Rename-NetAdapter -Name "Ethernet 2" -NewName $lan_adapter_name
+Get-NetAdapter -Name "Ethernet 2" | Rename-NetAdapter -NewName $lan_adapter_name
 
 # 3) Geef de LAN adapter de correcte IP instellingen volgens de opdracht:
 # Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.224)
