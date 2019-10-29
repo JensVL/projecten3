@@ -34,50 +34,50 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name ForceAutoLogon -Value 0
 
 ############################################################################################################################### NOTE ENKEL VOOR TEST ENV.
-Write-Host "Copying SQL Server to local desktop. This might take a while..." -ForeGroundColor "Green"
-Copy-Item "$VBOXdrive\BenodigdeFiles\SQL Server 2017 Installation" -Destination "C:\Users\sccmadmin\Desktop\SQL Server 2017 Installation" -Recurse -Verbose
-
-Write-Host "Starting Installation of SQL Server 2017 Developpers edition (THIS TAKES A LONG TIME!)" -ForeGroundColor "Green"
-
-set-location 'C:\Users\sccmadmin\Desktop\SQL Server 2017 Installation'
-.\SETUP.EXE /Q /ACTION=Install /IACCEPTSQLSERVERLICENSETERMS /Features=SQL /INSTANCENAME=MSSQLSERVER /INSTANCEID=MSSQLSERVER `
-             /SQLSVCACCOUNT='RED\SCCMadmin' /SQLSVCPASSWORD=$SCCMPassword `
-             /AGTSVCACCOUNT='RED\SCCMadmin' /AGTSVCPASSWORD=$SCCMPassword `
-             /FTSVCACCOUNT='RED\SCCMadmin' /FTSVCPASSWORD=$SCCMPassword `
-             /SQLSYSADMINACCOUNTS='RED\SCCMadmin' 'RED\Administrator' `
-             /INSTALLSQLDATADIR=C:\SQLServer `
-             /SQLUSERDBDIR=C:\Database `
-             /SQLUSERDBLOGDIR=C:\DBlogs `
-             /SQLBACKUPDIR=C:\Backup `
-             /SQLTEMPDBDIR=C:\TempDB `
-             /SQLTEMPDBLOGDIR=C:\TempDBlog `
-             /TCPENABLED=1 `
-             /NPENABLED=1
-
-
-Write-Host "Installation SQL Server 2017 COMPLETED!" -ForeGroundColor "Green"
-
-start-sleep -s 15
-
-# 2.2) De juiste poorten openen in de firewall om SQL goed met SCCM te laten werken
-New-NetFirewallRule -DisplayName "SQL Server" -Direction Inbound -Protocol TCP -LocalPort 1433 -Action Allow
-New-NetFirewallRule -DisplayName "SQL Admin Connection" -Direction Inbound -Protocol TCP -LocalPort 1434 -Action Allow
-New-NetFirewallRule -DisplayName "SQL Database Management" -Direction Inbound -Protocol UDP -LocalPort 1434 -Action Allow
-New-NetFirewallRule -DisplayName "SQL Service Broker" -Direction Inbound -Protocol TCP -LocalPort 4022 -Action Allow
-New-NetFirewallRule -DisplayName "SQL Debugger RPC" -Direction Inbound -Protocol TCP -LocalPort 135 -Action Allow
-
-# 4) Installeer SQL Server Management studio:
-# 4.1) Download SSMS in /SSMS directory op desktop van domain admin:
-Write-Host "Copying SQL Server Management studio r to local desktop. This might take a while..." -ForeGroundColor "Green"
-Copy-Item "$VBOXdrive\BenodigdeFiles\SSMS" -Destination "C:\Users\sccmadmin\Desktop\SSMS" -Recurse -Verbose
-
-# 4.2) Installeer SSMS en wacht 200 seconden voor het script verder gaat:
-Write-Host "Starting installation of SQL Server Management studio (Takes a while!)" -ForeGroundColor "Green"
-
-Set-location 'C:\Users\sccmadmin\Desktop\SSMS'
-Start-Process "SSMS-Setup-ENU.exe" -ArgumentList "/Install", "/Quiet" -wait
-Start-Sleep -s 15
-Write-host "Continuing script now:" -ForeGroundColor "Green"
+# Write-Host "Copying SQL Server to local desktop. This might take a while..." -ForeGroundColor "Green"
+# Copy-Item "$VBOXdrive\BenodigdeFiles\SQL Server 2017 Installation" -Destination "C:\Users\sccmadmin\Desktop\SQL Server 2017 Installation" -Recurse -Verbose
+#
+# Write-Host "Starting Installation of SQL Server 2017 Developpers edition (THIS TAKES A LONG TIME!)" -ForeGroundColor "Green"
+#
+# set-location 'C:\Users\sccmadmin\Desktop\SQL Server 2017 Installation'
+# .\SETUP.EXE /Q /ACTION=Install /IACCEPTSQLSERVERLICENSETERMS /Features=SQL /INSTANCENAME=MSSQLSERVER /INSTANCEID=MSSQLSERVER `
+#              /SQLSVCACCOUNT='RED\SCCMadmin' /SQLSVCPASSWORD=$SCCMPassword `
+#              /AGTSVCACCOUNT='RED\SCCMadmin' /AGTSVCPASSWORD=$SCCMPassword `
+#              /FTSVCACCOUNT='RED\SCCMadmin' /FTSVCPASSWORD=$SCCMPassword `
+#              /SQLSYSADMINACCOUNTS='RED\SCCMadmin' 'RED\Administrator' `
+#              /INSTALLSQLDATADIR=C:\SQLServer `
+#              /SQLUSERDBDIR=C:\Database `
+#              /SQLUSERDBLOGDIR=C:\DBlogs `
+#              /SQLBACKUPDIR=C:\Backup `
+#              /SQLTEMPDBDIR=C:\TempDB `
+#              /SQLTEMPDBLOGDIR=C:\TempDBlog `
+#              /TCPENABLED=1 `
+#              /NPENABLED=1
+#
+#
+# Write-Host "Installation SQL Server 2017 COMPLETED!" -ForeGroundColor "Green"
+#
+# start-sleep -s 15
+#
+# # 2.2) De juiste poorten openen in de firewall om SQL goed met SCCM te laten werken
+# New-NetFirewallRule -DisplayName "SQL Server" -Direction Inbound -Protocol TCP -LocalPort 1433 -Action Allow
+# New-NetFirewallRule -DisplayName "SQL Admin Connection" -Direction Inbound -Protocol TCP -LocalPort 1434 -Action Allow
+# New-NetFirewallRule -DisplayName "SQL Database Management" -Direction Inbound -Protocol UDP -LocalPort 1434 -Action Allow
+# New-NetFirewallRule -DisplayName "SQL Service Broker" -Direction Inbound -Protocol TCP -LocalPort 4022 -Action Allow
+# New-NetFirewallRule -DisplayName "SQL Debugger RPC" -Direction Inbound -Protocol TCP -LocalPort 135 -Action Allow
+#
+# # 4) Installeer SQL Server Management studio:
+# # 4.1) Download SSMS in /SSMS directory op desktop van domain admin:
+# Write-Host "Copying SQL Server Management studio r to local desktop. This might take a while..." -ForeGroundColor "Green"
+# Copy-Item "$VBOXdrive\BenodigdeFiles\SSMS" -Destination "C:\Users\sccmadmin\Desktop\SSMS" -Recurse -Verbose
+#
+# # 4.2) Installeer SSMS en wacht 200 seconden voor het script verder gaat:
+# Write-Host "Starting installation of SQL Server Management studio (Takes a while!)" -ForeGroundColor "Green"
+#
+# Set-location 'C:\Users\sccmadmin\Desktop\SSMS'
+# Start-Process "SSMS-Setup-ENU.exe" -ArgumentList "/Install", "/Quiet" -wait
+# Start-Sleep -s 15
+# Write-host "Continuing script now:" -ForeGroundColor "Green"
 ########################################################################################################################### NOTE ENKEL VOOR TEST ENV.
 
 
@@ -313,8 +313,13 @@ Write-Host "Configuring WSUS with SQL server and setting WSUS content location:"
 Set-Location -Path "C:\Program Files\Update Services\Tools"
 # LET OP: aangezien we een default instance gebruikt hebben (bij installatie SQL server) laat je instance name hieronder leeg
 # Normaal doe je SERVER_NAME\INSTANCE_NAME maar bij ons is het dus gewoon SERVER_NAME
- ######################################################################################## TODO TODO aanpassen naar November2 TODO TODO
-.\wsusutil.exe postinstall SQL_INSTANCE_NAME="Papa2" CONTENT_DIR=C:\WSUS
+# --------------------------------------------------------------------------------------------------------------------------------------
+ ######################################################################################## NOTE ECHTE SETTINGS VOOR INTEGRATIE DEMO
+ .\wsusutil.exe postinstall SQL_INSTANCE_NAME="November2" CONTENT_DIR=C:\WSUS
+
+# --------------------------------------------------------------------------------------  NOTE OM TE TESTEN MET EIGEN SQL SERVER:
+#.\wsusutil.exe postinstall SQL_INSTANCE_NAME="Papa2" CONTENT_DIR=C:\WSUS
+# --------------------------------------------------------------------------------------------------------------------------------------
 
 If ($?) {
   Write-Host "Post-deployment configuration WSUS completed!" -ForeGroundColor "Green"
