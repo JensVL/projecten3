@@ -13,7 +13,7 @@ $DSRM = ConvertTo-SecureString "Admin2019" -asPlainText -force
 # $InformationPreference = "Continue"
 
 # LOG SCRIPT TO FILE (+ op het einde van het script Stop-Transcript doen):
-# Start-Transcript "C:\ScriptLogs\2_InstallDCDNSlog.txt"
+Start-Transcript "C:\ScriptLogs\2_InstallDCDNSlog.txt"
 
 Write-host "Waiting 15 seconds before executing script" -ForeGroundColor "Green"
 start-sleep -s 15 #Zorgen dat de server genoeg tijd heeft door 15 seconden te laten wachten.
@@ -36,15 +36,15 @@ Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName $AdapterNaam
 Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
 New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR -DefaultGateWay $default_gateway
 
-<# # 4) Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.224)
+# 4) Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.224)
 $existing_ip=(Get-NetAdapter -Name $AdapterNaam | Get-NetIPAddress -AddressFamily IPv4).IPAddress
 if("$existing_ip" -ne "$IpAddress") {
     Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
     New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR -DefaultGateway "$default_gateway"
-} #>
+}
 
 # 5) Overbodige Adapter disablen
-#Disable-NetAdapter -Name "Ethernet 2" -Confirm:$false
+#Disable-NetAdapter -Name "Ethernet" -Confirm:$false
 
 # 6) DNS van LAN van Alfa2 instellen op Hogent DNS servers:
 # Eventueel commenten tijdens testen in demo omgeving
@@ -87,4 +87,4 @@ install-ADDSDomainController -DomainName "red.local" `
                   -force:$true
 
 
-#Stop-Transcript
+Stop-Transcript
