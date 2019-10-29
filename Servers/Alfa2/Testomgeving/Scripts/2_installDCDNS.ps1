@@ -32,30 +32,17 @@ Write-host "Changing NIC adapter names"
 # TODO: conditional that checks if adapter names already exists does
 #       not correctly checks for equal strings
 $adaptercount=(Get-NetAdapter | measure).count
-if ($adaptercount -eq 1) {
+if ($adaptercount -eq 2) {
     # echo "1"
     # $adapter1_name=(Get-NetAdapter)[0].Name
 
     # echo "2"
     # if ("$adapter1_name" -ne $lan_adapter_name) {
     #     echo "3"
-        (Get-NetAdapter)[0] | Rename-NetAdapter -NewName $lan_adapter_name
-    # }
-} elseif ($adaptercount -eq 2) {
-    # echo "4"
-    # $adapter1_name=(Get-NetAdapter)[0].Name
-    # if ("$adapter1_name" -ne $wan_adapter_name) {
-        # echo "5"
-        (Get-NetAdapter)[0] | Rename-NetAdapter -NewName $wan_adapter_name
-    # }
-
-    # $adapter2_name=(Get-NetAdapter)[1].Name
-    # echo "6"
-    # if ("$adapter2_name" -ne $lan_adapter_name) {
-        # echo "7"
         (Get-NetAdapter)[1] | Rename-NetAdapter -NewName $lan_adapter_name
-    # }       
+    # }
 }
+
 
 # Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.224)
 $existing_ip=(Get-NetAdapter -Name $lan_adapter_name | Get-NetIPAddress -AddressFamily IPv4).IPAddress
@@ -71,7 +58,7 @@ Set-DnsClientServerAddress -InterfaceAlias "$lan_adapter_name" -ServerAddress "1
 # Installeer de Active Directory Domain Services role om van de server een DC te kunnen maken:
 
 # Set default password
-$DSRM = ConvertTo-SecureString "Administrator2019" -asPlainText -force
+$DSRM = ConvertTo-SecureString "Admin2019" -asPlainText -force
 
 # Configure Administrator account
 Set-LocalUser -Name Administrator -AccountNeverExpires -Password $DSRM -PasswordNeverExpires:$true -UserMayChangePassword:$true
