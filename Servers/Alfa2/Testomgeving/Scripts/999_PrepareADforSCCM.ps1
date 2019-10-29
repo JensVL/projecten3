@@ -4,7 +4,7 @@
 # Elke stap wordt uitgelegd met zijn eigen comment
 
 ############################################## BELANGRIJK #####################################################################################
-# VOER DIT SCRIPT UIT ALS ADMINISTRATOR ACCOUNT TIJDENS DE DEMO
+# VOER DIT SCRIPT UIT ALS ADMINISTRATOR ACCOUNT RED\Administrator (password= Admin2019) TIJDENS DE DEMO
 ############################################## BELANGRIJK #####################################################################################
 
 # VARIABLES:

@@ -36,10 +36,11 @@ while ($true) {
 # Configure DNS
 #------------------------------------------------------------------------------
 # Fix adapters
-Set-DnsClientServerAddress -InterfaceAlias "Ethernet 2" -ResetServerAddresses
+Write-Host ">>> Fixing DNS after ADDS"
+Set-DnsClientServerAddress -InterfaceAlias $wan_adapter_name -ResetServerAddresses
 
 # Stel forward primary lookup zones in voor alle servers in het red domein:
-Write-host "Setting DNS primary zone for red.local" -ForeGroundColor "Green"
+Write-host ">>> Setting DNS primary zone for red.local"
 Set-DnsServerPrimaryZone -Name "red.local" -SecureSecondaries "TransferToZoneNameServer"
 
 # Voeg de servers als AAAA records toe met hun ip adres
@@ -50,7 +51,7 @@ Set-DnsServerPrimaryZone -Name "red.local" -SecureSecondaries "TransferToZoneNam
 # NOTE: MX record -MailExchange option moet pointen naar
 #   bestaande A record
 #   (Zie -Mail Exchange optie Microsoft docs Add-DnsServerResourceRecordMX)
-Write-host "Adding DNS A and MX records for the servers of red.local" -ForeGroundColor "Green"
+Write-host ">>> Adding DNS A and MX records for the servers of red.local"
 
 function add_dns_record() {
     param(
@@ -111,10 +112,11 @@ add_dns_record -record_name "Papa2" -record_zone_name "red.local" -record_type "
 # Add-DnsServerResourceRecordA -Name "Papa2" -ZoneName "red.local" -IPv4Address "$Papa2IP"
 
 # Firewall uitzetten (want we gebruiken hardware firewall):
- Write-Host "Turning firewall off:" -ForeGroundColor "Green"
- Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+# Write-Host ">>> Turning firewall off"
+# Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 
 # DNS forwarder instellen op Hogent DNS servers:
+Write-Host ">>> Set DNS forwarder to HoGent DNS"
 Add-DnsServerForwarder -IPAddress 193.190.173.1,193.190.173.2
 
 # 5) Start het 4_ADstructure.ps1 script als Administrator:
