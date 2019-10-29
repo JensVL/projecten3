@@ -1,6 +1,10 @@
 # Dit script zal eerst de prerequisites voor SCCM installeren / configureren en daarna SCCM zelf:
 # Elke stap wordt uitgelegd met zijn eigen comment
-#################################################################################### TODO: 2e schijf (:E) instellen!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+############################################################################
+############################################################################ NOTE: Dit script manueel uitvoeren als RED\SCCMadmin !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+############################################################################
+
 
 # VARIABLES:
 $VBOXdrive = "C:\Vagrant"

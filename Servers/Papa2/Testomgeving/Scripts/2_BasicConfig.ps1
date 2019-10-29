@@ -64,6 +64,9 @@ Set-DnsClientServerAddress -InterfaceAlias LAN -ServerAddresses ("172.18.1.66","
 # 6.1) Maak een CredentialsObject aan met username SCCMAdmin en password Admin2019
 $SCCMcredentials = New-Object System.Management.Automation.PSCredential($Username,$Password)
 
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultUserName -Value $Username
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultPassword -Value "Admin2019"
+
 # 7) Papa2 toevoegen aan het bestaande domein als member server:
 Write-Host "Joining RED.local domain as a member server:" -ForeGroundColor "Green"
 Add-Computer -DomainName "red.local" `
