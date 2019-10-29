@@ -25,13 +25,13 @@ Write-host "Setting correct timezone and time format settings:" -ForeGroundColor
 Set-Culture -CultureInfo $Land
 set-timezone -Name "Romance Standard Time"
 
-# 2) Zorgen voor juist LAN adapter. Via intern netwerk.
+<# # 2) Zorgen voor juist LAN adapter. Via intern netwerk.
 Write-host "Changing NIC adapter names:" -ForeGroundColor "Green"
-Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName $AdapterNaam
+Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName $AdapterNaam #>
 
 # 3) LAN adapter instellen
-<# Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
-New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR #>
+Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
+New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR
 
 # Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.224)
 $existing_ip=(Get-NetAdapter -Name $AdapterNaam | Get-NetIPAddress -AddressFamily IPv4).IPAddress
