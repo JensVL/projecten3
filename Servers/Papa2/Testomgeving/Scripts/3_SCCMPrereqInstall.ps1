@@ -70,7 +70,7 @@ Copy-Item "$VBOXdrive\BenodigdeFiles\SSMS" -Destination "C:\Users\SCCMadmin\Desk
 # 4.2) Installeer SSMS en wacht 200 seconden voor het script verder gaat:
 Write-Host "Starting installation of SQL Server Management studio (Takes a while!)" -ForeGroundColor "Green"
 
-Set-location 'C:\Users\SCCMadmin\Desktop\SSMS\SSMS'
+Set-location 'C:\Users\SCCMadmin\Desktop\SSMS'
 Start-Process "SSMS-Setup-ENU.exe" -ArgumentList "/Install", "/Quiet" -wait
 
 Write-host "Continuing script now:" -ForeGroundColor "Green"
