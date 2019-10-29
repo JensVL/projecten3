@@ -239,7 +239,7 @@ Copy-Item "$MDT\Templates\CM12Extensions\*" "$SCCM\XmlStorage\Extensions\" -Forc
 Set-Location -Path "D:\SCCM\AdminConsole\bin"
 Import-Module .\ConfigurationManager.psd1
 New-PSDrive -Name "RED" -PsProvider "AdminUI.PS.Provider\CMSite" -Root "Papa2.red.local" `
-            -Description "RED site drive" | Out-Null
+            -Description "RED site drive"
 
 # RED = sitecode
 Write-Host "Opening RED: site please wait..........." -BackGroundColor "Green"
@@ -265,7 +265,7 @@ Set-CMClientSettingComputerAgent -BrandingTitle "RED" -DefaultSetting
 # Configureer de network access account (dit is de SCCMadmin account)
 # Met Read-Host password opvragen van SCCMadmin en deze als network access account instellen voor de clients:
 Write-Host "Configuring Network Access account " -ForeGroundColor "Green"
-New-CMAccount -UserName "$username" -Password "$password" -SiteCode "RED"
+New-CMAccount -UserName "$username" -Password $password -SiteCode "RED"
 Set-CMSoftwareDistributionComponent -SiteCode "RED" -AddNetworkAccessAccountName "RED\SCCMadmin"
 Write-Host "Network access account configured!" -ForeGroundColor "Green"
 
@@ -283,9 +283,9 @@ Set-CMDiscoveryMethod -ActiveDirectoryGroupDiscovery -SiteCode "RED" -Enabled $t
 # PXE stel je in SCCM in op een distribution point (properties > PXE)
 
 # Eerst nieuwe boot image voor X64 aanmaken:
-Write-Host "Creating Windows 10 64 bit boot image (takes a few minutes):" -ForeGroundColor "Green"
-
-New-CMBootImage -Path "\\Papa2\sms_RED\OSD\boot\x64\boot.wim" -Name "Windows10x64" -Index 5 -verbose
+# NOTE: VOLGENDE LIJN WAARSCHIJNLIJK NIET NODIG (x64 boot image werd standaard al aangemaakt bij SCCM installatie)
+# Write-Host "Creating Windows 10 64 bit boot image (takes a few minutes):" -ForeGroundColor "Green"
+#New-CMBootImage -Path "\\Papa2\sms_RED\OSD\boot\x64\boot.wim" -Name "Windows10x64" -Index 5 -verbose
 
 Write-Host "Configuring PXE boot:" -ForeGroundColor "Green"
 
