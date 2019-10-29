@@ -1,7 +1,7 @@
 #install windows fileservices 
 
 Install-WindowsFeature File-Services
-Install-WindowsFeature –Name FS-Resource-Manager –IncludeManagementTools
+Install-WindowsFeature â€“Name FS-Resource-Manager â€“IncludeManagementTools
 
 
 Resize-Partition -DiskNumber 0 -PartitionNumber 2 -Size 30GB
@@ -30,7 +30,7 @@ Format-Volume -DriveLetter Q -FileSystem NTFS -NewFileSystemLabel ShareVerkoop -
 New-Item -ItemType directory -Path D:\Shares\VerkoopData
 New-Item -ItemType directory -Path E:\Shares\OntwikkelingData
 New-Item -ItemType directory -Path F:\Shares\ITData
-New-Item -ItemType directory -Path G:\Shares\DirDATA
+New-Item -ItemType directory -Path G:\Shares\DirData
 New-Item -ItemType directory -Path H:\Shares\AdminData
 New-Item -ItemType directory -Path Q:\Shares\ShareVerkoop
 New-Item -ItemType directory -Path Y:\Shares\HomeDirs
@@ -38,7 +38,7 @@ New-Item -ItemType directory -Path Z:\Shares\ProfileDirs
 
 New-SmbShare -Name "VerkoopData" -Path "D:\Shares\VerkoopData" -ChangeAccess "red\IT_Administratie" -FullAccess "red\Verkoop"
 New-SmbShare -Name "OntwikkelingData" -Path "E:\Shares\OntwikkelingData" -ChangeAccess "red\IT_Administratie" -FullAccess "red\Ontwikkeling"
-New-SmbShare -Name "ItData" -Path "F:\Shares\ITData" -ChangeAccess "red\IT_Administratie" 
+New-SmbShare -Name "ITData" -Path "F:\Shares\ITData" -ChangeAccess "red\IT_Administratie" 
 New-SmbShare -Name "DirData" -Path "G:\Shares\DirData" -ChangeAccess "red\IT_Administratie" -FullAccess "red\Directie" 
 New-SmbShare -Name "AdminData" -Path "H:\Shares\AdminData" -ChangeAccess "red\IT_Administratie" 
 New-SmbShare -Name "HomeDirs" -Path "Y:\Shares\HomeDirs" -ChangeAccess "red\IT_Administratie" -FullAccess "everyone"
@@ -63,7 +63,7 @@ $permessiesOntwikkelingAllow = "red\Ontwikkeling","Write","Allow"
 $permessiesITAllow = "red\IT_Administratie","FullControl","Allow"
 $permessiesDirectieAllow = "red\Directie","FullControl","Allow"
 
-$permessiesOntwikkelingRead = "red\Directie","FullControl","Allow"
+$permessiesOntwikkelingRead = "red\Directie","Read","Allow"
 
 
 $acl1 = Get-Acl D:/Shares/VerkoopData
@@ -90,45 +90,45 @@ $newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessR
 $newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieDeny)
 $newRule4 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesOntwikkelingAllow)
 $acl2.SetAccessRule($newRule1)
-Set-Acl E:/Shares/VerkoopData -AclObject $acl2
+Set-Acl E:/Shares/OntwikkelingData -AclObject $acl2
 $acl2.SetAccessRule($newRule2)
-Set-Acl E:/Shares/VerkoopData -AclObject $acl2
+Set-Acl E:/Shares/OntwikkelingData -AclObject $acl2
 $acl2.SetAccessRule($newRule3)
-Set-Acl E:/Shares/VerkoopData -AclObject $acl2
+Set-Acl E:/Shares/OntwikkelingData -AclObject $acl2
 $acl2.SetAccessRule($newRule4)
-Set-Acl E:/Shares/VerkoopData -AclObject $acl2
+Set-Acl E:/Shares/OntwikkelingData -AclObject $acl2
 
 Start-sleep 5
 
-$acl3 = Get-Acl F:/Shares/ItData
+$acl3 = Get-Acl F:/Shares/ITData
 $newRule1 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesVerkoopDeny)
 $newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesITAllow)
 $newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieDeny)
 $newRule4 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesOntwikkelingDeny)
 $acl3.SetAccessRule($newRule1)
-Set-Acl F:/Shares/VerkoopData -AclObject $acl3
-$ac3.SetAccessRule($newRule2)
-Set-Acl F:/Shares/VerkoopData -AclObject $acl3
+Set-Acl F:/Shares/ITData -AclObject $acl3
+$acl3.SetAccessRule($newRule2)
+Set-Acl F:/Shares/ITData -AclObject $acl3
 $acl3.SetAccessRule($newRule3)
-Set-Acl F:/Shares/VerkoopData -AclObject $acl3
+Set-Acl F:/Shares/ITData -AclObject $acl3
 $acl3.SetAccessRule($newRule4)
-Set-Acl F:/Shares/VerkoopData -AclObject $acl3
+Set-Acl F:/Shares/ITData -AclObject $acl3
 
 Start-sleep 5
 
-$acl4 = Get-Acl G:/Shares/directory
+$acl4 = Get-Acl G:/Shares/DirData
 $newRule1 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesVerkoopDeny)
 $newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesITAllow)
 $newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieAllow)
 $newRule4 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesOntwikkelingDeny)
 $acl4.SetAccessRule($newRule1)
-Set-Acl G:/Shares/VerkoopData -AclObject $acl4
+Set-Acl G:/Shares/DirData -AclObject $acl4
 $acl4.SetAccessRule($newRule2)
-Set-Acl G:/Shares/VerkoopData -AclObject $acl4
+Set-Acl G:/Shares/DirData -AclObject $acl4
 $acl4.SetAccessRule($newRule3)
-Set-Acl G:/Shares/VerkoopData -AclObject $acl4
+Set-Acl G:/Shares/DirData -AclObject $acl4
 $acl4.SetAccessRule($newRule4)
-Set-Acl G:/Shares/VerkoopData -AclObject $acl4
+Set-Acl G:/Shares/DirData -AclObject $acl4
 
 Start-sleep 5
 
@@ -138,13 +138,13 @@ $newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessR
 $newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieDeny)
 $newRule4 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesOntwikkelingDeny)
 $acl5.SetAccessRule($newRule1)
-Set-Acl H:/Shares/VerkoopData -AclObject $acl5
+Set-Acl H:/Shares/AdminData -AclObject $acl5
 $acl5.SetAccessRule($newRule2)
-Set-Acl H:/Shares/VerkoopData -AclObject $acl5
+Set-Acl H:/Shares/AdminData -AclObject $acl5
 $acl5.SetAccessRule($newRule3)
-Set-Acl H:/Shares/VerkoopData -AclObject $acl5
+Set-Acl H:/Shares/AdminData -AclObject $acl5
 $acl5.SetAccessRule($newRule4)
-Set-Acl H:/Shares/VerkoopData -AclObject $acl5
+Set-Acl H:/Shares/AdminData -AclObject $acl5
 
 Start-sleep 5
 
@@ -154,13 +154,13 @@ $newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessR
 $newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieAllow)
 $newRule4 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesOntwikkelingAllow)
 $acl6.SetAccessRule($newRule1)
-Set-Acl Y:/Shares/VerkoopData -AclObject $acl6
+Set-Acl Y:/Shares/HomeDirs -AclObject $acl6
 $acl6.SetAccessRule($newRule2)
-Set-Acl Y:/Shares/VerkoopData -AclObject $acl6
+Set-Acl Y:/Shares/HomeDirs -AclObject $acl6
 $acl6.SetAccessRule($newRule3)
-Set-Acl Y:/Shares/VerkoopData -AclObject $acl6
+Set-Acl Y:/Shares/HomeDirs -AclObject $acl6
 $acl6.SetAccessRule($newRule4)
-Set-Acl Y:/Shares/VerkoopData -AclObject $acl6
+Set-Acl Y:/Shares/HomeDirs -AclObject $acl6
 
 Start-sleep 5
 
@@ -170,13 +170,13 @@ $newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessR
 $newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieAllow)
 $newRule4 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesOntwikkelingAllow)
 $acl7.SetAccessRule($newRule1)
-Set-Acl Z:/Shares/VerkoopData -AclObject $acl7
+Set-Acl Z:/Shares/ProfileDirs -AclObject $acl7
 $acl7.SetAccessRule($newRule2)
-Set-Acl Z:/Shares/VerkoopData -AclObject $acl7
+Set-Acl Z:/Shares/ProfileDirs -AclObject $acl7
 $acl7.SetAccessRule($newRule3)
-Set-Acl Z:/Shares/VerkoopData -AclObject $acl7
+Set-Acl Z:/Shares/ProfileDirs -AclObject $acl7
 $acl7.SetAccessRule($newRule4)
-Set-Acl Z:/Shares/VerkoopData -AclObject $acl7
+Set-Acl Z:/Shares/ProfileDirs -AclObject $acl7
 
 Start-sleep 5
 
@@ -186,13 +186,13 @@ $newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessR
 $newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieDeny)
 $newRule4 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesOntwikkelingRead)
 $acl8.SetAccessRule($newRule1)
-Set-Acl Y:/Shares/VerkoopData -AclObject $acl8
+Set-Acl Q:/Shares/ShareVerkoop -AclObject $acl8
 $acl8.SetAccessRule($newRule2)
-Set-Acl Y:/Shares/VerkoopData -AclObject $acl8
+Set-Acl Q:/Shares/ShareVerkoop -AclObject $acl8
 $acl8.SetAccessRule($newRule3)
-Set-Acl Y:/Shares/VerkoopData -AclObject $acl8
+Set-Acl Q:/Shares/ShareVerkoop -AclObject $acl8
 $acl8.SetAccessRule($newRule4)
-Set-Acl Y:/Shares/VerkoopData -AclObject $acl8
+Set-Acl Q:/Shares/ShareVerkoop -AclObject $acl8
 Start-sleep 5
 
 
@@ -200,15 +200,15 @@ Start-sleep 5
 #configureer maximum capaciteits quotas
 New-FSRMQuotaTemplate -Name "AdminData Quota" -Size 100MB
 New-FSRMQuotaTemplate -Name "VerkoopData Quota" -Size 100MB
-New-FSRMQuotaTemplate -Name "DirDATA Quota" -Size 100MB
+New-FSRMQuotaTemplate -Name "DirData Quota" -Size 100MB
 New-FSRMQuotaTemplate -Name "OntwikkelingData Quota" -Size 200MB
 New-FSRMQuotaTemplate -Name "ITData Quota" -Size 200MB
 
 
 ###Connecting to domain controller using PowerShell
-winrm quickconfig
+#winrm quickconfig
 #Set-ExecutionPolicy Unrestricted -F
-Netsh interface ip set wins name="Local Area Connection" source=static addr=10.0.0.10
+#Netsh interface ip set wins name="Local Area Connection" source=static addr=10.0.0.10
 
 #(command not functional yet: keeps opening up credentials prompt AKA not automated! so use in powershell first)
 #Add-Computer -ComputerName "Lima2" -LocalCredential "Lima2\vagrant" -DomainName "AvalonSoft.net" -Credential vagrant\vagrant -Restart -Force -Verbose
@@ -219,5 +219,5 @@ Netsh interface ip set wins name="Local Area Connection" source=static addr=10.0
 #Show all AD users= Get-ADUser -Filter *
 #Grant-SmbShareAccess -Name Loggs -AccountName AvalonSoft\Managers -AccessRight Read
 
-#New-SMBShare –Name "Shared" –Path "C:\Shared" ` -ChangeAccess RED\Verkoop`  -FullAccess "RED\Verkoop"
+#New-SMBShare â€“Name "Shared" â€“Path "C:\Shared" ` -ChangeAccess RED\Verkoop`  -FullAccess "RED\Verkoop"
 
