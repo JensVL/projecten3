@@ -97,12 +97,6 @@ Write-host "Waiting 45 seconds for ADK to install:" -ForeGroundColor "Green"
                /Features OptionId.DeploymentTools OptionId.ImagingAndConfigurationDesigner `
                OptionId.ICDConfigurationDesigner OptionId.UserStateMigrationTool
 
-If ($?) {
-  Write-Host "Installation Windows ADK 1903 completed!" -ForeGroundColor "Green"
-} else {
-  Write-Host "Installation Windows ADK 1903 FAILED!" -ForeGroundColor "Red" -BackGroundColor "White"
-}
-
 start-sleep -s 45
 Write-host "Continuing script now:" -ForeGroundColor "Green"
 
