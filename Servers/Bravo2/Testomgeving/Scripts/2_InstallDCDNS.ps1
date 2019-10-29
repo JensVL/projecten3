@@ -32,7 +32,7 @@ Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 Write-host "Changing NIC adapter names:" -ForeGroundColor "Green"
 Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName $AdapterNaam
 
-# 3) LAN adapter instellen
+# 4) LAN adapter instellen
 Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
 New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR -DefaultGateWay $default_gateway
 
@@ -44,7 +44,7 @@ if("$existing_ip" -ne "$IpAddress") {
 } #>
 
 # 5) Overbodige Adapter disablen
-Disable-NetAdapter -Name "Ethernet 2" -Confirm:$false
+#Disable-NetAdapter -Name "Ethernet 2" -Confirm:$false
 
 # 6) DNS van LAN van Alfa2 instellen op Hogent DNS servers:
 # Eventueel commenten tijdens testen in demo omgeving
