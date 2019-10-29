@@ -25,30 +25,36 @@ Write-host "Setting correct timezone and time format settings:" -ForeGroundColor
 Set-Culture -CultureInfo $Land
 set-timezone -Name "Romance Standard Time"
 
-<# # 2) Zorgen voor juist LAN adapter. Via intern netwerk.
+# 2) Firewall uitschakelen
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+
+# 3) Zorgen voor juist LAN adapter. Via intern netwerk.
 Write-host "Changing NIC adapter names:" -ForeGroundColor "Green"
-Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName $AdapterNaam #>
+Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName $AdapterNaam
 
-# 3) LAN adapter instellen
+# 4) LAN adapter instellen
 Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
-New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR
+New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR -DefaultGateWay $default_gateway
 
-# Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.224)
+<# # 4) Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.224)
 $existing_ip=(Get-NetAdapter -Name $AdapterNaam | Get-NetIPAddress -AddressFamily IPv4).IPAddress
 if("$existing_ip" -ne "$IpAddress") {
     Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
     New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR -DefaultGateway "$default_gateway"
-}
+} #>
 
-# 4) DNS van LAN van Alfa2 instellen op Hogent DNS servers:
+# 5) Overbodige Adapter disablen
+#Disable-NetAdapter -Name "Ethernet 2" -Confirm:$false
+
+# 6) DNS van LAN van Alfa2 instellen op Hogent DNS servers:
 # Eventueel commenten tijdens testen in demo omgeving
 # Set-DnsClientServerAddress -InterfaceAlias "$AdapterNaam" -ServerAddress "$IpAlfa2","$IpAddress"
 Set-DnsClientServerAddress -InterfaceAlias "$AdapterNaam" -ServerAddress "$IpAlfa2","$IpAddress"
 
-# 5) Configure Administrator account
+# 7) Configure Administrator account
 Set-LocalUser -Name Administrator -AccountNeverExpires -Password $DSRM -PasswordNeverExpires:$true -UserMayChangePassword:$true
 
-# 6) Installatie ADDS:
+# 8) Installatie ADDS:
 Write-host "Starting installation of ADDS role:" -ForeGroundColor "Green"
 Install-WindowsFeature AD-domain-services -IncludeManagementTools
 import-module ADDSDeployment
@@ -59,7 +65,7 @@ import-module ADDSDeployment
 # Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce' -Name ResumeScript `
                 # -Value "C:\Windows\system32\WindowsPowerShell\v1.0\Powershell.exe -executionpolicy bypass -file `"$VBOXdrive\3_ConfigDCDNS.ps1`""
 
-# 7) DSRM instellen
+# 9) DSRM instellen
 $creds = New-Object System.Management.Automation.PSCredential ("RED\Administrator", (ConvertTo-SecureString "Admin2019" -AsPlainText -Force))
 
 # 7.1) De eerste command zorgt ervoor dat je je als admin niet steeds moet inloggen wanneer je wijzigingen wil doen:
@@ -68,11 +74,8 @@ $creds = New-Object System.Management.Automation.PSCredential ("RED\Administrato
 # Set-ItemProperty -Path "REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System" `
 #                 -Name "FilterAdministratorToken" -value 1
 
-# 8) Firewall uitschakelen
-Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 
-
-# 9) Joinen van domein "red.local":
+# 10) Joinen van domein "red.local":
 Write-host "Starting configuration of red.local domain:" -ForeGroundColor "Green"
 install-ADDSDomainController -DomainName "red.local" `
                   -ReplicationSourceDC "Alfa2.red.local" `
@@ -84,4 +87,4 @@ install-ADDSDomainController -DomainName "red.local" `
                   -force:$true
 
 
-# Stop-Transcript
+#Stop-Transcript
