@@ -51,7 +51,7 @@ set-location 'C:\Users\SCCMadmin\Desktop\SQL Server 2017 Installation'
              /NPENABLED=1
 
 
-Write-Host "Installation SQL Server 2017 FAILED!" -ForeGroundColor "Red" -BackGroundColor "White"
+Write-Host "Installation SQL Server 2017 COMPLETED!" -ForeGroundColor "Green"
 
 start-sleep -s 15
 
