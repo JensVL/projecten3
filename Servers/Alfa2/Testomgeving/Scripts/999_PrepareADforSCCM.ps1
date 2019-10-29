@@ -94,7 +94,4 @@ Start-Process "C:\Users\Administrator\Desktop\ExtendADschema\extadsch.exe"
 # Oplossing was: Tweede DomainController stond niet aan. Deze moet aanstaan (voor replication redenen)
 # C:\ExtADSch.log check deze log file om te zien of extenden van het AD schema succesvol was
 
-# Verplaats bovengenoemde log naar desktop van domain admin:
-Move-item -Path "C:\ExtADSch.log" -Destination "C:\Users\Administrator\Desktop"
-
 Stop-Transcript

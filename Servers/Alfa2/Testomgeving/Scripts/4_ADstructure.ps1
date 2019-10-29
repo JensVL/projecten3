@@ -330,7 +330,7 @@ Add-ADGroupMember -Identity "CN=Directie,OU=Directie,DC=red,DC=local" -Members "
 Add-ADGroupMember -Identity "CN=Administratie,OU=Administratie,DC=red,DC=local" -Members "CN=Joachim,OU=Administratie,DC=red,DC=local", "CN=Tibo,OU=Administratie,DC=red,DC=local", "CN=Yngvar,OU=Administratie,DC=red,DC=local", "CN=Tim,OU=Administratie,DC=red,DC=local", "CN=Rik,OU=Administratie,DC=red,DC=local"
 Add-ADGroupMember -Identity "CN=IT_Administratie,OU=IT_Administratie,DC=red,DC=local" -Members "CN=Laurens,OU=IT_Administratie,DC=red,DC=local", "CN=Ferre,OU=IT_Administratie,DC=red,DC=local", "CN=Levi,OU=IT_Administratie,DC=red,DC=local", "CN=Aron,OU=IT_Administratie,DC=red,DC=local", "CN=Jens,OU=IT_Administratie,DC=red,DC=local"
 Add-ADGroupMember -Identity "CN=Verkoop,OU=Verkoop,DC=red,DC=local" -Members "CN=Matthias,OU=Verkoop,DC=red,DC=local", "CN=Robby,OU=Verkoop,DC=red,DC=local", "CN=Nathan,OU=Verkoop,DC=red,DC=local", "CN=Elias,OU=Verkoop,DC=red,DC=local", "CN=Alister,OU=Verkoop,DC=red,DC=local", "CN=Sean,OU=Verkoop,DC=red,DC=local"
-Add-ADGroupMember -Identity "CN=Ontwikkeling,OU=Ontwikkeling,DC=red,DC=local" -Members "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local", "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local", "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local", "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local", "CN=Robin,OU=Ontwikkeling,DC=red,DC=local"
+Add-ADGroupMember -Identity "CN=Ontwikkeling,OU=Ontwikkeling,DC=red,DC=local" -Members "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local", "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local", "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local", "CN=Robin,OU=Ontwikkeling,DC=red,DC=local"
 
 # ## Managers per OU toekennen
 # Write-Host "Allocate managers to OU's..." -ForeGroundColor "Green"

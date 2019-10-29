@@ -36,7 +36,7 @@ while ($true) {
 # Configure DNS
 #------------------------------------------------------------------------------
 # Fix adapters
-Set-DnsClientServerAddress -InterfaceAlias $wan_adapter_name -ResetServerAddresses
+Set-DnsClientServerAddress -InterfaceAlias "Ethernet 2" -ResetServerAddresses
 
 # Stel forward primary lookup zones in voor alle servers in het red domein:
 Write-host "Setting DNS primary zone for red.local" -ForeGroundColor "Green"
