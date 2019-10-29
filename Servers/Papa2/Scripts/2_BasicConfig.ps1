@@ -4,14 +4,15 @@
 # VARIABLES:
 $VBOXdrive = "Z:"
 $Land = "eng-BE"
-$IpAddress = "172.18.1.6"
 
 ##################################################################################################################
-# ECHTE CIDR EN DEFAULTGATEWAY VOOR INTEGRATIE DEMO:
+# ECHTE IP VOOR INTEGRATIE DEMO:
+# $IpAddress = "172.18.1.6"
 # $DefaultGateway = "172.18.1.97"
 # $CIDR = "26"
 
-# TEST CIDR EN DEFAULTGATEWAY VOOR VIRTUALBOX TESTING:
+# TEST IP VOOR VIRTUALBOX TESTING:
+$IpAddress = "172.18.1.67"
 $DefaultGateway = "172.18.1.65"
 $CIDR = "27"
 ##################################################################################################################

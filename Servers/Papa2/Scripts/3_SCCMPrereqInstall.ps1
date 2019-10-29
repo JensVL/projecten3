@@ -31,7 +31,7 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 
 ################################################################################################################################### ENKEL VOOR TEST ENV.
 Write-Host "Copying SQL Server to local desktop. This might take a while..." -ForeGroundColor "Green"
-Copy-Item "Z:\SQL Server 2017 Installation" -Destination "C:\Users\SCCMadmin\Desktop\SQL Server 2017 Installation" -Recurse -Verbose
+Copy-Item "Z:\BenodigdeFiles\SQL Server 2017 Installation" -Destination "C:\Users\SCCMadmin\Desktop\SQL Server 2017 Installation" -Recurse -Verbose
 
 Write-Host "Starting Installation of SQL Server 2017 Developpers edition (THIS TAKES A LONG TIME!)" -ForeGroundColor "Green"
 
@@ -64,26 +64,14 @@ New-NetFirewallRule -DisplayName "SQL Debugger RPC" -Direction Inbound -Protocol
 
 # 4) Installeer SQL Server Management studio:
 # 4.1) Download SSMS in /SSMS directory op desktop van domain admin:
-Write-Host "Downloading SQL Server Management studio:" -ForeGroundColor "Green"
-$folderpath = "C:\Users\SCCMadmin\Desktop\"
-New-Item -Path "$folderpath" -Name "SSMS" -ItemType "directory"
-$filepath="$folderpath\SSMS\SSMS-Setup-ENU.exe"
-$URL = "https://go.microsoft.com/fwlink/?linkid=870039"
-$client = New-Object System.Net.WebClient
-$client.DownloadFile($url,$filepath)
-Write-Host "Download completed!" -ForeGroundColor "Green"
+Write-Host "Copying SQL Server Management studio r to local desktop. This might take a while..." -ForeGroundColor "Green"
+Copy-Item "Z:\BenodigdeFiles\SSMS" -Destination "C:\Users\SCCMadmin\Desktop\SSMS" -Recurse -Verbose
 
 # 4.2) Installeer SSMS en wacht 200 seconden voor het script verder gaat:
 Write-Host "Starting installation of SQL Server Management studio (Takes a while!)" -ForeGroundColor "Green"
 
-Set-location 'C:\Users\SCCMadmin\Desktop\SSMS'
+Set-location 'C:\Users\SCCMadmin\Desktop\SSMS\SSMS'
 Start-Process "SSMS-Setup-ENU.exe" -ArgumentList "/Install", "/Quiet" -wait
-
-If ($?) {
-  Write-Host "Installation SQL Server Management Studio completed!" -ForeGroundColor "Green"
-} else {
-  Write-Host "Installation SQL Server Management Studio FAILED!" -ForeGroundColor "Red" -BackGroundColor "White"
-}
 
 Write-host "Continuing script now:" -ForeGroundColor "Green"
 ################################################################################################################################### ENKEL VOOR TEST ENV.
@@ -94,7 +82,7 @@ Write-host "Continuing script now:" -ForeGroundColor "Green"
 
 # 5.1) Kopiêer ADK 1903 naar desktop:
 Write-Host "Copying ADK 1903 to desktop/ADK1903:" -ForeGroundColor "Green"
-Copy-Item "Z:\ADK1903" -Destination "C:\Users\SCCMadmin\Desktop\ADK1903" -Recurse -verbose
+Copy-Item "Z:\BenodigdeFiles\ADK1903" -Destination "C:\Users\SCCMadmin\Desktop\ADK1903" -Recurse -verbose
 start-sleep -s 15
 Write-Host "Copying ADK 1903 addon completed!" -ForeGroundColor "Green"
 
@@ -121,7 +109,7 @@ Write-host "Continuing script now:" -ForeGroundColor "Green"
 # 5.3) Kopieer WinPe addon vanaf Virtualbox shared folder naar desktop/WindowsPE:
 # Bestand is ongeveer 4gb dus te groot om te downloaden (daarom kies ik voor een shared folder copy)
 Write-Host "Copying Windows PE to desktop/WindowsPE:" -ForeGroundColor "Green"
-Copy-Item "Z:\WindowsPE" -Destination "C:\Users\SCCMadmin\Desktop\WindowsPE" -Recurse -verbose
+Copy-Item "Z:\BenodigdeFiles\WindowsPE" -Destination "C:\Users\SCCMadmin\Desktop\WindowsPE" -Recurse -verbose
 start-sleep -s 15
 Write-Host "Copying WindowsPE addon completed!" -ForeGroundColor "Green"
 Write-Host "Waiting a few minutes before installing WindowsPE to avoid Windows Installer error"
@@ -150,7 +138,7 @@ Write-host "Continuing script now:" -ForeGroundColor "Green"
 # 6) Installeer MDT 8456:
 # 6.1) Kopiëer MDT:
 Write-Host "Copying MDT 8456 to desktop/WindowsPE:" -ForeGroundColor "Green"
-Copy-Item "Z:\MDT" -Destination "C:\Users\SCCMadmin\Desktop\MDT" -Recurse -verbose
+Copy-Item "Z:\BenodigdeFiles\MDT" -Destination "C:\Users\SCCMadmin\Desktop\MDT" -Recurse -verbose
 start-sleep -s 15
 Write-Host "Copying MDT 8456 completed!" -ForeGroundColor "Green"
 
@@ -179,7 +167,7 @@ Write-host "Continuing script now:" -ForeGroundColor "Green"
 # (Path op install DVD = DVDDrive:\sources\sxs)
 # Ik heb deze source files al gekopieerd en zal deze nu lokaal kopiëeren van de VirtualBox shared folder:
 # 7.1) Kopiëer source files van virtualbox shared folder naar SCCMadmin\Desktop:
-Copy-Item "Z:\DotNet35sources" -Destination "C:\Users\SCCMadmin\Desktop\DotNet35Sources" -Recurse -verbose
+Copy-Item "Z:\BenodigdeFiles\DotNet35sources" -Destination "C:\Users\SCCMadmin\Desktop\DotNet35Sources" -Recurse -verbose
 
 # 7.2) Installatie van de windows roles/features zelf:
 # -source option zal zeggen waar de sxs folder zich bevind
@@ -206,14 +194,14 @@ New-Item -Path "C:\" -Name "no_sms_on_drive.SMS" -ItemType "file"
 
 # 5.2) Copy SCCM installatie required files van VirtualBox Shared folder naar desktop\SCCMrequiredFiles:
 Write-Host "Copying SCCM installation required files to desktop/SCCMrequiredfiles:" -ForeGroundColor "Green"
-Copy-Item "Z:\SCCMrequiredFiles" -Destination "C:\Users\SCCMadmin\Desktop\SCCMrequiredFiles" -Recurse -verbose
+Copy-Item "Z:\BenodigdeFiles\SCCMrequiredFiles" -Destination "C:\Users\SCCMadmin\Desktop\SCCMrequiredFiles" -Recurse -verbose
 Write-Host "Copying SCCM installation required files completed!" -ForeGroundColor "Green"
 
 # 5.3) Installatie van SCCM zelf. Dit heb ik met een try catch block gedaan omdat er veel kan foutlopen tijdens deze installatie,
 # door op deze manier te werken wordt de error naar de console geschreven als er een nonzero exit status is:
 # LET OP DUURT ONGEVEER 86 MINUTEN !!!!!!
 Write-Host "Starting installation of SCCM (Takes +/- 80-90 minutes)" -ForeGroundColor "Green"
-Copy-Item "Z:\SCCM 1902 Installation" -Destination "C:\Users\SCCMadmin\Desktop\SCCM 1902 Installation" -Recurse -verbose
+Copy-Item "Z:\BenodigdeFiles\SCCM 1902 Installation" -Destination "C:\Users\SCCMadmin\Desktop\SCCM 1902 Installation" -Recurse -verbose
 Start-Sleep -s 20
 Set-Location "C:\Users\SCCMadmin\Desktop\SCCM 1902 Installation\SMSSETUP\BIN\X64"
 
