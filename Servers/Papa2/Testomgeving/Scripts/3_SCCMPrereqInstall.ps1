@@ -6,7 +6,7 @@
 $VBOXdrive = "C:\Vagrant"
 
 $Username = "RED\Vagrant"  # LET OP RED\VAGRANT ZAL SCCM INSTALLEREN EN ALLE RECHTEN EROP HEBBEN !
-$Password = ConvertTo-SecureString "Admin2019" -AsPlainText -Force
+$Password = ConvertTo-SecureString "vagrant" -AsPlainText -Force
 
 # Password voor SQL installatie + Network access account (LIJN NIET WEG DOEN)
 $SCCMPassword = [System.Runtime.Interopservices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($Password))
