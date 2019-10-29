@@ -121,7 +121,7 @@ set-location 'C:\Users\Vagrant\Desktop\WindowsPE'
 .\adkwinpesetup.exe /Quiet /Features OptionId.WindowsPreinstallationEnvironment /L "C:\Scriptlogs\WindowsPElog.txt"
 
 If ($?) {
-  Write-Host "Installation WindowsPE Addon completed!" -ForeGroundColor "Green" -BackGroundColor "White"
+  Write-Host "Installation WindowsPE Addon completed!" -ForeGroundColor "Green"
   Start-Sleep -s 240
 } else {
   Write-Host "Installation WindowsPE Addon FAILED!" -ForeGroundColor "Red" -BackGroundColor "White"
@@ -195,6 +195,7 @@ Write-Host "Starting installation of SCCM (Takes +/- 80-90 minutes)" -ForeGround
 Copy-Item "$VBOXdrive\BenodigdeFiles\SCCM 1902 Installation" -Destination "C:\Users\Vagrant\Desktop\SCCM 1902 Installation" -Recurse -verbose
 Start-Sleep -s 20
 Set-Location "C:\Users\Vagrant\Desktop\SCCM 1902 Installation\SMSSETUP\BIN\X64"
+Add-LocalGroupMember -Group "Administrators" -Member "$username"
 
 Start-Process "Setup.exe" -ArgumentList "/script $VBOXdrive\SCCMsilentInstallSettings.ini" -wait
 # .\Setup.exe /script "$VBOXdrive\SCCMsilentInstallSettings.ini" | Out-Null TODO TODO Deze lijn mag weg indien bovenstaande werkt.
