@@ -40,6 +40,8 @@
   gui: false
   memory: 2048
   cpus: 2
+  secondary_dc_ip: 172.18.1.67
+  domain: 'red.local'
   default_gateway: 172.18.1.65
   bravo2: 172.18.1.67
   charlie2: 172.18.1.68
@@ -67,14 +69,16 @@
   gui: false
   memory: 2048
   cpus: 2
-  default_gateway: 172.18.1.98
-  alfa2: 172.18.1.66
+  primary_dc_ip: 172.18.1.66
+  primary_dc_hostname: Alfa2
+  default_gateway: 172.18.1.65
+  domain: 'red.local'
   synced_folders: 
     - src: '../../Servers/Bravo2/Testomgeving/Scripts'
       dest: '/vagrant'
   forwarded_ports:
     - guest: '3389'
-      host: '3390'
+      host: '3391'
 
 - name: Kilo2
   box: gusztavvargadr/windows-server

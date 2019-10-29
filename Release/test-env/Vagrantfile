@@ -144,8 +144,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           args: [
             "eng-BE",
             host['ip'],
+            host['secondary_dc_ip'],
             host['default_gateway'],
             host['netmask_cidr'],
+            host['domain'],
             "NAT",
             "LAN"
           ]
@@ -187,12 +189,25 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         node.vm.provision 'shell',
           privileged: true,
           path: provisioning_path + '/2_InstallDCDNS.ps1',
-          args: []
+          args: [
+            "eng-BE",
+            host['ip'],
+            host['primary_dc_ip'],
+            host['primary_dc_hostname'],
+            host['default_gateway'],
+            host['netmask_cidr'],
+            host['domain'],
+            "NAT",
+            "LAN"
+          ]
         node.vm.provision 'shell', reboot: true
         node.vm.provision 'shell',
           privileged: true,
           path: provisioning_path + '/3_ConfigDCDNS.ps1',
-          args: []
+          args: [
+            host['ip'],
+            "NAT"
+          ]
       elsif host['name'] == "Kilo2"
         provisioning_path = KILO2+'/test-env/provisioning/'
 
