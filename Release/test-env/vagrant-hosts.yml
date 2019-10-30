@@ -78,7 +78,7 @@
       dest: '/vagrant'
   forwarded_ports:
     - guest: '3389'
-      host: '3391'
+      host: '3390'
 
 - name: Kilo2
   box: gusztavvargadr/windows-server
@@ -87,8 +87,15 @@
   gui: false
   memory: 2048
   cpus: 2
+  lan_prefix: 24
+  DefaultGateway: 172.18.1.66
+  primary_dns: 172.18.1.66
+  secondary_dns: 172.18.1.67
+  domain: "red.local"
+  domain_user: "Administrator"
+  domain_pw: "Admin2019"
   synced_folders: 
-    - src: '../../Servers/Kilo2/Testomgeving/Scripts'
+    - src: '../../Servers/Kilo2/test-env/provisioning'
       dest: '/vagrant'
   forwarded_ports:
     - guest: '3389'
@@ -101,6 +108,16 @@
   gui: false
   memory: 2048
   cpus: 2
+  defaultgateway: 172.18.1.1
+  prefix: 26
+  ipalfa: 172.18.1.66
+  ipbravo: 172.18.1.67
+  domain: "red.local"
+  domain_user: "Administrator"
+  domain_password: "Admin2019"
+  domain_netbios: "RED"
+  filepath: 'C:\Users\Administrator\Desktop\Setup.exe'
+  params: ' /qs /Install /ConfigurationFile=ConfigurationFile.ini -silent'
   synced_folders: 
     - src: '../../Servers/November2/Testomgeving/Scripts'
       dest: '/vagrant'

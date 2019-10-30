@@ -209,17 +209,67 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             "NAT"
           ]
       elsif host['name'] == "Kilo2"
-        provisioning_path = KILO2+'/test-env/provisioning/'
+        provisioning_path = KILO2+'/test-env/provisioning'
 
+        # TODO: script arguments
+        node.vm.provision 'shell',
+          privileged:  true,
+          path: provisioning_path + '/Kilo2_1.ps1',
+          args: [
+            host['ip'],
+            host['lan_prefix'],
+            host['DefaultGateway'],
+            host['primary_dns'],
+            host['secondary_dns'],
+            host['domain'],
+            host['domain_user'],
+            host['domain_pw']
+          ]
+        node.vm.provision 'shell', reboot: true
         node.vm.provision 'shell',
           privileged: true,
-          path: provisioning_path + host['name'] + '.ps1',
-          args: []
-
+          path: provisioning_path + '/Kilo2_2.ps1',
+          args: [
+            host['name'],
+            host['domain'],
+            host['domain_user'],
+            host['domain_pw'],
+          ]
+        node.vm.provision 'shell', reboot: true
       elsif host['name'] == "November2"
         # TODO
-        provisioning_path = NOVEMBER2+'/test-env/provisioning/'
+        provisioning_path = NOVEMBER2+'/Testomgeving/Scripts'
 
+                node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + '/2_config.ps1',
+          args: [
+            host['ip'],
+            host['defaultgateway'],
+            host['prefix'],
+            host['ipalfa'],
+            host['ipbravo'],
+            host['domain'],
+            host['domain_user'],
+            host['domain_password'],
+            host['domain_netbios']
+          ]
+        node.vm.provision 'shell', reboot: true
+        node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + '/3_SQL.ps1',
+          args: [
+            host['filepath'],
+            host['params']
+          ]
+        node.vm.provision 'shell', reboot: true
+        node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + '/4_SSMS.ps1',
+          args: [
+            host['filepath'],
+            host['params']
+          ]
       elsif host['name'] == "Lima2"
         # TODO
         provisioning_path = LIMA2+'/test-env/provisioning/'
