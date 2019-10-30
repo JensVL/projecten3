@@ -2,16 +2,6 @@
 
 Bravo 2 is een backup domein controller, daarom moet eerst Alfa 2 draaien, zodat Bravo 2 het domein kan joinen en kan repliceren van Alfa2.
 
-## Voer het script 1_RUNFIRST.ps1 uit
-
-1. Het script zorgt ervoor dat de aanmelding automatisch gebeurd met volgende waarden:
-    - **Username:** Administrator
-    - **Password:** Admin2019
-
-2. Het script verandert de computernaam
-3. Kan gechecked worden met het volgende commando in powershell: $env:computername | Select-Object
-4. Als bravo2 teruggegeven wordt is de naam goed geconfigureerd.
-
 ## Voer het script 2_InstallDCDNS.ps1 uit
 
 Het script gaat het volgende doen:

@@ -27,3 +27,6 @@ https://www.windowscentral.com/how-enable-or-disable-wi-fi-and-ethernet-network-
 ## Vagrant box
 https://app.vagrantup.com/gusztavvargadr/boxes/windows-server
 https://stackoverflow.com/questions/42718527/vagrant-up-command-throwing-ssl-error
+
+## Disable NAT adapter
+https://www.windowscentral.com/how-enable-or-disable-wi-fi-and-ethernet-network-adapters-windows-10
