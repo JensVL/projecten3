@@ -26,7 +26,7 @@ def network_options(host)
 
   if host.has_key?('ip')
     options[:ip] = host['ip']
-    options[:netmask] = host['netmask'] ||= '255.255.255.224'
+    options[:netmask] = host['netmask'] ||= '255.255.255.0'
   else
     options[:type] = 'dhcp'
   end
@@ -49,7 +49,7 @@ def custom_synced_folders(vm, host)
     folders = host['synced_folders']
 
     folders.each do |folder|
-      vm.synced_folder folder['Scripts/'], folder['Z:/Scripts'], folder['options']
+      vm.synced_folder folder['src'], folder['dest'], folder['options']
     end
   end
 end
@@ -95,29 +95,33 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
       config.winrm.timeout = 3600
       config.vm.boot_timeout = 3600
+      config.vm.graceful_halt_timeout = 3600
+      config.winrm.transport = :plaintext
+      config.winrm.basic_auth_only = true
 
-      #if host['name'] == "Bravo2"
-                # Run configuration script for the VM
-                if host['name'] == "Bravo2"
-                  node.vm.provision 'shell',
-                    privileged: true,
-                    path: 'Scripts/' + '2_installDCDNS.ps1',
-                    args: [
-                      "eng-BE",
-                      "172.18.1.67",
-                      "172.18.1.65",
-                      "27",
-                      "LAN"
-                    ]
-                    node.vm.provision 'shell', reboot: true
-                    node.vm.provision 'shell',
-                    privileged: true,
-                    path: 'Scripts/' + '3_ConfigDCDNS.ps1',
-                    args: [
-
-                      "172.18.1.67",
-                      "NAT"
-                    ]
+      if host['name'] == "Bravo2"
+        node.vm.provision 'shell',
+          privileged: true,
+          path: 'Scripts/' + '2_InstallDCDNS.ps1',
+          args: [
+            "eng-BE",
+            host['ip'],
+            host['primary_dc_ip'],
+            host['primary_dc_hostname'],
+            host['default_gateway'],
+            host['netmask_cidr'],
+            host['domain'],
+            "NAT",
+            "LAN"
+          ]
+          node.vm.provision 'shell', reboot: true
+          node.vm.provision 'shell',
+          privileged: true,
+          path: 'Scripts/' + '3_ConfigDCDNS.ps1',
+          args: [
+            host['ip'],
+            "NAT"
+          ]
       end
     end
   end
