@@ -11,7 +11,7 @@ require 'rbconfig'
 require 'yaml'
 
 # Importeer config.yml
-settings    = YAML.load_file File.dirname(File.expand_path(__FILE__)) + '/config.yml'
+# settings    = YAML.load_file File.dirname(File.expand_path(__FILE__)) + '/config.yml'
 
 # set default LC_ALL for all BOXES
 ENV["LC_ALL"] = "en_US.UTF-8"
@@ -106,11 +106,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         vb.customize ['modifyvm', :id, '--groups', PROJECT_NAME]
       end
 
-      # Run configuration script for the VM
-      node.vm.provision 'shell', path: 'provisioning/' + host['name'] + '.ps1' 
+      # Run configuration script for the vm
+
+      if host['name'] == "Kilo2"
+        provisioning_path = 'provisioning/'
+
+        node.vm.provision 'shell',
+          privileged:  true,
+          path: provisioning_path + 'Kilo2_1.ps1',
+          args: []
+        node.vm.provision 'shell', reboot: true
+        node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + 'Kilo2_2.ps1',
+          args: []
+        node.vm.provision 'shell', reboot: true
+      end
     end
   end
 end
-
-# -*- mode: ruby -*-
-# vi: ft=ruby :

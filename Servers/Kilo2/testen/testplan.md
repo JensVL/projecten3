@@ -7,3 +7,4 @@
 
 
 --Werkwijze testplan(stappenplan)--
+Open het stappenplan en volg de stappen.
