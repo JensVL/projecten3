@@ -25,7 +25,6 @@ param(
 #------------------------------------------------------------------------------
 # Romance standard time = Brusselse tijd
 # Eerste commando zal tijd naar 24uur formaat instellen
-#   (eng zorgt dat taal op engels blijft maar regio komt op BE)
 Write-host ">>> Setting correct timezone and time format settings"
 Set-Culture -CultureInfo $land
 set-timezone -Name "Romance Standard Time"
@@ -64,18 +63,8 @@ $DSRM = ConvertTo-SecureString "Admin2019" -asPlainText -force
 Write-Host ">>> Configuring Administrator account"
 Set-LocalUser -Name Administrator -AccountNeverExpires -Password $DSRM -PasswordNeverExpires:$true -UserMayChangePassword:$true
 
-
-
 # Firewall uitschakelen
 Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
-
-# #  Zorgen voor juist LAN adapter. Via intern netwerk.
-# Write-host "Changing NIC adapter names:" -ForeGroundColor "Green"
-# Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName $AdapterNaam
-
-# # 4) LAN adapter instellen
-# Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
-# New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR -DefaultGateWay $default_gateway
 
 $existing_ip=(Get-NetAdapter -Name $AdapterNaam | Get-NetIPAddress -AddressFamily IPv4).IPAddress
 if("$existing_ip" -ne "$IpAddress") {
@@ -83,27 +72,11 @@ if("$existing_ip" -ne "$IpAddress") {
     New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR -DefaultGateway "$default_gateway"
 }
 
-# 5) Overbodige Adapter disablen
+# Overbodige Adapter disablen
 Disable-NetAdapter -Name "Ethernet" -Confirm:$false
 
-# 6) DNS van LAN van Alfa2 instellen op Hogent DNS servers:
-# Eventueel commenten tijdens testen in demo omgeving
-# Set-DnsClientServerAddress -InterfaceAlias "$AdapterNaam" -ServerAddress "$IpAlfa2","$IpAddress"
-# Set-DnsClientServerAddress -InterfaceAlias "$AdapterNaam" -ServerAddress $primary_dc_ip,$local_ip
 
-# 7) Configure Administrator account
-# Set-LocalUser -Name Administrator -AccountNeverExpires -Password $DSRM -PasswordNeverExpires:$true -UserMayChangePassword:$true
-
-# 8) Installatie ADDS:
-# Write-host "Starting installation of ADDS role:" -ForeGroundColor "Green"
-# Install-WindowsFeature AD-domain-services -IncludeManagementTools
-# import-module ADDSDeployment
-
-
-# 9) DSRM instellen
-
-
-# 10) Joinen van domein "red.local":
+# Joinen van domein "red.local":
 
 $is_AD_domainservices_installed=(Get-WindowsFeature AD-Domain-Services).Installed
 if ("$is_AD_domainservices_installed" -eq 'False') {
