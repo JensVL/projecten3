@@ -15,10 +15,18 @@
 - exit
 - service password-encryption
 - int g0/0/0
-- ip address 172.18.1.105 255.255.255.252
+- ip address 172.18.1.100 255.255.255.252
 - no shut
-- int s0/1/0
+- int s0/1/1
 - ip address 172.18.3.2 255.255.255.252
+- no shut
+- exit
+- 
+
+
+- without zulu2:
+- int s0/1/0
+- ip address 172.18.1.105 255.255.255.252
 - no shut
 - exit
 - 
@@ -31,6 +39,7 @@
 - conf t
 - router ospf 10
 - network 172.18.1.100 0.0.0.3 area 0
+- network 172.18.1.104 0.0.0.3 area 0
 - network 172.18.3.0 0.0.0.3 area 0
 - exit
 - 
@@ -56,10 +65,10 @@
 - login
 - exit
 - service password-encryption
-- int s0/1/1
+- int s0/1/0
 - ip address 172.18.2.2 255.255.255.252
 - no shut
-- int s0/1/0
+- int s0/1/1
 - ip address 172.18.3.1 255.255.255.252
 - no shut
 - exit
@@ -106,6 +115,10 @@
 - ip address 172.18.2.1 255.255.255.252
 - ip nat inside
 - no shut
+- int s0/1/1
+- ip address 172.16.2.1 255.255.255.252
+- ip nat inside
+- no shut
 - 
 (external interface)
 
@@ -115,10 +128,10 @@
 - no shut
 - exit
 - 
-- access-list 1 permit 172.18.2.0 0.0.0.3
-- ip nat inside source list 1 interface s0/1/0 overload
+- access-list 1 permit 172.18.0.0 0.0.255.255
+- ip nat inside source list 1 interface g0/0/0 overload
 - 
-- do show ip nat translations
+- (do) show ip nat translations
 #
 - router ospf 10
 - router-id 4.4.4.4
@@ -155,12 +168,12 @@
 - exit
 - service password-encryption
 - int g0/0/0
-- ip address 172.18.0.1 255.255.255.0
-- no shut
-- int g0/0/1
 - ip address 172.18.1.7 255.255.255.192
 - no shut
-- int s0/0/0
+- int g0/0/1
+- ip address 172.18.0.1 255.255.255.0
+- no shut
+- int s0/1/0
 - ip address 172.18.1.97 255.255.255.252
 - no shut
 - exit
@@ -181,7 +194,6 @@
 - network 172.18.1.96 0.0.0.3 area 0
 - passive-interface g0/0/0
 - passive-interface g0/0/1
-
 - exit
 - 
 #
@@ -210,8 +222,14 @@
 - int g0/0/1
 - ip address 172.18.1.101 255.255.255.252
 - no shut
-- int s0/0/0
+- int s0/1/0
 - ip address 172.18.1.98 255.255.255.252
+- no shut
+- exit
+- 
+- without zulu2:
+- int s0/1/1
+- ip address 172.18.1.106 255.255.255.252
 - no shut
 - exit
 - 
@@ -226,6 +244,7 @@
 - network 172.18.1.100 0.0.0.3 area 0
 - network 172.18.1.64 0.0.0.31 area 0
 - network 172.18.1.96 0.0.0.3 area 0
+- network 172.18.1.104 0.0.0.3 area 0
 - passive-interface g0/0/0
 - exit
 - 
@@ -258,7 +277,7 @@
 
 - vlan 200
 - name vlan200
-- end
+- exit
 - int range f0/1-f0/5
 - switchport mode access
 - switchport access vlan 200
@@ -290,8 +309,7 @@
 
 - vlan 300
 - name vlan300
-- end
-- conf t
+- exit
 - int range f0/1-f0/6
 - switchport mode access
 - switchport access vlan 300
@@ -323,7 +341,7 @@
 
 - vlan 500
 - name vlan500
-- end
+- exit
 - int range f0/1-f0/5
 - switchport mode access
 - switchport access vlan 500

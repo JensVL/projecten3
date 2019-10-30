@@ -92,3 +92,6 @@
 - https://www.cisco.com/c/en/us/support/docs/security/ios-firewall/23602-confaccesslists.html
 - https://www.orbit-computer-solutions.com/access-control-lists/
 - https://www.certificationkits.com/cisco-certification/cisco-ccna-640-802-exam-certification-guide/cisco-ccna-acl-part-iv/
+
+### Internet Access
+- https://www.yourictmagazine.com/howtos/434-basics-to-configure-a-cisco-router-to-connect-to-internet.html
