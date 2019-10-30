@@ -10,7 +10,7 @@ Taak team:
 Week: 01
 
 ## Opdrachtomschrijving 
-![Week1](https://github.com/HoGentTIN/p3ops-1920-red/blob/master/Servers/November2/Lastenboek/Screenshots%20lastenboek/Week1.png)
+![Week1](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/Lastenboek/Screenshots%20lastenboek/week01.png)
 
 ## Vragen
 - geen
