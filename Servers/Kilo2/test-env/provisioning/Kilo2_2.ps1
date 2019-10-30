@@ -1,38 +1,51 @@
-$j = @()
-# Creating security groups
-$j += Start-Job -Name SecurityGroups -ScriptBlock {
-    Write-Host "Creating security groups..."
-    cmd.exe /c "netsh dhcp add securitygroups"
-    Write-Host "Security Groups created"
-}
-# Configureren van de Scopes op de DHCP Server
+# Variables
+$Domain = "red.local"
 
-# --scope vlan 200--
-$j += Start-Job -Name CreateScope -ScriptBlock {
-    Add-DhcpServerV4Scope -Name "Vlan 200" -StartRange 172.18.0.2 -EndRange 172.18.0.254 -SubnetMask 255.255.255.0 -Type Both
-}
-Wait-Job -Name CreateScope
-# DNS, Router, Default Gateway en mogelijk andere zaken toevoegen
-$j += Start-Job -Name SettingOptionValues -ScriptBlock {
-    Set-DhcpServerV4OptionValue -DnsServer 172.18.1.66, 172.18.1.67 -DnsDomain "red.local" -Router 172.18.0.1 -ScopeId 172.18.0.0 -Force
-    Set-DhcpServerV4OptionValue -OptionId 066 -Value 172.18.1.6 # Value kan mogelijks nog veranderen
-    Set-DhcpServerV4OptionValue -OptionId 067 -Value "\smsboot\x64\wdsnbp.com" # Value kan mogelijks nog veranderen
-}
-# Lease time configureren
-$j += Start-Job -Name SettingLease -ScriptBlock {
-    Set-DhcpServerv4Scope -ScopeId 172.18.0.0 -LeaseDuration (New-TimeSpan -Days 2)
-}
-
-$password = "vagrant" | ConvertTo-SecureString -AsPlainText -Force
+## authorization
+$password = "Admin2019" | ConvertTo-SecureString -AsPlainText -Force
 $username = "RED\Administrator"
 $credential = New-Object System.Management.Automation.PSCredential($username, $password)
 
-$j += Start-Job -Name AuthorizeDHCP -Credential $credential -ScriptBlock {
-    Add-DhcpServerInDC -DnsName "Kilo2.red.local"
+## dhcp values
+$StartRange = "172.18.0.2"
+$StopRange = "172.18.0.254"
+$SubnetMask = "255.255.255.0"
+$DHCPDnsServers = @("172.18.1.66", "172.18.1.67")
+$ScopeID = "172.18.0.0"
+$ScopeDG = "172.18.0.1"
+$DHCPOption66Value = "papa2.$Domain"
+
+# Creating security groups
+Write-Host "Creating security groups..."
+cmd.exe /c "netsh dhcp add securitygroups"
+Write-Host "Security Groups created"
+# Configureren van de Scopes op de DHCP Server
+
+Start-Job -Name AuthorizeDHCP -Credential $credential -ScriptBlock {
+    Write-Host "Authorizing DHCP Server..."
+    Add-DhcpServerInDC
+    Write-Host "DHCP Server Authorized"
 }
 
-Wait-Job -Job $j
-Receive-Job -Job $j
+# --scope vlan 200--
+Write-Host "Creating DHCP Scope..."
+Add-DhcpServerV4Scope -Name "Vlan 200" -StartRange $StartRange -EndRange $StopRange -SubnetMask $SubnetMask -Type Both
+Write-Host "DHCP Scope Created"
+# DNS, Router, Default Gateway en mogelijk andere zaken toevoegen
+
+Write-Host "Configuring Option Values..."
+Set-DhcpServerV4OptionValue -DnsServer $DHCPDnsServers -DnsDomain $Domain -Router $ScopeDG -ScopeId $ScopeID -Force
+Set-DhcpServerV4OptionValue -OptionId 066 -Value $DHCPOption66Value # Value kan mogelijks nog veranderen
+Set-DhcpServerV4OptionValue -OptionId 067 -Value "\smsboot\x64\wdsnbp.com" # Value kan mogelijks nog veranderen
+Write-Host "Option Values configured"
+# Lease time configureren
+
+Write-Host "Configuring Lease Duration..."
+Set-DhcpServerv4Scope -ScopeId $ScopeID -LeaseDuration (New-TimeSpan -Days 2)
+Write-Host "Lease Duration Configured"
+
+Wait-Job -Name AuthorizeDHCP
+Receive-Job -Name AuthorizeDHCP
 
 # Restart DHCP Server
 Restart-service dhcpserver
