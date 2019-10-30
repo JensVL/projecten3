@@ -2,7 +2,7 @@
 
 Een tweede Domain controller die eveneens dienst doet als tweede DNS-servervoor het domein. De buitenwereld kent deze server als “ns2”.
 
-## Checklist:
+## Checklist
 	- Vagrant Windows box
 	- DNSInstall script
 	- DNSConfig script
