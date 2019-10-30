@@ -173,7 +173,7 @@ Set-ACL "$ShareVerkoop" $ACL
  $REDLOCALUSERS = @(
                   "KimberlyDC", "ArnoVN", "LaurensBC", "FerreV", "LeviG", "AronM", "JensVL", "JoachimVDK", "TiboV", "YngvarS",
                   "TimG", "RikC", "JannesVW", "JonasV", "CedricVDE", "CedricD", "RobinVDW", "MatthiasVDV", "RobbyD", "NathanC",
-                  "EliasW", "AlisterA"
+                  "EliasW", "AlisterA", "SeanV"
                   )
 
 Write-Host "Assigning correct permissions to each AD user's profile and home directory:" -ForeGroundColor "Green"

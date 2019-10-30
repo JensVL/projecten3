@@ -27,31 +27,31 @@ De gebruikers worden aangemaakt en in de juiste afdeling gesorteerd. Elke gebrui
 
 De volgende tabel toont de instellingen van de gebruikers. 
 
-| Employee-ID | Voornaam | Familienaam | Gebruikersnaam | Afdeling | Manager | Office | E-mailadres | Telefoonnr. | Path | Woonplaats | 
+| Employee-ID | Voornaam | Familienaam | Gebruikersnaam | Afdeling | Manager | Office | Telefoonnr. | Path | Woonplaats | 
 | -------- | --------- | ---------- | ----------- | ------------- | ----- | ------ | ------ | ------ | -------- | ------- |
-| 1003 | Arno | Van Nieuwenhove | ArnoVN | Directie | Kimberly | B0.002 | arno@red.local | 0444727273 | OU=Directie,DC=red,DC=local | Ninove |
-| 1004 | Kimberly | De Clercq | KimberlyDC | Directie | - | B0.001 | kimberly@red.local | 0444727272 | OU=Directie,DC=red,DC=local | Ingelmunster |
-| 1558 | CedricD | Detemmerman | CedricD | Ontwikkeling | Jannes | B1.018 | cedricd@red.local | 0444727293 | OU=Ontwikkeling,DC=red,DC=local | Haaltert |
-| 1578 | Jonas | Vandegehuchte | JonasV | Ontwikkeling | Jannes | B1.018 | jonas@red.local | 0444727291 | OU=Ontwikkeling,DC=red,DC=local | Bierbeek |
-| 1658 | Robin | Van de Walle | RobinVDW | Ontwikkeling | Jannes | B1.018 | robin@red.local | 0444727295 | OU=Ontwikkeling,DC=red,DC=local | Haaltert |
-| 2014 | Levi | Goessens | LeviG | IT_Administratie | Laurens | B4.037 | levi@red.local | 0444727284 | OU=IT_Administratie,DC=red,DC=local | Denderwindeke |
-| 2015 | Laurens | Blancquaert-Cassaer | LaurensBC | IT_Administratie | Kimberly | B4.037 | laurens@red.local | 0444727280 | OU=IT_Administratie,DC=red,DC=local | Gent |
-| 2210 | Yngvar | Samyn | YngvarS | Administratie | Joachim | B4.002 | yngvar@red.local | 0444727262 | OU=Administratie,DC=red,DC=local | Ingooigem |
-| 2531 | Joachim | Van de Keere | JoachimVDK | Administratie | Kimberly | B4.002 | joachim@red.local | 0444727260 | OU=Administratie,DC=red,DC=local | Sint-Martens-Latem |
-| 2532 | Tim | Grijp | TimG | Administratie | Joachim | B4.002 | tim@red.local | 0444727263 | OU=Administratie,DC=red,DC=local | Sint-Martens-Latem |
-| 2731 | Rik | Claeyssens | RikC | Administratie | Joachim | B4.002 | rik@red.local | 0444727264 | OU=Administratie,DC=red,DC=local | Sint-Martens-Latem |
-| 4732 | Matthias | Van de Velde | MatthiasVDV | Verkoop | Kimberly | B0.015 | matthias@red.local | 0444727200 | OU=Verkoop,DC=red,DC=local | Koksijde |
-| 4736 | Robby | Daelman | RobbyD | Verkoop | Matthias | B0.015 | robby@red.local | 0444727204 | OU=Verkoop,DC=red,DC=local | Lede |
-| 5078 | Jannes | Van Wonterghem | JannesVW | Ontwikkeling | Kimberly | B1.018 | jannes@red.local | 0444727290 | OU=Ontwikkeling,DC=red,DC=local | Zoersel |
-| 5079 | Cédric | Van den Eede | CedricVDE | Ontwikkeling | Jannes | B1.018 | cedric@red.local | 0444727292 | OU=Ontwikkeling,DC=red,DC=local | Meldert |
-| 5423 | Elias | Waterschoot | EliasW | Verkoop | Matthias | B0.015 | elias@red.local | 0444727202 | OU=Verkoop,DC=red,DC=local | Torhout |
-| 5822 | Nathan | Cammerman | NathanC | Verkoop | Matthias | B0.015 | nathan@red.local | 0444727201 | OU=Verkoop,DC=red,DC=local | Torhout |
-| 6312 | Tibo | Vanhercke | TiboV | Administratie | Joachim | B4.002 | tibo@red.local | 0444727261 | OU=Administratie,DC=red,DC=local | Ingooigem |
-| 7215 | Alister | Adutwum | AlisterA | Verkoop | Matthias | B0.015 | alister@red.local | 0444727206 | OU=Verkoop,DC=red,DC=local | Torhout |
-| 8424 | Aron | Marckx | AronM | IT_Administratie | Laurens | B4.037 | aron@red.local | 0444727285 | OU=IT_Administratie,DC=red,DC=local | Meldert |
-| 8425 | Ferre | Verstichelen | FerreV | IT_Administratie | Laurens | B4.037 | ferre@red.local |  0444727281 | OU=IT_Administratie,DC=red,DC=local | Wervik |
-| 8486 | Sean | Vancompernolle | SeanV | Verkoop | Matthias | B1.015 | sean@red.local |  0444727207 | OU=Verkoop,DC=red,DC=local | Ieper |
-| 8653 | Jens | Van Liefferinge | JensVL | IT_Administratie | Laurens| B4.037 | jens@red.local | 0444727282 | OU=IT_Administratie,DC=red,DC=local | Lokeren |
+| 1003 | Arno | Van Nieuwenhove | ArnoVN | Directie | Kimberly | B0.002 | 0444727273 | OU=Directie,DC=red,DC=local | Ninove |
+| 1004 | Kimberly | De Clercq | KimberlyDC | Directie | - | B0.001 | 0444727272 | OU=Directie,DC=red,DC=local | Ingelmunster |
+| 1558 | CedricD | Detemmerman | CedricD | Ontwikkeling | Jannes | B1.018 |  0444727293 | OU=Ontwikkeling,DC=red,DC=local | Haaltert |
+| 1578 | Jonas | Vandegehuchte | JonasV | Ontwikkeling | Jannes | B1.018 |  0444727291 | OU=Ontwikkeling,DC=red,DC=local | Bierbeek |
+| 1658 | Robin | Van de Walle | RobinVDW | Ontwikkeling | Jannes | B1.018  | 0444727295 | OU=Ontwikkeling,DC=red,DC=local | Haaltert |
+| 2014 | Levi | Goessens | LeviG | IT_Administratie | Laurens | B4.037  | 0444727284 | OU=IT_Administratie,DC=red,DC=local | Denderwindeke |
+| 2015 | Laurens | Blancquaert-Cassaer | LaurensBC | IT_Administratie | Kimberly | B4.037  | 0444727280 | OU=IT_Administratie,DC=red,DC=local | Gent |
+| 2210 | Yngvar | Samyn | YngvarS | Administratie | Joachim | B4.002  | 0444727262 | OU=Administratie,DC=red,DC=local | Ingooigem |
+| 2531 | Joachim | Van de Keere | JoachimVDK | Administratie | Kimberly | B4.002 |  0444727260 | OU=Administratie,DC=red,DC=local | Sint-Martens-Latem |
+| 2532 | Tim | Grijp | TimG | Administratie | Joachim | B4.002 | 0444727263 | OU=Administratie,DC=red,DC=local | Sint-Martens-Latem |
+| 2731 | Rik | Claeyssens | RikC | Administratie | Joachim | B4.002 | 0444727264 | OU=Administratie,DC=red,DC=local | Sint-Martens-Latem |
+| 4732 | Matthias | Van de Velde | MatthiasVDV | Verkoop | Kimberly | B0.015 | 0444727200 | OU=Verkoop,DC=red,DC=local | Koksijde |
+| 4736 | Robby | Daelman | RobbyD | Verkoop | Matthias | B0.015  | 0444727204 | OU=Verkoop,DC=red,DC=local | Lede |
+| 5078 | Jannes | Van Wonterghem | JannesVW | Ontwikkeling | Kimberly | B1.018  | 0444727290 | OU=Ontwikkeling,DC=red,DC=local | Zoersel |
+| 5079 | Cédric | Van den Eede | CedricVDE | Ontwikkeling | Jannes | B1.018 | 0444727292 | OU=Ontwikkeling,DC=red,DC=local | Meldert |
+| 5423 | Elias | Waterschoot | EliasW | Verkoop | Matthias | B0.015 | 0444727202 | OU=Verkoop,DC=red,DC=local | Torhout |
+| 5822 | Nathan | Cammerman | NathanC | Verkoop | Matthias | B0.015 | 0444727201 | OU=Verkoop,DC=red,DC=local | Torhout |
+| 6312 | Tibo | Vanhercke | TiboV | Administratie | Joachim | B4.002 | 0444727261 | OU=Administratie,DC=red,DC=local | Ingooigem |
+| 7215 | Alister | Adutwum | AlisterA | Verkoop | Matthias | B0.015  | 0444727206 | OU=Verkoop,DC=red,DC=local | Torhout |
+| 8424 | Aron | Marckx | AronM | IT_Administratie | Laurens | B4.037  | 0444727285 | OU=IT_Administratie,DC=red,DC=local | Meldert |
+| 8425 | Ferre | Verstichelen | FerreV | IT_Administratie | Laurens | B4.037  |  0444727281 | OU=IT_Administratie,DC=red,DC=local | Wervik |
+| 8486 | Sean | Vancompernolle | SeanV | Verkoop | Matthias | B1.015 |  0444727207 | OU=Verkoop,DC=red,DC=local | Ieper |
+| 8653 | Jens | Van Liefferinge | JensVL | IT_Administratie | Laurens| B4.037 | 0444727282 | OU=IT_Administratie,DC=red,DC=local | Lokeren |
 
 ## Stappenplan beleidsregels
 Hieronder volgt een stappenplan hoe je de GPO's in de GUI instelt.   

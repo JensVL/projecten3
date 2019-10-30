@@ -80,14 +80,13 @@ Github commit:
 | 6 | Heeft elke gebruiker een uniek telefoonnummer? | Ja/Nee |
 | 7 | Bevindt elke gebruiker zich in de juiste afdeling? Is het `path` juist? | Ja/Nee |
 | 8 | Bevindt elke gebruiker zich in het juiste `Office` (zie indeling)| Ja/Nee |
-| 9 | Heeft elke gebruiker een uniek `EmailAddress`? | Ja/Nee |
-| 10 | Heeft elke gebruiker de juiste `initials`? | Ja/Nee |
-| 11 | Heeft elke gebruiker een toepasselijke `SamAccountName`? | Ja/Nee |
-| 12 | Is er aan elke afdeling een manager toegekend? | Ja/Nee |
-| 13 | Heeft elke gebruiker een manager, behalve "Kimberly De Clercq"? | Ja/Nee |
-| 14 | Heeft iedere afdeling de juiste manager toegekend (zie indeling)? | Ja/Nee |
-| 15 | Is elke gebruiker unlocked? | Ja/Nee |
-| 16 | Kan elke gebruiker inloggen met het password `Administrator2019`? | Ja/Nee |
+| 9 | Heeft elke gebruiker de juiste `initials`? | Ja/Nee |
+| 10 | Heeft elke gebruiker een toepasselijke `SamAccountName`? | Ja/Nee |
+| 11 | Is er aan elke afdeling een manager toegekend? | Ja/Nee |
+| 12 | Heeft elke gebruiker een manager, behalve "Kimberly De Clercq"? | Ja/Nee |
+| 13 | Heeft iedere afdeling de juiste manager toegekend (zie indeling)? | Ja/Nee |
+| 14 | Is elke gebruiker unlocked? | Ja/Nee |
+| 15 | Kan elke gebruiker inloggen met het password `Administrator2019`? | Ja/Nee |
 
 ### Uit te voeren testen Computers
 
