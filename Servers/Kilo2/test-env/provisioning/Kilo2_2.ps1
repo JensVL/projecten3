@@ -1,20 +1,11 @@
-# Variables
-$Domain = "red.local"
+param(
+    [string]$hostname    = "Kilo2",
+    [string]$domain      = "red.local",
+    [string]$domain_user = "Administrator",
+    [string]$domain_pw   = "Admin2019"
+)
 
-## authorization
-$password = "Admin2019" | ConvertTo-SecureString -AsPlainText -Force
-$username = "RED\Administrator"
-$credential = New-Object System.Management.Automation.PSCredential($username, $password)
-
-## dhcp values
-$StartRange = "172.18.0.2"
-$StopRange = "172.18.0.254"
-$SubnetMask = "255.255.255.0"
-$DHCPDnsServers = @("172.18.1.66", "172.18.1.67")
-$ScopeID = "172.18.0.0"
-$ScopeDG = "172.18.0.1"
-$DHCPOption66Value = "papa2.$Domain"
-
+$j = @()
 # Creating security groups
 Write-Host ">>> Creating security groups"
 cmd.exe /c "netsh dhcp add securitygroups"
@@ -37,8 +28,9 @@ Set-DhcpServerV4OptionValue -OptionId 066 -Value $DHCPOption66Value # Value kan 
 Set-DhcpServerV4OptionValue -OptionId 067 -Value "\smsboot\x64\wdsnbp.com" # Value kan mogelijks nog veranderen
 # Lease time configureren
 
-Write-Host ">>> Configuring Lease Duration"
-Set-DhcpServerv4Scope -ScopeId $ScopeID -LeaseDuration (New-TimeSpan -Days 2)
+$password = $domain_pw | ConvertTo-SecureString -AsPlainText -Force
+$username = "RED\$domain_user"
+$credential = New-Object System.Management.Automation.PSCredential($username, $password)
 
 Wait-Job -Name AuthorizeDHCP
 Receive-Job -Name AuthorizeDHCP
