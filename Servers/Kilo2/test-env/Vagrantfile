@@ -114,12 +114,26 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         node.vm.provision 'shell',
           privileged:  true,
           path: provisioning_path + 'Kilo2_1.ps1',
-          args: []
+          args: [
+            host['ip'],
+            host['lan_prefix'],
+            host['DefaultGateway'],
+            host['primary_dns'],
+            host['secondary_dns'],
+            host['domain'],
+            host['domain_user'],
+            host['domain_pw']
+          ]
         node.vm.provision 'shell', reboot: true
         node.vm.provision 'shell',
           privileged: true,
           path: provisioning_path + 'Kilo2_2.ps1',
-          args: []
+          args: [
+            host['name'],
+            host['domain'],
+            host['domain_user'],
+            host['domain_pw'],
+          ]
         node.vm.provision 'shell', reboot: true
       end
     end
