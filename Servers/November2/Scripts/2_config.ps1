@@ -17,10 +17,9 @@ New-NetFirewallRule -DisplayName "SQL port 1433" -Direction Inbound -LocalPort 1
 #Domein joinen
 Write-Host 'Trying to join domain red.local'
 $DomainName = "red.local"
-$SafeModeAdministratorPassword = "Admin2019" | ConvertTo-SecureString -AsPlainText -Force
+$SafeModeAdministratorPassword = "red.local" | ConvertTo-SecureString -AsPlainText -Force
 $domain = "red"
-$joindomainuser = "Administrator"
+$joindomainuser = "RED\Administrator"
 $credential = New-Object System.Management.Automation.PSCredential($joindomainuser,$SafeModeAdministratorPassword)
 Add-Computer -DomainName $DomainName -Credential $credential
 Restart-Computer
-
