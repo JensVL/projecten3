@@ -33,7 +33,7 @@ make_ou "Directie"
 # Groepen aanmaken
 function make_group() {
     Param(
-        [string]$group_name,
+        [string]$group_name
     )
     $group_exists = [adsi]::Exists("LDAP://CN=$group_name,OU=$group_name,DC=red,DC=local")
 
