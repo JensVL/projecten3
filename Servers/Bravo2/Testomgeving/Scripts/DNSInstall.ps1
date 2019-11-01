@@ -72,10 +72,6 @@ if("$existing_ip" -ne "$IpAddress") {
     New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR -DefaultGateway "$default_gateway"
 }
 
-# Overbodige Adapter disablen
-Disable-NetAdapter -Name "Ethernet" -Confirm:$false
-
-
 # Joinen van domein "red.local":
 
 $is_AD_domainservices_installed=(Get-WindowsFeature AD-Domain-Services).Installed

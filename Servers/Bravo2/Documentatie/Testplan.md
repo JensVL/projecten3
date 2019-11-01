@@ -1,4 +1,4 @@
-# **Testplan Bravo 2**
+﻿# **Testplan Bravo 2**
 
 Een tweede Domain controller die eveneens dienst doet als tweede DNS-servervoor het domein. De buitenwereld kent deze server als “ns2”.
 
@@ -26,23 +26,28 @@ Een tweede Domain controller die eveneens dienst doet als tweede DNS-servervoor 
 
 8. Om aanpasseningen door te sturen wordt er gebruik gemaakt van `vagrant provision`. Soms kan een `vagrant reload` ook van pas komen. Dit zorgt voor een halt en een up achtereen.
 
-## Voer het script DNSInstall uit
+## DNSInstall
 
-Het script gaat het volgende doen:
+De commando's om alles te checken staan aangegeven.
+Deze zijn afgestemd op Windows PowerShell.
+Daaronder staat het verwachte resultaat.
+Na het runnen van het script, geef volgende in:
 
 1. Het script past de tijdzone aan. 
-    - **Get-TimeZone:**
-        - Id: Romance Standard Time
-    - **Get-Culture**
-        - Name: eng-BE       
-        
-Bovenstaande kan getest worden via de gui of "ipconfig /all".
+     `Get-TimeZone`
+        - DisplayName: (UTC+01:00) Brussel, Kopenhagen, Madrid, Parijs
+     `Get-Culture`
+        - LCID: 2067
+        - Name: nl-BE
+        - DisplayName: Nederlands (België)       
 
-2. De adapternaam zou "LAN" moeten zijn. Dit kan getest worden door in Powershell het volgende in te geven:   
-  C:\> Get-NetAdapter -Name "*"
+2. De adapternaam wordt gewijzigd. Zowel voor LAN als NAT. Op deze server is het de bedoeling dat er alleen een host-only adapter is (LAN):   
+     `Get-NetAdapter -Name "*"`
+    	- LAN
+		- NAT wanneer deze zichtbaar is, zal het commando om de adapter te disablen uit commentaar moeten gehaald worden uit het DNSConfig script.
 
-3. Netwerkinstellingen. 
-    - **ipconfig:**
+3. Netwerkinstellingen controleren. Kijk hiervoor naar de LAN adapter.
+     `ipconfig`
         - IP-address: 172.18.1.67
         - Subnetmask: 255.255.255.224
         - Default Gateway: 172.18.1.98
@@ -50,21 +55,29 @@ Bovenstaande kan getest worden via de gui of "ipconfig /all".
                - 172.18.1.67
  
  4. De DNS controleren.   
-      Via volgend commando: **Get-DnsClientServerAddress**   
-      - De IPv4 adressen van DNS dat je zou moeten uitkomen zijn:
-         - 172.18.1.66, 172.18.1.67 en 127.0.0.1
+	 `Get-DnsClientServerAddress` 
+        - 172.18.1.66, 172.18.1.67
  
- 5. ADDS controleren gaat als volgt. Onderstaande commando gaat testen of er wordt aangemeld met administrator, DNS geïnstalleerd is en of DSRM goed is ingesteld.   
-      Commando: **Test-ADDSDomainControllerInstallation -InstallDns -Credential (Get-Credential) -DomainName (Read-Host "Domain to promote into")**
+ 5. Firewall status.
+	 `netsh advfirewall show private|public|domain`
+		- Verwachte uitkomst is "off" want er is een firewall geconfigureerd op het domein.
  
- 6. Controle of firewall uitstaat. Deze zou op "off" moeten staan.   
-      Commando: **netsh advfirewall show private|public|domain**
+ 6. ADDS controle. Gaat testen of er wordt aangemeld met administrator, DNS geïnstalleerd is en of DSRM goed is ingesteld.   
+     `Test-ADDSDomainControllerInstallation -InstallDns -Credential (Get-Credential) -DomainName (Read-Host "Domain to promote into")`
+		- Er gaat gevraagd worden om de credentials in te geven.
+		- Nadien zal er gevraagd worden "Domain to promote into:". Met andere woorden hier gaat men het domein opgeven. In ons geval "red.local".
  
  7. Controle of domein "red.local" gejoind is.   
-      Commando: **Get-WmiObject -Class Win32_ComputerSystem**
+     `Get-WmiObject -Class Win32_ComputerSystem`
+	 	- Domain: red.local
+		- Name: ns2
 
-##  Voer het script DNSConfig uit
-1. Kijken of DNS repliceert:   
-     Commando: **Get-WMIObject –namespace “Root\MicrosoftDNS” –class MicrosoftDNS_Zone | Format-List Name**
-     Nadien commando: **Get-WMIObject –namespace “Root\MicrosoftDNS” –class MicrosoftDNS_Zone | Where-Object {$_.Name –eq “red.local”}**
-  
+##  DNSConfig. Na het installeren van DNS, gaat men configureren.
+
+ 1. Kijken of DNS goed is geconfigureerd.
+	 `Get-DnsClientServerAddress`
+	 	- Hier zouden de adapters moeten komen met het adres.
+
+ 2. Met het volgende commando gaat men de forward servers overlopen. Omdat het hier over meerdere gaat namelijk de Hogent servers, gaan we dit wegschrijen in een "txt" file.
+	 `Get-Content C:\scripts\servers.txt | Foreach-Object {get-dnsserverforwarder -computer $_}`
+		- De servernamen van Hogent worden in dit script verwacht.
