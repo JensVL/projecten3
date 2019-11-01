@@ -21,6 +21,12 @@
 | Tibo Vanhercke |    V    |
 | Ferre Verstichelen|   V      |
 | Elias Waterschoot |    V     |
+| Robby Daelman |   V      |
+| Cedric Detemmerman |   V      |
+| Levi Goessens |   V      |
+| Aron Marckx |   V      |
+| Cédric Van den Eede |   V      |
+| Arno Van Nieuwenhove |   V      |
 
 ## Algemeen
   - Voorstellen teamleiders 

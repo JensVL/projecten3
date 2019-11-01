@@ -9,6 +9,7 @@
 
 require 'rbconfig'
 require 'yaml'
+disk = 'Test2.vdi'
 
 # set default LC_ALL for all BOXES
 ENV["LC_ALL"] = "en_US.UTF-8"
@@ -86,7 +87,6 @@ Vagrant.configure("2") do |config|
   # ... other configuration
     config.winrm.transport = :plaintext
     config.winrm.basic_auth_only = true
-    config.vm.provision "file", source: "C:/Users/Detemmerman Cedric/Documents/avagrant2dezit/avalonemployees.csv", destination: "C:/Windows"
 end
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   hosts.each do |host|
@@ -115,15 +115,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       end
       # Add VM to a VirtualBox group
      node.vm.provider :virtualbox do |v|
-         v.gui = true
+        v.gui = true
+		if ARGV[0] == "up" && ! File.exist?(disk)
+          v.customize ['createhd', '--filename', disk, '--format', 'VDI', '--size', 50000]
+          v.customize ['storageattach', :id,  '--storagectl', 'IDE Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', disk]
+	    end
 	end
       # Run configuration script for the VM
       node.vm.provision 'shell', path: 'provisioning/' + host['name'] + '.ps1'
-      node.vm.provision 'shell', reboot: true
-      node.vm.provision 'shell', path: 'provisioning/srv002.ps1'
+
     end
   end
 end
 
 # -*- mode: ruby -*-
 # vi: ft=ruby :
+
