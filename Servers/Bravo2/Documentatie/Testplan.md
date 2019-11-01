@@ -41,7 +41,7 @@ Na het runnen van het script, geef volgende in:
         - Name: nl-BE <br/>
         - DisplayName: Nederlands (België) <br/>       
 
-2. De adapternaam wordt gewijzigd. Zowel voor LAN als NAT. Op deze server is het de bedoeling dat er alleen een host-only adapter is (LAN):<br/>   
+2. De adapternaam wordt gewijzigd. Zowel voor LAN als NAT. Op deze server is het de bedoeling dat er alleen een host-only adapter is (LAN):  
      `Get-NetAdapter -Name "*"`<br/>
     	- LAN<br/>
 		- NAT wanneer deze zichtbaar is, zal het commando om de adapter te disablen uit commentaar moeten gehaald worden uit het DNSConfig script.<br/>
