@@ -35,7 +35,7 @@ Domein wachtwoord: Admin2019 <br>
 
 Installatie voltooid.
 
-#### Configuratie
+### Configuratie
 
 De server kan juist geconfigureerd worden door de scripts 1_hostname.ps1 en 2_config.ps1 uit te voeren.
 Hierdoor zal de server gerestart worden nadat het in het domein is toegevoegd.
