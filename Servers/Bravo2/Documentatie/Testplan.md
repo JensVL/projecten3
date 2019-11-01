@@ -34,9 +34,9 @@ Daaronder staat het verwachte resultaat.
 Na het runnen van het script, geef volgende in:
 
 1. Het script past de tijdzone aan. 
-     `Get-TimeZone`
-        - DisplayName: (UTC+01:00) Brussel, Kopenhagen, Madrid, Parijs
-     `Get-Culture`
+     `Get-TimeZone` <br/>
+        - DisplayName: (UTC+01:00) Brussel, Kopenhagen, Madrid, Parijs <br/>
+     `Get-Culture` <br/>
         - LCID: 2067
         - Name: nl-BE
         - DisplayName: Nederlands (België)       
