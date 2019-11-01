@@ -55,7 +55,7 @@ Na het runnen van het script, geef volgende in:
             - 172.18.1.66<br/>
             - 172.18.1.67<br/>
  
- 4. De DNS controleren.<br/>   
+ 4. De DNS controleren.  
 	 `Get-DnsClientServerAddress` <br/>
         - 172.18.1.66, 172.18.1.67 <br/>
  
@@ -63,17 +63,17 @@ Na het runnen van het script, geef volgende in:
 	 `netsh advfirewall show private|public|domain` <br/>
 		- Verwachte uitkomst is "off" want er is een firewall geconfigureerd op het domein. <br/>
  
- 6. ADDS controle. Gaat testen of er wordt aangemeld met administrator, DNS geïnstalleerd is en of DSRM goed is ingesteld. <br/>  
+ 6. ADDS controle. Gaat testen of er wordt aangemeld met administrator, DNS geïnstalleerd is en of DSRM goed is ingesteld.  
      `Test-ADDSDomainControllerInstallation -InstallDns -Credential (Get-Credential) -DomainName (Read-Host "Domain to promote into")` <br/>
 		- Er gaat gevraagd worden om de credentials in te geven. <br/>
 		- Nadien zal er gevraagd worden "Domain to promote into:". Met andere woorden hier gaat men het domein opgeven. In ons geval "red.local". <br/>
  
- 7. Controle of domein "red.local" gejoind is. <br/>  
+ 7. Controle of domein "red.local" gejoind is.  
      `Get-WmiObject -Class Win32_ComputerSystem` <br/>
 	 	- Domain: red.local <br/>
 		- Name: ns2 <br/>
 
-##  DNSConfig. Na het installeren van DNS, gaat men configureren. <br/>
+##  DNSConfig
 
  1. Kijken of DNS goed is geconfigureerd. <br/>
 	 `Get-DnsClientServerAddress` <br/>
