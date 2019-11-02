@@ -22,7 +22,7 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem
 Function info() {
     param([string]$info_text)
 
-    Write-Host $info_text
+    Write-Host "--- $info_text"
 }
 
 # Usage: debug [-debug_text] [ARG]
@@ -32,7 +32,7 @@ Function debug() {
     param([string]$debug_text)
 
     if ( $debug_output -eq "yes" ) {
-        Write-Host $debug_text
+        Write-Host ">>> $debug_text"
     }
 }
 
@@ -42,7 +42,7 @@ Function debug() {
 Function error() {
     param([string]$error_text)
 
-    Write-Error $error_text
+    Write-Warning "### $error_text"
 }
 
 #------------------------------------------------------------------------------
@@ -56,6 +56,7 @@ function unzip {
 
     [System.IO.Compression.ZipFile]::ExtractToDirectory($zipfile, $outpath)
 }
+
 # Usage: zip [-zipfile] <c:\foo\bar> [-outpath] <c:\foo\bar>
 #
 # creates zip function so we can zip the files
@@ -68,6 +69,7 @@ function zip {
     }
     Compress-Archive @compress
 }
+
 # Usage: ensure_download_path [-downloadpath] <c:\foo\bar>
 #
 # Ensures the folder exists where the downloaded installation files are stored
@@ -81,6 +83,19 @@ function ensure_download_path() {
     if (!(Test-Path $downloadpath)) {
         mkdir $downloadpath
     }
+}
+
+# Usage: join_domain [-domain] <domain_name> [-domain_user] <username> [-domain_pw] <plaintext_pw>
+#
+# Join the given domain with the given username and password.
+# The user joining must have the privileges to do so.
+function join_domain() {
+    param([string]$domain,[string]$domain_user,[string]$domain_pw)
+
+    $password = $domain_pw | ConvertTo-SecureString -AsPlainText -Force
+    $credential = New-Object System.Management.Automation.PSCredential($domain_user, $password)
+
+    Add-Computer -DomainName $domain -DomainCredential $credential -Force
 }
 
 #------------------------------------------------------------------------------
