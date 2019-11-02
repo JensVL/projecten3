@@ -88,7 +88,7 @@
   memory: 2048
   cpus: 2
   lan_prefix: 24
-  DefaultGateway: 172.18.1.66
+  default_gateway: 172.18.1.66
   primary_dns: 172.18.1.66
   secondary_dns: 172.18.1.67
   domain: "red.local"
@@ -108,10 +108,10 @@
   gui: false
   memory: 2048
   cpus: 2
-  defaultgateway: 172.18.1.1
-  prefix: 26
-  ipalfa: 172.18.1.66
-  ipbravo: 172.18.1.67
+  default_gateway: 172.18.1.1
+  lan_prefix: 26
+  primary_dns: 172.18.1.66
+  secondary_dns: 172.18.1.67
   domain: "red.local"
   domain_user: "Administrator"
   domain_password: "Admin2019"

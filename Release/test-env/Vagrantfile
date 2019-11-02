@@ -94,6 +94,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
       node.vm.hostname = host['name']
       node.vm.network :private_network, network_options(host)
+      # NOTE: comment the line above and uncomment the line underneath in prod-env
+      # node.vm.network :public_network, network_options(host)
       
       node.vm.provider :virtualbox do |vb|
         vb.gui    = host['gui']
@@ -218,7 +220,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           args: [
             host['ip'],
             host['lan_prefix'],
-            host['DefaultGateway'],
+            host['default_gateway'],
             host['primary_dns'],
             host['secondary_dns'],
             host['domain'],
@@ -245,13 +247,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           path: provisioning_path + '/2_config.ps1',
           args: [
             host['ip'],
-            host['defaultgateway'],
-            host['prefix'],
-            host['ipalfa'],
-            host['ipbravo'],
+            host['default_gateway'],
+            host['lan_prefix'],
+            host['primary_dns'],
+            host['secondary_dns'],
             host['domain'],
             host['domain_user'],
-            host['domain_password'],
+            host['domain_pw'],
             host['domain_netbios']
           ]
         node.vm.provision 'shell', reboot: true
