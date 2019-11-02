@@ -1,0 +1,140 @@
+# -*- mode: ruby -*-
+# vi: ft=ruby :
+
+require 'rbconfig'
+require 'yaml'
+
+DEFAULT_BASE_BOX = 'gusztavvargadr/windows-server'
+
+VAGRANTFILE_API_VERSION = '2'
+PROJECT_NAME = '/' + File.basename(Dir.getwd)
+
+hosts = YAML.load_file('vagrant-hosts.yml')
+
+# {{{ Helper functions
+
+# Set options for the network interface configuration. All values are
+# optional, and can include:
+# - ip (default = DHCP)
+# - netmask (default value = 255.255.255.0
+# - mac
+# - auto_config (if false, Vagrant will not configure this network interface
+# - intnet (if true, an internal network adapter will be created instead of a
+#   host-only adapter)
+def network_options(host)
+  options = {}
+
+  if host.has_key?('ip')
+    options[:ip] = host['ip']
+    options[:netmask] = host['netmask'] ||= '255.255.255.0'
+  else
+    options[:type] = 'dhcp'
+  end
+
+  if host.has_key?('mac')
+    options[:mac] = host['mac'].gsub(/[-:]/, '')
+  end
+  if host.has_key?('auto_config')
+    options[:auto_config] = host['auto_config']
+  end
+  if host.has_key?('intnet') && host['intnet']
+    options[:virtualbox__intnet] = true
+  end
+
+  options
+end
+
+def custom_synced_folders(vm, host)
+  if host.has_key?('synced_folders')
+    folders = host['synced_folders']
+
+    folders.each do |folder|
+      vm.synced_folder folder['src'], folder['dest'], folder['options']
+    end
+  end
+end
+
+# Adds forwarded ports to your Vagrant machine
+#
+# example:
+#  forwarded_ports:
+#    - guest: 88
+#      host: 8080
+def forwarded_ports(vm, host)
+  if host.has_key?('forwarded_ports')
+    ports = host['forwarded_ports']
+
+    ports.each do |port|
+      vm.network "forwarded_port", guest: port['guest'], host: port['host']
+    end
+  end
+end
+
+# }}}
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.ssh.insert_key = false
+  hosts.each do |host|
+    config.vm.define host['name'] do |node|
+      node.vm.box = host['box'] ||= DEFAULT_BASE_BOX
+
+      node.vm.hostname = host['name']
+      node.vm.network :private_network, network_options(host)
+      custom_synced_folders(node.vm, host)
+      forwarded_ports(node.vm, host)
+
+      node.vm.provider :virtualbox do |vb|
+        vb.gui = host['gui']
+        vb.cpus = host['cpus'] if host.key? 'cpus'
+        vb.memory = host['memory'] if host.key? 'memory'
+
+        # WARNING: if the name of the current directory is the same as the
+        # host name, this will fail.
+        vb.customize ['modifyvm', :id, '--groups', PROJECT_NAME]
+      end
+
+      config.winrm.timeout = 3600
+      config.vm.boot_timeout = 3600
+      config.vm.graceful_halt_timeout = 3600
+      config.winrm.transport = :plaintext
+      config.winrm.basic_auth_only = true
+
+      if host['name'] == "November2"
+        provisioning_path = "./Scripts"
+
+        node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + '/2_config.ps1',
+          args: [
+            host['ip'],
+            host['default_gateway'],
+            host['lan_prefix'],
+            host['primary_dns'],
+            host['secondary_dns'],
+            host['domain'],
+            host['domain_user'],
+            host['domain_password'],
+            host['domain_netbios'],
+            "NAT",
+            "LAN"
+          ]
+        node.vm.provision 'shell', reboot: true
+        node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + '/3_SQL.ps1',
+          args: [
+            host['filepath'],
+            host['params']
+          ]
+        node.vm.provision 'shell', reboot: true
+        node.vm.provision 'shell',
+          privileged: true,
+          path: provisioning_path + '/4_SSMS.ps1',
+          args: [
+            host['filepath'],
+            host['params']
+          ]
+      end
+    end
+  end
+end
