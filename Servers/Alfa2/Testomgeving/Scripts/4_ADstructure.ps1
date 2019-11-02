@@ -56,6 +56,9 @@ Write-Host "Create users for Organizational Units..." -ForeGroundColor "Green"
 
 $password=ConvertTo-SecureString "Administrator2019" -asPlainText -force
 
+<# Path wanneer je via een share werkt in VirtualBox en niet met vagrant 
+Import-Csv -Path "\\VBOXSVR\Scripts\ExtendADschema\users3.csv" | Foreach-Object {
+#>
 Import-Csv -Path "C:\vagrant\ExtendADschema\users3.csv" | ForEach-Object {
     $sambaname=$_.SamAccountName
 
@@ -440,7 +443,6 @@ New-ADComputer "ITAdministratie_005" -SamAccountName "ITAdmin005" -Path "CN=Comp
 # Set-ADUser -Identity "CN=Elias,OU=Verkoop,DC=red,DC=local" -ProfilePath "\\dc01\profiles\elias"
 # Set-ADUser -Identity "CN=Alister,OU=Verkoop,DC=red,DC=local" -ProfilePath "\\dc01\profiles\alister"
 # Set-ADUser -Identity "CN=Sean,OU=Verkoop,DC=red,DC=local" -ProfilePath "\\dc01\profiles\sean"
-
 #>
 
 # Group Policy
