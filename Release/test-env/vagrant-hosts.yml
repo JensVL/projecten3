@@ -146,6 +146,13 @@
   gui: false
   memory: 2048
   cpus: 2
+  domain: 'red.local'
+  domain_user: 'Administrator'
+  domain_pw: 'Admin2019'
+  lan_prefix: 27
+  default_gateway: 172.18.1.65
+  primary_dns: 172.18.1.66
+  secondary_dns: 172.18.1.66
   forwarded_ports:
     - guest: '3389'
       host: '3394'

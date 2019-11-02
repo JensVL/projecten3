@@ -283,7 +283,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
         node.vm.provision 'shell',
           privileged: true,
-          path: provisioning_path + host['name'] + '.ps1',
+          path: provisioning_path + 'delta2.ps1',
           args: [
             host['downloadpath'],
             iis['username'],
@@ -298,6 +298,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             webapp['website_domain'],
             webapp['publocation'],
             webapp['packagelocation'],
+            host['domain'],
+            host['domain_user'],
+            host['domain_pw'],
+            'NAT',
+            'LAN',
+            host['ip'],
+            host['lan_prefix'],
+            host['default_gateway'],
+            host['primary_dns'],
+            host['secondary_dns'],
             host['include_linter']
           ]
       elsif host['name'].match(/Win10-client/)
