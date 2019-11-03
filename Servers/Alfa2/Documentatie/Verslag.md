@@ -14,7 +14,7 @@ Auteur(s) verslag: Kimberly De Clercq
 9. Door dit script uit te voeren zullen de volgende 3 script `2_installDCDNS, 3_ConfigDCDNS en 4_ADstructure` ook automatisch uitgevoerd worden. 
 10. Volg het stappenplan onder `Stappenplan beleidsregels` om de beleidsregels handmatig op de domeincontroller in de GUI in te stellen. 
 11. Script `5_AGDLP_PERMISSIONS` kan pas uitgevoerd worden nadat server `Lima2` klaar is. 
-12. Script `999_PrepareADforSCCM` kan pas uitgevoerd worden nadat de servers `Bravo2` en `Papa2` klaar zijn. 
+12. Script `999_PrepareADforSCCM` kan pas uitgevoerd worden nadat de servers `Bravo2` klaar is en **voor**`Papa2` begonnen is.
 
 ## Informatie DC en DNS
 De server username is `Administrator` met als password `Admin2019`.   
