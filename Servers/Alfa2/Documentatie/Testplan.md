@@ -19,9 +19,10 @@ Indien je om Alfa2 een error krijgt bij het opzetten van de Server met Vagrant o
                   Set-ExecutionPolicy Unrestricted
          
          6) Klik in Powershell ISE op "open script" en ga naar "C:\Vagrant" en voer het script 2_InstallDCDNS.ps1 uit
-         7) Als dit klaar is voer in volgorde 3_ConfigDCDNS.ps1 en 4_ADstructure.ps1 uit
-         8) 999_PrepareADforSCCM.ps1 pas uitvoeren nadat Bravo2 klaar is. (In een testomgeving zonder Bravo2 mag je dit script meteen na 4_ADstructure.ps1 uitvoeren)
-         9) Alfa2 is nu correct opgesteld
+         7) Restart server
+         8) Als dit klaar is voer in volgorde 3_ConfigDCDNS.ps1 en 4_ADstructure.ps1 uit
+         9) 999_PrepareADforSCCM.ps1 pas uitvoeren nadat Bravo2 klaar is. (In een testomgeving zonder Bravo2 mag je dit script meteen na 4_ADstructure.ps1 uitvoeren)
+         10) Alfa2 is nu correct opgesteld
 
 
 ## AD/DNS configuratie en installatie
