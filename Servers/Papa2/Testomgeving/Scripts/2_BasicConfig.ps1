@@ -19,7 +19,7 @@ $CIDR = "27"
 
 $AdapterNaam = "LAN"
 
-$Username = "RED\SCCMAdmin" # LET OP SCCMADMIN ZAL SCCM INSTALLEREN EN ALLE RECHTEN EROP HEBBEN !
+$Username = "RED\Administrator" # LET OP: ZAL SCCM INSTALLEREN EN ALLE RECHTEN EROP HEBBEN !
 $Password = "Admin2019" | ConvertTo-SecureString -AsPlainText -Force
 
 # PREFERENCE VARIABLES: (Om Debug,Verbose en informaation info in de Start-Transcript log files te zien)
