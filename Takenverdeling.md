@@ -61,7 +61,7 @@ Firewall
 - Sean Vancompernolle
 
 
-## Voorlopige versie testrapport
+## Testrapport
 
 Alfa2
 
@@ -105,8 +105,8 @@ November2
 
 Oscar2
 
-- Rik Claeyssens
-- Jonas Vandegehuchte 
+- Tim Grijp
+- Elias Waterschoot
 
 Papa2
 
@@ -115,8 +115,8 @@ Papa2
 
 Netwerk
 
-- Tim Grijp
-- Elias Waterschoot
+- Rik Claeyssens
+- Jonas Vandegehuchte 
 
 Firewall
 
