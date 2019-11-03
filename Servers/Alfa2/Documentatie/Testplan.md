@@ -4,6 +4,13 @@
 
 Auteur(s) testplan: Kimberly De Clercq en Laurens Blancquaert-Cassaer
 
+# BELANGRIJK:
+Indien je om Alfa2 een error krijgt bij het opzetten van de Server met Vagrant op Windows (met een Linux host werkt Vagrant perfect) dan moet je het volgende doen om de server te kunnen opzetten om hem te testen: 
+(De error in kwestie gebeurt net nadat de hostname wordt ingesteld en de VM reboot. Het is een lange WSMANERROR)
+
+                1) lol
+                2) lol
+
 ## AD/DNS configuratie en installatie
 ### Uit te voeren stappen:
 Checken of dat Alfa2 een domeincontroller is:
@@ -168,7 +175,7 @@ klik rechtermuisknop op het SCCMadmin object en kies properties. Ga naar de "mem
 
 Checken of de System Management container (voor SCCM) correct aangemaakt is:
 1) Server Manager > Tools > ADSIedit 
-2) Rechtermuisknop op "ADSIedit" en doe "connecto to.."
+2) Rechtermuisknop op "ADSIedit" en doe "connect to.."
 3) Laat default settings staan en druk op ok
 4) Ga naar: Default naming context > DC=red, DC=local > CN=System
 Hierin zou je de container "System Management moeten zien staan
