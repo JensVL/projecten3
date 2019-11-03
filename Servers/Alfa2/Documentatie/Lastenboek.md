@@ -26,8 +26,8 @@ Alle userauthenticatie gebeurd via Active Directory. Dit betekent dat werkstatio
 | Kimberly De Clercq | AD Structuur installatie + configuratie | 8 |  5 |
 | Kimberly De Clercq | Beleidsregels installatie + configuratie | 12 |  4h30  |
 | Kimberly De Clercq | Documentatie AD structuur + Beleidsregels | 3 |  1h30    |
-| Kimberly De Clercq  | Testplan opstellen (+ zelf testen) alfa2 server | 4  | 4  |
-| Kimberly De Clercq | Scripts aanpassen (extra) | 5 |  5h30    |
+| Kimberly De Clercq  | Testplan opstellen (+ zelf testen) alfa2 server | 4  | 5h30  |
+| Kimberly De Clercq | Scripts aanpassen (extra) | 5 |  6h30    |
 
 
 Tests van de ALFA2 server wordt gedaan door: **Alister Adutwum** en **Sean Vancompernolle**
