@@ -13,7 +13,7 @@ Indien je om Alfa2 een error krijgt bij het opzetten van de Server met Vagrant o
          3) Aangezien de hostname al succesvol is aangepast moeten we RUNFIRST.ps1 niet meer uitvoeren. 
          4) Op de Alfa2 Windows Server VM moet je nu inloggen met username: vagrant password: vagrant (LET OP IS IN QUERTY!)
          5) De Vagrant error gebeurde voor de Shared folders correct werden ingesteld. Dit moeten we nu dus doen. Open This PC en open de network tab. Je krijgt een message dat "Device Discovery" aan moet staan. Zet dit aan.
-         6) In de network tab (van this PC) klik op VBOXSVR dan op \\VBOXSVR\vagrant en kopieer alle bestanden in deze map               naar "C:\Vagrant" (maak de directory aan indien hij nog niet bestaat) 
+         6) In de network tab (van this PC) klik op VBOXSVR dan op \\VBOXSVR\vagrant en kopieer alle bestanden in deze map naar "C:\Vagrant" (maak de directory aan indien hij nog niet bestaat) 
          5) Open PowerShell ISE als administrator en voer het volgende commando uit:
          
                   Set-ExecutionPolicy Unrestricted
