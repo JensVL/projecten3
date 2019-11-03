@@ -21,7 +21,7 @@ Papa2 is de SCCM server. Deze zal de client workstations deployen en zorgt ook v
 | Ferre Verstichelen | | |    |
 | Ferre Verstichelen | |  |    |
 | Ferre Verstichelen | |  |    |
-| Laurens Blancquaert-Cassaer  | Testplan opstellen (+ zelf testen + vagrantfile maken) Papa2 server | 4 |  |
+| Laurens Blancquaert-Cassaer  | Testplan opstellen (+ zelf testen + vagrantfile maken) Papa2 server | 4 | 2 |
 | Ferre Verstichelen  | Testplan opstellen (+ zelf testen) Papa2 server |  |  |
 
 **
