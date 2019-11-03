@@ -7,14 +7,14 @@ $Land = "eng-BE"
 
 ################################################################################################################## NOTE
 # ECHTE IP VOOR INTEGRATIE DEMO:
-# $IpAddress = "172.18.1.6"
-# $DefaultGateway = "172.18.1.97"
-# $CIDR = "26"
+ $IpAddress = "172.18.1.6"
+ $DefaultGateway = "172.18.1.97"
+ $CIDR = "26"
 
 # TEST IP VOOR VIRTUALBOX TESTING:
-$IpAddress = "172.18.1.67"
-$DefaultGateway = "172.18.1.65"
-$CIDR = "27"
+# $IpAddress = "172.18.1.67"
+# $DefaultGateway = "172.18.1.65"
+# $CIDR = "27"
 ################################################################################################################## NOTE
 
 $AdapterNaam = "LAN"
