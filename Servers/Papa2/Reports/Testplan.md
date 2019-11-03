@@ -23,16 +23,17 @@ Indien je om Papa2 op te stellen een error krijgt bij het opzetten van de Server
          8) Als dit klaar is voer 3_SCCMPrereqInstall.ps1 uit.
          9) Papa2 is nu correct opgesteld (Task sequence moet manueel gemaakt worden met GUI zie documentatie van Ferre)
 
+**VOOR ALLE TESTS MOET JE INGELOGD ZIJN ALS: RED\Administrator**
 
 ## Voorbereiding op SCCM installatie:
 ### Uit te voeren stappen:
 Is Papa2 aan het red.local domain toegevoegd?
-Server Manager > local server
-Check of er onder "Computer name", "Domain = red.local" staat
+1) Server Manager > local server
+2) Check of er onder "Computer name", "Domain = red.local" staat
 
 Checken of ADK, WindowsPE en MDT geïnstalleerd zijn:
-Ga naar de zoekbalk en geef "apps" in. Open hierna "Add or remove programs"
-Sorteer volgens "size". Je zou ADK, WindowsPE en MDT vanboven moeten zien staan.
+1) Ga naar de zoekbalk en geef "apps" in. Open hierna "Add or remove programs"
+2) Sorteer volgens "size". Je zou ADK, WindowsPE en MDT vanboven moeten zien staan.
 
 | Nr test | Wat moet er getest worden | In orde? |
 | :--- | :--- | :--- |
@@ -42,26 +43,54 @@ Sorteer volgens "size". Je zou ADK, WindowsPE en MDT vanboven moeten zien staan.
 | 4 | Is Microsoft Deployment Toolkit (MDT) geïnstalleerd? | Ja/Nee |
 
 
+
 ##  SCCM Installatie + configuratie:
 ### Uit te voeren stappen:
-Checken of de DNS records bestaan: 
-Server manager > tools > DNS Manager >Forward Lookup Zones > red.local
+Is SCCM correct geïnstalleerd op de Papa2 Server?
+Ga naar de zoekbalk en voer "console" in. Open "Configuration Manager Console". Als deze correct opent is SCCM geïnstalleerd.
 
-    Let op: Alle records moeten een A record zijn behalve Alfa2 en Bravo2 deze zijn een NS record.
-    De Exchange server Charlie2 bevat naast een A record ook een MX en Cname record.
+Is de integratie tussen MDT en SCCM goed geconfigureerd?
+1) Ga naar de zoekbalk en voer "integration" in. Open "Configure ConfigMgr Integration".
+2) Als je de checkmark automatisch op "Remove MDT extension for Configuration Manager" ziet staan is de integratie correct. 
 
-| Device | Soort DNS record | IP-address | 
-| :--: | :--: | :--: | 
-| alfa2 | NS | 172.18.1.66 | 
-| bravo2 | NS | 172.18.1.67 (zie je pas na installatie Bravo2 server) | 
-| charlie2 | A + MX + Cname |172.18.1.68  | 
-| delta2 | A | 172.18.1.69 | 
-| kilo2 | A | 172.18.1.1 | 
-| lima2 | A | 172.18.1.2 | 
-| mike2 | A | 172.18.1.3 | 
-| november2 | A | 172.18.1.4 | 
-| oscar2 | A | 172.18.1.5 | 
-| papa2 | A | 172.18.1.6 | 
+Zijn de boundary groups correct aangemaakt in SCCM?|
+1) Ga naar de zoekbalk en voer "console" in. Open "Configuration Manager Console".
+2) Navigeer naar: Administration > Hierarchy configuration > boundary groups
+3) Indien je hier een group "ADsite" ziet staan met member count 1 zijn de groups correct aangemaakt.
+
+Is de SCCM network access account ingesteld?
+1) Ga naar de zoekbalk en voer "console" in. Open "Configuration Manager Console".
+2) Navigeer naar: Administration > overview > site configuration > sites
+3) Hier zie je de "RED" site. Selecteer de RED site (maar open hem niet) en klik nu vanboven in de toolbar op "settings" daarna "configure site components" en tenslotte software distribution.
+4) Ga naar de network access account tab. Hier zou je RED\Administrator moeten zien staan.
+
+Check of de discovery methods voor SCCM correct zijn ingesteld:
+1) Ga naar de zoekbalk en voer "console" in. Open "Configuration Manager Console".
+2) Navigeer naar: Administration > Hierarchy configuration > Discovery method
+3) Check of alle 6 de discovery methods hun status op "enabled" staat
+
+Check of de PXE settings in SCCM correct zijn voor client Deployment:
+1) Ga naar de zoekbalk en voer "console" in. Open "Configuration Manager Console".
+2) Navigeer naar Administration > Overview > Site configuration > Servers and site System roles
+3) Selecteer "Papa2.red.local". 
+4) Rechtermuisknop op "Distribution point" en kies properties
+5) Ga naar de PXE tab. 
+6) Check volgende opties:
+"Enable PXE support for clients" moet aan staan
+"Allow this distribution point to respond to incoming PXE requests" moet aan staan
+"Enable unknown computer support" moet aan staan
+"Respond to PXE requests on all network interfaces" moet aangevinkt zijn
+
+| Nr test | Wat moet er getest worden | In orde? |
+| :--- | :--- | :--- |
+| 1 | Is SCCM correct geïnstalleerd op de Papa2 Server? | Ja/Nee |
+| 2 | Is de integratie tussen MDT en SCCM goed geconfigureerd? | Ja/Nee |
+| 3 | Zijn de boundary groups correct aangemaakt in SCCM?| Ja/Nee |
+| 4 | Is de SCCM network access account ingesteld? | Ja/Nee |
+| 5 | Check of de discovery methods voor SCCM correct zijn ingesteld | Ja/Nee |
+| 6 | Check of de PXE settings in SCCM correct zijn voor client Deployment | Ja/Nee |
+
+
 
 
 ## Windows 10 Client Deployment / Task Sequence
