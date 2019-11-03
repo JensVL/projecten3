@@ -38,7 +38,12 @@ Als inhoud voor deze CMS server voorzie je alle Windows documentatie van dit pro
 | Tim Grijp         | Uitvoer alle scripts controle |  |
 | Elias Waterschoot | Testplan gedetaileerd aanvullen | |
 | Elias Waterschoot | Documentatie Mike2 SharePoint |  |
-||||
+| Elias Waterschoot | XML aanvulling ||
+| Tim Grijp | XML aanvulling ||
+| Elias Waterschoot | SQL installatie ||
+| Elias Waterschoot | SharePoint setup via eigen Database ||
+| Tim Grijp | Vagrant + troubleshooting ||
+
 
 
 
