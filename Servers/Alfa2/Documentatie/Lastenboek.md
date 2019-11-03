@@ -20,6 +20,7 @@ Alle userauthenticatie gebeurd via Active Directory. Dit betekent dat werkstatio
 | Laurens Blancquaert-Cassaer | AD voorbereiden op SCCM install script + opzoekingswerk | 4 |    2      |
 | Laurens Blancquaert-Cassaer | VagrantFile maken / testen / preparen voor integration | 1h30 |   1       |
 | Laurens Blancquaert-Cassaer  | Testplan opstellen (+ zelf testen) alfa2 server | 4 |  3h30 |
+| Laurens Blancquaert-Cassaer | Alfa2 vagrantfile maken + Verbinding met Papa2 en November2 testen / configureren| 9 | 10 | 
 | Kimberly De Clercq | Opzoekingswerk AD Structuur | 2  | 1h50   |
 | Kimberly De Clercq | Opzoekingswerk Beleidsregels | 3 | 3h30   |
 | Kimberly De Clercq | AD Structuur installatie + configuratie | 8 |  5 |
@@ -27,6 +28,7 @@ Alle userauthenticatie gebeurd via Active Directory. Dit betekent dat werkstatio
 | Kimberly De Clercq | Documentatie AD structuur + Beleidsregels | 3 |  1h30    |
 | Kimberly De Clercq  | Testplan opstellen (+ zelf testen) alfa2 server | 4  | 4  |
 | Kimberly De Clercq | Scripts aanpassen (extra) | 5 |  5h30    |
+
 
 Tests van de ALFA2 server wordt gedaan door: **Alister Adutwum** en **Sean Vancompernolle**
 

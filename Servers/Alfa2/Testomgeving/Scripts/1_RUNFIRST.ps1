@@ -15,7 +15,7 @@ $VerbosePreference = "Continue"
 $InformationPreference = "Continue"
 
 # LOG SCRIPT TO FILE (+ op het einde van het script Stop-Transcript doen):
-Start-Transcript "C:\ScriptLogs\1_RUNFIRSTlog.txt"
+# Start-Transcript "C:\ScriptLogs\1_RUNFIRSTlog.txt"
 
 # = Shared folder met scripts en andere nodige files in die nodig zijn om de alfa2 server correct te provisionen.DESCRIPTION
 # De root van $VBOXdrive = "p3ops-1920-red\Servers\Alfa2\Testomgeving\Scripts" op Github
@@ -45,6 +45,6 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 # -Force zal confirmation dialog boxes negeren
 Rename-Computer -NewName Alfa2 -Force
 
-Stop-Transcript
+# Stop-Transcript
 
-Restart-Computer
+# Restart-Computer
