@@ -5,7 +5,7 @@
 Auteur(s) testplan: Kimberly De Clercq en Laurens Blancquaert-Cassaer
 
 # BELANGRIJK:
-Indien je om Alfa2 een error krijgt bij het opzetten van de Server met Vagrant op Windows (met een Linux host werkt Vagrant perfect) dan moet je het volgende doen om de server te kunnen opzetten om hem te testen: 
+Indien je om Alfa2 een error krijgt bij het opzetten van de Server met Vagrant op Windows **(Met een Linux host werkt Vagrant perfect)** dan moet je het volgende doen om de server te kunnen opzetten om hem te testen: 
 (De error in kwestie gebeurt net nadat de hostname wordt ingesteld en de VM reboot. Het is een lange WSMANERROR)
 
          1) Doe Vagrant up zoals je normaal doet.
