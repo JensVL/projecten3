@@ -1,31 +1,75 @@
 #install windows fileservices 
+if (!((Get-WindowsFeature -Name File-Services)).Installed)
+{
+	Install-WindowsFeature File-Services
+}
 
-Install-WindowsFeature File-Services
-Install-WindowsFeature –Name FS-Resource-Manager –IncludeManagementTools
-
+if (!((Get-WindowsFeature -Name File-Services)).Installed)
+{
+	Install-WindowsFeature –Name FS-Resource-Manager –IncludeManagementTools
+}
 
 Resize-Partition -DiskNumber 0 -PartitionNumber 2 -Size 30GB
 Resize-Partition -DiskNumber 0 -PartitionNumber 1 -Size 30GB
 
+#Disk 2 initiliseren. Anders kunnen er geen partities aangemaakt worden.
 Get-Disk 0 | Initialize-Disk
-New-Partition -DiskNumber 0 -Size 5GB -DriveLetter D
-New-Partition -DiskNumber 0 -Size 5GB -DriveLetter E
 
-Format-Volume -DriveLetter D -FileSystem NTFS -NewFileSystemLabel VerkoopData -Confirm:$False
-Format-Volume -DriveLetter E -FileSystem NTFS -NewFileSystemLabel OntwikkelingData -Confirm:$False
+#Alle partities aanmaken op disk 0 en deze direct formateren indien deze nog niet bestaan.
+$DriveD = Get-PSDrive | Select-Object Name
+if (!(Test-Path D:))
+{
+	New-Partition -DiskNumber 0 -Size 5GB -DriveLetter D
+	Format-Volume -DriveLetter D -FileSystem NTFS -NewFileSystemLabel VerkoopData -Confirm:$False
+}
+
+$DriveE = Get-PSDrive | Select-Object Name
+if (!(Test-Path E:))
+{
+	New-Partition -DiskNumber 0 -Size 5GB -DriveLetter E
+	Format-Volume -DriveLetter E -FileSystem NTFS -NewFileSystemLabel OntwikkelingData -Confirm:$False
+}
+
+#Disk 1 initiliseren. Anders kunnen er geen partities aangemaakt worden.
 Get-Disk 1 | Initialize-Disk
-New-Partition -DiskNumber 1 -Size 5GB -DriveLetter F
-New-Partition -DiskNumber 1 -Size 5GB -DriveLetter G
-New-Partition -DiskNumber 1 -Size 5GB -DriveLetter H
-New-Partition -DiskNumber 1 -Size 5GB -DriveLetter Y
-New-Partition -DiskNumber 1 -Size 5GB -DriveLetter Z
-New-Partition -DiskNumber 1 -Size 5GB -DriveLetter Q
-Format-Volume -DriveLetter F -FileSystem NTFS -NewFileSystemLabel ITData -Confirm:$False
-Format-Volume -DriveLetter G -FileSystem NTFS -NewFileSystemLabel DirData -Confirm:$False
-Format-Volume -DriveLetter H -FileSystem NTFS -NewFileSystemLabel AdminData -Confirm:$False
-Format-Volume -DriveLetter Y -FileSystem NTFS -NewFileSystemLabel HomeDirs -Confirm:$False
-Format-Volume -DriveLetter Z -FileSystem NTFS -NewFileSystemLabel ProfileDirs -Confirm:$False
-Format-Volume -DriveLetter Q -FileSystem NTFS -NewFileSystemLabel ShareVerkoop -Confirm:$False
+
+#Alle partities aanmaken op disk 1 en deze direct formateren indien deze nog niet bestaan.
+$DriveF = Get-PSDrive | Select-Object Name
+if (!(Test-Path F:))
+{
+	New-Partition -DiskNumber 1 -Size 5GB -DriveLetter F
+	Format-Volume -DriveLetter F -FileSystem NTFS -NewFileSystemLabel ITData -Confirm:$False
+}
+$DriveG = Get-PSDrive | Select-Object Name
+if (!(Test-Path G:))
+{
+	New-Partition -DiskNumber 1 -Size 5GB -DriveLetter G
+	Format-Volume -DriveLetter G -FileSystem NTFS -NewFileSystemLabel DirData -Confirm:$False
+}
+$DriveH = Get-PSDrive | Select-Object Name
+if (!(Test-Path H:))
+{
+	New-Partition -DiskNumber 1 -Size 5GB -DriveLetter H
+	Format-Volume -DriveLetter H -FileSystem NTFS -NewFileSystemLabel AdminData -Confirm:$False
+}
+$DriveY = Get-PSDrive | Select-Object Name
+if (!(Test-Path Y:))
+{
+	New-Partition -DiskNumber 1 -Size 5GB -DriveLetter Y
+	Format-Volume -DriveLetter Y -FileSystem NTFS -NewFileSystemLabel HomeDirs -Confirm:$False
+}
+$DriveZ = Get-PSDrive | Select-Object Name
+if (!(Test-Path Z:))
+{
+	New-Partition -DiskNumber 1 -Size 5GB -DriveLetter Z
+	Format-Volume -DriveLetter Z -FileSystem NTFS -NewFileSystemLabel ProfileDirs -Confirm:$False
+}
+$DriveQ = Get-PSDrive | Select-Object Name
+if (!(Test-Path Q:))
+{
+	New-Partition -DiskNumber 1 -Size 5GB -DriveLetter Q
+	Format-Volume -DriveLetter Q -FileSystem NTFS -NewFileSystemLabel ShareVerkoop -Confirm:$False
+}
 
 New-Item -ItemType directory -Path D:\Shares\VerkoopData
 New-Item -ItemType directory -Path E:\Shares\OntwikkelingData
@@ -36,17 +80,62 @@ New-Item -ItemType directory -Path Q:\Shares\ShareVerkoop
 New-Item -ItemType directory -Path Y:\Shares\HomeDirs
 New-Item -ItemType directory -Path Z:\Shares\ProfileDirs
 
-New-SmbShare -Name "VerkoopData" -Path "D:\Shares\VerkoopData" -ChangeAccess "red\IT_Administratie" -FullAccess "red\Verkoop"
-New-SmbShare -Name "OntwikkelingData" -Path "E:\Shares\OntwikkelingData" -ChangeAccess "red\IT_Administratie" -FullAccess "red\Ontwikkeling"
-New-SmbShare -Name "ITData" -Path "F:\Shares\ITData" -ChangeAccess "red\IT_Administratie" 
-New-SmbShare -Name "DirData" -Path "G:\Shares\DirData" -ChangeAccess "red\IT_Administratie" -FullAccess "red\Directie" 
-New-SmbShare -Name "AdminData" -Path "H:\Shares\AdminData" -ChangeAccess "red\IT_Administratie" 
-New-SmbShare -Name "HomeDirs" -Path "Y:\Shares\HomeDirs" -ChangeAccess "red\IT_Administratie" -FullAccess "everyone"
-New-SmbShare -Name "ProfileDirs" -Path "Z:\Shares\ProfileDirs"  -ChangeAccess "red\IT_Administratie" -FullAccess "everyone"
-New-SmbShare -Name "ShareVerkoop" -Path "Q:\Shares\ShareVerkoop" -ChangeAccess "red\IT_Administratie" -ReadAccess "red\Ontwikkeling"
-#Configure shadow storage voor adminData
-vssadmin add shadowstorage /for=h: /on=h: /maxsize=2000mb
-#Hier komt ps code voor dagleijske schaduw copy te maken
+#Alle shares aanmaken indien deze nog niet bestaan.
+if(!(Get-SmbShare -Name VerkoopData -ea 0))
+{
+	New-SmbShare -Name "VerkoopData" -Path "D:\Shares\VerkoopData" -ChangeAccess "red\IT_Administratie" -FullAccess "red\Verkoop"
+}
+if(!(Get-SmbShare -Name OntwikkelingData -ea 0))
+{
+	New-SmbShare -Name "OntwikkelingData" -Path "E:\Shares\OntwikkelingData" -ChangeAccess "red\IT_Administratie" -FullAccess "red\Ontwikkeling"
+}
+if(!(Get-SmbShare -Name ItData -ea 0))
+{
+	New-SmbShare -Name "ITData" -Path "F:\Shares\ITData" -ChangeAccess "red\IT_Administratie" 
+}
+if(!(Get-SmbShare -Name DirData -ea 0))
+{
+	New-SmbShare -Name "DirData" -Path "G:\Shares\DirData" -ChangeAccess "red\IT_Administratie" -FullAccess "red\Directie"
+}
+if(!(Get-SmbShare -Name AdminData -ea 0))
+{
+	New-SmbShare -Name "AdminData" -Path "H:\Shares\AdminData" -ChangeAccess "red\IT_Administratie"
+}
+if(!(Get-SmbShare -Name HomeDirs -ea 0))
+{
+	New-SmbShare -Name "HomeDirs" -Path "Y:\Shares\HomeDirs" -ChangeAccess "red\IT_Administratie" -FullAccess "everyone"
+}
+if(!(Get-SmbShare -Name ProfileDirs -ea 0))
+{
+	New-SmbShare -Name "ProfileDirs" -Path "Z:\Shares\ProfileDirs"  -ChangeAccess "red\IT_Administratie" -FullAccess "everyone"
+}
+if(!(Get-SmbShare -Name ShareVerkoop -ea 0))
+{
+	New-SmbShare -Name "ShareVerkoop" -Path "Q:\Shares\ShareVerkoop" -ChangeAccess "red\IT_Administratie" -ReadAccess "red\Ontwikkeling"
+}
+
+#Deze blok maakt een nieuwe scheduled task aan.
+#Als de taak nog niet bestaat wordt er 2000mb shadowstorage toegevoegd aan adminData.
+#Deze taak bevat enkele belangrijke variabelen:
+#Sta: Zorgt ervoor dat deze scheduled task het script ShadowCopy.ps1 uitvoert.
+#Stt: De trigger die ervoor zorgt dat het elke dag uitgevoerd wordt.
+#Op het einde wordt deze taak geregistreerd in de scheduler.
+$taskName = "ShadowCopy"
+if (Get-ScheduledTask | Where-Object {$_.TaskName -like $taskName})
+{
+    #Configure shadow storage voor adminData
+    vssadmin add shadowstorage /for=h: /on=h: /maxsize=2000mb
+    #Hier komt ps code voor dagelijkse schadow copy te maken
+    Import-Module -Name "ScheduledTasks"
+    $Sta = New-ScheduledTaskAction -Execute "powershell" -Argument ".\ShadowCopy.ps1" -WorkingDirectory "C:\vagrant\provisioning"
+    $Stt = New-ScheduledTaskTrigger -Daily -At 5pm
+    #Zorgt ervoor dat de taak met "highest privileges" wordt gexecuted.
+    $Stp = New-ScheduledTaskPrincipal -UserId "vagrant" -RunLevel Highest
+    $StTaskName="ShadowCopy"
+    $StDescript="Maakt een dagelijske shaduw kopie van AdminData"
+    #Registreer de taak in de task scheduler 
+    Register-ScheduledTask -TaskName $StTaskName -Action $Sta -Description $StDescript -Trigger $Stt -Principal $Stp
+}
 
 Start-sleep 10
 
