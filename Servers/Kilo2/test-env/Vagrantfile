@@ -134,7 +134,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             host['domain_user'],
             host['domain_pw'],
           ]
-        node.vm.provision 'shell', reboot: true
       end
     end
   end
