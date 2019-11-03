@@ -28,7 +28,7 @@ De gebruikers worden aangemaakt en in de juiste afdeling gesorteerd. Elke gebrui
 De volgende tabel toont de instellingen van de gebruikers. 
 
 | Employee-ID | Voornaam | Familienaam | Gebruikersnaam | Afdeling | Manager | Office | Telefoonnr. | Path | Woonplaats | 
-| -------- | --------- | ---------- | ----------- | ------------- | ----- | ------ | ------ | ------ | -------- | ------- |
+| -------- | --------- | ---------- | ----------- | ------------- | ----- | ------ | ------ | ------ | -------- |
 | 1003 | Arno | Van Nieuwenhove | ArnoVN | Directie | Kimberly | B0.002 | 0444727273 | OU=Directie,DC=red,DC=local | Ninove |
 | 1004 | Kimberly | De Clercq | KimberlyDC | Directie | - | B0.001 | 0444727272 | OU=Directie,DC=red,DC=local | Ingelmunster |
 | 1558 | CedricD | Detemmerman | CedricD | Ontwikkeling | Jannes | B1.018 |  0444727293 | OU=Ontwikkeling,DC=red,DC=local | Haaltert |
