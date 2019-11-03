@@ -19,7 +19,7 @@ Start-Job -Name Test -Credential $credential -ScriptBlock {
     $Scope = Get-DhcpServerV4Scope | Select-Object -Property ScopeID, Name, State, SubnetMask, StartRange, EndRange, LeaseDuration, Type
     $Scope | Format-List | Out-String
     Write-Host 'Check if correct options are configured:'
-    $Options = Get-DhcpServerv4OptionValue -ScopeId 172.18.0.0 | select -Property OptionID, Name, Value
+    $Options = Get-DhcpServerv4OptionValue -ScopeId 172.18.0.0 | Select-Object -Property OptionID, Name, Value
     $Options += (Get-DhcpServerv4OptionValue -OptionId 66,67 | Select-Object -Property OptionID, Name, Value)
     $Options | Sort-Object -Property OptionID | Format-List | Out-String
     Write-Host 'Check if server is authorized:'
