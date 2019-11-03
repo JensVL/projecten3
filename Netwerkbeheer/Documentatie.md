@@ -9,7 +9,8 @@
 - Configure NAT on outside & inside interfaces
 - Use PAT and ACL to ensure connectivity
 - Workaround for patch panel not working: insert cable on island from internetport to management port (eg 2 -> 14)
-- DHCP on interface to ISP for getting IP address
+- DHCP on interface to ISP for getting IP address -> getting static IP soon from lecturer
+- Linuxteam IP to Router4: `172.16.2.1`
 
 ## TODO
 
@@ -23,7 +24,7 @@
 
 ## DONE
 
-- Basic provisional topology in Packet Tracer
+- Complete topology in Packet Tracer
 - Added firewall server
 - Rearranged using L2 switches
 - VLAN 200 + 300 + 500 created + assigned to interfaces
@@ -31,7 +32,9 @@
 - Ping between servers & router in VLAN 300 OK
 - Ping between servers & router in VLAN 500 OK
 - Ping between VLAN 500 & VLAN 300 OK
-- Overall ping OK
+- Ping between VLANs OK
+- Ping to Linuxteam OK
+- Overall pings OK
 - Routers
   - Add serial connections
   - Hostname
@@ -95,3 +98,5 @@
 
 ### Internet Access
 - https://www.yourictmagazine.com/howtos/434-basics-to-configure-a-cisco-router-to-connect-to-internet.html
+- https://www.cisco.com/c/en/us/support/docs/ip/domain-name-system-dns/24182-reversedns.html
+- https://deltaconfig.com/cisco-router-initial-internet-access/

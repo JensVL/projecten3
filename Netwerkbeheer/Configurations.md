@@ -43,7 +43,7 @@
 - network 172.18.3.0 0.0.0.3 area 0
 - exit
 - 
-#
+#### Deprecated
 - ip route 172.18.1.64 255.255.255.224 g0/0
 - ip route 172.18.1.100 255.255.255.252 g0/0
 - ip route 172.18.1.0 255.255.255.192 g0/0
@@ -83,9 +83,10 @@
 - router ospf 10
 - network 172.18.2.0 0.0.0.3 area 0
 - network 172.18.3.0 0.0.0.3 area 0
+- network 172.16.3.0 0.0.0.3 area 0
 - exit
 - 
-#
+#### Deprecated
 - ip route 172.18.1.65 255.255.255.224 s0/1/0
 - ip route 172.18.101.30 255.255.255.252 s0/1/0
 - ip route 172.18.1.0 255.255.255.192 s0/1/0
@@ -141,9 +142,10 @@
 - conf t
 - router ospf 10
 - network 172.18.2.0 0.0.0.3 area 0
+- network 172.16.2.0 0.0.0.3 area 0
 - exit
 - 
-#
+#### Deprecated
 - ip route 172.18.1.64 255.255.255.224 s0/1/0
 - ip route 172.18.1.100 255.255.255.252 s0/1/0
 - ip route 172.18.1.0 255.255.255.192 s0/1/0
@@ -178,9 +180,6 @@
 - no shut
 - exit
 - 
-# 
-- ip route 0.0.0.0 0.0.0.0 int s0/0/0
-- 
 #
 - router ospf 10
 - router-id 5.5.5.5
@@ -196,7 +195,7 @@
 - passive-interface g0/0/1
 - exit
 - 
-#
+#### Deprecated
 - ip route 172.18.1.65 255.255.255.224 s0/1/0
 - ip route 172.18.1.100 255.255.255.252 s0/1/0
 - ip route 0.0.0.0 0.0.0.0 s0/1/0
@@ -248,7 +247,7 @@
 - passive-interface g0/0/0
 - exit
 - 
-#
+#### Deprecated
 - ip route 172.18.1.0 255.255.255.192 s0/1/0
 - ip route 172.18.0.0 255.255.255.0 s0/1/0
 - ip route 0.0.0.0 0.0.0.0 g0/1
