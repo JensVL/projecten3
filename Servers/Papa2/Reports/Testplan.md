@@ -24,25 +24,25 @@ Indien je om Papa2 op te stellen een error krijgt bij het opzetten van de Server
          9) Papa2 is nu correct opgesteld (Task sequence moet manueel gemaakt worden met GUI zie documentatie van Ferre)
 
 
-## AD/DNS configuratie en installatie
+## Voorbereiding op SCCM installatie:
 ### Uit te voeren stappen:
-Checken of dat Alfa2 een domeincontroller is:
-Server Manager > tools > Active Directory Users and Computers > Papa2.red.local > Domain Controllers (container)
-Hierin zou Alfa2 als computerobject moeten staan
+Is Papa2 aan het red.local domain toegevoegd?
+Server Manager > local server
+Check of er onder "Computer name", "Domain = red.local" staat
 
-Checken of er een DNS primary zone geïnstalleerd is (met de naam red.local):
-Server Manager > Tools > DNS Manager > forward lookup zone
-Hier zou je "red.local" moeten zien staan
+Checken of ADK, WindowsPE en MDT geïnstalleerd zijn:
+Ga naar de zoekbalk en geef "apps" in. Open hierna "Add or remove programs"
+Sorteer volgens "size". Je zou ADK, WindowsPE en MDT vanboven moeten zien staan.
 
 | Nr test | Wat moet er getest worden | In orde? |
 | :--- | :--- | :--- |
-| 1 | Is Alfa2 een domeincontroller? | Ja/Nee |
-| 2 |Is DNS geïnstalleerd op de VM? | Ja/Nee |
-| 3 | Is er een DNS primary zone geïnstalleerd op de VM? | Ja/Nee |
-| 4 | Zijn alle DNS records correct aangemaakt volgens onderstaande tabel? | Ja/Nee |
+| 1 | Is Papa2 aan het red.local domain toegevoegd? | Ja/Nee |
+| 2 | Is Windows Assessment and Deployment Toolkit (ADK) geïnstalleerd?| Ja/Nee |
+| 3 | Is de WindowsPE addon voor ADK geïnstalleerd? | Ja/Nee |
+| 4 | Is Microsoft Deployment Toolkit (MDT) geïnstalleerd? | Ja/Nee |
 
 
-##  DNS records tabel:
+##  SCCM Installatie + configuratie:
 ### Uit te voeren stappen:
 Checken of de DNS records bestaan: 
 Server manager > tools > DNS Manager >Forward Lookup Zones > red.local
