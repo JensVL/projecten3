@@ -21,11 +21,12 @@ We moeten gebruik maken van PfSense en zorgen dat:
 | Alister | Testplan   |      3          |       2.5        |
 | Sean | Documentatie Productieomgeving |         1       |     0.8          |
 | Sean | Installatie Productieomgeving |  3 |  2  |
-| Alister & Sean | Documentatie configuratie  |      4          |       1        |
+| Alister & Sean | Documentatie configuratie  |      4          |       4        |
+| Alister & Sean | Voorbereiding Productie week 9 |      6          |       10        |
 
 ## To do
- - XML testen in hyperV
- - Documentatie configuratie afwerken
+ - 2de netwerkadapter testen in laptop
+ - Eventueel extra features in firewall toevoegen
 
 ## Vragen
 ...
