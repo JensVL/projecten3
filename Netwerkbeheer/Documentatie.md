@@ -7,17 +7,17 @@
 - PINGS WON'T WORK on Hogent environment
 - OSPF needed
 - Configure NAT on outside & inside interfaces
-- Use PAT and ACL to ensure connectivity
+- Use PAT and ACL to ensure connectivity -> each network separate in ACL, no summarize
 - Workaround for patch panel not working: insert cable on island from internetport to management port (eg 2 -> 14)
 - DHCP on interface to ISP for getting IP address -> getting static IP soon from lecturer
 - Linuxteam IP to Router4: `172.16.2.1`
+- Static route on every router to outside 
 
 ## TODO
 
 - VLAN 600, 700 (need zulu2 server)
 - Discuss Router4 with Linuxteam
 - Routers
-  - Ensure overall connection (physical testing needed)
   - Router1: Site to site VPN -> Router0 ?
   - Router4: ISP Google ?
   - Router3: ISP red.be ?
@@ -45,6 +45,8 @@
   - IPs on interfaces
   - OSPF
   - ACL on edge router
+  - Ensure overall connection (physical testing needed) -> OK
+
 - Switches
   - Hostname
   - Console password
@@ -78,6 +80,7 @@
 - https://www.networkstraining.com/configuring-nat-on-cisco-routers/
 - https://www.cisco.com/c/en/us/support/docs/ip/network-address-translation-nat/13773-2.html
 - https://community.cisco.com/t5/security-documents/pat/ta-p/3114711
+- https://www.computernetworkingnotes.com/ccna-study-guide/configure-pat-in-cisco-router-with-examples.html
 
 ### VLAN
 - https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst4500/12-2/25ew/configuration/guide/conf/vlans.html
@@ -100,3 +103,5 @@
 - https://www.yourictmagazine.com/howtos/434-basics-to-configure-a-cisco-router-to-connect-to-internet.html
 - https://www.cisco.com/c/en/us/support/docs/ip/domain-name-system-dns/24182-reversedns.html
 - https://deltaconfig.com/cisco-router-initial-internet-access/
+- CCNA Routing & Switching Course
+- 

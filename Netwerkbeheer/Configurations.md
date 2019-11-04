@@ -21,6 +21,8 @@
 - ip address 172.18.3.2 255.255.255.252
 - no shut
 - exit
+- ip route 0.0.0.0 0.0.0.0 s0/1/1
+- exit
 - 
 
 
@@ -72,6 +74,7 @@
 - ip address 172.18.3.1 255.255.255.252
 - no shut
 - exit
+- ip route 0.0.0.0 0.0.0.0 s0/1/0
 - 
 #
 - router ospf 10
@@ -128,8 +131,15 @@
 - ip nat outside 
 - no shut
 - exit
-- 
-- access-list 1 permit 172.18.0.0 0.0.255.255
+- ip route 0.0.0.0 0.0.0.0 g0/0/0
+- access-list 1 permit 172.18.2.0 0.0.0.3
+- access-list 1 permit 172.16.2.0 0.0.0.3
+- access-list 1 permit 172.18.1.0 0.0.0.63
+- access-list 1 permit 172.18.0.0 0.0.0.255
+- access-list 1 permit 172.18.1.96 0.0.0.3
+- access-list 1 permit 172.18.1.100 0.0.0.3
+- access-list 1 permit 172.18.1.64  0.0.0.31
+- access-list 1 permit 172.18.1.104 0.0.0.3
 - ip nat inside source list 1 interface g0/0/0 overload
 - 
 - (do) show ip nat translations
@@ -143,6 +153,7 @@
 - router ospf 10
 - network 172.18.2.0 0.0.0.3 area 0
 - network 172.16.2.0 0.0.0.3 area 0
+- network 172.22.0.0 0.0.255.255 area 0
 - exit
 - 
 #### Deprecated
@@ -153,6 +164,9 @@
 - ip route 172.18.1.104 255.255.255.252 s0/1/0
 - ip route 172.18.3.0 255.255.255.252 s0/1/0
 - ip route 0.0.0.0 0.0.0.0 s0/1/1
+- 
+- ip nat pool pool1 172.22.192.10 172.22.192.10 prefix 16
+- ip nat inside source list 1 pool pool1 overload
 - 
 
 ## Router 5 (Formerly L3 Switch5)
@@ -178,6 +192,8 @@
 - int s0/1/0
 - ip address 172.18.1.97 255.255.255.252
 - no shut
+- exit
+- ip route 0.0.0.0 0.0.0.0 s0/1/0
 - exit
 - 
 #
@@ -225,11 +241,15 @@
 - ip address 172.18.1.98 255.255.255.252
 - no shut
 - exit
+- ip route 0.0.0.0 0.0.0.0 g0/0/1
+- exit
 - 
 - without zulu2:
 - int s0/1/1
 - ip address 172.18.1.106 255.255.255.252
 - no shut
+- exit
+- ip route 0.0.0.0 0.0.0.0 s0/1/1
 - exit
 - 
 #
