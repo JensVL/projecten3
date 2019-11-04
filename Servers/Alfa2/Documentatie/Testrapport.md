@@ -5,7 +5,7 @@
 Auteur(s) testrapport: Kimberly De Clercq 
 
 ## Test AD/DNS installatie en configuratie
-Labo gemaakt door:   
+Labo gemaakt door: Laurens Blancquaert-Cassaer
 Uitvoerder(s) test:   
 Uitgevoerd op:   
 Github commit:   
@@ -34,7 +34,7 @@ Github commit:
 
 
 ## Test AD en DNS Replication tussen Alfa2 en Bravo2 (Tweede domeincontroller)
-Labo gemaakt door:   
+Labo gemaakt door: Laurens Blancquaert-Cassaer
 Uitvoerder(s) test:   
 Uitgevoerd op:   
 Github commit:   
@@ -110,19 +110,9 @@ Github commit:
 ### Opmerkingen
 
 
-## Test AGDLP Permissions
-Labo gemaakt door:  
-Uitvoerder(s) test:   
-Uitgevoerd op:  
-Github commit:   
-
-### Uit te voeren testen
-
-### Opmerkingen
-
 
 ## Test Prepare AD for SCCM
-Labo gemaakt door:  
+Labo gemaakt door:  Laurens Blancquaert-Cassaer
 Uitvoerder(s) test:   
 Uitgevoerd op:  
 Github commit:   
