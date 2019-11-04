@@ -36,7 +36,7 @@
 - name: Kilo2
   ip: 172.18.1.1
   box: gusztavvargadr/windows-server
-  lan_prefix: 24
+  lan_prefix: 26
   DefaultGateway: 172.18.1.7
   primary_dns: 172.18.1.66
   secondary_dns: 172.18.1.67
