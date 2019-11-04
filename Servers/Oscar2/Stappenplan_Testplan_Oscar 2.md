@@ -13,3 +13,4 @@
 12. Run de installer en volg de instructies
 13. Open een browser en surf naar het IP-adres van de prtg-server (in dit geval 127.0.0.1)
 14. Volg de SMART-setup instructies (Geel kader dat langs de rechterkant zou moeten verschijnen)
+15. Controleer nu of je tussen de verbonden apparaten je eigen server en eventueel andere apparaten op het netwerk kan zien
