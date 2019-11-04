@@ -7,7 +7,7 @@ Auteur(s) testplan: Aron Marckx, Cédric Van den Eede
 - Ingelogd op November2 met onderstaande gegevens: <br>
     User: RED\Administrator <br>
     Password: Admin2019 <br>
-  <br> 
+ 
 # Testing
 
 ## Naam server en domein
@@ -16,8 +16,6 @@ Auteur(s) testplan: Aron Marckx, Cédric Van den Eede
 3. Controleer onderstaande instellingen:
    - Computer name: November2
    - Domain name: red.local
-
-Je kan ook het script TestConfigNovember2.ps1 uitvoeren waar dit onderdeel ook wordt getest samen met netwerksettings en firewallsettings.
 
 ## Netwerksettings
 1. Ga naar de Servermanager (open het manueel als het niet automatisch is gebeurd)
