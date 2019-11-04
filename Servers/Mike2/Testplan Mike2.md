@@ -18,7 +18,7 @@ Auteur(s) testplan: Tim Grijp, Elias Waterschoot
 
 Maak de Mike 2 server aan in VirtualBox
 - paswoord: `Admin2019`
-- Zorg ervoor dat de 'host-only adapter' als 'ethernet' staat (dit is normaal de eerste adapter in virtualbox) , de andere is dan voor NAT (kan je controleren door in VirtualBox cable connected uit te vinken)
+- Zorg ervoor dat de 'host-only adapter' als 'ethernet 2' staat (dit is normaal de tweede adapter in virtualbox) , de andere is dan voor NAT (kan je controleren door in VirtualBox cable connected uit te vinken)
 - Voor de Mike2 server kan er niet gewerkt worden met snapshots, dit zorgt voor een fatale error
 - Maak een shared folder aan met een map 'scripts voor mike2' en een map 'sharepoint'
 - De scripts moeten hier staan: `Z:/scripts voor mike2`
