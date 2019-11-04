@@ -1,4 +1,4 @@
-<# # VARIABLES:
+# VARIABLES:
 $VBOXdrive = "Z:\"
 # LOG SCRIPT TO FILE (+ op het einde van het script Stop-Transcript doen):
 Start-Transcript "C:\ScriptLogs\1_RUNFIRSTlog.txt"
@@ -16,4 +16,4 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name ForceAutoLogon -Value 1
 #Rename-Computer -NewName Bravo2 -Force 
 Stop-Transcript
-Restart-Computer -Force #>
+Restart-Computer -Force
