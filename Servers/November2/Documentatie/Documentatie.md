@@ -40,6 +40,10 @@ Installatie voltooid.
 De server kan juist geconfigureerd worden door de scripts 1_hostname.ps1 en 2_config.ps1 uit te voeren.
 Hierdoor zal de server gerestart worden nadat het in het domein is toegevoegd.
 
+### Groupmember voor Papa2
+
+De server Papa2 moet adminrechten krijgen dus voegen we een member Papa2 toe aan de admin groep.
+
 ### Installeer Microsoft SQL Server 2017
 
 - Opmerking: Zorg ervoor dat November2 in het domein red.local zit voordat Sql en SSMS worden geïnstalleerd.
