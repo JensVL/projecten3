@@ -39,18 +39,19 @@ This is to exclude any pitfalls in the connectivity between the hosts that might
 
 | Host           | IP          | Subnet | Domain username | Domain password |
 |----------------|-------------|--------|-----------------|-----------------|
-| Alfa2          | 172.18.1.66 | /27    | TODO            | TODO            |
-| Bravo2         | 172.18.1.67 | /27    | TODO            | TODO            |
-| Kilo2          | 172.18.1.1  | /26    | TODO            | TODO            |
-| Win10-client01 | 172.18.0.5  | /24    | TODO            | TODO            |
-| Win10-client02 | 172.18.0.6  | /24    | TODO            | TODO            |
+| Alfa2          | 172.18.1.66 | /27    | RED\Administrator | Admin2019         |
+| Bravo2         | 172.18.1.67 | /27    | RED\Administrator | Admin2019         |
+| Kilo2          | 172.18.1.1  | /26    | RED\Administrator | Admin2019         |
+| Win10-client01 | 172.18.0.5  | /24    | RED\KimberlyDC    | Administrator2019 |
+| Win10-client02 | 172.18.0.6  | /24    | RED\LaurensBC     | Administrator2019 |
 
-1. [ ] Turn the firewall on Kilo2 off 
-2. [ ] On Alfa2, Bravo2 and the Windows 10 VMs, ping Kilo2
-3. [ ] On Kilo2 ping all other hosts in the IP table above
-4. [ ] Test internet connectivity on Kilo2
-5. [ ] On Kilo2, join the domain _red.local_
-6. [ ] Test internet connectivity on Kilo2
+
+1. [X] Turn the firewall on Kilo2 off 
+2. [X] On Alfa2, Bravo2 and the Windows 10 VMs, ping Kilo2
+3. [X] On Kilo2 ping all other hosts in the IP table above
+4. [X] Test internet connectivity on Kilo2
+5. [X] On Kilo2, join the domain _red.local_
+6. [X] Test internet connectivity on Kilo2
 7. [ ] Test if DHCP relay is active and working
 
 #### Test remarks
