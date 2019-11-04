@@ -1,9 +1,10 @@
 ﻿# **Testplan Bravo 2**
 
-Een tweede Domain controller die eveneens dienst doet als tweede DNS-servervoor het domein. De buitenwereld kent deze server als “ns2”.
+Een tweede Domain controller die eveneens dienst doet als tweede DNS-servervoor het domein. De buitenwereld kent deze server als “ns2”. In dit testplan is er zowel aandacht besteed om te testen met Vagrant en de effectieve testopstelling.  Geef de stappen om te controleren pas in na alle scripts zijn opgestart!
 
 ## Checklist
-	- Vagrant Windows box
+   - Vagrant Windows box (wanneer er getest wilt worden met Vagrant)
+   - 1_RUNFIRST script
 	- DNSInstall script
 	- DNSConfig script
 
@@ -25,6 +26,10 @@ Een tweede Domain controller die eveneens dienst doet als tweede DNS-servervoor 
 7. In de Vagrantfile, zie je dat de Windows box nog eens terugkomt. "DEFAULT_BASE_BOX = 'gusztavvargadr/windows-server'". Onderaan worden de scripts aangeroepen, na eerste script wordt er een reboot gedaan.
 
 8. Om aanpasseningen door te sturen wordt er gebruik gemaakt van `vagrant provision`. Soms kan een `vagrant reload` ook van pas komen. Dit zorgt voor een halt en een up achtereen.
+
+## 1_RUNFIRST script
+In dit script is de volgorde van de scripts waarin ze worden uitgevoerd, aangeroepen. Dit is dus geautomatiseerd.  
+
 
 ## DNSInstall
 
