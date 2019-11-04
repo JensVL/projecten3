@@ -8,7 +8,7 @@
    2. [Aanmaken Virtuele Machine](#Machine)  
    3. [Configuratie Virtuele Machine](#CMachine)  
    4. [Installatie pfsense](#InstallatieP)
-   5. [Wijzigen Hyper-V LAN Adapter Host (Optioneel)](#Adapter)
+   5. [Wijzigen Hyper-V LAN Adapter Host ](#Adapter)
 5. [Initiële Configuratie](#Config)  
 6. [Webconfig](#Webconfig)
 7. [Bronnen](#Bronnen)  
@@ -56,15 +56,18 @@ Deze handleiding veronderstelt dat Hyper-V ingeschakelt is op het hostsysteem. I
 
  1. Start het Hyper-V beheerscherm op.
  2. Navigeer naar **Actie > Virtual Switch Manager...**
- 3. Navigeer naar **Nieuwe virtuele netwerkswitch**, kies als type **Extern**, en bevestig met **Virtuele switch maken**. Indien je de Hyper-V omgeving wil testen via je lokale host kies dan als type **Intern** zoals in de afbeelding hieronder:
+ 3. Navigeer naar **Nieuwe virtuele netwerkswitch**, kies als type **Extern**, en bevestig met **Virtuele switch maken**.
  ![img1](img/Hyper-V/image1.png)
- 4. Navigeer naar deze nieuwe toegevoegde switch, verander de naam naar `LAN`, geef een beschrijving in, geef de correcte netwerkadapter voor het LAN-netwerk in indien je voor een **Extern** type hebt gekozen, en pas de wijzigingen toe.
+ 4. Navigeer naar deze nieuwe toegevoegde switch, verander de naam naar `LAN`, geef een beschrijving in, geef de correcte netwerkadapter voor het LAN-netwerk in, en pas de wijzigingen toe.
  
  ![img2](img/Hyper-V/image2.png)
  
- 5. Voeg opnieuw een nieuwe netwerkswitch toe zoals in **3.**, kies deze keer als type **Extern**.
+ 5. Voeg opnieuw een nieuwe netwerkswitch toe zoals in **3.**, kies opnieuw als type **Extern**.
  6. Navigeer naar deze nieuwe toegevoegde switch, verander de naam naar `WAN`, geef een beschrijving in, geef de correcte netwerkadapter voor het WAN-netwerk in, en pas de wijzigingen toe.
  ![img3](img/Hyper-V/image3.png)
+ 7. Voeg opnieuw een nieuwe netwerkswitch toe zoals in **3.**, kies deze keer als type **Intern**.
+ 8. Navigeer naar deze nieuwe toegevoegde switch, verander de naam naar `Host`, geef een beschrijving in, en pas de wijzigingen toe.
+ ![img26](img/Hyper-V/image26.png)
  
 ### 4.2 Aanmaken Virtuele Machine <a name="Machine"></a>  
 
@@ -90,9 +93,10 @@ Deze handleiding veronderstelt dat Hyper-V ingeschakelt is op het hostsysteem. I
  ![img10](img/Hyper-V/image10.png)
  3. Navigeer naar de nieuwe netwerkadapter, selecteer als virtuele switch **LAN**, en pas de wijzigingen toe.
  ![img11](img/Hyper-V/image11.png)
- 4. Navigeer naar **Firmware** en rangschik de opstartvolgorde als volgt: *Hardeschijfstation > Dvd-station > WAN > LAN*. Pas de wijzigingen toe.
+ 4. Herhaal stappen **2.** en **3.** met virtuele switch **Host**.
+ 5. Navigeer naar **Firmware** en rangschik de opstartvolgorde als volgt: *Hardeschijfstation > Dvd-station > WAN > LAN*. Pas de wijzigingen toe.
  ![img23](img/Hyper-V/image23.png)
- 5. Navigeer naar **Beveiliging**, schakel **Secure Boot** uit, en pas de wijzigingen toe.
+ 6. Navigeer naar **Beveiliging**, schakel **Secure Boot** uit, en pas de wijzigingen toe.
  ![img24](img/Hyper-V/image24.png)
  
 ### 4.5 Installatie pfsense <a name="InstallatieP"></a>  
@@ -124,18 +128,42 @@ Deze handleiding veronderstelt dat Hyper-V ingeschakelt is op het hostsysteem. I
  
  ![img22](img/Hyper-V/image22.png)
  
-### 4.6 Wijzigen Hyper-V LAN Adapter Host (Optioneel) <a name="Adapter">
+**Opmerking:** Indien `OPT1` geen IP-adres heeft, moet je deze manueel instellen. Dit doe je als volgt:
 
-Deze stap is enkel nodig indien je als LAN-switch type **Intern** gekozen hebt voor lokaal testen, zodat je de *pfsense Web GUI* via het LAN-netwerk kan bereiken vanop de host.
+ 1. Geef optie **1** in om het IP-adres van een interface in te geven, en bevestig met enter.
+ 2. Geef optie **3** in om het IP-adres van interface `OPT1` in te geven.
+ 
+ ![img29](img/Hyper-V/image29.png)
+ 
+ 3. Geef een nieuw IP-adres in, bijvoorbeeld `192.168.3.1`, en bevestig met enter.
+ 4. Geef als subnet bit count 24 in, en bevestig met enter.
+ 
+ ![img30](img/Hyper-V/image30.png)
+ 
+ 5. Geef enter in om geen upstream IP-adres in te geven.
+ 6. Geef enter in om geen IPv6-adres in te stellen.
+ 7. Geef `n` in om DHCP niet te enablen, en bevestig met enter.
+ 8. Geef `n` in om niet te reverten naar HTTP, en bevestig met enter.
+ 
+ ![img31](img/Hyper-V/image31.png)
+ 
+ 9. Geef enter in om de configuratie te bevestigen.
+ 
+ ![img32](img/Hyper-V/image32.png)
+ 
+### 4.6 Wijzigen Hyper-V LAN Adapter Host <a name="Adapter">
+
  1. Navigeer op het hostsysteem naar het tabblad **Netwerkverbinding** van het **Configuratiescherm.** Men kan dit ook vinden via **Alle Instellingen** > **Netwerk en Internet** > **Status** > **Adapteropties wijzigen.**
- 2. Rechtsklik op de **Hyper-V LAN Switch** en kies **Eigenschappen.**
+ ![img27](img/Hyper-V/image27.png)
+ 2. Rechtsklik op de **vEthernet (Host)** en kies **Eigenschappen.**
+ ![img28](img/Hyper-V/image28.png)
  3. Ga op het tabblad **Netwerken** naar de optie **Internet protocol versie 4 (TCP/IPv4)** in de lijst en selecteer **Eigenschappen.**
- 4. Indien nodig selecteer de optie **Het volgend IP-adres gebruiken** om een statisch IP toe te wijzen. Geef als IP-adres een adres in dat in hetzelfde subnet ligt als het LAN IP-adres dat de pfsense VM in de vorige stap heeft weergegeven (in mijn geval 192.168.1.1/24), alsook hetzelfde subnetmasker. De standaardgateway, alsook DNS-serveradressen, mogen worden leegelaten. Bevestig met **Ok** en **Sluiten.**
+ 4. Indien nodig selecteer de optie **Het volgend IP-adres gebruiken** om een statisch IP toe te wijzen. Geef als IP-adres een adres in dat in hetzelfde subnet ligt als het Host IP-adres dat de pfsense VM in de vorige stap heeft weergegeven (in mijn geval 192.168.3.1/24), alsook hetzelfde subnetmasker. De standaardgateway, alsook DNS-serveradressen, mogen worden leegelaten. Bevestig met **Ok** en **Sluiten.**
 <p align="center">
   <img src="img/Hyper-V/image25.png">
 </p>
  
-Je kan nu vanop de host de pfsense Web GUI via het LAN-adres bereiken.
+Je kan nu vanop de host de pfsense Web GUI via het Host-adres bereiken.
 
 ## 5. Initiële Configuratie <a name="Config"></a>  
 Na de installatie zien we dit menu:  
