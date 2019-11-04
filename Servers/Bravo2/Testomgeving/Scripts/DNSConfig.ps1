@@ -36,4 +36,4 @@ Add-DnsServerForwarder -IPAddress 193.190.173.1,193.190.173.2
 
 
 # Disable van overbodige adapter. Nodig voor productie.
-# Disable-NetAdapter -Name "NAT" -Confirm:$false
+Disable-NetAdapter -Name "NAT" -Confirm:$false
