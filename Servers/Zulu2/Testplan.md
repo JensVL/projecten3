@@ -47,7 +47,7 @@ Adapter 2: Host-only Adapter (die je juist hebt gemaakt)
 
 *Verwacht*: PfSense is geïnstalleerd op de VM en de gebruiker staat op het menu.
 
-### Configuratatie PfSense
+### Configuratie PfSense
 
 4. Zet IPv4 interfaces:  
 ```
