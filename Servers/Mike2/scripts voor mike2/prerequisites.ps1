@@ -2,7 +2,7 @@ start-transcript "C:\ScriptLogs\2.txt"
 # Auto run script prerquisites na reboot
 
 Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce' -Name ResumeScript `
-                -Value 'C:\Windows\system32\WindowsPowerShell\v1.0\Powershell.exe -executionpolicy bypass -file "\\vboxsvr\vagrant\scripts voor mike2\SPsetup.ps1"'
+                -Value 'C:\Windows\system32\WindowsPowerShell\v1.0\Powershell.exe -executionpolicy bypass -file "Z:\scripts voor mike2\SPsetup.ps1"'
 
 
 
