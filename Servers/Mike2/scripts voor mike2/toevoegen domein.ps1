@@ -7,7 +7,7 @@ start-transcript "C:\ScriptLogs\1.txt"
 # Auto run script prerquisites na reboot
 
 Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce' -Name ResumeScript `
-                -Value 'C:\Windows\system32\WindowsPowerShell\v1.0\Powershell.exe -executionpolicy bypass -file "\\vboxsvr\vagrant\scripts voor mike2\prerequisites.ps1"'
+                -Value 'C:\Windows\system32\WindowsPowerShell\v1.0\Powershell.exe -executionpolicy bypass -file "Z:\scripts voor mike2\prerequisites.ps1"'
 
 Write-Output "add password credentials"
 
@@ -38,8 +38,8 @@ Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 Write-Output "configure dns"
 Set-DnsClientServerAddress -interfaceAlias "Ethernet 2" -serveraddresses 172.18.1.66
 
-Write-host "Waiting 15 seconds before continuing"
-start-sleep -s 15
+Write-host "Waiting 10 seconds before continuing"
+start-sleep -s 10
 
 
 # change computername met adds credentials
