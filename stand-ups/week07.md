@@ -37,50 +37,67 @@ Servers afwerken + testplannen opstellen!
     - Testrapport klaar (afhankelijk van andere server)?
 - Verslag vorige stand-up overlopen
 - Voorbereiden draaiboek: 
-    - Gantt-Chart op post-its
+    - Trello-bord op post-its
     - Aalst komt naar Gent op 18 november 2019
+    - Voorstelling draaiboek:
+      - Laptops klaarzetten: 8u30
+      - Beginnen met startup-meeting: overlopen van de dag + herhaling werkmethode, ondertussen zetten netwerkers het netwerk op: 15 min
+      - Kanban-bord klaarzetten
+      - Fout opgemerkt in gantt-chart (Papa is afhankelijk van SQL-server) => Nathan past het aan
 - Productieomgeving: VMware ESXi
+    - Niet in Vagrant. We gaan 10 lege servers opzetten. Zodra servers waar je afhankelijk van bent, kan je beginnen.
 - Problemen/Vragen?
 
 ## Gerealiseerd week 6
 * Alfa
-  * Testrapport ?
-  * Documentatie ?
+  * Testrapport ? => Charlie moet nog getest worden
+  * Documentatie ? => Afgewerkt
 * Bravo 
-  *  Testrapport ?
+  *  Testrapport ? => Alles werkt, testplan is klaar
+  *  Lima2 is getest => rapport moet nog gemaakt worden
 * Charlie 
-  * Testrapport ?
+  * Testrapport ? => Problemen met testen van Delta
+  * Documentatie => Afgewerkt
 * Delta 
-  * Testrapport ? (afhankelijk van november)
+  * Testrapport ? (afhankelijk van november) => testrapport moet nog gemaakt worden
+  * Wachten op november2 voor connectiestring
+  * Gant-chart afgewerkt
 * Kilo 
-  * Testplan ?
-  * Testrapport ?
+  * Testplan ? => ok
+  * Testrapport ? => vandaag testen
+  * Bug tegengekomen bij provisioning via Vagrant => opgelost, want Vagrant is niet meer nodig.
 * Lima 
-  * Toevoegen van Server aan domein moet nog geautomatiseerd worden => kijk eens naar script 2 charlie2 ?
-  * Testrapport ?
+  * Toevoegen van server aan domein moet nog geautomatiseerd worden => kijk eens naar script 2 charlie2 ?
+  * Testrapport ? => Moeten bravo nog testen
+  * Volledig afgewerkt
+  * Documentatie moet nog afgewerkt worden
 * Mike 
-  * Willen configuratie van sharepoint nog 
-  * Testplan ?
-  * Testrapport ?
+  * Testplan ? => klaar 
+  * Testrapport ? => Testplan niet gevonden => staat op Oscar-branch
+  * Kunnen testen via eigen SQL-server
 * November 
   * Testplan ?
-  * Documentatie ?
-  * Testrapport ?
+  * Documentatie ? => vandaag nog screenshots maken voor duidelijkheid in documentatie
+  * Testrapport ? => testen vandaag
 * Oscar 
-  * Testplan ?
-  * Testrapport ?
+  * Testplan ? => staat op branch
+  * Testrapport ? => vandaag netwerken testen
 * Papa 
-  * Task sequence moet nog aangemaakt
-  * Testplan ?
-  * Documentatie ?
-  * Testrapport ?
+  * Task sequence moet nog aangemaakt worden
+    * moet nog getest worden, zou moeten werken
+  * Testplan ? => Task sequence moet nog worden toegevoegd
+  * Documentatie ? => afgewerkt
+  * Testrapport ? => Laurens test Zulu vandaag
 * Zulu 
-  * Alfa2 testen
-  * Testrapport ?
+  * Testrapport ? => Alfa2 getest
+  * Testplan af
+  * Documentatie af
 * Netwerkinfrastructuur 
-  * 
+  * Internet werkt nog niet in fysieke opstelling, wel in packet tracer
 
 ## Problemen
+
+- 
 
 
 ## Volgende stand-up (week 9):
