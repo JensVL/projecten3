@@ -1,7 +1,7 @@
 param(
     [string]$IP             = "172.18.1.1",
     [int]$lan_prefix        = 24,
-    [string]$DefaultGateway = "172.18.1.66",
+    [string]$DefaultGateway = "172.18.1.7",
     [string]$primary_dns    = "172.18.1.66",
     [string]$secondary_dns  = "172.18.1.67",
     [string]$domain         = "red.local",
