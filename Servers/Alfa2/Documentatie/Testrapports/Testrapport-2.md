@@ -114,7 +114,7 @@ Alfa2:    icrosoft.ActiveDirectory.Management.Commands.SetADUser
 | 8 | Bevindt elke gebruiker zich in het juiste `Office` (zie indeling)| **Ja** |
 | 9 | Heeft elke gebruiker de juiste `initials`? | **Ja** |
 | 10 | Heeft elke gebruiker een toepasselijke `SamAccountName`? | **Ja** |
-| 11 | Is er aan elke afdeling een manager toegekend? | Ja/Nee |
+| 11 | Is er aan elke afdeling een manager toegekend? | **Ja** |
 | 12 | Heeft elke gebruiker een manager, behalve "Kimberly De Clercq"? | **Nee** |
 | 13 | Heeft iedere afdeling de juiste manager toegekend (zie indeling)? | **Ja** |
 | 14 | Is elke gebruiker unlocked? | **Nee** |
