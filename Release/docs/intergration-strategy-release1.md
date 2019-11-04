@@ -49,29 +49,27 @@ This is to exclude any pitfalls in the connectivity between the hosts that might
 3. [X] Disable the firewall on both laptops
 4. [X] Ping each other
 5. [X] Enable the firewall on both laptops(Security measure for the next step)
-6. [ ] Test internet connectivity on both laptops
+6. [X] Test internet connectivity on both laptops
     * problem in NAT config
-7. [ ] Configure a Windows 10 VM with *ONLY* a bridge adapter and a static IP according to the IP table
-8. [ ] Launch the Windows 10 VM, this client will later be used to join the domain
-9. [ ] Disable the VM's firewall
-10. [ ] Ping the VM from the other laptop
-11. [ ] Enable the VM's firewall
-12. [ ] Test internet connectivity on the VM
-13. [ ] In Aalst, connect a laptop to the same VLAN as the one in Ghent
-14. [ ] Repeat step 7 and 8 on the laptop in Aalst
-15. [ ] Configure a static IP on the laptop according to the IP table
-16. [ ] Disable the firewalls on all 4 hosts
-17. [ ] In Aalst, ping the 3 hosts in Ghent
-18. [ ] In Ghent, ping the host in Aalst from the 3 hosts
-19. [ ] Enable the firewalls on the laptop hosts but leave the firewalls of the VMs off
+7. [X] Configure a Windows 10 VM with *ONLY* a bridge adapter and a static IP according to the IP table
+8. [X] Launch the Windows 10 VM, this client will later be used to join the domain
+9. [X] Disable the VM's firewall
+10. [X] Ping the VM from the other laptop
+11. [X] Enable the VM's firewall
+12. [X] Test internet connectivity on the VM
+13. [X] In Aalst, connect a laptop to the same VLAN as the one in Ghent
+14. [X] Repeat step 7 and 8 on the laptop in Aalst
+15. [X] Configure a static IP on the laptop according to the IP table
+16. [X] Disable the firewalls on all 4 hosts
+17. [X] In Aalst, ping the 3 hosts in Ghent
+18. [X] In Ghent, ping the host in Aalst from the 3 hosts
+19. [X] Enable the firewalls on the laptop hosts but leave the firewalls of the VMs off
 
 #### Test remarks
 
 *TODO:* take notes during test
 
 * Ping outside Hogent is disabled
-* Connect router to table socket with n° greater than 6 and connect the table socket 
-to another table socket lower than 6 for internet connectivity
 
 
 ### Alfa2 & Bravo2
@@ -96,22 +94,22 @@ to another table socket lower than 6 for internet connectivity
 
 #### Test
 
-| Host           | IP          | Subnet | Domain username | Domain password |
-|----------------|-------------|--------|-----------------|-----------------|
-| Alfa2          | 172.18.1.66 | /27    | TODO            | TODO            |
-| Bravo2         | 172.18.1.67 | /27    | TODO            | TODO            |
-| Win10-client01 | 172.18.0.5  | /24    | TODO            | TODO            |
-| Win10-client02 | 172.18.0.6  | /24    | TODO            | TODO            |
+| Host           | IP          | Subnet | Domain username   | Domain password   |
+|----------------|-------------|--------|-------------------|-------------------|
+| Alfa2          | 172.18.1.66 | /27    | RED\Administrator | Admin2019         |
+| Bravo2         | 172.18.1.67 | /27    | RED\Administrator | Admin2019         |
+| Win10-client01 | 172.18.0.5  | /24    | RED\KimberlyDC    | Administrator2019 |
+| Win10-client02 | 172.18.0.6  | /24    | RED\LaurensBC     | Administrator2019 |
 
-1. [ ] Turn the firewalls of both domain controllers off
-2. [ ] In Ghent, ping Bravo2 and in Aalst, ping Alfa2
-3. [ ] On Alfa2 and Bravo2, ping the Windows 10 VMs created earlier
-4. [ ] Test internet connectivity on Alfa2 and Bravo2
-5. [ ] Test if replication is active
-6. [ ] On the Windows 10 VMs, ping Alfa2 and Bravo2
-7. [ ] On the Windows 10 VMs, join the domain _red.local_
-8. [ ] On the windows 10 VMs, test internet connectivity
-9. [ ] On the windows 10 VMs, configure the primary and secondary DNS of the network adapter
+1. [X] Turn the firewalls of both domain controllers off
+2. [X] In Ghent, ping Bravo2 and in Aalst, ping Alfa2
+3. [X] On Alfa2 and Bravo2, ping the Windows 10 VMs created earlier
+4. [X] Test internet connectivity on Alfa2 and Bravo2
+5. [X] Test if replication is active
+6. [X] On the Windows 10 VMs, ping Alfa2 and Bravo2
+7. [X] On the Windows 10 VMs, join the domain _red.local_
+8. [X] On the windows 10 VMs, test internet connectivity
+9. [X] On the windows 10 VMs, configure the primary and secondary DNS of the network adapter
 
 #### Test remarks
 
