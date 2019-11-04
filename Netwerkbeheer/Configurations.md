@@ -277,7 +277,7 @@
 - vlan 200
 - name vlan200
 - exit
-- int range f0/1-f0/5
+- int range f0/1-5
 - switchport mode access
 - switchport access vlan 200
 - int g0/1
@@ -306,10 +306,11 @@
 
 ### VLAN
 
+- conf t
 - vlan 300
 - name vlan300
 - exit
-- int range f0/1-f0/6
+- int range f0/1-6
 - switchport mode access
 - switchport access vlan 300
 - int g0/1
@@ -338,10 +339,11 @@
 
 ### VLAN
 
+- conf t
 - vlan 500
 - name vlan500
 - exit
-- int range f0/1-f0/5
+- int range f0/1-5
 - switchport mode access
 - switchport access vlan 500
 - int g0/1
