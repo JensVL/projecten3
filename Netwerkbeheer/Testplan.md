@@ -2,9 +2,9 @@
 
 ## Prep
 
-1. Steek 1 pc1 in switch 7 en geef ip: 172.18.1.70 255.255.255.224 en default gateway: 172.18.1.65
-1. Steek 1 pc2 in switch 5 en geef ip: 172.18.1.8  255.255.255.192 en default gateway: 172.18.1.7
-1. Steek 1 pc3 in switch 4 en geef ip: 172.18.1.20 255.255.255.0   en default gateway: 172.18.0.1
+1. Steek 1 pc1 in switch 7 en geef ip: 172.18.1.70 255.255.255.224 en default gateway: 172.18.1.65 en dns op 8.8.8.8
+2. Steek 1 pc2 in switch 5 en geef ip: 172.18.1.8  255.255.255.192 en default gateway: 172.18.1.7  en dns op 8.8.8.8
+3. Steek 1 pc3 in switch 4 en geef ip: 172.18.0.20 255.255.255.0   en default gateway: 172.18.0.1  en dns op 8.8.8.8
 
 ## Test steps
 
