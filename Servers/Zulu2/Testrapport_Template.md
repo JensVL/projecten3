@@ -1,19 +1,19 @@
 # Testrapport Zulu2 Template
 
-- Uitvoerder(s) test:
-- Uitgevoerd op:
-- Github commit:
+- Uitvoerder(s) test: Laurens Blancquaert-Cassaer
+- Uitgevoerd op: 04/11/19
+- Github commit: Het testrapport is de commit
 
 ## Doel
 ### Installatie PfSense
-- [ ] Download de PfSense Iso
-- [ ] Maak de Virtualbox VM aan
-- [ ] Installeer PfSense op de VM
+- [x] Download de PfSense Iso
+- [x] Maak de Virtualbox VM aan
+- [x] Installeer PfSense op de VM
 ### Configuratatie PfSense
-- [ ] Stel de IPv4 interfaces in
-- [ ] Navigeer naar de WebGUI
-- [ ] Log in op de WebGUI
-- [ ] Laad het PfSense configuratiebestand
+- [x] Stel de IPv4 interfaces in
+- [x] Navigeer naar de WebGUI
+- [x] Log in op de WebGUI
+- [x] Laad het PfSense configuratiebestand
 
 ### Installatie PfSense
 
