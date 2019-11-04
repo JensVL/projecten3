@@ -120,7 +120,6 @@ Github commit:
 ### Uit te voeren testen
 | Nr test | Wat moet er getest worden | In orde? |
 | :--- | :--- | :--- |
-| 1 | Is de SCCM admin useraccount aangemaakt en zit hij in de domain admin group? | Ja/Nee |
 | 2 |Is de System Management container (voor SCCM) correct aangemaakt? | Ja/Nee |
 | 3 | Is het AD schema succesfully extended? | Ja/Nee |
 
