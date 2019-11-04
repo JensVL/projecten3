@@ -1,49 +1,92 @@
-Check IP Address:
-    output:
-        fe80::95bb:9703:163b:5d9a%7 
-        172.18.1.1 
-        169.254.93.154
+Volgende gegevens moeten aanwezig zijn na het runnen van test_script.ps1
 
-Check Default Gateway:
-    output:
-        0.0.0.0 0.0.0.0 0.0.0.0 0.0.0.0 0.0.0.0 172.18.1.66 :: :: ::
+# Check name and domain:
+Variable | Value
+---|---
+Name | KILO2
+Domain | red.local
 
-Check DNS Server Addresses:
-    output:
-        172.18.1.66
+# Check IP Address:
+Variable | Value
+---|---
+IPAddress |172.18.1.1
+PrefixLength | 26
 
-Check Domain Name:
-    output:
-#todo#######        
+# Check Default Gateway:
+Variable | Value
+---|---
+NextHop | 172.18.1.7
 
-Check if DHCP is installed:
-    output:
-        DHCP : Installed
+# Check DNS Server Addresses:
+Variable | Value
+---|---
+ServerAddresses |{172.18.1.66, 172.18.1.67}
 
-Check security groups:
-    output:
-        DHCP Users
-        DHCP Administrators
+# Check if DHCP in installed:
+Variable | Value
+---|---
+Name | DHCP
+InstallState | Installed
 
-Check if scope is correct:
-    output:
-        ScopeId: 172.18.0.0
-        Name: Vlan 200
-        StartRange: 172.18.0.2
-        EndRange: 172.18.0.254
-        LeaseDuration: 2.00:00:00
+# Check security groups:
+Variable | Value
+---|---
+Name | DHCP Administrator
+Name | DHCP Users
 
-Check if correct options are configured:
-    output:
+# Check if scope is correct:
+Variable | Value
+---|---
+ScopeId | 172.18.0.0
+Name | Vlan 200
+State | Active
+SubnetMask | 255.255.255.0
+StartRange | 172.18.0.2
+EndRange |172.18.0.254
+LeaseDuration | 2.00:00:00
+Type | Both
 
-OptionId   Name            Type       Value                VendorClass     User
-                                                                           Clas
-                                                                           s   
---------   ----            ----       -----                -----------     ----
-66         Boot Server ... String     {172.18.1.6}                             
-67         Bootfile Name   String     {\smsboot\x64\wds...                     
+# Check if correct options are configured:
 
-Check if server is authorized:
-    output:
-#todo#######
- 
+Variable | Value
+---|---
+OptionID | 3
+Name | Router
+Value | {172.18.0.1}
+
+Variable | Value
+---|---
+OptionID | 6
+Name | DNS Servers
+Value | {172.18.1.66, 172.18.1.67}
+
+Variable | Value
+---|---
+OptionID | 15
+Name | DNS Domain name
+Value | {red.local}
+
+Variable | Value
+---|---
+OptionID | 51
+Name | Lease
+Value | {172800}
+
+Variable | Value
+---|---
+OptionID | 66
+Name | Boot Server Host Name
+Value | {papa2.red.local}
+
+Variable | Value
+---|---
+OptionID | 67
+Name | Bootfile Name
+Value | {\smsboot\x64\wdsnbp.com}
+
+# Check if server is authorized
+
+Variable | Value
+---|---
+DnsName | kilo2.red.local
+IPAddress | 172.18.1.1
