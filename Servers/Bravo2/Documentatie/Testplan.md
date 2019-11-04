@@ -29,7 +29,8 @@ Een tweede Domain controller die eveneens dienst doet als tweede DNS-servervoor 
 
 ## 1_RUNFIRST script
 In dit script is de volgorde van de scripts waarin ze worden uitgevoerd, aangeroepen. Dit is dus geautomatiseerd.  
-
+1. 
+`Invoke-Command -ComputerName Server01 {Get-Credential red.local\Administrator}`  
 
 ## DNSInstall
 
