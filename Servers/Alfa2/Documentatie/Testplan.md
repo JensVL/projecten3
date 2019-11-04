@@ -176,17 +176,9 @@ Volg hiervoor eerst het stappenplan in het verslag onder `Stappenplan beleidsreg
 | 4 | Hebben de afdelingen `IT_Administratie`, `Directie` en `Ontwikkeling` toegang tot de eigenschappen van de netwerkadapters? | Ja/Nee |
 | 5 | Hebben de afdelingen `Administratie` en `Verkoop` geen toegang tot de eigenschappen van de netwerkadapters? | Ja/Nee |
 
-## AGDLP (Account, Global, Domain Local, Permission)
-TODO WANNEER LIMA2 SERVER KLAAR IS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ## Prepare AD for SCCM:
 ### Uit te voeren stappen:
-Checken of de SCCM admin useraccount aangemaakt is en of hij in de domain admin group zit:
-1) Server Manager > tools > Active Directory Users and Computers > Papa2.red.local > Users
-Hierin zou SCCMadmin als userobject moeten staan
-2) Voor te kijken of de SCCMadmin in de Domain Admins group zit:
-klik rechtermuisknop op het SCCMadmin object en kies properties. Ga naar de "member of" tab. Hij moet in de domain admin group zitten
-
 Checken of de System Management container (voor SCCM) correct aangemaakt is:
 1) Server Manager > Tools > ADSIedit 
 2) Rechtermuisknop op "ADSIedit" en doe "connect to.."
@@ -204,8 +196,8 @@ Dit doe je best door de automatisch aangemaakte logfile te checken die je op vin
 De test is geslaagd als hier geen errors in staan
 
     C:\ExtADSch.log
+    
 | Nr test | Wat moet er getest worden | In orde? |
 | :--- | :--- | :--- |
-| 1 | Is de SCCM admin useraccount aangemaakt en zit hij in de domain admin group? | Ja/Nee |
 | 2 |Is de System Management container (voor SCCM) correct aangemaakt? | Ja/Nee |
 | 3 | Is het AD schema succesfully extended? | Ja/Nee |
