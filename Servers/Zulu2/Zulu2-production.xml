@@ -37,10 +37,11 @@
 			<protocol>https</protocol>
 			<loginautocomplete></loginautocomplete>
 			<ssl-certref>5dac6b19a9d7c</ssl-certref>
-			<althostnames></althostnames>
 			<dashboardcolumns>2</dashboardcolumns>
 			<webguicss>pfSense.css</webguicss>
 			<logincss>1e3f75;</logincss>
+			<port></port>
+			<max_procs>2</max_procs>
 		</webgui>
 		<disablenatreflection>yes</disablenatreflection>
 		<disablesegmentationoffloading></disablesegmentationoffloading>
@@ -68,6 +69,15 @@
 			<branch></branch>
 		</gitsync>
 		<pkg_repo_conf_path>/usr/local/share/pfSense/pkg/repos/pfSense-repo.conf</pkg_repo_conf_path>
+		<ssh>
+			<enable>enabled</enable>
+		</ssh>
+		<serialspeed>115200</serialspeed>
+		<primaryconsole>serial</primaryconsole>
+		<sshguard_threshold></sshguard_threshold>
+		<sshguard_blocktime></sshguard_blocktime>
+		<sshguard_detection_time></sshguard_detection_time>
+		<sshguard_whitelist></sshguard_whitelist>
 	</system>
 	<interfaces>
 		<wan>
@@ -595,6 +605,39 @@
 		</rule>
 		<rule>
 			<id></id>
+			<tracker>1572880021</tracker>
+			<type>pass</type>
+			<interface>opt3</interface>
+			<ipprotocol>inet</ipprotocol>
+			<tag></tag>
+			<tagged></tagged>
+			<max></max>
+			<max-src-nodes></max-src-nodes>
+			<max-src-conn></max-src-conn>
+			<max-src-states></max-src-states>
+			<statetimeout></statetimeout>
+			<statetype><![CDATA[keep state]]></statetype>
+			<os></os>
+			<protocol>tcp</protocol>
+			<source>
+				<address>192.168.2.2</address>
+			</source>
+			<destination>
+				<network>(self)</network>
+				<port>22</port>
+			</destination>
+			<descr><![CDATA[SSH to Firewall]]></descr>
+			<updated>
+				<time>1572880021</time>
+				<username>admin@192.168.2.2 (Local Database)</username>
+			</updated>
+			<created>
+				<time>1572880021</time>
+				<username>admin@192.168.2.2 (Local Database)</username>
+			</created>
+		</rule>
+		<rule>
+			<id></id>
 			<tracker>1572277962</tracker>
 			<type>pass</type>
 			<interface>opt3</interface>
@@ -630,6 +673,7 @@
 		<separator>
 			<wan></wan>
 			<lan></lan>
+			<opt3></opt3>
 		</separator>
 	</filter>
 	<shaper></shaper>
@@ -854,8 +898,8 @@
 		<forward_tls_upstream></forward_tls_upstream>
 	</unbound>
 	<revision>
-		<time>1572877528</time>
-		<description><![CDATA[admin@192.168.2.2 (Local Database): Saved system update settings.]]></description>
+		<time>1572880241</time>
+		<description><![CDATA[admin@192.168.2.2 (Local Database): /system_advanced_admin.php made unknown change]]></description>
 		<username>admin@192.168.2.2 (Local Database)</username>
 	</revision>
 	<cert>
