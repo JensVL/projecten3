@@ -43,12 +43,12 @@ Automatie is deels mogelijk door een voorgeconfigureerd XML bestand te laden in 
    3. Mount disk > pfSense-CE-2.4.4-RELEASE-p3-amd64.iso    
    4. Start VM > Doe de Installatie > Reboot en Unmount de ISO file  
 
-PfSense staat nu op de hardeschijf met de [Defaultconfiguration](https://docs.netgate.com/pfsense/en/latest/install/installing-pfsense.html#pfsense-default-configuration).  
+PfSense staat nu op de hardeschijf met de [Default configuration](https://docs.netgate.com/pfsense/en/latest/install/installing-pfsense.html#pfsense-default-configuration).  
 We moeten nu de firewall verder configureren via de shell menu of de WebGUI.
 
 ## 4. Hyper-V <a name="Hyper-V"></a>  
 
-Deze handleiding veronderstelt dat Hyper-V ingeschakelt is op het hostsysteem. Indien dit niet het geval is open een Powershell-venster met administratorprivileges, voer het volgende commando uit, en herstart hierna het hostsysteem:
+Deze handleiding veronderstelt dat Hyper-V ingeschakeld is op het hostsysteem. Indien dit niet het geval is open een Powershell-venster met administratorprivileges, voer het volgende commando uit, en herstart hierna het hostsysteem:
 
 `Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All`
 
@@ -89,19 +89,19 @@ Deze handleiding veronderstelt dat Hyper-V ingeschakelt is op het hostsysteem. I
 ### 4.4 Configuratie Virtuele Machine <a name="CMachine"></a>  
 
  1. Navigeer naar de **Instellingen** van de nieuwe virtuele machine.
- 2. Navigeer naar **Hardware toevoegen**, selecteer de optie **Netwerkadaptor**, en bevestig met **Toevoegen**.
+ 2. Navigeer naar **Hardware toevoegen**, selecteer de optie **Netwerkadapter**, en bevestig met **Toevoegen**.
  ![img10](img/Hyper-V/image10.png)
  3. Navigeer naar de nieuwe netwerkadapter, selecteer als virtuele switch **LAN**, en pas de wijzigingen toe.
  ![img11](img/Hyper-V/image11.png)
  4. Herhaal stappen **2.** en **3.** met virtuele switch **Host**.
- 5. Navigeer naar **Firmware** en rangschik de opstartvolgorde als volgt: *Hardeschijfstation > Dvd-station > WAN > LAN*. Pas de wijzigingen toe.
+ 5. Navigeer naar **Firmware** en rangschik de opstartvolgorde als volgt: *Hardeschijfstation > Dvd-station > WAN > LAN > Host*. Pas de wijzigingen toe.
  ![img23](img/Hyper-V/image23.png)
  6. Navigeer naar **Beveiliging**, schakel **Secure Boot** uit, en pas de wijzigingen toe.
  ![img24](img/Hyper-V/image24.png)
  
 ### 4.5 Installatie pfsense <a name="InstallatieP"></a>  
 
- 1. Verbind met de virtuele machine via **Actie > Verbindinging maken...** en **Start** de virtuele machine.
+ 1. Verbind met de virtuele machine via **Actie > Verbinding maken...** en **Start** de virtuele machine.
  2. Wacht terwijl de virtuele machine opstart van de ISO.
  ![img12](img/Hyper-V/image12.png)
  3. **Accepteer** de copyrightnotitie.
@@ -120,7 +120,7 @@ Deze handleiding veronderstelt dat Hyper-V ingeschakelt is op het hostsysteem. I
  ![img19](img/Hyper-V/image19.png)
  10. Wanneer gevraagd wordt om de VLANs op te zetten weiger door `n` in te geven en bevestig met enter.
  ![img20](img/Hyper-V/image20.png)
- 11. Waneer gevraagd wordt om de interfaces in te geven, geef `hn0` in voor **WAN**, `hn1` in voor **LAN**, en bevestig nadien met `y`. Bevestig steeds met enter.
+ 11. Waneer gevraagd wordt om de interfaces in te geven, geef `hn0` in voor **WAN**, `hn1` in voor **LAN**, `hn2` in voor **OPT1**, en bevestig nadien met `y`. Bevestig steeds met enter.
  <p align="center">
   <img src="img/Hyper-V/image21.png">
  </p>
@@ -158,7 +158,7 @@ Deze handleiding veronderstelt dat Hyper-V ingeschakelt is op het hostsysteem. I
  2. Rechtsklik op de **vEthernet (Host)** en kies **Eigenschappen.**
  ![img28](img/Hyper-V/image28.png)
  3. Ga op het tabblad **Netwerken** naar de optie **Internet protocol versie 4 (TCP/IPv4)** in de lijst en selecteer **Eigenschappen.**
- 4. Indien nodig selecteer de optie **Het volgend IP-adres gebruiken** om een statisch IP toe te wijzen. Geef als IP-adres een adres in dat in hetzelfde subnet ligt als het Host IP-adres dat de pfsense VM in de vorige stap heeft weergegeven (in mijn geval 192.168.3.1/24), alsook hetzelfde subnetmasker. De standaardgateway, alsook DNS-serveradressen, mogen worden leegelaten. Bevestig met **Ok** en **Sluiten.**
+ 4. Indien nodig selecteer de optie **Het volgend IP-adres gebruiken** om een statisch IP toe te wijzen. Geef als IP-adres een adres in dat in hetzelfde subnet ligt als het Host IP-adres dat de pfsense VM in de vorige stap heeft weergegeven (in mijn geval 192.168.3.1/24), alsook hetzelfde subnetmasker. De standaardgateway, alsook DNS-serveradressen, mogen worden leeggelaten. Bevestig met **Ok** en **Sluiten.**
 <p align="center">
   <img src="img/Hyper-V/image25.png">
 </p>
