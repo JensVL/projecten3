@@ -626,15 +626,16 @@
 				<network>(self)</network>
 				<port>22</port>
 			</destination>
+			<log></log>
 			<descr><![CDATA[SSH to Firewall]]></descr>
-			<updated>
-				<time>1572880021</time>
-				<username>admin@192.168.2.2 (Local Database)</username>
-			</updated>
 			<created>
 				<time>1572880021</time>
 				<username>admin@192.168.2.2 (Local Database)</username>
 			</created>
+			<updated>
+				<time>1572881653</time>
+				<username>admin@192.168.2.2 (Local Database)</username>
+			</updated>
 		</rule>
 		<rule>
 			<id></id>
@@ -676,7 +677,8 @@
 			<opt3></opt3>
 		</separator>
 	</filter>
-	<shaper></shaper>
+	<shaper>
+	</shaper>
 	<ipsec></ipsec>
 	<aliases>
 		<alias>
@@ -873,7 +875,8 @@
 		<period>10</period>
 	</widgets>
 	<openvpn></openvpn>
-	<dnshaper></dnshaper>
+	<dnshaper>
+	</dnshaper>
 	<unbound>
 		<dnssec></dnssec>
 		<active_interface>lo0</active_interface>
@@ -898,8 +901,8 @@
 		<forward_tls_upstream></forward_tls_upstream>
 	</unbound>
 	<revision>
-		<time>1572880241</time>
-		<description><![CDATA[admin@192.168.2.2 (Local Database): /system_advanced_admin.php made unknown change]]></description>
+		<time>1572881653</time>
+		<description><![CDATA[admin@192.168.2.2 (Local Database): Firewall: Rules - saved/edited a firewall rule.]]></description>
 		<username>admin@192.168.2.2 (Local Database)</username>
 	</revision>
 	<cert>
