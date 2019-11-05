@@ -1,13 +1,15 @@
 # Dit script zal eerst de prerequisites voor SCCM installeren / configureren en daarna SCCM zelf:
 # Elke stap wordt uitgelegd met zijn eigen comment
 
-############################################################################
-############################################################################ NOTE: Dit script manueel uitvoeren als RED\Administrator !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-############################################################################
-
 
 # VARIABLES:
-$VBOXdrive = "C:\Vagrant"
+# --------------------------------------------------------------------------------------------------------
+# VOOR INTEGRATIE:
+$VBOXdrive = "C:\Scripts_ESXI\Papa2"
+
+# VOOR VIRTUALBOX TESTING:
+# $VBOXdrive = "Z:"
+# --------------------------------------------------------------------------------------------------------
 
 $Username = "RED\Administrator"  # LET OP RED\Administrator ZAL SCCM INSTALLEREN EN ALLE RECHTEN EROP HEBBEN !
 $Password = ConvertTo-SecureString "Admin2019" -AsPlainText -Force

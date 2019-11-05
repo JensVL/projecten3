@@ -2,8 +2,13 @@
 # Elke stap wordt uitgelegd met zijn eigen comment
 
 # VARIABLES:
-$VBOXdrive = "C:\Vagrant"
-$Land = "eng-BE"
+# --------------------------------------------------------------------------------------------------------
+# VOOR INTEGRATIE:
+$VBOXdrive = "C:\Scripts_ESXI\Papa2"
+
+# VOOR VIRTUALBOX TESTING:
+# $VBOXdrive = "Z:"
+# --------------------------------------------------------------------------------------------------------
 
 ################################################################################################################## NOTE
 # ECHTE IP VOOR INTEGRATIE DEMO:
@@ -17,6 +22,7 @@ $Land = "eng-BE"
 # $CIDR = "27"
 ################################################################################################################## NOTE
 
+$Land = "eng-BE"
 $AdapterNaam = "LAN"
 
 $Username = "RED\Administrator" # LET OP: ZAL SCCM INSTALLEREN EN ALLE RECHTEN EROP HEBBEN !
@@ -66,6 +72,12 @@ $SCCMcredentials = New-Object System.Management.Automation.PSCredential($Usernam
 
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultUserName -Value $Username
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultPassword -Value "Admin2019"
+
+# 6.2) Voeg het volgende script toe als registry value:
+# RunOnce verwijderd deze instelling automatisch nadat het script klaar is met runnen
+Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce' -Name ResumeScript `
+         -Value "C:\Windows\system32\WindowsPowerShell\v1.0\Powershell.exe -executionpolicy bypass -file `"$VBOXdrive\3_SCCMPrereqInstall.ps1`""
+
 
 # 7) Papa2 toevoegen aan het bestaande domein als member server:
 Write-Host "Joining RED.local domain as a member server:" -ForeGroundColor "Green"
