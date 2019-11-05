@@ -7,7 +7,7 @@
 #------------------------------------------------------------------------------
 # Variables
 #------------------------------------------------------------------------------
-# Start-Transcript "C:\ScriptLogs\4_ADstructure.txt"
+Start-Transcript "C:\ScriptLogs\4_ADstructure.txt"
 Import-Module ActiveDirectory
 
 ## Organizational Units aanmaken
@@ -56,7 +56,7 @@ Write-Host "Create users for Organizational Units..." -ForeGroundColor "Green"
 
 $password=ConvertTo-SecureString "Administrator2019" -asPlainText -force
 
-<# Path wanneer je via een share werkt in VirtualBox en niet met vagrant 
+<# Path wanneer je via een share werkt in VirtualBox en niet met vagrant
 Import-Csv -Path "\\VBOXSVR\Scripts\ExtendADschema\users3.csv" | Foreach-Object {
 #>
 Import-Csv -Path "C:\vagrant\ExtendADschema\users3.csv" | ForEach-Object {
@@ -201,7 +201,7 @@ Add-ADGroupMember -Identity "CN=Directie,OU=Directie,DC=red,DC=local" -Members "
 Add-ADGroupMember -Identity "CN=Administratie,OU=Administratie,DC=red,DC=local" -Members "CN=Joachim,OU=Administratie,DC=red,DC=local", "CN=Tibo,OU=Administratie,DC=red,DC=local", "CN=Yngvar,OU=Administratie,DC=red,DC=local", "CN=Tim,OU=Administratie,DC=red,DC=local", "CN=Rik,OU=Administratie,DC=red,DC=local"
 Add-ADGroupMember -Identity "CN=IT_Administratie,OU=IT_Administratie,DC=red,DC=local" -Members "CN=Laurens,OU=IT_Administratie,DC=red,DC=local", "CN=Ferre,OU=IT_Administratie,DC=red,DC=local", "CN=Levi,OU=IT_Administratie,DC=red,DC=local", "CN=Aron,OU=IT_Administratie,DC=red,DC=local", "CN=Jens,OU=IT_Administratie,DC=red,DC=local"
 Add-ADGroupMember -Identity "CN=Verkoop,OU=Verkoop,DC=red,DC=local" -Members "CN=Matthias,OU=Verkoop,DC=red,DC=local", "CN=Robby,OU=Verkoop,DC=red,DC=local", "CN=Nathan,OU=Verkoop,DC=red,DC=local", "CN=Elias,OU=Verkoop,DC=red,DC=local", "CN=Alister,OU=Verkoop,DC=red,DC=local", "CN=Sean,OU=Verkoop,DC=red,DC=local"
-# Opmerking: Als je in een VM met een shared folder test, zou het kunnen dat je overal "CÃ©dric" eerst moet aanpassen naar "Cédric". 
+# Opmerking: Als je in een VM met een shared folder test, zou het kunnen dat je overal "CÃ©dric" eerst moet aanpassen naar "Cédric".
 Add-ADGroupMember -Identity "CN=Ontwikkeling,OU=Ontwikkeling,DC=red,DC=local" -Members "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local", "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local", "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local", "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local", "CN=Robin,OU=Ontwikkeling,DC=red,DC=local"
 
 # Managers per OU toekennen
@@ -472,4 +472,9 @@ New-ADComputer "ITAdministratie_005" -SamAccountName "ITAdmin005" -Path "CN=Comp
 # DisableNetworkadapters
 # Group Policy Management Editor > User Configuration > Policies > Administratieve Templates: Policy definitions > Network > Network Connections > Prohibit access to properties of a LAN connection > Disabled > Apply
 
-# Stop-Transcript
+# 5) Start het 999_PrepareADforSCCM.ps1 script als Administrator:
+Write-host "Running next script 4_ADSTRUCTURE.ps1 as admin:" -ForeGroundColor "Green"
+Start-Process powershell -Verb runAs -ArgumentList "$VBOXdrive\999_PrepareADforSCCM.ps1"
+
+
+Stop-Transcript

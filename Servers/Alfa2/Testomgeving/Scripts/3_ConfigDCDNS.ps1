@@ -7,6 +7,14 @@
 #------------------------------------------------------------------------------
 # Variables
 #------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------
+# VOOR INTEGRATIE:
+$VBOXdrive = "C:\Scripts_ESXI\Alfa2"
+
+# VOOR VIRTUALBOX TESTING:
+# $VBOXdrive = "Z:"
+# --------------------------------------------------------------------------------------------------------
+
 param(
     [string]$Bravo2IP    = "172.18.1.67", # DC2 / DNS2
     [string]$Charlie2IP  = "172.18.1.68", # Exchange Server
@@ -35,6 +43,9 @@ while ($true) {
 #------------------------------------------------------------------------------
 # Configure DNS
 #------------------------------------------------------------------------------
+Start-Transcript "C:\ScriptLogs\3_ConfigDCDNS.txt"
+
+
 # Fix adapters
 Write-Host ">>> Fixing DNS after ADDS"
 Set-DnsClientServerAddress -InterfaceAlias $wan_adapter_name -ResetServerAddresses
@@ -99,28 +110,16 @@ add_dns_record -record_name "November2" -record_zone_name "red.local" -record_ty
 add_dns_record -record_name "Oscar2" -record_zone_name "red.local" -record_type "A" -ipaddress $Oscar2IP
 add_dns_record -record_name "Papa2" -record_zone_name "red.local" -record_type "A" -ipaddress $Papa2IP
 
-# Add-DnsServerResourceRecordA -Name "mail" -ZoneName "red.local" -IPv4Address "$Charlie2IP"
-# Add-DnsServerResourceRecordMX -Name "mail" -MailExchange "mail.red.local" -ZoneName "red.local" -Preference 100
-# Add-DnsServerResourceRecordCName -Name "owa" -HostNameAlias "mail.red.local" -ZoneName "red.local"
-
-# Add-DnsServerResourceRecordA -Name "Delta2" -ZoneName "red.local" -IPv4Address "$Delta2IP"
-# Add-DnsServerResourceRecordA -Name "Kilo2" -ZoneName "red.local" -IPv4Address "$Kilo2IP"
-# Add-DnsServerResourceRecordA -Name "Lima2" -ZoneName "red.local" -IPv4Address "$Lima2IP"
-# Add-DnsServerResourceRecordA -Name "Mike2" -ZoneName "red.local" -IPv4Address "$Mike2IP"
-# Add-DnsServerResourceRecordA -Name "November2" -ZoneName "red.local" -IPv4Address "$November2IP"
-# Add-DnsServerResourceRecordA -Name "Oscar2" -ZoneName "red.local" -IPv4Address "$Oscar2IP"
-# Add-DnsServerResourceRecordA -Name "Papa2" -ZoneName "red.local" -IPv4Address "$Papa2IP"
-
 # Firewall uitzetten (want we gebruiken hardware firewall):
-# Write-Host ">>> Turning firewall off"
-# Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+ Write-Host ">>> Turning firewall off"
+ Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 
 # DNS forwarder instellen op Hogent DNS servers:
 Write-Host ">>> Set DNS forwarder to HoGent DNS"
 Add-DnsServerForwarder -IPAddress 193.190.173.1,193.190.173.2
 
 # 5) Start het 4_ADstructure.ps1 script als Administrator:
-# Write-host "Running next script 4_ADSTRUCTURE.ps1 as admin:" -ForeGroundColor "Green"
-# Start-Process powershell -Verb runAs -ArgumentList "$VBOXdrive\4_ADstructure.ps1"
+Write-host "Running next script 4_ADSTRUCTURE.ps1 as admin:" -ForeGroundColor "Green"
+Start-Process powershell -Verb runAs -ArgumentList "$VBOXdrive\4_ADstructure.ps1"
 
-# Stop-Transcript
+Stop-Transcript

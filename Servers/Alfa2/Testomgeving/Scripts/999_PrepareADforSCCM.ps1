@@ -8,7 +8,13 @@
 ############################################## BELANGRIJK #####################################################################################
 
 # VARIABLES:
-$VBOXdrive = "C:\Vagrant"
+# --------------------------------------------------------------------------------------------------------
+# VOOR INTEGRATIE:
+$VBOXdrive = "C:\Scripts_ESXI\Alfa2"
+
+# VOOR VIRTUALBOX TESTING:
+# $VBOXdrive = "Z:"
+# --------------------------------------------------------------------------------------------------------
 
 $Account = "RED\Administrator"
 
@@ -84,8 +90,6 @@ Copy-Item "$VBOXdrive\ExtendADschema" -Destination "C:\Users\Administrator\Deskt
 Write-Host "Extending AD Schema:" -ForeGroundColor "Green"
 Start-Process "C:\Users\Administrator\Desktop\ExtendADschema\extadsch.exe"
 
-# NOG STEEDS FAILED TO EXTEND AD SCHEMA ERROR Error 8224?
-# Oplossing was: Tweede DomainController stond niet aan. Deze moet aanstaan (voor replication redenen)
 # C:\ExtADSch.log check deze log file om te zien of extenden van het AD schema succesvol was
 
 Stop-Transcript

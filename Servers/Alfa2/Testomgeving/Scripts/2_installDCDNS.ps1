@@ -7,6 +7,13 @@
 #------------------------------------------------------------------------------
 # Variables
 #------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------
+# VOOR INTEGRATIE:
+$VBOXdrive = "C:\Scripts_ESXI\Alfa2"
+
+# VOOR VIRTUALBOX TESTING:
+# $VBOXdrive = "Z:"
+# --------------------------------------------------------------------------------------------------------
 param(
     [string]$land             = "eng-BE",
     [string]$local_ip         = "172.18.1.66",
@@ -18,10 +25,15 @@ param(
     [string]$lan_adapter_name = "LAN"
 )
 
+$username = "RED\Administrator"
+$password = "Admin2019"
 
 #------------------------------------------------------------------------------
 # Initial config
 #------------------------------------------------------------------------------
+Start-Transcript "C:\ScriptLogs\2_InstallDCDNS.txt"
+
+
 # Romance standard time = Brusselse tijd
 # Eerste commando zal tijd naar 24uur formaat instellen
 #   (eng zorgt dat taal op engels blijft maar regio komt op BE)
@@ -37,7 +49,7 @@ Write-host ">>> Changing NIC adapter names"
 $adaptercount=(Get-NetAdapter | measure).count
 if ($adaptercount -eq 1) {
     (Get-NetAdapter -Name "Ethernet") | Rename-NetAdapter -NewName $lan_adapter_name
-} 
+}
 elseif ($adaptercount -eq 2) {
     (Get-NetAdapter -Name "Ethernet") | Rename-NetAdapter -NewName $wan_adapter_name
     (Get-NetAdapter -Name "Ethernet 2") | Rename-NetAdapter -NewName $lan_adapter_name
@@ -65,19 +77,10 @@ $DSRM = ConvertTo-SecureString "Admin2019" -asPlainText -force
 Write-Host ">>> Configuring Administrator account"
 Set-LocalUser -Name Administrator -AccountNeverExpires -Password $DSRM -PasswordNeverExpires:$true -UserMayChangePassword:$true
 
-# 6.2) Vanaf dat ik met red/administrator was ingelogd had ik het probleem dat ik geen permissie had om de netwerkadapters te wijzigen.
-# De oplossing hiervoor is in gpedit.msc "User Account Control: Admin approval mode for the builtin Administrator account" te ENABLEN
-# Dit doe je in powershell met volgende command die de juiste registry instelling zal wijzigen:
-# De eerste command zorgt ervoor dat je je als admin niet steeds moet inloggen wanneer je wijzigingen wil doen:
-# set-itemproperty -Path "REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System" `
-#                 -name "ConsentPromptBehaviorAdmin" -value 0
-# Set-ItemProperty -Path "REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System" `
-#                 -Name "FilterAdministratorToken" -value 1
-
 #------------------------------------------------------------------------------
 # Install ADDS and promote to first domain controller of forest
 #------------------------------------------------------------------------------
-# 7) Aanmaken van ons nieuw domain:
+# Aanmaken van ons nieuw domain:
 #     Forestmode/DomainMode => 7 is = Windows Server 2016 (de oudste Windows Server versie in onze opstelling)
 #     DNS role laten aanmaken en DNSdelegation uitzetten om later onze eigen DNS server in te stellen
 #     Force forceert negeren van bevestigingen
@@ -100,6 +103,21 @@ if ("$is_RSAT_addstools_installed" -eq 'False') {
     Install-WindowsFeature RSAT-ADDS-Tools
 }
 
+# Sla doman admin username/password op als credentials en voeg de nodige properties aan de registry toe
+# om de sierver de mogelijkheid te geven een reboot te doen en daarna verder te gaan door het script:
+
+#  Voeg het script toe als registry value:
+# RunOnce verwijderd deze instelling automatisch nadat het script klaar is met runnen
+Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce' -Name ResumeScript `
+                -Value "C:\Windows\system32\WindowsPowerShell\v1.0\Powershell.exe -executionpolicy bypass -file `"$VBOXdrive\3_ConfigDCDNS.ps1`""
+
+# Registry waardes voor username/password en autologin instellen:
+# Deze zorgen ervoor dat het inloggen automatisch gebeurd met de credentials die in het vorige commando verzameld zijn.
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultUserName -Value $Username
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultPassword -Value $Password
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name ForceAutoLogon -Value 1
+
+
 $domaincontroller_installed=(Get-ADDomainController 2> $null)
 if (!"$domaincontroller_installed") {
     Write-Host ">>> Installing AD forest and adding Alfa2 as first DC"
@@ -110,7 +128,8 @@ if (!"$domaincontroller_installed") {
                   -DomainMode 7 `
                   -installDns:$true `
                   -createDNSDelegation:$false `
-                  -NoRebootOnCompletion:$true `
                   -SafeModeAdministratorPassword $DSRM `
                   -force:$true
 }
+
+Stop-Transcript
