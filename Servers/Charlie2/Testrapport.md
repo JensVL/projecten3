@@ -1,4 +1,11 @@
-# Testplan Charlie2 - Exchange Server
+# Testrapport Charlie2 - Exchange Server
+
+Auteur(s) testrapport: Kimberly De Clercq   
+
+Labo gemaakt door: Jannes Van Wonterghem en Joachim Van de Keere  
+Uitvoerder(s) test: Kimberly De Clercq  
+Uitgevoerd op: 02/11/2019 - 06/11/2019  
+Github commit: 8acb1ec   
 
 #### Uit te voeren stappen
 
@@ -6,29 +13,21 @@
 
 1. Installeer [Windows Server 2016](https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO) (opslag 50GB) met een Host-only adapter in het netwerk 172.18.1.64/27.
 2. Maak een gedeelde folder in virtualbox met de map "p3ops-1920-red\Servers\Alfa2\Testomgeving\Scripts" uit de GitHub-repository.
-
-4. Run het powershellscript '1_RUNFIRST.ps1' in de gedeelde schijf als administrator en bevestig de wijzigingen aan de 'execution policy' door de vraag met 'A' te beantwoorden.
-
-
+3. Run het powershellscript '1_RUNFIRST.ps1' in de gedeelde schijf als administrator en bevestig de wijzigingen aan de 'execution policy' door de vraag met 'A' te beantwoorden.
 
 ##### Charlie2 opzetten
 
 1. Installeer [Windows Server 2016](https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO) (opslag 50GB) met een Host-only adapter in hetzelfde netwerk 172.18.1.64/27 als Charlie2. Voor testen zonder integratie met het netwerk moet je ook een NAT adapter instellen.
 2. Voer de installatieschijf van [Exchange Server 2016 CU14](https://download.microsoft.com/download/f/4/e/f4e4b3a0-925b-4eff-8cc7-8b5932d75b49/ExchangeServer2016-x64-cu14.iso) in, schakel de server uit, wijzig de opstartvolgorde van de schijven zodat de harde schijf op de eerste plaats staat en start de server opnieuw op.
 3. Maak een gedeelde folder in virtualbox met de map "p3ops-1920-red\Servers\Charlie2\scripts" uit de GitHub-repository.
-
 4. Run het powershellscript '1_RenameServer.ps1' in de gedeelde schijf als administrator en bevestig de wijzigingen aan de 'execution policy' door de vraag met 'A' te beantwoorden.
-
 5. Open een browser op de server of op de host (dan moet je wel de dns-server instellen op Alfa2) en ga naar het Exchange-beheercentrum via https://mail.red.local/ecp. Log in met de login-gegevens van de AD-administrator. Selecteer de gewenste taal en tijdszone en ga verder.
-
 6. Selecteer in de linkerkolom 'servers' en klik op het potlood-icoon/wijzigen voor server Charlie2. Ga vervolgens naar 'DNS-zoekopdrachten'.
-
 7. Controleer of het correcte DNS-adres verschijnt en selecteer indien nodig de juiste netwerkadapter, zowel voor interne als externe zoekopdrachten zodat het ip-adres van de dns-server Alfa2 verschijnt. Sla vervolgens de wijzigingen op.
-
 
 ##### Test mail verzenden
 
-1. Surf naar https://mail.red.local/owa en log in met de gebruikersnaam van een willekeurige gebruiker en het wachtwoord "Administrator 2019". De lijst van actieve gebruikers vind je in het Exchange-beheerscentrum onder `geadresseerden`.
+1. Surf naar https://mail.red.local/owa en log in met de gebruikersnaam van een willekeurige gebruiker en het wachtwoord "Administrator 2019". De lijst van actieve gebruikers vind je in het Exchange-beheerscentrum onder 
 2. Verzend een mail naar een e-mailadres van een willekeurige andere gebruiker binnen het domein.
 3. Log in bij die andere gebruiker en controleer of de mail is aangekomen.
 
@@ -44,5 +43,26 @@ Controleer zeker ook volgende zaken:
 - Zit Charlie2 in het domein red.local?
   - Controleren in powershell via: Get-ADComputer -Filter *
 - Indien mail blijft vastzitten in draft
-  - 'Mail exchange transport' service herstarten
+  -  'Mail exchange transport' service herstarten
   - DNS-lookup controleren in Exchange-beheercentrum
+
+###### Bijkomende instructies bij uitvoeren testplan
+1. Adapters: adapter 1 = Host-only en adapter 2 = NAT
+2. Adapterinstellingen: 172.18.1.1/27 
+3. Kan niet pingen: adapterinstellingen controleren. Hierna lukt het om het domein te joinen (script 2).  
+4. Exchange Server op D-schijf (SATA-poort 1)
+5. Het script `1_RenameServer.ps1` heet `1_RenameServerVBox.ps1`. Dit is afhankelijk van VBox of ESXI. 
+6.  Als <https://mail.red.local/ecp> niet lukt, kan je ook <https://localhost/ecp> proberen  en klik op `Continue to this website (not recommended)`.
+7.  Aanmelden met `RED\Administrator` en wachtwoord `Admin2019`
+8.  Tijdzone `(UTC+01:00) Brussel, Kopenhagen, Madrid, Parijs` selecteren
+9.  Selecteer de juiste netwerkadapters met IP-adres `172.18.1.66`
+10. Als <https://mail.red.local/owa> niet lukt, kan je ook <https://localhost/owa> proberen. 
+11. Je vindt de actieve gebruikers terug in het Exchange-beheerscentrum onder `geadresseerden`. 
+12. Inloggen op Outlook met `RED\KimberlyDC` met wachtwoord `Administrator2019`
+
+Hieronder zie je een voorbeeld mail verzonden vanaf `KimberlyDC` naar `JoachimVDK@red.local` en naar `JannesVW@red.local`. 
+![Verzonden items](images/Testmail.JPG)  
+Na inloggen op het account van `JoachimVDK` zie je een inkomende e-mail. 
+![Postvak IN](images/OntvangenMail.JPG)
+
+Het testrapport is volledig geslaagd.  
