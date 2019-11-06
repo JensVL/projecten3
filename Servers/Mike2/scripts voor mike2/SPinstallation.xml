@@ -13,8 +13,7 @@
     <Setting Id="OFFICESERVERPREMIUM" Value="1" />
   </Package>
 
-  <PIDKEY Value="M692G-8N2JP-GG8B2-
-2W2P7-YY7J6"/>
+  <PIDKEY Value="M692G-8N2JP-GG8B2-2W2P7-YY7J6"/>
   <Setting Id="SERVERROLE" Value="APPLICATION"/>
   <Setting Id="USINGUIINSTALLMODE" Value="0"/>
   <Setting Id="SETUPTYPE" Value="CLEAN_INSTALL"/>
