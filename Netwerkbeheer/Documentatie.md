@@ -59,6 +59,7 @@
 ## Documentation per device
 
 ### On every router:
+
 - Set a hostname: 
     - `hostname RouterX`
 - Add an elevated access password:  
@@ -235,6 +236,7 @@
     - `passive-interface g0/0/0`
 
 ### On every switch:
+
 - Set a hostname: 
     - `hostname SwitchX`
 - Add an elevated access password:  
