@@ -40,3 +40,4 @@ https://docs.microsoft.com/en-us/powershell/module/netsecurity/get-netfirewallru
 https://docs.microsoft.com/en-us/powershell/module/activedirectory/get-addomain?view=winserver2012-ps
 https://docs.microsoft.com/en-us/powershell/module/exchange/users-and-groups/get-user?view=exchange-ps
 https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-timezone?view=powershell-6
+https://stackoverflow.com/questions/2085744/how-do-i-get-the-current-username-in-windows-powershell
