@@ -9,7 +9,7 @@ Een tweede Domain controller die eveneens dienst doet als tweede DNS-servervoor 
 	- DNSConfig script
 
 
-### Vagrant Windows box (Indien deze nog niet geïnstalleerd is)
+### Vagrant Windows box (Indien deze nog niet geïnstalleerd is en je met vagrant wilt werken)
 
 1. Zorg dat je de "gusztavvargadr/windows-server" box hebt van Vagrant. Verdere informatie over deze box kan je vinden op volgende link https://app.vagrantup.com/gusztavvargadr/boxes/windows-server
 
@@ -29,8 +29,12 @@ Een tweede Domain controller die eveneens dienst doet als tweede DNS-servervoor 
 
 ## 1_RUNFIRST script
 In dit script is de volgorde van de scripts waarin ze worden uitgevoerd, aangeroepen. Dit is dus geautomatiseerd.  
-1. 
-`Invoke-Command -ComputerName Server01 {Get-Credential red.local\Administrator}`  
+1. De computername testen.  
+`hostname`  
+	- Computername: Bravo2  
+2. Username testen.
+`username`
+	- Username: Administrator
 
 ## DNSInstall
 
