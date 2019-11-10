@@ -33,7 +33,7 @@ In dit script is de volgorde van de scripts waarin ze worden uitgevoerd, aangero
 `hostname`  
 	- Computername: Bravo2  
 2. Username testen.  
-`username`
+`whoami`
 	- Username: Administrator
 
 ## DNSInstall
