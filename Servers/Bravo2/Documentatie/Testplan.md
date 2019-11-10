@@ -43,52 +43,52 @@ Deze zijn afgestemd op Windows PowerShell.
 Daaronder staat het verwachte resultaat.
 Na het runnen van het script, geef volgende in:
 
-1. Het script past de tijdzone aan. <br/>
-     `Get-TimeZone` <br/>
-        - DisplayName: (UTC+01:00) Brussel, Kopenhagen, Madrid, Parijs <br/>
-     `Get-Culture` <br/>
-        - LCID: 2067 <br/>
-        - Name: nl-BE <br/>
-        - DisplayName: Nederlands (België) <br/>       
+1. Het script past de tijdzone aan.  
+     `Get-TimeZone`  
+        - DisplayName: (UTC+01:00) Brussel, Kopenhagen, Madrid, Parijs  
+     `Get-Culture`  
+        - LCID: 2067  
+        - Name: nl-BE  
+        - DisplayName: Nederlands (België)        
 
 2. De adapternaam wordt gewijzigd. Zowel voor LAN als NAT. Op deze server is het de bedoeling dat er alleen een host-only adapter is (LAN):  
      `Get-NetAdapter -Name "*"`<br/>
-    	- LAN<br/>
-		- NAT wanneer deze zichtbaar is, zal het commando om de adapter te disablen uit commentaar moeten gehaald worden uit het DNSConfig script.<br/>
+    	- LAN  
+		- NAT wanneer deze zichtbaar is, zal het commando om de adapter te disablen uit commentaar moeten gehaald worden uit het DNSConfig script.  
 
-3. Netwerkinstellingen controleren. Kijk hiervoor naar de LAN adapter. <br/>
-     `ipconfig`<br/>
-        - IP-address: 172.18.1.67 <br/>
-        - Subnetmask: 255.255.255.224 <br/>
-        - Default Gateway: 172.18.1.98 <br/>
-        - DNS:<br/>
-            - 172.18.1.66<br/>
-            - 172.18.1.67<br/>
+3. Netwerkinstellingen controleren. Kijk hiervoor naar de LAN adapter.  
+     `ipconfig`  
+        - IP-address: 172.18.1.67  
+        - Subnetmask: 255.255.255.224  
+        - Default Gateway: 172.18.1.98  
+        - DNS:  
+            - 172.18.1.66  
+            - 172.18.1.67  
  
  4. De DNS controleren.  
-	 `Get-DnsClientServerAddress` <br/>
-        - 172.18.1.66, 172.18.1.67 <br/>
+	 `Get-DnsClientServerAddress`  
+        - 172.18.1.66, 172.18.1.67  
  
- 5. Firewall status. <br/>
-	 `netsh advfirewall show private|public|domain` <br/>
-		- Verwachte uitkomst is "off" want er is een firewall geconfigureerd op het domein. <br/>
+ 5. Firewall status.  
+	 `netsh advfirewall show private|public|domain`  
+		- Verwachte uitkomst is "off" want er is een firewall geconfigureerd op het domein.  
  
  6. ADDS controle. Gaat testen of er wordt aangemeld met administrator, DNS geïnstalleerd is en of DSRM goed is ingesteld.  
-     `Test-ADDSDomainControllerInstallation -InstallDns -Credential (Get-Credential) -DomainName (Read-Host "Domain to promote into")` <br/>
-		- Er gaat gevraagd worden om de credentials in te geven. <br/>
-		- Nadien zal er gevraagd worden "Domain to promote into:". Met andere woorden hier gaat men het domein opgeven. In ons geval "red.local". <br/>
+     `Test-ADDSDomainControllerInstallation -InstallDns -Credential (Get-Credential) -DomainName (Read-Host "Domain to promote into")`  
+		- Er gaat gevraagd worden om de credentials in te geven.  
+		- Nadien zal er gevraagd worden "Domain to promote into:". Met andere woorden hier gaat men het domein opgeven. In ons geval "red.local".  
  
  7. Controle of domein "red.local" gejoind is.  
-     `Get-WmiObject -Class Win32_ComputerSystem` <br/>
-	 	- Domain: red.local <br/>
-		- Name: ns2 <br/>
+     `Get-WmiObject -Class Win32_ComputerSystem`  
+	 	- Domain: red.local  
+		- Name: ns2  
 
 ##  DNSConfig
 
- 1. Kijken of DNS goed is geconfigureerd. <br/>
-	 `Get-DnsClientServerAddress` <br/>
-	 	- Hier zouden de adapters moeten komen met het adres. <br/>
+ 1. Kijken of DNS goed is geconfigureerd.  
+	 `Get-DnsClientServerAddress`  
+	 	- Hier zouden de adapters moeten komen met het adres.  
 
- 2. Met het volgende commando gaat men de forward servers overlopen. Omdat het hier over meerdere gaat namelijk de Hogent servers, gaan we dit wegschrijen in een "txt" file. <br/>
-	 `Get-Content C:\scripts\servers.txt | Foreach-Object {get-dnsserverforwarder -computer $_}` <br/>
+ 2. Met het volgende commando gaat men de forward servers overlopen. Omdat het hier over meerdere gaat namelijk de Hogent servers, gaan we dit wegschrijen in een "txt" file.  
+	 `Get-Content C:\scripts\servers.txt | Foreach-Object {get-dnsserverforwarder -computer $_}`  
 		- De servernamen van Hogent worden in dit script verwacht.
