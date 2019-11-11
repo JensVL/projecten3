@@ -118,15 +118,14 @@ if(!(Get-SmbShare -Name ShareVerkoop -ea 0))
 vssadmin add shadowstorage /for=h: /on=h: /maxsize=2000mb
 #Hier komt ps code voor dagelijkse schadow copy te maken
 Import-Module -Name "ScheduledTasks"
-$Sta = New-ScheduledTaskAction -Execute "powershell" -Argument ".\ShadowCopy.ps1" -WorkingDirectory "C:\vagrant\provisioning"
+$Sta = New-ScheduledTaskAction -Execute "powershell" -Argument "-ExecutionPolicy Bypass Z:\ShadowCopy.ps1"
 $Stt = New-ScheduledTaskTrigger -Daily -At 5pm
 #Zorgt ervoor dat de taak met "highest privileges" wordt gexecuted.
-$Stp = New-ScheduledTaskPrincipal -UserId "vagrant" -RunLevel Highest
+$Stp = New-ScheduledTaskPrincipal -UserId "Administrator" -RunLevel Highest
 $StTaskName="ShadowCopy"
 $StDescript="Maakt een dagelijske shaduw kopie van AdminData"
 #Registreer de taak in de task scheduler 
 Register-ScheduledTask -TaskName $StTaskName -Action $Sta -Description $StDescript -Trigger $Stt -Principal $Stp
-	
 Start-sleep 10
 
 ###Setting share permissions 
