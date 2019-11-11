@@ -2,17 +2,19 @@
 $Username = "Administrator"
 $Password = "Admin2019"
 
+#Zorgt ervoor dat de server automatisch weer inlogt met de gebruiker Administrator met wachtwoord Admin2019 na de reboot
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultUserName -Value $Username
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultPassword -Value $Password
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogon -Value 1
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name ForceAutoLogon -Value 1
 
-    Import-Module -Name "ScheduledTasks"
-    $Sta = New-ScheduledTaskAction -Execute "powershell" -Argument "-ExecutionPolicy Bypass Z:\Lima2.ps1"
-    $Stt = New-ScheduledTaskTrigger -AtLogOn
-    $Stp = New-ScheduledTaskPrincipal -UserId "Administrator" -RunLevel Highest
-    $StTaskName = "ConfigLima2"
-    Register-ScheduledTask -TaskName $StTaskName -Action $Sta -Trigger $Stt -Principal $Stp -Force
+#Een sheduled task toevoegen die het script Lima2 uitvoert na de reboot.
+Import-Module -Name "ScheduledTasks"
+$Sta = New-ScheduledTaskAction -Execute "powershell" -Argument "-ExecutionPolicy Bypass Z:\Lima2.ps1"
+$Stt = New-ScheduledTaskTrigger -AtLogOn
+$Stp = New-ScheduledTaskPrincipal -UserId "Administrator" -RunLevel Highest
+$StTaskName = "ConfigLima2"
+Register-ScheduledTask -TaskName $StTaskName -Action $Sta -Trigger $Stt -Principal $Stp -Force
 
 # Parameters voor de netwerk adapter
 $local_ip = "172.18.1.67"
@@ -40,4 +42,3 @@ if ($temp -ne "red.local") { Add-Computer -DomainName red.local -NewName Lima2 -
 else { Write-Host("Nothing to do") }
 
 Restart-Computer
-
