@@ -113,23 +113,20 @@ if(!(Get-SmbShare -Name ShareVerkoop -ea 0))
 #Sta: Zorgt ervoor dat deze scheduled task het script ShadowCopy.ps1 uitvoert.
 #Stt: De trigger die ervoor zorgt dat het elke dag uitgevoerd wordt.
 #Op het einde wordt deze taak geregistreerd in de scheduler.
-$taskName = "ShadowCopy"
-if (Get-ScheduledTask | Where-Object {$_.TaskName -like $taskName})
-{
-    #Configure shadow storage voor adminData
-    vssadmin add shadowstorage /for=h: /on=h: /maxsize=2000mb
-    #Hier komt ps code voor dagelijkse schadow copy te maken
-    Import-Module -Name "ScheduledTasks"
-    $Sta = New-ScheduledTaskAction -Execute "powershell" -Argument ".\ShadowCopy.ps1" -WorkingDirectory "C:\vagrant\provisioning"
-    $Stt = New-ScheduledTaskTrigger -Daily -At 5pm
-    #Zorgt ervoor dat de taak met "highest privileges" wordt gexecuted.
-    $Stp = New-ScheduledTaskPrincipal -UserId "vagrant" -RunLevel Highest
-    $StTaskName="ShadowCopy"
-    $StDescript="Maakt een dagelijske shaduw kopie van AdminData"
-    #Registreer de taak in de task scheduler 
-    Register-ScheduledTask -TaskName $StTaskName -Action $Sta -Description $StDescript -Trigger $Stt -Principal $Stp
-}
 
+#Configure shadow storage voor adminData
+vssadmin add shadowstorage /for=h: /on=h: /maxsize=2000mb
+#Hier komt ps code voor dagelijkse schadow copy te maken
+Import-Module -Name "ScheduledTasks"
+$Sta = New-ScheduledTaskAction -Execute "powershell" -Argument ".\ShadowCopy.ps1" -WorkingDirectory "C:\vagrant\provisioning"
+$Stt = New-ScheduledTaskTrigger -Daily -At 5pm
+#Zorgt ervoor dat de taak met "highest privileges" wordt gexecuted.
+$Stp = New-ScheduledTaskPrincipal -UserId "vagrant" -RunLevel Highest
+$StTaskName="ShadowCopy"
+$StDescript="Maakt een dagelijske shaduw kopie van AdminData"
+#Registreer de taak in de task scheduler 
+Register-ScheduledTask -TaskName $StTaskName -Action $Sta -Description $StDescript -Trigger $Stt -Principal $Stp
+	
 Start-sleep 10
 
 ###Setting share permissions 
@@ -139,14 +136,12 @@ $permessiesOntwikkelingDeny = "red\Ontwikkeling","FullControl","Deny"
 #$permessiesITDeny = "red\IT_Administratie","FullControl","Deny"
 $permessiesDirectieDeny = "red\Directie","FullControl","Deny"
 
-
 $permessiesVerkoopAllow = "red\Verkoop","Write","Allow"
 $permessiesOntwikkelingAllow = "red\Ontwikkeling","Write","Allow"
 $permessiesITAllow = "red\IT_Administratie","FullControl","Allow"
 $permessiesDirectieAllow = "red\Directie","FullControl","Allow"
 
 $permessiesOntwikkelingRead = "red\Directie","Read","Allow"
-
 
 $acl1 = Get-Acl D:/Shares/VerkoopData
 $newRule1 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesVerkoopAllow)
@@ -161,8 +156,6 @@ $acl1.SetAccessRule($newRule3)
 Set-Acl D:/Shares/VerkoopData -AclObject $acl1
 $acl1.SetAccessRule($newRule4)
 Set-Acl D:/Shares/VerkoopData -AclObject $acl1
-
-
 
 Start-sleep 5
 
@@ -277,7 +270,6 @@ $acl8.SetAccessRule($newRule4)
 Set-Acl Q:/Shares/ShareVerkoop -AclObject $acl8
 Start-sleep 5
 
-
 #Geeft error -> powershell herkent dit niet als cmdlet functions
 #configureer maximum capaciteits quotas
 #New-FSRMQuotaTemplate -Name "AdminData Quota" -Size 100MB
@@ -285,7 +277,6 @@ Start-sleep 5
 #New-FSRMQuotaTemplate -Name "DirData Quota" -Size 100MB
 #New-FSRMQuotaTemplate -Name "OntwikkelingData Quota" -Size 200MB
 #New-FSRMQuotaTemplate -Name "ITData Quota" -Size 200MB
-
 
 ###Connecting to domain controller using PowerShell
 #winrm quickconfig
@@ -302,4 +293,3 @@ Start-sleep 5
 #Grant-SmbShareAccess -Name Loggs -AccountName AvalonSoft\Managers -AccessRight Read
 
 #New-SMBShare –Name "Shared" –Path "C:\Shared" ` -ChangeAccess RED\Verkoop`  -FullAccess "RED\Verkoop"
-
