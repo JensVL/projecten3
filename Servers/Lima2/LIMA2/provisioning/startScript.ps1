@@ -34,9 +34,7 @@ else { Write-Host("Nothing to do") }
 Set-DnsClientServerAddress -InterfaceAlias "LAN" -ServerAddresses($preferred_dns_ip)
 
 $test = Get-Credential
-# De host hernoemen naar Lima2
-if ($env:COMPUTERNAME -ne "Lima2") { Rename-Computer Lima2 }
-else { Write-Host("Nothing to do") }
+# De host hernoemen naar Lima2 en toevoegen aan het domein red.local
 $temp = (Get-WmiObject Win32_ComputerSystem).Domain
 if ($temp -ne "red.local") { Add-Computer -DomainName red.local -NewName Lima2 -Credential $test -Restart -Force }
 else { Write-Host("Nothing to do") }
