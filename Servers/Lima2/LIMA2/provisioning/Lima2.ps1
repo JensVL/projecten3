@@ -4,26 +4,25 @@ if (!((Get-WindowsFeature -Name File-Services)).Installed)
 	Install-WindowsFeature File-Services
 }
 
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted
+
 if (!((Get-WindowsFeature -Name File-Services)).Installed)
 {
 	Install-WindowsFeature –Name FS-Resource-Manager –IncludeManagementTools
 }
 
 Resize-Partition -DiskNumber 0 -PartitionNumber 2 -Size 30GB
-Resize-Partition -DiskNumber 0 -PartitionNumber 1 -Size 30GB
 
 #Disk 2 initiliseren. Anders kunnen er geen partities aangemaakt worden.
 Get-Disk 0 | Initialize-Disk
 
 #Alle partities aanmaken op disk 0 en deze direct formateren indien deze nog niet bestaan.
-$DriveD = Get-PSDrive | Select-Object Name
 if (!(Test-Path D:))
 {
 	New-Partition -DiskNumber 0 -Size 5GB -DriveLetter D
 	Format-Volume -DriveLetter D -FileSystem NTFS -NewFileSystemLabel VerkoopData -Confirm:$False
 }
 
-$DriveE = Get-PSDrive | Select-Object Name
 if (!(Test-Path E:))
 {
 	New-Partition -DiskNumber 0 -Size 5GB -DriveLetter E
@@ -34,37 +33,31 @@ if (!(Test-Path E:))
 Get-Disk 1 | Initialize-Disk
 
 #Alle partities aanmaken op disk 1 en deze direct formateren indien deze nog niet bestaan.
-$DriveF = Get-PSDrive | Select-Object Name
 if (!(Test-Path F:))
 {
 	New-Partition -DiskNumber 1 -Size 5GB -DriveLetter F
 	Format-Volume -DriveLetter F -FileSystem NTFS -NewFileSystemLabel ITData -Confirm:$False
 }
-$DriveG = Get-PSDrive | Select-Object Name
 if (!(Test-Path G:))
 {
 	New-Partition -DiskNumber 1 -Size 5GB -DriveLetter G
 	Format-Volume -DriveLetter G -FileSystem NTFS -NewFileSystemLabel DirData -Confirm:$False
 }
-$DriveH = Get-PSDrive | Select-Object Name
 if (!(Test-Path H:))
 {
 	New-Partition -DiskNumber 1 -Size 5GB -DriveLetter H
 	Format-Volume -DriveLetter H -FileSystem NTFS -NewFileSystemLabel AdminData -Confirm:$False
 }
-$DriveY = Get-PSDrive | Select-Object Name
 if (!(Test-Path Y:))
 {
 	New-Partition -DiskNumber 1 -Size 5GB -DriveLetter Y
 	Format-Volume -DriveLetter Y -FileSystem NTFS -NewFileSystemLabel HomeDirs -Confirm:$False
 }
-$DriveZ = Get-PSDrive | Select-Object Name
-if (!(Test-Path Z:))
+if (!(Test-Path P:))
 {
-	New-Partition -DiskNumber 1 -Size 5GB -DriveLetter Z
-	Format-Volume -DriveLetter Z -FileSystem NTFS -NewFileSystemLabel ProfileDirs -Confirm:$False
+	New-Partition -DiskNumber 1 -Size 5GB -DriveLetter P
+	Format-Volume -DriveLetter P -FileSystem NTFS -NewFileSystemLabel ProfileDirs -Confirm:$False
 }
-$DriveQ = Get-PSDrive | Select-Object Name
 if (!(Test-Path Q:))
 {
 	New-Partition -DiskNumber 1 -Size 5GB -DriveLetter Q
@@ -78,7 +71,7 @@ New-Item -ItemType directory -Path G:\Shares\DirData
 New-Item -ItemType directory -Path H:\Shares\AdminData
 New-Item -ItemType directory -Path Q:\Shares\ShareVerkoop
 New-Item -ItemType directory -Path Y:\Shares\HomeDirs
-New-Item -ItemType directory -Path Z:\Shares\ProfileDirs
+New-Item -ItemType directory -Path P:\Shares\ProfileDirs
 
 #Alle shares aanmaken indien deze nog niet bestaan.
 if(!(Get-SmbShare -Name VerkoopData -ea 0))
@@ -107,7 +100,7 @@ if(!(Get-SmbShare -Name HomeDirs -ea 0))
 }
 if(!(Get-SmbShare -Name ProfileDirs -ea 0))
 {
-	New-SmbShare -Name "ProfileDirs" -Path "Z:\Shares\ProfileDirs"  -ChangeAccess "red\IT_Administratie" -FullAccess "everyone"
+	New-SmbShare -Name "ProfileDirs" -Path "P:\Shares\ProfileDirs"  -ChangeAccess "red\IT_Administratie" -FullAccess "everyone"
 }
 if(!(Get-SmbShare -Name ShareVerkoop -ea 0))
 {
@@ -253,19 +246,19 @@ Set-Acl Y:/Shares/HomeDirs -AclObject $acl6
 
 Start-sleep 5
 
-$acl7 = Get-Acl Z:/Shares/ProfileDirs
+$acl7 = Get-Acl P:/Shares/ProfileDirs
 $newRule1 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesVerkoopAllow)
 $newRule2 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesITAllow)
 $newRule3 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesDirectieAllow)
 $newRule4 = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule($permessiesOntwikkelingAllow)
 $acl7.SetAccessRule($newRule1)
-Set-Acl Z:/Shares/ProfileDirs -AclObject $acl7
+Set-Acl P:/Shares/ProfileDirs -AclObject $acl7
 $acl7.SetAccessRule($newRule2)
-Set-Acl Z:/Shares/ProfileDirs -AclObject $acl7
+Set-Acl P:/Shares/ProfileDirs -AclObject $acl7
 $acl7.SetAccessRule($newRule3)
-Set-Acl Z:/Shares/ProfileDirs -AclObject $acl7
+Set-Acl P:/Shares/ProfileDirs -AclObject $acl7
 $acl7.SetAccessRule($newRule4)
-Set-Acl Z:/Shares/ProfileDirs -AclObject $acl7
+Set-Acl P:/Shares/ProfileDirs -AclObject $acl7
 
 Start-sleep 5
 
@@ -285,13 +278,13 @@ Set-Acl Q:/Shares/ShareVerkoop -AclObject $acl8
 Start-sleep 5
 
 
-
+#Geeft error -> powershell herkent dit niet als cmdlet functions
 #configureer maximum capaciteits quotas
-New-FSRMQuotaTemplate -Name "AdminData Quota" -Size 100MB
-New-FSRMQuotaTemplate -Name "VerkoopData Quota" -Size 100MB
-New-FSRMQuotaTemplate -Name "DirData Quota" -Size 100MB
-New-FSRMQuotaTemplate -Name "OntwikkelingData Quota" -Size 200MB
-New-FSRMQuotaTemplate -Name "ITData Quota" -Size 200MB
+#New-FSRMQuotaTemplate -Name "AdminData Quota" -Size 100MB
+#New-FSRMQuotaTemplate -Name "VerkoopData Quota" -Size 100MB
+#New-FSRMQuotaTemplate -Name "DirData Quota" -Size 100MB
+#New-FSRMQuotaTemplate -Name "OntwikkelingData Quota" -Size 200MB
+#New-FSRMQuotaTemplate -Name "ITData Quota" -Size 200MB
 
 
 ###Connecting to domain controller using PowerShell
