@@ -7,42 +7,58 @@
 
 ## Controleren dat alle volumes aangemaakt zijn
 
+Open Server Manager -> File and Storage Services -> Disks
+
+Klik op de disk met nummer 0
+* Controleren dat er 3 volumes aanwezig zijn op disk 0
+* Optioneel volume: 'C:' -> Wordt aangemaakt bij de installatie van de Windows Server
+* Controleren of volume 'D:' en 'E:' aangemaakt zijn op disk 0
+
+Klik op de disk met nummer 1
+* Controleren dat er 6 volumes aangemaakt zijn op disk 1
+* Controleren  dat  de volgende volumes aangemaakt zijn:
+* H:
+* F:
+* P:
+* Q:
+* Y:
+* G:
+
+## De File System Labels van de volumes controleren
+
 Open Server Manager -> File and Storage Services -> Volumes
 
-Disk1:
-1. 'C:' met label 'System'
-2. 'D:' met label 'VerkoopData'
-3. 'E:' met label 'OntwikkelingData'
-
-Disk2:
-1. 'F:' met label 'ITData'
-2. 'G:' met label 'DirData'
-3. 'H:' met label 'AdminData'
-4. 'Y:' met label 'HomeDirs'
-5. 'Z:' met label 'ProfileDirs'
-
-* Alle volumes zijn 
+* Volume: 'H:' met File System Label: 'AdminData'
+* Volume: 'F:' met File System Label: 'ITData'
+* Volume: 'P:' met File System Label: 'ProfileDirs'
+* Volume: 'Q:' met File System Label: 'ShareVerkoop'
+* Volume: 'D:' met File System Label: 'VerkoopData'
+* Volume: 'E:' met File System Label: 'OntwikkelingData'
+* Volume: 'Y:' met File System Label: 'HomeDirs'
+* Volume: 'G:' met File System Label: 'DirData'
 
 ## Controleren dat alle shares aangemaakt zijn
 
 Open Server Manager -> File and Storage Services -> Shares
 
-* Er zijn 6 shares
-De shares:
-1. AdminData
-2. DirData
-3. HomeDirs
-4. ITData
-5. ProfileDirs
-6. ShareVerkoop
+* Controleren dat er 8 shares in totaal zijn
+* Controleren dat de volgende shares aangemaakt zijn:
+* AdminData
+* DirData
+* HomeDirs
+* ITData
+* OntwikkelingData
+* ProfileDirs
+* shareVerkoop
+* VerkoopData
 
-## De schaduw kopie
+## De dagelijske schaduw kopie
 
 Open de Task Scheduler -> Task Scheduler (local) -> Task Scheduler Library
 
-* Controleren dat een nieuwe task is toegevoegd met de huidige naam 'TEST10'.
-* Deze taak heeft een trigger die om 5pm activeert en elke dag.
-* Om een snellte test uit te voeren kan je op de taak klikken en deze manueel uitvoeren.
+* Controleren dat een nieuwe task is toegevoegd met de naam 'ShadowCopy'
+* Deze taak heeft een trigger die elke dag om 17:00 geactiveerd wordt
+* Om een snellte test uit te voeren kan je op de taak klikken en deze manueel uitvoeren. Rechter muis klik op de taak en kies voor run.
 * Controleer volume AdminData. Dit volume bevat een nieuwe schaduw kopie. Dit kan je nazien door naar AdminData te gaan -> Properties -> Shadow Copies.
 * Het veld "Shadow copies of selected volume bevat een nieuw veld met de huidige tijd en datum.
 
