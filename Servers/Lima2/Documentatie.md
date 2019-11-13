@@ -3,8 +3,8 @@
 ## Creatie windows server 2019
 
 1. Download een Windows Server 2019 ISO van deze website: https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2019?filetype=ISO
-2. Open virtual box en maakt een nieuwe server aan en noem deze Lima2
-3. Adapter 1 aanpassen naar een host-only adapter
+2. Open virtual box en maak een nieuwe server aan en noem deze Lima2
+3. Adapter 1 aanpassen naar een host-only adapter 
 4. De server opstarten
 5. Account naam: Administrator met wachtwoord: Admin2019
 6. Sluit de server
@@ -15,8 +15,8 @@
 11. Na de installatie sluit de server
 12. Verwijder de optische schijf voor de guest additions
 13. Start de server op en voeg een gedeelde map toe. Dit is het pad naar de scripts: "p3ops-1920-red\Servers\Lima2\LIMA2\provisioning"
-14. Voor de volgende stap is er een domein controller nodig
-15. Voer het script "startScript" uit
+14. Start een domein controller op vb. Alpha2 en configureer deze volledig aan de hand van de Alpha2 scripts op github
+15. Voer het script "startScript" uit op Lima2
 16. Geef de credentials mee: Administrator en Admin2019
 
 ## De file server configureren

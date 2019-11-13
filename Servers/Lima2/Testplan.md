@@ -3,7 +3,7 @@
 ## De server naam en domein
 
 1. De server naam is Lima2.
-2. Lima2 is het domein auotmatisch gejoined.
+2. Lima2 is het domein automatisch gejoined.
 
 ## Controleren dat alle volumes aangemaakt zijn
 

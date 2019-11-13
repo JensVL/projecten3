@@ -6,10 +6,7 @@ if (!((Get-WindowsFeature -Name File-Services)).Installed)
 
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted
 
-if (!((Get-WindowsFeature -Name File-Services)).Installed)
-{
-	Install-WindowsFeature –Name FS-Resource-Manager –IncludeManagementTools
-}
+Install-WindowsFeature –Name FS-Resource-Manager –IncludeManagementTools
 
 Resize-Partition -DiskNumber 0 -PartitionNumber 2 -Size 30GB
 
@@ -269,13 +266,18 @@ $acl8.SetAccessRule($newRule4)
 Set-Acl Q:/Shares/ShareVerkoop -AclObject $acl8
 Start-sleep 5
 
-#Geeft error -> powershell herkent dit niet als cmdlet functions
 #configureer maximum capaciteits quotas
-#New-FSRMQuotaTemplate -Name "AdminData Quota" -Size 100MB
-#New-FSRMQuotaTemplate -Name "VerkoopData Quota" -Size 100MB
-#New-FSRMQuotaTemplate -Name "DirData Quota" -Size 100MB
-#New-FSRMQuotaTemplate -Name "OntwikkelingData Quota" -Size 200MB
-#New-FSRMQuotaTemplate -Name "ITData Quota" -Size 200MB
+#New-FSRMQuota -Name "AdminData Quota" -Size 100MB
+#New-FSRMQuota -Name "VerkoopData Quota" -Size 100MB
+#New-FSRMQuota -Name "DirData Quota" -Size 100MB
+#New-FSRMQuota -Name "OntwikkelingData Quota" -Size 200MB
+#New-FSRMQuota -Name "ITData Quota" -Size 200MB
+
+New-FSRMQuota -Path "H:\" -Size 100MB
+New-FSRMQuota -Path "D:\" -Size 100MB
+New-FSRMQuota -Path "G:\" -Size 100MB
+New-FSRMQuota -Path "E:\" -Size 200MB
+New-FSRMQuota -Path "F:\" -Size 200MB
 
 ###Connecting to domain controller using PowerShell
 #winrm quickconfig
