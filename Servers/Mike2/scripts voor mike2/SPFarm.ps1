@@ -1,16 +1,22 @@
-Add-PSSnapin microsoft.sharepoint.powershell
+Write-Host " - Sharepoint PowerShell cmdlets..."
+If ((Get-PsSnapin |?{$_.Name -eq "Microsoft.SharePoint.PowerShell"})-eq $null)
+{
+    Add-PsSnapin Microsoft.SharePoint.PowerShell | Out-Null
+}
+Start-SPAssignment -Global | Out-Null
 
 $password = ConvertTo-SecureString "Admin2019" -AsPlainText -Force
 
-$farmcredentials = (New-Object System.Management.Automation.PSCredential ($DOMAIN + "\" + "Administrator"),($password))
+$farmcredentials = (New-Object System.Management.Automation.PSCredential ("RED" + "\" + "Administrator"),($password))
 
 Write-Output "Creating the configuration database"
 New-SPConfigurationDatabase `
--DatabaseName "November2" `
--DatabaseServer "SPFarmAlias" `
+-DatabaseServer "NOVEMBER2" `
+-DatabaseName "SharePoint_Config" `
 -AdministrationContentDatabaseName "SP2019_Content_CentralAdministration" `
 -Passphrase  (ConvertTo-SecureString "Admin2019" -AsPlainText -force) `
--FarmCredentials $farmcredentials
+-FarmCredentials $farmcredentials `
+-localserverrole "SingleServerFarm"
 
 # config wizard tasks
  
@@ -32,5 +38,5 @@ Install-SPApplicationConten
 
 Write-Output "Create the Central Administration site"
 New-SPCentralAdministration `
--Port 11111 `
+-Port 8080 `
 -WindowsAuthProvider "NTLM"
