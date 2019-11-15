@@ -15,21 +15,20 @@ $filepath="$folderpath\SETUP.exe"
 Write-Host 'Deel 1...'
 $paswd="Admin2019" | ConvertTo-SecureString -AsPlainText -Force
 Write-Host 'Deel 2...'
-.$folderpath\SETUP.exe /Q /ACTION=Install /IACCEPTSQLSERVERLICENSETERMS /Features=SQLENGINE /INSTANCENAME=MSSQLSERVER `
-/INSTANCEID=MSSQLSERVER `
+.$folderpath\SETUP.exe /Q /ACTION=Install /IACCEPTSQLSERVERLICENSETERMS /Features=SQL /INSTANCENAME=MSSQLSERVER /INSTANCEID=MSSQLSERVER `
 /SQLSVCACCOUNT="RED\Administrator" `
-/SQLSVCPASSWORD=$paswd `
+/SQLSVCPASSWORD="$paswd" `
 /AGTSVCACCOUNT="RED\Administrator" `
-/AGTSVCPASSWORD=$paswd `
+/AGTSVCPASSWORD="$paswd" `
 /FTSVCACCOUNT="RED\Administrator" `
-/FTSVCPASSWORD=$paswd `
+/FTSVCPASSWORD="$paswd" `
 /SQLSysAdminAccounts = @('RED\Administrators') `
-/INSTALLSQLDATADIR=$folderpath\SQLServer `
-/SQLUSERDBDIR=$folderpath\Database `
-/SQLUSERDBLOGDIR=$folderpath\DBlogs `
-/SQLBACKUPDIR=$folderpath\Backup `
-/SQLTEMPDBDIR=$folderpath\TempDB `
-/SQLTEMPDBLOGDIR=$folderpath\TempDBlog `
+/INSTALLSQLDATADIR="$folderpath\SQLServer" `
+/SQLUSERDBDIR="$folderpath\Database" `
+/SQLUSERDBLOGDIR="$folderpath\DBlogs" `
+/SQLBACKUPDIR="$folderpath\Backup" `
+/SQLTEMPDBDIR="$folderpath\TempDB" `
+/SQLTEMPDBLOGDIR="$folderpath\TempDBlog" `
 /TCPENABLED="1" `
 /NPENABLED="1"
 
