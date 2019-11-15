@@ -7,8 +7,8 @@ Add-LocalGroupMember -Group "Administrators" -Member "RED\Papa2$"
 #$folderpath="C:\Users\Administrator.RED\Documents"
 #$filepath="$folderpath\Setup.exe"
 #Set-location -Path "$folderpath"
-#$Parms = " /qs /Install /ConfigurationFile=ConfigurationFile.ini -silent"
-#.\Setup.exe /ConfigurationFile=ConfigurationFile.ini
+#$Parms = " /qs /Install /ConfigurationFile=ConfigurationFileCe.ini -silent"
+#.\Setup.exe /ConfigurationFile=ConfigurationFileCe.ini
 
 $folderpath="C:\Users\Administrator.RED\Documents"
 $filepath="$folderpath\SETUP.exe"
