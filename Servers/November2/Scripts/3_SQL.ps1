@@ -26,7 +26,7 @@ Write-Host 'Deel 2...'
 /SQLSVCPASSWORD="$paswd" 
 /AGTSVCACCOUNT="RED\Administrator" 
 /AGTSVCPASSWORD="$paswd" 
-/FTSVACCOUNT="RED\Administrator" 
+/FTSVCACCOUNT="RED\Administrator" 
 /FTSVCPASSWORD="$paswd" 
 /SQLSYSADMINACCOUNTS="RED\Administrator" 
 /INSTALLSQLDATADIR=C:\SQLServer 
