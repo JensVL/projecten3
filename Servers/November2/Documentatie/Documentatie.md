@@ -44,14 +44,75 @@ Hierdoor zal de server gerestart worden nadat het in het domein is toegevoegd.
 
 De server Papa2 moet adminrechten krijgen dus voegen we een member Papa2 toe aan de admin groep.
 
-### Installeer Microsoft SQL Server 2017
+### Basis configuratie
+- Configureer de basis configuratie via de gui.
 
-- Opmerking: Zorg ervoor dat November2 in het domein red.local zit voordat Sql en SSMS worden geïnstalleerd.
+#### AUTOMATISATIE
+- De basis configuratie van de server wordt geconfigureerd door scripts 1_hostname.ps1 en 2_settings.ps1
 
-Zet de SQLServer2017.exe op het bureaublad (andere locatie werkt ook mits aanpassing in het script).
-Voer het script 3_SQL.ps1 uit. Config kan aangepast worden via ConfigurationFile, bestandslocaties mogelijk ook.
 
-### Installeer SQL Server Management Studio
+### Installeer Microsoft SQL Server Management Studio
+- Voer de SMSS-ENU-setup.exe uit en installeer.
 
-Zet de SSMS.exe op het bureaublad (andere locatie werkt ook mits aanpassing in het script).
-Voer het script 4_SSMS.ps1 uit. Bestandslocaties kunnen gewijzigd worden in het script.
+#### AUTOMATISATIE
+- Voer het script SSMS.ps1 uit. Variablen kunnen verandert worden op basis van de file locaties.
+
+
+### Installatie Microsoft SQL Server 2017
+BELANGRIJK: November2 moet in het domein zitten voordat de sql geÃ¯nstalleerd wordt. 
+
+
+Zet de SETUP.exe lokaal op de pc (Op het Documents bv). Hierna druk op setup en volg de pdf (van sql vak windows server).
+
+Opmerkingen bij de installatie volgens de pdf van olod "Windows server":
+- Feature Selection: Alleen database/analysis services zijn nodig
+- Database Engine Configuration: Verwissel naar mixed mode -> Het passwoord is "Project2019"
+
+#### AUTOMATISATIE (werkt nog niet)
+- Installeer SQL Server met de ConfigurationFile.ini, dit bevat alles van een werkende SQL Server op het red.local domein. Open de setup.exe, ga naar de tab "Advanced" en kies "Install based on configuration file"
+
+### SQL SETUP
+- Open "SQL Server Configuration Manager" in het Start Menu.
+- Zorg er zeker voor dat bij SQL Server Services al deze Services runnen!!!
+- Zorg er voor dat TCP/IP en mogelijks andere protocols Enabled zijn!!! Bij SQL Native... Configuration, SQL Server.... Check dit zeker!
+
+- Klik bij SQL Server Services rechts op âSQL Server (MSSQLSERVER)â.
+- Selecteer âPropertiesâ.
+- Selecteer de âFILESTREAMâ tab en zorg ervoor dat alle opties aangevinkt staan.
+- Bij het tablad "Services" duid je bij Start Mode "Automatic" aan.
+- Klik op âOKâen sluit âSQL Server Configuration Managerâ.
+
+
+- Open "Microsoft SQL Server Management Studio" in het Start Menu.
+- Verbind door Windows Authentication met je SQL Server.
+- Bovenaan rechtsklik op je Server -> Properties.
+- In het nieuwe venster klik op "Security".
+- Zorg er zeker voor dat "SQL Server and Windows Authentication Mode" is gekozen!!!
+
+
+- Klik op "Connection" en selecteer "Allow remote connections on this server".
+- Sla deze instellingen op.
+
+### Aanmaken DB en User voor Delta2
+- In "Microsoft SQL Server Management Studio", rechtsklik "Databases" en klik op "New Database".
+- Vul bij de Database Name "Website" in klik op Ok. De Database wordt aangemaakt.
+
+
+- Klik op "Security", rechtsklik op "Logins" en klik op "New Login".
+- Vul bij "Login Name" "Website" in en selecteer "SQL Server Authentication". Kies als Password "Admin2018".
+- Deselecteer "Enforce Password Policy" zodat SQL Server niet vraagt om nieuwe wachtwoord aan te maken bij login.
+
+
+- Klik links op "User Mapping" en selecteer het vakje naast de database "Website". Klik onderaan ook DB_OWNER aan!!!.
+
+- Klik op "OK" en de Gebruiker wordt aangemaakt.
+- Deze gebruiker kan nu gebruikt worden door de Delta2 server!
+
+### Aanmaken DB en User voor Mike2
+- In "Microsoft SQL Server Management Studio", Klik op "Security".
+- Rechtsklik op de domein user ex. RED\Administrator.
+- Deselecteer "Enforce Password Policy" zodat SQL Server niet vraagt om nieuwe wachtwoord aan te maken bij login.
+- Klik links op "User Mapping". Klik onderaan op DB_OWNER, DBCreator!!
+- Klik op "OK" en de Gebruiker wordt gewijzigd.
+- Deze gebruiker kan nu gebruikt worden door de Mike2 server!
+
