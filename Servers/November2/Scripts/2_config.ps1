@@ -1,7 +1,7 @@
 Write-Host 'Setting IP configuration'
 #IP config
 $ip = "172.18.1.4"
-$defaultgateway = "172.18.1.1"
+$defaultgateway = "172.18.1.7"
 $prefix = "26"
 $ipalfa = "172.18.1.66"
 $ipbravo = "172.18.1.67"
