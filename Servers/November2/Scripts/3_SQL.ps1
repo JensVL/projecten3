@@ -2,16 +2,16 @@
 Add-LocalGroupMember -Group "Administrators" -Member "RED\Administrator"
 Add-LocalGroupMember -Group "Administrators" -Member "RED\Papa2$"
 
-#Write-Host 'Installatie SQL Server 2017'
+Write-Host 'Installatie SQL Server 2017'
 #Installatie SQL Server 2017
-#$folderpath="C:\Users\Administrator.RED\Documents"
-#$filepath="$folderpath\Setup.exe"
-#$Parms = " /qs /Install /ConfigurationFile=ConfigurationFileCe.ini"
-#./Setup.exe /ConfigurationFile=ConfigurationFileCe.ini
-#Write-Host 'Done'
-#Restart-Computer
+$folderpath="C:\Users\Administrator.RED\Documents"
+$Parms = " /qs /Install /ConfigurationFile=ConfigurationFileCe.ini"
+.$folderpath/Setup.exe /ConfigurationFile=ConfigurationFileCe.ini
+Write-Host 'Done'
+Restart-Computer
 
 
+*/
 $folderpath="C:\Users\Administrator.RED\Documents"
 $filepath="$folderpath\SETUP.exe"
 Write-Host 'Deel 1...'
@@ -35,4 +35,4 @@ Write-Host 'Deel 2...'
 /NPENABLED="1"
 
 Write-Host 'Done'
-
+/*
