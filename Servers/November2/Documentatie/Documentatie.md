@@ -76,11 +76,11 @@ Opmerkingen bij de installatie volgens de pdf van olod "Windows server":
 - Zorg er zeker voor dat bij SQL Server Services al deze Services runnen!!!
 - Zorg er voor dat TCP/IP en mogelijks andere protocols Enabled zijn!!! Bij SQL Native... Configuration, SQL Server.... Check dit zeker!
 
-- Klik bij SQL Server Services rechts op âSQL Server (MSSQLSERVER)â.
-- Selecteer âPropertiesâ.
-- Selecteer de âFILESTREAMâ tab en zorg ervoor dat alle opties aangevinkt staan.
+- Klik bij SQL Server Services rechts op SQL Server (MSSQLSERVER).
+- Selecteer Properties.
+- Selecteer de FILESTREAM tab en zorg ervoor dat alle opties aangevinkt staan.
 - Bij het tablad "Services" duid je bij Start Mode "Automatic" aan.
-- Klik op âOKâen sluit âSQL Server Configuration Managerâ.
+- Klik op OK en sluit SQL Server Configuration Manager.
 
 
 - Open "Microsoft SQL Server Management Studio" in het Start Menu.
@@ -99,7 +99,7 @@ Opmerkingen bij de installatie volgens de pdf van olod "Windows server":
 
 
 - Klik op "Security", rechtsklik op "Logins" en klik op "New Login".
-- Vul bij "Login Name" "Website" in en selecteer "SQL Server Authentication". Kies als Password "Admin2018".
+- Vul bij "Login Name" "Website" in en selecteer "SQL Server Authentication". Kies als Password "Admin2019".
 - Deselecteer "Enforce Password Policy" zodat SQL Server niet vraagt om nieuwe wachtwoord aan te maken bij login.
 
 
