@@ -12,11 +12,29 @@ Add-LocalGroupMember -Group "Administrators" -Member "RED\Papa2$"
 
 $folderpath="C:\Users\Administrator.RED\Documents"
 $filepath="$folderpath\SETUP.exe"
+Write-Host 'Deel 1...'
 $paswd="Admin2019" | ConvertTo-SecureString -AsPlainText -Force
-.$folderpath\SETUP.exe /Q /ACTION=Install /IACCEPTSQLSERVERLICENSETERMS /Features=SQL /INSTANCENAME="MSSQLSERVER" /INSTANCEID="MSSQLSERVER" /SQLSVCACCOUNT="RED\Administrator" `
-/SQLSVCPASSWORD="$paswd" /AGTSVCACCOUNT="RED\Administrator" /AGTSVCPASSWORD="$paswd" /FTSVACCOUNT="RED\Administrator" /FTSVCPASSWORD="$paswd" `
-/SQLSYSADMINACCOUNTS="RED\Administrator" /INSTALLSQLDATADIR=C:\SQLServer /SQLUSERDBDIR="C:\Database" /SQLUSERDBLOGDIR="C:\DBlogs" `
-/SQLBACKUPDIR="C:\Backup" /SQLTEMPDBDIR="C:\TempDB" /SQLTEMPDBLOGDIR="C:\TempDBlog" `
+Write-Host 'Deel 2...'
+.$folderpath\SETUP.exe 
+/Q 
+/ACTION=Install 
+/IACCEPTSQLSERVERLICENSETERMS 
+/Features=SQLENGINE 
+/INSTANCENAME=MSSQLSERVER 
+/INSTANCEID=MSSQLSERVER 
+/SQLSVCACCOUNT="RED\Administrator" 
+/SQLSVCPASSWORD="$paswd" 
+/AGTSVCACCOUNT="RED\Administrator" 
+/AGTSVCPASSWORD="$paswd" 
+/FTSVACCOUNT="RED\Administrator" 
+/FTSVCPASSWORD="$paswd" 
+/SQLSYSADMINACCOUNTS="RED\Administrator" 
+/INSTALLSQLDATADIR=C:\SQLServer 
+/SQLUSERDBDIR="C:\Database" 
+/SQLUSERDBLOGDIR="C:\DBlogs" 
+/SQLBACKUPDIR="C:\Backup" 
+/SQLTEMPDBDIR="C:\TempDB" 
+/SQLTEMPDBLOGDIR="C:\TempDBlog" 
 /TCPENABLED="1" `
 /NPENABLED="1"
 
