@@ -15,9 +15,7 @@ $filepath="$folderpath\SETUP.exe"
 Write-Host 'Deel 1...'
 $paswd="Admin2019" | ConvertTo-SecureString -AsPlainText -Force
 Write-Host 'Deel 2...'
-.$folderpath\SETUP.exe /Q /ACTION=Install /IACCEPTSQLSERVERLICENSETERMS `
-/Features=SQLENGINE `
-/INSTANCENAME=MSSQLSERVER `
+.$folderpath\SETUP.exe /Q /ACTION=Install /IACCEPTSQLSERVERLICENSETERMS /Features=SQLENGINE /INSTANCENAME=MSSQLSERVER `
 /INSTANCEID=MSSQLSERVER `
 /SQLSVCACCOUNT="RED\Administrator" `
 /SQLSVCPASSWORD=$paswd `
