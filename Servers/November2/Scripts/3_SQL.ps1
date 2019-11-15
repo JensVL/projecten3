@@ -5,10 +5,10 @@ Add-LocalGroupMember -Group "Administrators" -Member "RED\Papa2$"
 Write-Host 'Installatie SQL Server 2017'
 #Installatie SQL Server 2017
 $folderpath="C:\Users\Administrator.RED\Documents"
-$Parms = " /qs /Install /ConfigurationFile=ConfigurationFileCe.ini"
-.$folderpath/Setup.exe /ConfigurationFile=ConfigurationFileCe.ini
-Write-Host 'Done'
-Restart-Computer
+$filepath="$folderpath\Setup.exe"
+Set-location -Path "$folderpath"
+$Parms = " /qs /Install /ConfigurationFile=ConfigurationFile.ini -silent"
+.\Setup.exe /ConfigurationFile=ConfigurationFile.ini
 
 
 
