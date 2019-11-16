@@ -10,7 +10,7 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 
 #Een sheduled task toevoegen die het script Lima2 uitvoert na de reboot.
 Import-Module -Name "ScheduledTasks"
-$Sta = New-ScheduledTaskAction -Execute "powershell" -Argument "-ExecutionPolicy Bypass Z:\Lima2.ps1"
+$Sta = New-ScheduledTaskAction -Execute "powershell" -Argument "-ExecutionPolicy Bypass C:\Scripts_ESXI\Lima2\Lima2.ps1"
 $Stt = New-ScheduledTaskTrigger -AtLogOn
 $Stp = New-ScheduledTaskPrincipal -UserId "Administrator" -RunLevel Highest
 $StTaskName = "ConfigLima2"
@@ -33,10 +33,8 @@ else { Write-Host("Nothing to do") }
 # DNS server instellen
 Set-DnsClientServerAddress -InterfaceAlias "LAN" -ServerAddresses($preferred_dns_ip)
 
-$test = Get-Credential
+$Credentials = Get-Credential
 # De host hernoemen naar Lima2 en toevoegen aan het domein red.local
-$temp = (Get-WmiObject Win32_ComputerSystem).Domain
-if ($temp -ne "red.local") { Add-Computer -DomainName red.local -NewName Lima2 -Credential $test -Restart -Force }
-else { Write-Host("Nothing to do") }
+Add-Computer -DomainName red.local -NewName Lima2 -Credential $Credentials -Restart -Force }
 
 Restart-Computer

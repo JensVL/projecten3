@@ -4,9 +4,7 @@ if (!((Get-WindowsFeature -Name File-Services)).Installed)
 	Install-WindowsFeature File-Services
 }
 
-Set-ExecutionPolicy -ExecutionPolicy Unrestricted
-
-Install-WindowsFeature –Name FS-Resource-Manager –IncludeManagementTools
+Install-WindowsFeature -Name FS-Resource-Manager -IncludeManagementTools
 
 Resize-Partition -DiskNumber 0 -PartitionNumber 2 -Size 30GB
 
@@ -115,7 +113,7 @@ if(!(Get-SmbShare -Name ShareVerkoop -ea 0))
 vssadmin add shadowstorage /for=h: /on=h: /maxsize=2000mb
 #Hier komt ps code voor dagelijkse schadow copy te maken
 Import-Module -Name "ScheduledTasks"
-$Sta = New-ScheduledTaskAction -Execute "powershell" -Argument "-ExecutionPolicy Bypass Z:\ShadowCopy.ps1"
+$Sta = New-ScheduledTaskAction -Execute "powershell" -Argument "-ExecutionPolicy Bypass C:\Scripts_ESXI\Lima2\ShadowCopy.ps1"
 $Stt = New-ScheduledTaskTrigger -Daily -At 5pm
 #Zorgt ervoor dat de taak met "highest privileges" wordt gexecuted.
 $Stp = New-ScheduledTaskPrincipal -UserId "Administrator" -RunLevel Highest
@@ -278,6 +276,9 @@ New-FSRMQuota -Path "D:\" -Size 100MB
 New-FSRMQuota -Path "G:\" -Size 100MB
 New-FSRMQuota -Path "E:\" -Size 200MB
 New-FSRMQuota -Path "F:\" -Size 200MB
+
+#Firewall uitzetten
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 
 ###Connecting to domain controller using PowerShell
 #winrm quickconfig
