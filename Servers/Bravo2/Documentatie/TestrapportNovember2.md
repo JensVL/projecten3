@@ -33,9 +33,7 @@ Alternatieve testmethode:
 ![Firewall](images/firewall.PNG)  
 
 ## TestConfigNovember2 (powershell)
-### Check-name
+### Check-name, Check-ip-settings, Check-firewall
 
-### Check-ip-settings
-
-### Check-firewall
+![AutomatedTests](images/testen.PNG)  
 
