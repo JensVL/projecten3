@@ -5,29 +5,24 @@ Auteurs: Arno Van Nieuwenhove & Levi Goessens
 ## Testplan
 
 ### Resultaten naam server en domein
-1.  
-2.  
-3.  
+
+- Naam van server is aangepast naar "November2" maar domein joinen werkt niet.
 
 ### Resultaten Netwerksettings
 1.  
 2.  
 3.  
-4.  
+4.
+5.  
   
 Alternatieve testmethode:  
-1.  
-2.  
-3.  
+
+-    
   
 ### Resultaten correcte SQL Server Installatie
 1.  
 2.  
 3.  
-4.  
-5.  
-6.  
-7.  
   
 ### Resultaten testen firewall
 1.  
