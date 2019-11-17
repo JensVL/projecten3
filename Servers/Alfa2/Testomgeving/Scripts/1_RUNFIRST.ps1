@@ -9,7 +9,7 @@
 $VBOXdrive = "C:\Scripts_ESXI\Alfa2"
 
 # VOOR VIRTUALBOX TESTING:
-# $VBOXdrive = "Z:"
+#$VBOXdrive = "Z:"
 # --------------------------------------------------------------------------------------------------------
 $username = "Administrator"
 $password = "Admin2019"
@@ -35,6 +35,7 @@ Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce'
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultUserName -Value $Username
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultPassword -Value $Password
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name ForceAutoLogon -Value 1
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogon -Value 1
 
 # 2) Rename de DC van zijn default naam naar alfa2:
 # -Force zal confirmation dialog boxes negeren

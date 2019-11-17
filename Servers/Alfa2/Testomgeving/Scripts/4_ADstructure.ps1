@@ -7,6 +7,12 @@
 #------------------------------------------------------------------------------
 # Variables
 #------------------------------------------------------------------------------
+# VOOR INTEGRATIE:
+$VBOXdrive = "C:\Scripts_ESXI\Alfa2"
+
+# VOOR VIRTUALBOX TESTING:
+#$VBOXdrive = "Z:"
+
 Start-Transcript "C:\ScriptLogs\4_ADstructure.txt"
 Import-Module ActiveDirectory
 
@@ -59,7 +65,7 @@ $password=ConvertTo-SecureString "Administrator2019" -asPlainText -force
 <# Path wanneer je via een share werkt in VirtualBox en niet met vagrant
 Import-Csv -Path "\\VBOXSVR\Scripts\ExtendADschema\users3.csv" | Foreach-Object {
 #>
-Import-Csv -Path "C:\vagrant\ExtendADschema\users3.csv" | ForEach-Object {
+Import-Csv -Path "$VBOXdrive\ExtendADschema\users3.csv" | ForEach-Object {
     $sambaname=$_.SamAccountName
 
     $user_exists=(([ADSISearcher] "(SamAccountName=$sambaname)").FindOne())
@@ -401,8 +407,6 @@ New-ADComputer "ITAdministratie_002" -SamAccountName "ITAdmin002" -Path "CN=Comp
 New-ADComputer "ITAdministratie_003" -SamAccountName "ITAdmin003" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "CN=Levi,OU=IT_Administratie,DC=red,DC=local"
 New-ADComputer "ITAdministratie_004" -SamAccountName "ITAdmin004" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "CN=Aron,OU=IT_Administratie,DC=red,DC=local"
 New-ADComputer "ITAdministratie_005" -SamAccountName "ITAdmin005" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Jens,OU=IT_Administratie,DC=red,DC=local"
-
-<# Mag waarschijnlijk weg, wordt bij AGDLP_PERMISSIONS aangemaakt
 
 # Roaming profiles
 # Write-Host "Create a shared folder for roaming profiles..." -ForeGroundColor "Green"

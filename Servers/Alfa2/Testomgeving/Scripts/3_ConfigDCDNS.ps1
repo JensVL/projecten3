@@ -12,21 +12,19 @@
 $VBOXdrive = "C:\Scripts_ESXI\Alfa2"
 
 # VOOR VIRTUALBOX TESTING:
-# $VBOXdrive = "Z:"
+#$VBOXdrive = "Z:"
 # --------------------------------------------------------------------------------------------------------
-
-param(
-    [string]$Bravo2IP    = "172.18.1.67", # DC2 / DNS2
-    [string]$Charlie2IP  = "172.18.1.68", # Exchange Server
-    [string]$Delta2IP    = "172.18.1.69", # IIS Webserver
-    [string]$Kilo2IP     = "172.18.1.1", # DHCP Server
-    [string]$Lima2IP     = "172.18.1.2", # File Server
-    [string]$Mike2IP     = "172.18.1.3", # Intranet Sharepoint Server
-    [string]$November2IP = "172.18.1.4", # SQL Server
-    [string]$Oscar2IP    = "172.18.1.5", # Monitoring Server
-    [string]$Papa2IP     = "172.18.1.6", # SCCM Server
+    [string]$Bravo2IP    = "172.18.1.67" # DC2 / DNS2
+    [string]$Charlie2IP  = "172.18.1.68" # Exchange Server
+    [string]$Delta2IP    = "172.18.1.69" # IIS Webserver
+    [string]$Kilo2IP     = "172.18.1.1" # DHCP Server
+    [string]$Lima2IP     = "172.18.1.2" # File Server
+    [string]$Mike2IP     = "172.18.1.3" # Intranet Sharepoint Server
+    [string]$November2IP = "172.18.1.4" # SQL Server
+    [string]$Oscar2IP    = "172.18.1.5" # Monitoring Server
+    [string]$Papa2IP     = "172.18.1.6" # SCCM Server
     [string]$wan_adapter_name = "NAT"
-)
+
 
 #------------------------------------------------------------------------------
 # Wait for AD services to become available
@@ -123,8 +121,14 @@ Write-host "Running next script 4_ADSTRUCTURE.ps1 as admin:" -ForeGroundColor "G
 Start-Process powershell -Verb runAs -ArgumentList "$VBOXdrive\4_ADstructure.ps1"
 
 # Connectie met linux-mailserver
-Add-DnsServerResourceRecordA -Name "mail" -ZoneName "green.local" -IPv4Address "172.16.1.68" 
-Add-DnsServerResourceRecordMX -Name "mail" -MailExchange "mail.green.local" -Preference 100 
+# Stel forward primary lookup zone in voor mail server in het green domein:
+Write-host ">>> Setting DNS primary zone for green.local"
+Add-DnsServerPrimaryZone -Name "green.local" -ReplicationScope "Forest"
+Set-DnsServerPrimaryZone -Name "green.local" -SecureSecondaries "TransferToZoneNameServer"
+
+Add-DnsServerResourceRecordA -Name "mail" -ZoneName "green.local" -IPv4Address "172.16.1.68"
+Add-DnsServerResourceRecordMX -Name "mail" -MailExchange "mail.green.local" -Preference 100 -ZoneName "green.local"
+
 Add-DnsServerResourceRecordCName -Name "owa" -HostNameAlias "mail.green.local" -ZoneName "green.local"
 
 Stop-Transcript

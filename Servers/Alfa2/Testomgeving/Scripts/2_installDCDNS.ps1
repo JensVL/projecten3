@@ -12,18 +12,16 @@
 $VBOXdrive = "C:\Scripts_ESXI\Alfa2"
 
 # VOOR VIRTUALBOX TESTING:
-# $VBOXdrive = "Z:"
+#$VBOXdrive = "Z:"
 # --------------------------------------------------------------------------------------------------------
-param(
-    [string]$land             = "eng-BE",
-    [string]$local_ip         = "172.18.1.66",
-    [string]$secondary_dc_ip  = "172.18.1.67",
-    [string]$default_gateway  = "172.18.1.65",
-    [string]$lan_prefix       = "27",
-    [string]$domain           = "red.local",
-    [string]$wan_adapter_name = "NAT",
+    [string]$land             = "eng-BE"
+    [string]$local_ip         = "172.18.1.66"
+    [string]$secondary_dc_ip  = "172.18.1.67"
+    [string]$default_gateway  = "172.18.1.65"
+    [string]$lan_prefix       = "27"
+    [string]$domain           = "red.local"
+    [string]$wan_adapter_name = "NAT"
     [string]$lan_adapter_name = "LAN"
-)
 
 $username = "RED\Administrator"
 $password = "Admin2019"
@@ -115,7 +113,6 @@ Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce'
 # Deze zorgen ervoor dat het inloggen automatisch gebeurd met de credentials die in het vorige commando verzameld zijn.
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultUserName -Value $Username
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultPassword -Value $Password
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name ForceAutoLogon -Value 1
 
 
 $domaincontroller_installed=(Get-ADDomainController 2> $null)
