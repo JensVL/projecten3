@@ -25,14 +25,18 @@
 - ip route 0.0.0.0 0.0.0.0 s0/1/1
 - exit
 - 
+
 #
+
 - without zulu2:
 - int s0/1/0
 - ip address 172.18.1.109 255.255.255.252
 - no shut
 - exit
 - 
+
 #
+
 - router ospf 10
 - router-id 1.1.1.1
 - end
@@ -69,11 +73,15 @@
 - no shut
 - exit
 - int g0/0/0
+
 ### ip address to discuss with linux
+
 - no shut
 - ip route 0.0.0.0 0.0.0.0 s0/1/0
 - 
+
 #
+
 - router ospf 10
 - router-id 3.3.3.3
 - end
@@ -104,7 +112,9 @@
 - service password-encryption
 
 ### ! Internet on outside interface via DHCP -- NAT
+
 (internal interface)
+
 - int s0/1/0
 - ip address 172.18.2.1 255.255.255.252
 - ip nat inside
@@ -118,7 +128,7 @@
 
 - int g0/0/0
 - ip address dhcp
-- ip nat outside 
+- ip nat outside
 - no shut
 - exit
 - ip route 0.0.0.0 0.0.0.0 g0/0/0
@@ -133,7 +143,9 @@
 - ip nat inside source list 1 interface g0/0/0 overload
 - 
 - (do) show ip nat translations
+
 #
+
 - router ospf 10
 - router-id 4.4.4.4
 - end
@@ -181,7 +193,9 @@
 - ip route 0.0.0.0 0.0.0.0 s0/1/0
 - exit
 - 
+
 #
+
 - router ospf 10
 - router-id 5.5.5.5
 - end
@@ -233,7 +247,9 @@
 - ip route 0.0.0.0 0.0.0.0 s0/1/1
 - exit
 - 
+
 #
+
 - router ospf 10
 - router-id 6.6.6.6
 - end
@@ -334,6 +350,46 @@
 - switchport mode access
 - switchport access vlan 500
 - 
+
+### VPN
+
+Router 1
+
+- crypto isakmp policy 1
+- encr 3des
+- hash md5
+- authentication pre-share
+- group 2
+- lifetime 86400
+- crypto isakmp key firewallcx address X.X.X.X
+- ip access-list extended VPN-TRAFFIC
+- permit ip x wildcard destip wildcard
+- crypto ipsec transform-set TS esp-3des esp-md5-hmac
+- crypto map CMAP 10 ipsec-isakmp
+- set peer ip
+- set transform-set TS
+- match address VPN-TRAFFIC
+- interface FastEthernet0/1
+- crypto map CMAP
+
+Router 2
+
+- crypto isakmp policy 1
+- encr 3des
+- hash md5
+- authentication pre-share
+- group 2
+- lifetime 86400
+- crypto isakmp key firewallcx address ip
+- ip access-list extended VPN-TRAFFIC
+- permit ip ip wildcard ip wildcard
+- crypto ipsec transform-set TS esp-3des esp-md5-hmac
+- crypto map CMAP 10 ipsec-isakmp
+- set peer ip
+- set transform-set TS
+- match address VPN-TRAFFIC
+- interface FastEthernet0/1
+- crypto map CMAP
 
 ## End devices
 
