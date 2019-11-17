@@ -122,4 +122,9 @@ Add-DnsServerForwarder -IPAddress 193.190.173.1,193.190.173.2
 Write-host "Running next script 4_ADSTRUCTURE.ps1 as admin:" -ForeGroundColor "Green"
 Start-Process powershell -Verb runAs -ArgumentList "$VBOXdrive\4_ADstructure.ps1"
 
+# Connectie met linux-mailserver
+Add-DnsServerResourceRecordA -Name "mail" -ZoneName "green.local" -IPv4Address "172.16.1.68" 
+Add-DnsServerResourceRecordMX -Name "mail" -MailExchange "mail.green.local" -Preference 100 
+Add-DnsServerResourceRecordCName -Name "owa" -HostNameAlias "mail.green.local" -ZoneName "green.local"
+
 Stop-Transcript
