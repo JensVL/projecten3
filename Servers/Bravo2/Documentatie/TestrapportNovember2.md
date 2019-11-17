@@ -2,12 +2,14 @@
 
 Auteurs: Arno Van Nieuwenhove & Levi Goessens
 
-## Resultaten naam server en domein
+## Testplan
+
+### Resultaten naam server en domein
 1.  
 2.  
 3.  
 
-## Resultaten Netwerksettings
+### Resultaten Netwerksettings
 1.  
 2.  
 3.  
@@ -18,7 +20,7 @@ Alternatieve testmethode:
 2.  
 3.  
   
-## Resultaten correcte SQL Server Installatie
+### Resultaten correcte SQL Server Installatie
 1.  
 2.  
 3.  
@@ -27,8 +29,16 @@ Alternatieve testmethode:
 6.  
 7.  
   
-## Resultaten testen firewall
+### Resultaten testen firewall
 1.  
 2.  
 3.  
 4.  
+
+## TestConfigNovember2 (powershell)
+### Check-name
+
+### Check-ip-settings
+
+### Check-firewall
+
