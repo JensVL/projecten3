@@ -86,4 +86,7 @@ Start-Process "C:\Users\Administrator\Desktop\ExtendADschema\extadsch.exe"
 
 # C:\ExtADSch.log check deze log file om te zien of extenden van het AD schema succesvol was
 
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name ForceAutoLogon -Value 0
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogon -Value 0
+
 Stop-Transcript
