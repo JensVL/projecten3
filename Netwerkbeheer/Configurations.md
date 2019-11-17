@@ -192,7 +192,11 @@
 - exit
 - ip route 0.0.0.0 0.0.0.0 s0/1/0
 - exit
-- 
+
+- conf t
+- access-list 10 permit 172.18.1.64 0.0.0.31
+- exit
+
 
 #
 
