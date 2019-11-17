@@ -23,9 +23,8 @@ Alternatieve testmethode:
 - Werkt, is OK!   
   
 ### Resultaten correcte SQL Server Installatie
-1.  
-2.  
-3.  
+
+- Kan niet getest worden omdat domein niet kan worden gejoind.
   
 ### Resultaten testen firewall
 
