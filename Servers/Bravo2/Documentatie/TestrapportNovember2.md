@@ -14,7 +14,7 @@ Auteurs: Arno Van Nieuwenhove & Levi Goessens
 ### Resultaten Netwerksettings
 1. Ip-address: 172.18.1.4  
 2. Subnet mask: 255.255.255.192 
-3. Default Gateway: 172.18.1.1  
+3. Default Gateway: 172.18.1.7  
 4. Preferred dns: 172.18.1.66
 5. Alternate dns: 172.18.1.67 
   
