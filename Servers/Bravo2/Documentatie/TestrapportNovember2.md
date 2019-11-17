@@ -8,7 +8,7 @@ Auteurs: Arno Van Nieuwenhove & Levi Goessens
 
 - Naam van server is aangepast naar "November2" maar domein joinen werkt niet. Dit kan liggen aan het feit dat November2 in een ander subnet zit. Hiervoor de router nodig etc., code ziet er nochtans oké uit voor te kunnen joinen.  
 
-![FoutenDomain](images/domain.png)    
+![FoutenDomain](images/domain.PNG)    
 ![FoutenDomain](images/domain1.png)  
 
 ### Resultaten Netwerksettings
