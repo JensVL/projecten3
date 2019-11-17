@@ -35,6 +35,6 @@ Set-DnsClientServerAddress -InterfaceAlias "LAN" -ServerAddresses($preferred_dns
 
 $Credentials = Get-Credential
 # De host hernoemen naar Lima2 en toevoegen aan het domein red.local
-Add-Computer -DomainName red.local -NewName Lima2 -Credential $Credentials -Restart -Force }
+Add-Computer -NewName Lima2 -DomainName red.local -Credential $Credentials -Restart -Force
 
 Restart-Computer
