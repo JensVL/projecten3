@@ -16,5 +16,5 @@
 ## Werkwijze testplan
 Voer het script test_script.ps1 uit
 
-## Verwachtte resultaat##
+## Verwachtte resultaat
 Alle powershell output komt overeen met de verwachtte output, de output is te vinden in correcte_antw_test_script.md
