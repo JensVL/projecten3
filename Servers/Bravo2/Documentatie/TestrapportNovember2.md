@@ -28,10 +28,9 @@ Alternatieve testmethode:
 3.  
   
 ### Resultaten testen firewall
-1.  
-2.  
-3.  
-4.  
+
+- Firewall staat uit!  
+![Firewall](images/firewall.PNG)  
 
 ## TestConfigNovember2 (powershell)
 ### Check-name
