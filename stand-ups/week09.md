@@ -31,10 +31,10 @@
 
 - Iedereen vertelt wat hij in week 7 en 8 uitgevoerd heeft.
 - Overlopen dag aan de hand van Gantt-chart
-  ![Voormiddag](img\voormiddag.png)
-  ![Voormiddag](img\namiddag.png)
+  ![Voormiddag](img/voormiddag.png)
+  ![Voormiddag](img/namiddag.png)
 - Takenverdeling
-  ![Takenverdeling](img\Takenverdeling.JPG)
+  ![Takenverdeling](img/Takenverdeling.JPG)
 - Productieomgeving: VMWare Workstation
   - Gegevens om in te loggen op ESXI server:
     - Servernaam: 172.22.2.4
