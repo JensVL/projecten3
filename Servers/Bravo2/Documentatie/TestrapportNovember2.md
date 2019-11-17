@@ -36,4 +36,6 @@ Alternatieve testmethode:
 ### Check-name, Check-ip-settings, Check-firewall
 
 ![AutomatedTests](images/testen.PNG)  
-
+In de automatische test, staat er dat Subnet mask een /27 moet zijn.
+Moet een /26 zijn, is wel goed ingevuld op de VM maar de automatische test klopt niet.  
+Test default gateway faalt ook omdat de voorwaarde een 192.18.1.1 is en op de VM staat de default gateway ingesteld als 192.18.1.7, in beide gevallen zal het dus waarschijnlijk aan de automatische testen liggen.
