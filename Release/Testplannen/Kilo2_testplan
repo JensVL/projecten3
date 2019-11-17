@@ -1,9 +1,14 @@
 --Wat verwacht wordt van de Kilo2 server--
 
+*Is de servernaam kilo2
 *Is een member server van domein red.local
-*Is een DHCP server voor de interne werkstations
-*Server is hernoemt naar "Kilo2"
-*Server bevindt zich op vlan 300
+*Is het ip adres aangepast
+*Is de default gateway aangepast
+*Is het dns adres aangepast
+*Is DHCP geïnstalleerd
+*Is de scope correct geconfigureerd
+*Is de lease correct
+*Is de server authorized
 
 
 --Werkwijze testplan(stappenplan)--
