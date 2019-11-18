@@ -232,6 +232,8 @@ n.	Op het volgende scherm verander je enkel de “make available to the followin
 
 o.	Scheduling, user experience, alerts en distribution point settings op default laten. Finish de wizard
 
+p.  Nu nog een laatste keer de task sequence deployen.
+
 # Windows Cliënt
 ## Handleiding:
 1.	VM aanmaken:
