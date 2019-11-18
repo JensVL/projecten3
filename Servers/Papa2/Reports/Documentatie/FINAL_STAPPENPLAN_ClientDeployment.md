@@ -225,7 +225,7 @@ o.	Scheduling, user experience, alerts en distribution point settings op default
 1.	VM aanmaken:
 De eerste stap is een nieuwe virtuele machine aanmaken in Virtualbox met volgende specificaties:
 
-o	Name: WIN-CLT1
+o	Name: CLIENT1
 
 o	Windows 10 (64-bit)
 
