@@ -39,7 +39,7 @@ Github commit:
 
 
 ## Windows 10 Client Deployment / Task Sequence
-Labo gemaakt door: 
+Labo gemaakt door: Ferre Verstichelen en Laurens Blancquaert-Cassaer
 Uitvoerder(s) test:   
 Uitgevoerd op:   
 Github commit:   
@@ -47,6 +47,6 @@ Github commit:
 ### Uit te voeren testen
 | Nr test | Wat moet er getest worden | In orde? |
 | :--- | :--- | :--- |
-| 1 | ... | Ja/Nee |
-| 2 | ... | Ja/Nee |
-
+| 1 | Kan de client de PXE / SCCM server Papa2 bereiken via PXE boot?| Ja/Nee |
+| 2 | Wordt Windows 10 op de client geïnstalleerd via PXE boot? | Ja/Nee |
+| 3 | Zijn de 3 applications (Libre office, java en Adobe Flash Player geïnstalleerd op de client? | Ja/Nee |
