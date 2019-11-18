@@ -23,7 +23,7 @@ Domein wachtwoord: Admin2019 <br>
    - Hostnaam: November2
    - Ip-address: 172.18.1.4
    - Subnet mask: 255.255.255.192 (/26)
-   - Default gateway: 172.18.1.1
+   - Default gateway: 172.18.1.7
    - Preferred DNS: 172.18.1.66
    - Alternate DNS: 172.18.1.67
 3. Voeg de server toe aan het domein red.local (Verander loginggegevens naar RED\Administrator, passwoord naar Admin2019)
