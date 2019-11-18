@@ -19,7 +19,6 @@ Week: 08
 ## Done
 
 ![week 08](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/Lastenboek/Screenshots%20lastenboek/week08.png)
-|                |                |
 
 ## To do
 
