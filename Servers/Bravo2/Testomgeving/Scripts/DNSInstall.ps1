@@ -34,12 +34,13 @@ set-timezone -Name "Romance Standard Time"
 Write-host ">>> Changing NIC adapter names"
 # TODO: conditional that checks if adapter names already exists does
 #       not correctly checks for equal strings
+# Ethernet0 is omdat op de Exsi server de Ethernet adapter, Ethernet0 heet.
 $adaptercount=(Get-NetAdapter | measure).count
 if ($adaptercount -eq 1) {
-    (Get-NetAdapter -Name "Ethernet") | Rename-NetAdapter -NewName $lan_adapter_name
+    (Get-NetAdapter -Name "Ethernet0") | Rename-NetAdapter -NewName $lan_adapter_name
 }
 elseif ($adaptercount -eq 2) {
-    (Get-NetAdapter -Name "Ethernet") | Rename-NetAdapter -NewName $wan_adapter_name
+    (Get-NetAdapter -Name "Ethernet0") | Rename-NetAdapter -NewName $wan_adapter_name
     (Get-NetAdapter -Name "Ethernet 2") | Rename-NetAdapter -NewName $lan_adapter_name
 }
 
@@ -66,10 +67,10 @@ Set-LocalUser -Name Administrator -AccountNeverExpires -Password $DSRM -Password
 # Firewall uitschakelen
 Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 
-$existing_ip=(Get-NetAdapter -Name $AdapterNaam | Get-NetIPAddress -AddressFamily IPv4).IPAddress
+$existing_ip=(Get-NetAdapter -Name $lan_adapter_name | Get-NetIPAddress -AddressFamily IPv4).IPAddress
 if("$existing_ip" -ne "$IpAddress") {
     Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
-    New-NetIPAddress -InterfaceAlias "$AdapterNaam" -IPAddress "$IpAddress" -PrefixLength $CIDR -DefaultGateway "$default_gateway"
+    New-NetIPAddress -InterfaceAlias "$lan_adapter_name" -IPAddress "$IpAddress" -PrefixLength $CIDR -DefaultGateway "$default_gateway"
 }
 
 # Joinen van domein "red.local":
@@ -107,3 +108,4 @@ if (!"$domaincontroller_installed") {
                   -SafeModeAdministratorPassword $DSRM `
                   -force:$true
 }
+Restart-Computer -Force
