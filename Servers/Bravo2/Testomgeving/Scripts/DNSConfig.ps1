@@ -9,7 +9,8 @@
 #------------------------------------------------------------------------------
 param(
     [string]$Bravo2IP    = "172.18.1.67", # DC2 / DNS2
-    [string]$wan_adapter_name = "NAT"
+    # Overbodig de NAT voor release.
+    #[string]$wan_adapter_name = "NAT"
 )
 
 #------------------------------------------------------------------------------
@@ -27,13 +28,13 @@ while ($true) {
 #------------------------------------------------------------------------------
 # Configure DNS
 #------------------------------------------------------------------------------
-# Fix adapters
-Set-DnsClientServerAddress -InterfaceAlias $wan_adapter_name -ResetServerAddresses
+# Fix adapters, overbodig
+#Set-DnsClientServerAddress -InterfaceAlias $wan_adapter_name -ResetServerAddresses
 
 # DNS forwarder instellen op Hogent DNS servers:
 Write-Host ">>> Set DNS forwarder to HoGent DNS"
 Add-DnsServerForwarder -IPAddress 193.190.173.1,193.190.173.2
-
+Write-Host ">>> Completed DNS forwarder to HoGent DNS"
 
 # Disable van overbodige adapter. Nodig voor demo in Vagrant niet in productie. Vagrant gebruikt standaard 2 adapters.
 #Disable-NetAdapter -Name "NAT" -Confirm:$false
