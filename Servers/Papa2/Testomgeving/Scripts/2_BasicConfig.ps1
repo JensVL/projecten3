@@ -7,19 +7,19 @@
 $VBOXdrive = "C:\Scripts_ESXI\Papa2"
 
 # VOOR VIRTUALBOX TESTING:
-# $VBOXdrive = "Z:"
+#$VBOXdrive = "Z:"
 # --------------------------------------------------------------------------------------------------------
 
 ################################################################################################################## NOTE
 # ECHTE IP VOOR INTEGRATIE DEMO:
- $IpAddress = "172.18.1.6"
- $DefaultGateway = "172.18.1.7"
- $CIDR = "26"
+ #$IpAddress = "172.18.1.6"
+ #$DefaultGateway = "172.18.1.7"
+ #$CIDR = "26"
 
 # TEST IP VOOR VIRTUALBOX TESTING:
-# $IpAddress = "172.18.1.67"
-# $DefaultGateway = "172.18.1.65"
-# $CIDR = "27"
+$IpAddress = "172.18.1.67"
+$DefaultGateway = "172.18.1.65"
+$CIDR = "27"
 ################################################################################################################## NOTE
 
 $Land = "eng-BE"
@@ -51,7 +51,7 @@ set-timezone -Name "Romance Standard Time"
 
 # 2) Hernoem de netwerkadapter LAN = de adapter met static IP instellingen die alle servers met elkaar verbind.
 Write-host "Changing NIC adapter names:" -ForeGroundColor "Green"
-Get-NetAdapter -Name "Ethernet 2" | Rename-NetAdapter -NewName "$AdapterNaam"
+Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName "$AdapterNaam"
 
 # 3) Geef de LAN adapter de correcte IP instellingen volgens de opdracht:
 # Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.192)

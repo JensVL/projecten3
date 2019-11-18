@@ -5,10 +5,10 @@
 # VARIABLES:
 # --------------------------------------------------------------------------------------------------------
 # VOOR INTEGRATIE:
-$VBOXdrive = "C:\Scripts_ESXI\Papa2"
+#$VBOXdrive = "C:\Scripts_ESXI\Papa2"
 
 # VOOR VIRTUALBOX TESTING:
-# $VBOXdrive = "Z:"
+$VBOXdrive = "Z:"
 # --------------------------------------------------------------------------------------------------------
 
 $Username = "RED\Administrator"  # LET OP RED\Administrator ZAL SCCM INSTALLEREN EN ALLE RECHTEN EROP HEBBEN !
@@ -297,14 +297,39 @@ Set-CMDistributionPoint -SiteSystemServerName "Papa2.red.local" -enablePXE $true
 
 Write-Host "PXE boot configured!" -ForeGroundColor "Green"
 
-# 10) Distribute de boot image (die standaard is aangemaakt bij SCCM installatie) naar een Distribution Point:
-Start-CMContentDistribution -BootImageId "RED00005" -DistributionPointName "Papa2.red.local"
+
+# 10) Creëer een Windows 10 reference image:
+# We gaan een deployment share maken van een Windows10.iso file (iso file staat in VirtualBox Shared Folder)
+# PAth naar win10 iso file = Z:\Windows10dvd (versie is Windows 10 PRO 1809)
+# 10.1) Copy iso naar desktop en Mount win10 DVD op WIN-SQL-SCCM server:
+Write-Host "Copying Windows10 iso to local desktop:" -ForeGroundColor "Green"
+Copy-Item "$VBOXdrive\BenodigdeFiles\WinDows10DVD" -Destination "C:\Users\Administrator\Desktop" -Recurse -Verbose
+# Drive letter = H:
+Mount-DiskImage -ImagePath "C:\users\Administrator\desktop\WinDows10DVD\Windows10_1809_Consumers_Edition.iso"
+Write-Host "Copy and mount of ISO file complete!" -ForeGroundColor "Green"
+
+# 10.2) Maak de Win10 image aan met Microsoft Deployment Toolkit (Workbench):
+Write-Host "Creating Windows 10 Reference image (= deployment share):" -ForeGroundColor "Green"
+
+# Import MDT Powershell module voor MDT cmdlets te hebben:
+Import-Module "C:\Program Files\Microsoft Deployment Toolkit\Bin\MicrosoftDeploymentToolkit.psd1"
+
+New-Item -type "Directory" -Path "C:\DeploymentShare"
+# share de folder:
+([wmiclass]"win32_share").Create("C:\DeploymentShare","DeploymentShare",0)
+$DS001 = New-PSDrive -Name "DS001" -PSProvider "MicrosoftDeploymentToolkit\MDTProvider" -Root "C:\DeploymentShare" `
+            -Description "Deployment Share voor Windows 10" -Verbose
+
+# 10.3) Import Windows 10 Reference image in de aangemaakte deployment share:
+# Voeg operating system toe aan Deployment Share:
+Import-MDTOperatingSystem -SourcePath "E:\" -Path "DS001:\Operating Systems" `
+                          -DestinationFolder "Win10Consumers1809" -verbose
 
 ##########                        ##########
 #          WSUS / WINWDOWS UPDATES         #
 ##########                        ##########
 
-# 11) Installeer WSUS role:
+# 12) Installeer WSUS role:
 Write-Host "Installing WSUS role with SQL integration:" -ForeGroundColor "Green"
 Install-WindowsFeature -Name UpdateServices-DB, UpdateServices-Services -IncludeManagementTools
 New-Item -Path "C:\" -ItemType Directory -Name "WSUS" # WSUS content locatie
@@ -340,7 +365,7 @@ Add-CMSoftwareUpdatePoint -SiteCode "RED" -SiteSystemServerName "Papa2.red.local
 Set-CMSoftwareUpdatePointComponent -SynchronizeAction "SynchronizeFromMicrosoftUpdate" -ReportingEvent "DoNotCreateWsusReportingEvents" `
                                    -RemoveUpdateClassification "Service Packs","Upgrades","Update Rollups","Tools","Driver sets", `
                                    "Applications","Drivers","Feature Packs","Definition Updates", "Updates" `
-                                   -AddUpdateClassification "Security Updates" -RemoveProductFamily "Office","Windows" -SiteCode "RED" -verbose
+                                   -AddUpdateClassification "Updates", "Driver sets" -SiteCode "RED" -verbose
 
 # 12.3) Verwijder alle talen buiten engels en alle producten buiten Windows 10 (zodat de WSUS content folder niet te groot wordt):
 Write-Host "Configuring which updates will be synchronized (Only English language updates):" -ForeGroundColor "Green"
