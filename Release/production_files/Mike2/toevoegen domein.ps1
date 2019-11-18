@@ -46,7 +46,7 @@ start-sleep -s 10
 
 Write-Output "set computername to mike2 and add to domain red"
 
-add-Computer -DomainName red.local -ComputerName "$env:computername" -newname mike2 -DomainCredential $Cred
+add-Computer -DomainName red.local -ComputerName "$env:computername" -newname Mike2 -DomainCredential $Cred
 
 
 

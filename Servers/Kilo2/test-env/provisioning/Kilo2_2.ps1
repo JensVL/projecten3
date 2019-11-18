@@ -1,11 +1,10 @@
-param(
-    [string]$hostname    = "Kilo2",
-    [string]$domain      = "red.local",
-    [string]$domain_user = "Administrator",
-    [string]$domain_pw   = "Admin2019",
-    [string]$primary_dns    = "172.18.1.66",
-    [string]$secondary_dns  = "172.18.1.67"
-)
+
+$hostname = "Kilo2"
+$domain = "red.local"
+$domain_user = "Administrator"
+$domain_pw = "Admin2019"
+$primary_dns = "172.18.1.66"
+$secondary_dns = "172.18.1.67"
 
 # Variables
 
@@ -23,21 +22,6 @@ Write-Host ">>> Creating security groups"
 cmd.exe /c "netsh dhcp add securitygroups"
 
 # Authorizeren van de dhcp server
-<# 
-
-+-----------------------------------------------------------------------------------------------+
-|                           !!! Onverklaarbare bug aanwezig !!!                                 |
-| Mogelijks een error bij het creëeren van de job (AuthorizeDHCP) tijdens het provisionen       |
-| of bij vagrant ssh.                                                                           |
-| Wanneer het script op de vm zelf wordt gerunt dan is deze error er niet.                      |
-|                                                                                               |
-| Als deze bug zich dus voordoet dan moet op de vm de credentials en het starten van de job     |
-| terug gerunt worden om de server te authorizeren.                                             |
-| Gebruik "Wait-Job -Name AuthorizeDHCP | Receive-Job" om de output van de job te zien wanneer  |
-| de job gedaan is.                                                                             |
-+-----------------------------------------------------------------------------------------------+
-
-#>
 
 $password = $domain_pw | ConvertTo-SecureString -AsPlainText -Force
 $username = "RED\$domain_user"

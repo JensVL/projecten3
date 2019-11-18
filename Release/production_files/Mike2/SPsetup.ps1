@@ -2,4 +2,4 @@ Start-Process "Z:\sharepoint\setup.exe" -ArgumentList "/config `"$PSScriptRoot\S
 
 Add-PSSnapIn Microsoft.SharePoint.PowerShell
 
-& "C:\Scripts_ESXI\Mike2\SPfarm.ps1"
+& "C:\Scripts_ESXI\Mike2\SPFarm.ps1"
