@@ -58,29 +58,29 @@
 
 ## Gerealiseerd week 7 en week 8
 * Alfa
-  * 
+  * Post-its
 * Bravo 
-  *  
+  * Testrapport gemaakt van Lima2 en November2
 * Charlie 
-  * 
+  * Delta getest + testplan aangepast voor test-release + algemeen wat zagen.
 * Delta 
-  * 
+  * Kilo2 getest + planning test-release
 * Kilo 
-  * 
+  * Mike2 getest
 * Lima 
-  * 
+  * Scripts afgewerkt + 
 * Mike 
-  * 
+  * Oscar2 getest
 * November 
-  * 
+  * Alles werkt, maar volgens papa werkt het niet met
 * Oscar 
-  * 
+  * Documentatie aagepast + netwerk getest
 * Papa 
-  * 
+  * Papa afgewerkt + documentatie
 * Zulu 
-  * 
+  * Configuratie aangepast + hebben nog adapter nodig
 * Netwerkinfrastructuur 
-  * 
+  * Alle configuratie werkt
 
 ## Problemen
 
