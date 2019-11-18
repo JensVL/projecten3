@@ -7,7 +7,7 @@
 #params
 param([String]$name='November2',
 	[String]$ipaddress='172.18.1.4',
-	[String]$defaultgateway='172.18.1.1',
+	[String]$defaultgateway='172.18.1.7',
 	[String]$ethernet='Ethernet'
 )
 
