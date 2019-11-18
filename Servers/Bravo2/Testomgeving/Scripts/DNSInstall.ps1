@@ -72,7 +72,7 @@ Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 $existing_ip=(Get-NetAdapter -Name $lan_adapter_name | Get-NetIPAddress -AddressFamily IPv4).IPAddress
 if("$existing_ip" -ne "$local_ip") {
     Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
-    New-NetIPAddress -InterfaceAlias "$lan_adapter_name" -IPAddress "$IpAddress" -PrefixLength $CIDR -DefaultGateway "$default_gateway"
+    New-NetIPAddress -InterfaceAlias "$lan_adapter_name" -IPAddress "$local_ip" -PrefixLength $CIDR -DefaultGateway "$default_gateway"
 }
 
 # Joinen van domein "red.local":
