@@ -73,7 +73,7 @@
 - no shut
 - exit
 - int g0/0/0
-- ip address 172.16.3.2 255.255.252
+- ip address 172.16.3.2 255.255.255.252
 - no shut
 - ip route 0.0.0.0 0.0.0.0 s0/1/0
 - 
