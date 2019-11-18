@@ -95,9 +95,28 @@ Check of de PXE settings in SCCM correct zijn voor client Deployment:
 
 ## Windows 10 Client Deployment / Task Sequence
 ### Uit te voeren stappen:
+VM aanmaken: De eerste stap is een nieuwe virtuele machine aanmaken in Virtualbox met volgende specificaties:
+                           
+                  Name: WIN-CLT1
+                  Windows 10 (64-bit)
+                  2048mb RAM
+                  1 hard drive (50gb)
+                  Netwerkadapters: 1 = LAN
+                  In Virtualbox in je nieuwe client VM ga naar system > motherboard > boot order en stel hard disk                             als eerste in en network als tweede.
 
+Windows 10 deployment: 
+a. Start de VM in Virtualbox
+
+b. Druk op F12 wanneer erom gevraagd wordt
+
+c. In het eerste venster van de task sequence wizard druk op next en selecteer “Windows 10 PRO”
+
+d. Laat de deployment lopen (alles gebeurt automatisch)
+
+e. Wanneer de deployment klaar is meld je op de client aan als BLANCQUAERT\Administrator (Het scherm zal 10-15min op “welkom” blijven staan)
     
 | Nr test | Wat moet er getest worden | In orde? |
 | :--- | :--- | :--- |
-| 1 | ... | Ja/Nee |
-| 2 | ... | Ja/Nee |
+| 1 | Kan de client de PXE / SCCM server Papa2 bereiken via PXE boot?| Ja/Nee |
+| 2 | Wordt Windows 10 op de client geïnstalleerd via PXE boot? | Ja/Nee |
+| 3 | Zijn de 3 applications (Libre office, java en Adobe Flash Player geïnstalleerd op de client? | Ja/Nee |
