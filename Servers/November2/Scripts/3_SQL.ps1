@@ -19,6 +19,7 @@ $paswd="Admin2019" | ConvertTo-SecureString -AsPlainText -Force
 $SCCMPassword = [System.Runtime.Interopservices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($paswd))
 Write-Host 'Deel 2...'
 .$folderpath\SETUP.exe /Q /ACTION=Install /IACCEPTSQLSERVERLICENSETERMS /Features=SQL /INSTANCENAME=MSSQLSERVER /INSTANCEID=MSSQLSERVER `
+/SQLCOLLATION=SQL_Latin1_General_CP1_CI_AS `
 /SQLSVCACCOUNT="RED\Administrator" `
 /SQLSVCPASSWORD="$SCCMPassword" `
 /AGTSVCACCOUNT="RED\Administrator" `
