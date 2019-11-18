@@ -17,8 +17,8 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogon -Value 1
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name ForceAutoLogon -Value 1
 
-invoke-command -filepath $VBOXdrive\DNSInstall.ps1
-invoke-command -filepath $VBOXdrive\DNSConfig.ps1
+Invoke-Command -FilePath $VBOXdrive\DNSInstall.ps1
+Invoke-Command -FilePath $VBOXdrive\DNSConfig.ps1
 
 Rename-Computer -NewName Bravo2 -Force 
 Stop-Transcript
