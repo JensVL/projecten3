@@ -62,6 +62,18 @@ b.	Doe rechtermuisknop op “Task sequences” en kies “Create MDT task sequen
 c.	Laat template op “Client task sequence staan” en kies als task sequence naam “Windows 10 pro”.
 
 d.	Gebruik bij “details” volgende settings en klik op next:
+
+    Join a domain:
+    Domain: Red.local
+    Account RED\Administrator
+
+    Windows Settings:
+    User name: Admin
+    Organization name: RED
+
+    Administrator Account:
+    Enable password (Admin2019)
+
  
 e.	Bij capture settings niks aanpassen en gewoon op next drukken.
 
