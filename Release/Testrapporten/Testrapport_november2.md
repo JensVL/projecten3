@@ -34,13 +34,13 @@ Alternatieve testmethode:
 ## TestConfigNovember2 (powershell)
 ### Check-name, Check-ip-settings, Check-firewall
 
-√Computernaam is correct geconfigureerd
-√IP Address is correct geconfigureerd
-√Subnet Mask is correct geconfigureerd
-√Default Gateway is correct geconfigureerd
-√ALFA2 is goed geconfigureerd als DNS Server
-√BRAVO2 is goed geconfigureerd als backup DNS Server
-√Private firewall is disabled
-√Domain firewall is disabled
-√Public firewall is disabled
-9 test(s) passes, 0 test(s) failed:
+- √Computernaam is correct geconfigureerd
+- √IP Address is correct geconfigureerd
+- √Subnet Mask is correct geconfigureerd
+- √Default Gateway is correct geconfigureerd
+- √ALFA2 is goed geconfigureerd als DNS Server
+- √BRAVO2 is goed geconfigureerd als backup DNS Server
+- √Private firewall is disabled
+- √Domain firewall is disabled
+- √Public firewall is disabled
+- 9 test(s) passes, 0 test(s) failed:
