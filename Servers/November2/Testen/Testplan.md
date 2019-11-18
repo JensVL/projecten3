@@ -24,7 +24,7 @@ Auteur(s) testplan: Aron Marckx, Cédric Van den Eede
 4. De netwerkconfiguratie moet als volgt zijn: <br>
   - Ip-address: 172.18.1.4 <br>
   - Subnet mask: 255.255.255.192 <br>
-  - Default gateway: 172.18.1.1 <br>
+  - Default gateway: 172.18.1.7 <br>
   - Preferred dns: 172.18.1.66 <br>
   - Alternate dns: 172.18.1.67  <br>
 
