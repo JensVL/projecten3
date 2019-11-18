@@ -1,5 +1,8 @@
 # VARIABLES:
-$VBOXdrive = "C:\Scripts_ESXI\Bravo2"
+#$VBOXdrive = "C:\Scripts_ESXI\Bravo2"
+
+$VBOXdrive = "Z:"
+
 # LOG SCRIPT TO FILE (+ op het einde van het script Stop-Transcript doen):
 Start-Transcript "C:\ScriptLogs\1_RUNFIRSTlog.txt"
 Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce' -Name ResumeScript `
@@ -17,8 +20,8 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogon -Value 1
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name ForceAutoLogon -Value 1
 
-Invoke-Command -FilePath $VBOXdrive\DNSInstall.ps1
-Invoke-Command -FilePath $VBOXdrive\DNSConfig.ps1
+#Invoke-Command -FilePath $VBOXdrive\DNSInstall.ps1
+#Invoke-Command -FilePath $VBOXdrive\DNSConfig.ps1
 
 Rename-Computer -NewName Bravo2 -Force 
 Stop-Transcript
