@@ -37,10 +37,12 @@ Write-host ">>> Changing NIC adapter names"
 # Ethernet0 is omdat op de Exsi server de Ethernet adapter, Ethernet0 heet.
 $adaptercount=(Get-NetAdapter | measure).count
 if ($adaptercount -eq 1) {
-    (Get-NetAdapter -Name "Ethernet0") | Rename-NetAdapter -NewName $lan_adapter_name
+    #(Get-NetAdapter -Name "Ethernet0") | Rename-NetAdapter -NewName $lan_adapter_name
+    (Get-NetAdapter -Name "Ethernet") | Rename-NetAdapter -NewName $lan_adapter_name
 }
 elseif ($adaptercount -eq 2) {
-    (Get-NetAdapter -Name "Ethernet0") | Rename-NetAdapter -NewName $wan_adapter_name
+    #(Get-NetAdapter -Name "Ethernet0") | Rename-NetAdapter -NewName $wan_adapter_name
+    (Get-NetAdapter -Name "Ethernet") | Rename-NetAdapter -NewName $wan_adapter_name
     (Get-NetAdapter -Name "Ethernet 2") | Rename-NetAdapter -NewName $lan_adapter_name
 }
 
