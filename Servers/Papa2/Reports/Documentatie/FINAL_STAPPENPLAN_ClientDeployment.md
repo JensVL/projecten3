@@ -27,11 +27,14 @@ a.	In SCCM console ga naar:
 Software Library > Overview > Operating images > Boot images
 
 b.	Doe rechtermuisknop op “boot images” en kies “Create Boot image using MDT”
+
 c.	In het pad moet je browsen naar de directory waar de boot image wordt opgeslaan (in de deployment share) doe: 
 \\Papa2\DeploymentShare\Boot
 
 d.	Druk op next en kies “Windows10x64” als naam. Druk op next en kies x64 als platform. Andere options op default en finish de wizard.
+
 e.	Doe rechtermuisknop op de “Windows10x64” boot image en kies properties. Ga naar de “data source” tab en vink “Deploy this boot image from PXE enabled Distribution point” aan 
+
 f.	Doe nu rechtermuisknop op de net aangemaakte “Windows10x64” boot image en kies voor “distribute content” Kies Papa2 als distribution point en finish de wizard. (doe hetzelfde voor de x86 boot image)
 
 ## Operating system image:
@@ -39,11 +42,14 @@ a.	In de SCCM console ga naar:
 Software Library > Overview > Operating Systems > Operating systems images
 
 b.	Doe rechtermuisknop op “Operating system images” en kies “Add operating system image”
+
 c.	In het pad moet je browsen naar de Install.WIM die je in je deployment share vind. Op Papa2 is dit op het volgende pad:
 \\Papa2\DeploymentShare\Operating Systems\Win10Consumers1809\sources\install.wim
 
 d.	Druk op next en vul als naam Windows 10 pro en als version 1809 in. Druk op next en finish de wizard.
+
 e.	Doe nu rechtermuisknop op de net aangemaakte “Windows 10 pro” image en kies voor “distribute content”.
+
 f.	In de wizard klik je eerst op next en dan op “add distribution point”. Kies hier voor: Papa2.red.local. Klik terug op next en finish de wizard.
 
 # Task sequence maken en toevoegen aan SCCM:
