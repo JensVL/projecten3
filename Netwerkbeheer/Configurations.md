@@ -131,13 +131,19 @@
 - exit
 - ip route 0.0.0.0 0.0.0.0 g0/0/0
 - access-list 1 permit 172.18.2.0 0.0.0.3
-- access-list 1 permit 172.16.2.0 0.0.0.3
 - access-list 1 permit 172.18.1.0 0.0.0.63
 - access-list 1 permit 172.18.0.0 0.0.0.255
 - access-list 1 permit 172.18.1.96 0.0.0.3
 - access-list 1 permit 172.18.1.100 0.0.0.3
 - access-list 1 permit 172.18.1.64  0.0.0.31
 - access-list 1 permit 172.18.1.104 0.0.0.3
+- access-list 1 permit 172.16.0.0 0.0.0.255
+- access-list 1 permit 172.16.1.0 0.0.0.63
+- access-list 1 permit 172.16.1.96 0.0.0.3
+- access-list 1 permit 172.16.1.64 0.0.0.31
+- access-list 1 permit 172.16.1.100 0.0.0.3
+- access-list 1 permit 172.16.1.104 0.0.0.3
+- access-list 1 permit 172.16.2.0 0.0.0.3
 - ip nat inside source list 1 interface g0/0/0 overload
 - 
 - (do) show ip nat translations
