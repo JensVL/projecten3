@@ -97,7 +97,7 @@ Check of de PXE settings in SCCM correct zijn voor client Deployment:
 ### Uit te voeren stappen:
 VM aanmaken: De eerste stap is een nieuwe virtuele machine aanmaken in Virtualbox met volgende specificaties:
                            
-                  Name: WIN-CLT1
+                  Name: CLIENT1
                   Windows 10 (64-bit)
                   2048mb RAM
                   1 hard drive (50gb)
