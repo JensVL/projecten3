@@ -37,6 +37,7 @@
 
 #
 
+- conf t
 - router ospf 10
 - router-id 1.1.1.1
 - end
@@ -79,7 +80,7 @@
 - 
 
 #
-
+- conf t
 - router ospf 10
 - router-id 3.3.3.3
 - end
@@ -150,6 +151,7 @@
 
 #
 
+- conf t
 - router ospf 10
 - router-id 4.4.4.4
 - end
@@ -204,6 +206,7 @@
 
 #
 
+- conf t
 - router ospf 10
 - router-id 5.5.5.5
 - end
@@ -258,6 +261,7 @@
 
 #
 
+- conf t
 - router ospf 10
 - router-id 6.6.6.6
 - end
@@ -293,13 +297,15 @@
 
 ### VLAN
 
+- conf t
 - vlan 200
 - name vlan200
 - exit
 - int range f0/1-6
 - switchport mode access
 - switchport access vlan 200
-- 
+- int vlan 200
+- ip helper-address 172.18.1.1
 
 ## L2 Switch 5
 
