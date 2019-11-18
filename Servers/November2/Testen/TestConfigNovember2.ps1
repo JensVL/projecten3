@@ -54,7 +54,7 @@ function check-ip-settings{
 	}
 	
 	$sm = Get-NetIPAddress -InterfaceAlias $ethernet -AddressFamily IPv4 | Select -ExpandProperty PrefixLength
-	if($sm -eq 27){
+	if($sm -eq 26){
 		write-host @greenCheck
 		write-host 'Subnet Mask is correct geconfigureerd'
 		$Script:passed++
