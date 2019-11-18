@@ -35,5 +35,5 @@ Write-Host 'Deel 2...'
 /TCPENABLED="1" `
 /NPENABLED="1"
 
-# Write-Host 'Done'
+Write-Host 'Done'
 
