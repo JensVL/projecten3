@@ -4,7 +4,7 @@ datum 18/11/2019
 Open prtg en ga naar devices. Beantwoord de vragen in volgende tabel.
 
 | Nr test       | Wat er moet getest worden   | In orde?  |
-| ------------- |:-------------:| -----:|
+| ------------- |-------------:| -----:|
 | 1 | Wordt de server Alfa2 gemonitord? | Ja/Nee |
 | 2 | Wordt de server Bravo2 gemonitord? | Ja/Nee |
 | 3 | Wordt de server Charlie2 gemonitord? | Ja/Nee |
@@ -18,14 +18,14 @@ Open prtg en ga naar devices. Beantwoord de vragen in volgende tabel.
 Nu kijken we naar de algemene services die moeten gemonitord worden.
 
 | Nr test       | Wat er moet getest worden   | In orde?  |
-| ------------- |:-------------:| -----:|
+| ------------- |-------------:| -----:|
 | 1 | Wordt voor elke server het cpu gebruik, geheugen gebruik en toestand van de harde schijven gemonitord? | Ja/Nee |
 
 
 Nu kijken we naar de specifieke services die moeten gemonitord worden.
 
 | Nr test       | Wat er moet getest worden   | In orde?  |
-| ------------- |:-------------:| -----:|
+| ------------- |-------------:| -----:|
 | 1 | Wordt dns gemonitord op Alfa2? | Ja/Nee |
 | 2 | Wordt dns gemonitord op Bravo2? | Ja/Nee |
 | 3 | Wordt de Exchange Server gemonitord op Charlie2? | Ja/Nee |
