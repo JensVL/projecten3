@@ -5,9 +5,13 @@ Om een client te deployen moeten we nu juist nog de operating system image toevo
 # Boot image en Operating system image toevoegen aan SCCM:
 ## Voorbereiding (Share permissions van deployment share in stellen voor MDT):
 a.	Log out en log in als local admin van Papa2. 
+
 b.	Open file explorer en ga naar \\Papa2 Doe rechtermuisknop op de “Deployment Share” folder en kies “properties”
+
 c.	Ga naar Sharing en dan Advanced Sharing. Klik op “permissions” en geef “full control” aan everyone. 
+
 d.	Log terug in als RED\Administrator
+
 e.	Open powershell ISE als admin en geef volgende commands in:
 
                 Import-Module "C:\Program Files\Microsoft Deployment Toolkit\Bin\MicrosoftDeploymentToolkit.psd1"
