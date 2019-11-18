@@ -35,5 +35,5 @@ Write-Host ">>> Set DNS forwarder to HoGent DNS"
 Add-DnsServerForwarder -IPAddress 193.190.173.1,193.190.173.2
 
 
-# Disable van overbodige adapter. Nodig voor productie.
-Disable-NetAdapter -Name "NAT" -Confirm:$false
+# Disable van overbodige adapter. Nodig voor demo in Vagrant niet in productie. Vagrant gebruikt standaard 2 adapters.
+#Disable-NetAdapter -Name "NAT" -Confirm:$false
