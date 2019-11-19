@@ -40,18 +40,13 @@ if ($adaptercount -eq 1) {
     #(Get-NetAdapter -Name "Ethernet0") | Rename-NetAdapter -NewName $lan_adapter_name
     (Get-NetAdapter -Name "Ethernet") | Rename-NetAdapter -NewName $lan_adapter_name
 }
-elseif ($adaptercount -eq 2) {
-    #(Get-NetAdapter -Name "Ethernet0") | Rename-NetAdapter -NewName $wan_adapter_name
-    (Get-NetAdapter -Name "Ethernet") | Rename-NetAdapter -NewName $wan_adapter_name
-    (Get-NetAdapter -Name "Ethernet 2") | Rename-NetAdapter -NewName $lan_adapter_name
-}
 
 
 # Prefixlength = CIDR notatie van subnet (in ons geval 255.255.255.224)
 $existing_ip=(Get-NetAdapter -Name $lan_adapter_name | Get-NetIPAddress -AddressFamily IPv4).IPAddress
 if ("$existing_ip" -ne "$local_ip") {
     Write-host ">>> Setting static ipv4 settings"
-    New-NetIPAddress -InterfaceAlias "$lan_adapter_name" -IPAddress "$local_ip" -PrefixLength $lan_prefix -DefaultGateway "$default_gateway"
+    New-NetIPAddress -InterfaceAlias "LAN" -IPAddress $local_ip -PrefixLength $lan_prefix -DefaultGateway $default_gateway
 }
 
 # Set DNS of LAN adapter
@@ -68,12 +63,6 @@ Set-LocalUser -Name Administrator -AccountNeverExpires -Password $DSRM -Password
 
 # Firewall uitschakelen
 Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
-
-$existing_ip=(Get-NetAdapter -Name $lan_adapter_name | Get-NetIPAddress -AddressFamily IPv4).IPAddress
-if("$existing_ip" -ne "$local_ip") {
-    Write-host "Setting correct ipv4 settings:" -ForeGroundColor "Green"
-    New-NetIPAddress -InterfaceAlias "$lan_adapter_name" -IPAddress "$local_ip" -PrefixLength $CIDR -DefaultGateway "$default_gateway"
-}
 
 # Joinen van domein "red.local":
 
