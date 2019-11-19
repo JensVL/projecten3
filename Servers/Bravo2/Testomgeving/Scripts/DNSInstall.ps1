@@ -97,7 +97,7 @@ if ("$is_RSAT_addstools_installed" -eq 'False') {
 
 $domaincontroller_installed=(Get-ADDomainController 2> $null)
 if (!"$domaincontroller_installed") {
-    Write-Host ">>> Installing AD forest and adding Alfa2 as first DC"
+    Write-Host ">>> Installing AD forest and adding Bravo2 as second DC"
     Import-Module ADDSDeployment
 
     $creds = New-Object System.Management.Automation.PSCredential ("RED\Administrator", (ConvertTo-SecureString "Admin2019" -AsPlainText -Force))
