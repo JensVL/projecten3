@@ -1,26 +1,16 @@
-
 $IP = "172.18.1.1"
 $lan_prefix = 24
 $DefaultGateway = "172.18.1.7"
 $primary_dns = "172.18.1.66"
 $secondary_dns = "172.18.1.67"
-$domain = "red.local"
-$domain_user = "Administrator"
-$domain_pw = "Admin2019"
 
-# IP Configuraties
-
-# DHCP rol installeren
-Write-Host ">>> Starting installation DHCP in background"
-Start-Job -Name InstallDHCP -ScriptBlock {
-    Install-WindowsFeature -Name DHCP -IncludeManagementTools
-}
+# Configuring IP
 
 Write-Host ">>> Configuring IP"
 $InterfaceAlias = "LAN"
 
 ## Renaming ethernet adapter
-Get-NetAdapter -Name "Ethernet0" | Rename-NetAdapter -NewName $InterfaceAlias
+Get-NetAdapter -Name "Ethernet" | Rename-NetAdapter -NewName $InterfaceAlias
 
 ## Removing IP-address and default gateway
 Remove-NetIPAddress -InterfaceAlias $InterfaceAlias -Confirm:$false
@@ -30,19 +20,6 @@ Remove-NetRoute -InterfaceAlias $InterfaceAlias -Confirm:$false
 New-NetIPAddress -InterfaceAlias $InterfaceAlias -IPAddress $IP -PrefixLength $lan_prefix -DefaultGateway $DefaultGateway
 Set-DnsClientServerAddress -InterfaceAlias $InterfaceAlias -ServerAddresses($primary_dns, $secondary_dns)
 
-# Add delay to give the server time to adapt to new ip configurations
-# If no delay is added the Machine will not be adapted to the new ip configurations and will fail to join the domain
+# Configuring hostname
 
-Start-Sleep -s 5
-# Toevoegen aan domain
-
-Write-Host ">>> Adding server to Domain"
-# $domain = "red.local"
-# $password = $domain_pw | ConvertTo-SecureString -AsPlainText -Force
-# $username = "Administrator"
-$credential = New-Object System.Management.Automation.PSCredential("RED\$domain_user", ($domain_pw | ConvertTo-SecureString -AsPlainText -Force))
-
-Add-Computer -DomainName $domain -DomainCredential $credential -Force
-
-
-Wait-Job -Name InstallDHCP | Receive-Job
+Rename-Computer -NewName "Kilo2"
