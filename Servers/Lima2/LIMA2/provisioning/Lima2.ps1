@@ -264,13 +264,7 @@ $acl8.SetAccessRule($newRule4)
 Set-Acl Q:/Shares/ShareVerkoop -AclObject $acl8
 Start-sleep 5
 
-#configureer maximum capaciteits quotas
-#New-FSRMQuota -Name "AdminData Quota" -Size 100MB
-#New-FSRMQuota -Name "VerkoopData Quota" -Size 100MB
-#New-FSRMQuota -Name "DirData Quota" -Size 100MB
-#New-FSRMQuota -Name "OntwikkelingData Quota" -Size 200MB
-#New-FSRMQuota -Name "ITData Quota" -Size 200MB
-
+#Configureer capaciteiten voor bepaalde shares per user
 New-FSRMQuota -Path "H:\" -Size 100MB
 New-FSRMQuota -Path "D:\" -Size 100MB
 New-FSRMQuota -Path "G:\" -Size 100MB
@@ -279,6 +273,10 @@ New-FSRMQuota -Path "F:\" -Size 200MB
 
 #Firewall uitzetten
 Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+
+#Automatisch inloggen na reboot disabelen
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogon -Value 0
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name ForceAutoLogon -Value 0
 
 ###Connecting to domain controller using PowerShell
 #winrm quickconfig
