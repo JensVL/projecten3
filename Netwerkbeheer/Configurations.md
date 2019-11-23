@@ -110,7 +110,7 @@
 - exit
 - service password-encryption
 
-### ! Internet on outside interface via DHCP -- NAT
+### Internet on outside interface via DHCP -- NAT
 
 (internal interface)
 
@@ -138,6 +138,7 @@
 - access-list 1 permit 172.18.1.100 0.0.0.3
 - access-list 1 permit 172.18.1.64  0.0.0.31
 - access-list 1 permit 172.18.1.104 0.0.0.3
+- access-list 1 permit 172.18.1.108 0.0.0.3
 - access-list 1 permit 172.16.0.0 0.0.0.255
 - access-list 1 permit 172.16.1.0 0.0.0.63
 - access-list 1 permit 172.16.1.96 0.0.0.3
@@ -198,7 +199,6 @@
 - exit
 - ip route 0.0.0.0 0.0.0.0 s0/1/0
 - exit
-
 - conf t
 - access-list 10 permit 172.18.1.64 0.0.0.31
 - exit
@@ -369,41 +369,25 @@
 
 Router 1
 
-- crypto isakmp policy 1
-- encr 3des
-- hash md5
-- authentication pre-share
-- group 2
-- lifetime 86400
-- crypto isakmp key firewallcx address X.X.X.X
-- ip access-list extended VPN-TRAFFIC
-- permit ip x wildcard destip wildcard
-- crypto ipsec transform-set TS esp-3des esp-md5-hmac
-- crypto map CMAP 10 ipsec-isakmp
-- set peer ip
-- set transform-set TS
-- match address VPN-TRAFFIC
-- interface FastEthernet0/1
-- crypto map CMAP
+- int Tunnel0
+- tunnel mode gre ip
+- ip address 172.18.6.1 255.255.255.252
+- tunnel source 172.18.5.1
+- tunnel destination 172.18.5.2
+- router ospf 10
+- network 172.18.6.1 0.0.0.3 area 0-
+- 
 
-Router 2
+Router 0
 
-- crypto isakmp policy 1
-- encr 3des
-- hash md5
-- authentication pre-share
-- group 2
-- lifetime 86400
-- crypto isakmp key firewallcx address ip
-- ip access-list extended VPN-TRAFFIC
-- permit ip ip wildcard ip wildcard
-- crypto ipsec transform-set TS esp-3des esp-md5-hmac
-- crypto map CMAP 10 ipsec-isakmp
-- set peer ip
-- set transform-set TS
-- match address VPN-TRAFFIC
-- interface FastEthernet0/1
-- crypto map CMAP
+- int Tunnel0
+- tunnel mode gre ip
+- ip address 172.16.6.1 255.255.255.252
+- tunnel source 172.18.5.2
+- tunnel destination 172.18.5.1
+- router ospf 10
+- network 172.16.6.1 0.0.0.3 area 0
+- 
 
 ## End devices
 
