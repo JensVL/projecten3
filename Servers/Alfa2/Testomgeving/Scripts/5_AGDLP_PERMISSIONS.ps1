@@ -1,7 +1,7 @@
+# SCRIPT NIET UITVOEREN
 # Installatiescript dat de configuratie doet van de DNS (primary forward en reversed lookup zones maken + Forwarder):
                           # TODO: Eigenlijk kan dit script pas gestart worden vanaf dat lima2 volledig klaar is KLOPT DIT??????????????????????? TODO #
 # Elke stap wordt uitgelegd met zijn eigen comment
-
 # VARIABLES:
 $VBOXdrive = "Z:"
 
