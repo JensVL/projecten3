@@ -1,0 +1,23 @@
+# Retrospectieve Team Red - Gent
+
+## Wat ging goed?
+- ... 
+
+
+## Wat ging minder goed?
+- ... 
+
+## Wat heb je geleerd?
+- ... 
+
+## Waar heb je nog problemen mee?
+- ... 
+
+## Teamevaluatie
+Staat voorlopig nog allemaal op niet bekwaam. Zijn er nog evaluatiepunten die moeten toegevoegd worden voor het team?  
+- Netwerk + services als geheel
+  - [ ] Nog niet bekwaam: ...
+- Troubleshooting
+  - [ ] Nog niet bekwaam: ...
+- Technische documentatie
+  - [ ] Nog niet bekwaam: ...  

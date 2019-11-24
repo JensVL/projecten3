@@ -1,6 +1,6 @@
-# Verslag week 7
+# Verslag week 9
 
-## Aanwezigen week 7:
+## Aanwezigen week 9:
 | Naam                          | Aanwezig |
 | :---                          | :---   |
 | Alister Adutwum               | V |
@@ -84,38 +84,35 @@
 
 ## Stand-up achteraf
 
-- Alfa
-  - Er kan niet ingelogd worden met de user-accounts. Geen idee hoe het moet opgelost worden
-- Bravo
-  - Server werkte op ESXI, maar niet meer op laptops
-  - Gaat thuis op VM's proberen
-- Charlie
-  - Afwachten. 15 min
-- Delta
-  - Eerste deel werkt volledig. Deploy werkt niet.
-  - Gaat eens horen bij file server want bij hen werkt het
-- Kilo
-  - Test-script werkt, maar praktijk niet
-  - 
-- Lima
-  - Zo goed als af. Configuratie moet nog afgewerkt worden
-- Mike
-  - sharepoint werkt en webapplicatie ook => Succesvol
-- November
-  - Top
-- Oscar
-  - Alles gelukt
-- Papa
-  - Probleem met link met SQL
-  - Er moet iets extra worden toegevoegd aan 
-- Zulu
-  - problemen met ospf, maar workaround via static routes
-  - Achteraf mogelijke oplossing voor ospf gevonden. Volgende week testen.
-- Netwerkinfra
-  - Alles lukte
-  - Hebben achteraf static routes moeten toevoegen voor zulu
-- 
-
+* Alfa
+  * Er kan niet ingelogd worden met de user-accounts. Geen idee hoe het moet opgelost worden
+* Bravo
+  * Server werkte op ESXI, maar niet meer op laptops
+  * Gaat thuis op VM's proberen
+* Charlie
+  * Afwachten. 15 min
+* Delta
+  * Eerste deel werkt volledig. Deploy werkt niet.
+  * Gaat eens horen bij file server want bij hen werkt het
+* Kilo
+  * Test-script werkt, maar praktijk niet 
+* Lima
+  * Zo goed als af. Configuratie moet nog afgewerkt worden
+* Mike
+  * sharepoint werkt en webapplicatie ook => Succesvol
+* November
+  * Top
+* Oscar
+  * Alles gelukt
+* Papa
+  * Probleem met link met SQL
+  * Er moet iets extra worden toegevoegd aan 
+* Zulu
+  * problemen met ospf, maar workaround via static routes
+  * Achteraf mogelijke oplossing voor ospf gevonden. Volgende week testen.
+* Netwerkinfra
+  * Alles lukte
+  * Hebben achteraf static routes moeten toevoegen voor zulu
 
 ## Volgende stand-up:
 - Retrospective
