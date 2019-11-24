@@ -32,11 +32,11 @@
 
 `vagrant ssh`
 
-- *Expected*: prompt (vagrant@DELTA2 C:\Users\vagrant>)
+- *Expected*: prompt (vagrant@DELTA2 C:\\Users\\vagrant>)
 
 `powershell`
 
-- *Expected*: powershell prompt (PS C:\Users\vagrant>)
+- *Expected*: powershell prompt (PS C:\\Users\\vagrant>)
 
 
 ### Install IIS
@@ -118,7 +118,7 @@ or
 
 | Name |ID | State   | Physical Path          | Bindings                                              | 
 | ---- | - | ------- | ---------------------- |:-----------------------------------------------------:|
-| App  | 2 | Started | C:\inetpub\wwwroot\\App| http  *:80:www.red.local <br> shttps *:443: sslFlags=0|
+| App  | 2 | Started | C:\\inetpub\\wwwroot\\App| http  *:80:www.red.local <br> shttps *:443: sslFlags=0|
   
 
 ### Configure website on IIS
