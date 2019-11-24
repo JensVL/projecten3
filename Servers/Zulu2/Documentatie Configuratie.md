@@ -7,7 +7,8 @@
    4.1. [Aliases](#Alias)  
    4.2. [Firewall Regels](#Rules)  
 5. [Automatisatie](#Automatisatie)
-6. [Bronnen](#Bronnen)  
+6. [Routering](#Routering)
+7. [Bronnen](#Bronnen)  
  
 ## 1. Intro <a name="Intro"></a>  
 Voor we beginnen met het configureren van deze firewall moeten we eerst weten hoe PfSense werkt en wat we precies willen doen met PfSense.  
@@ -157,7 +158,11 @@ We laden een custom configuratie.
       
 ![web12](img/web12.png)     
 
-## 6. Bronnen <a name="Bronnen"></a>  
+## 6. Routering <a name="Routering"></a>  
+
+
+
+## 7. Bronnen <a name="Bronnen"></a>  
 <http://pfsensesetup.com/ip-spoofing-and-defenses/>  
 <https://docs.netgate.com/pfsense/en/latest/nat/index.html>  
 <https://docs.netgate.com/pfsense/en/latest/book/config/pfsense-xml-configuration-file.html>  
