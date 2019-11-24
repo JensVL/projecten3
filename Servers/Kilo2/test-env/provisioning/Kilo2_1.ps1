@@ -1,5 +1,5 @@
 $IP = "172.18.1.1"
-$lan_prefix = 24
+$lan_prefix = 26
 $DefaultGateway = "172.18.1.7"
 $primary_dns = "172.18.1.66"
 $secondary_dns = "172.18.1.67"
