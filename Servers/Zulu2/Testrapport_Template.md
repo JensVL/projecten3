@@ -1,4 +1,4 @@
-# Testrapport Zulu2 Template
+# Testrapport Zulu2
 
 - Uitvoerder(s) test: Laurens Blancquaert-Cassaer
 - Uitgevoerd op: 04/11/19
@@ -9,7 +9,7 @@
 - [x] Download de PfSense Iso
 - [x] Maak de Virtualbox VM aan
 - [x] Installeer PfSense op de VM
-### Configuratatie PfSense
+### Configuratie PfSense
 - [x] Stel de IPv4 interfaces in
 - [x] Navigeer naar de WebGUI
 - [x] Log in op de WebGUI
