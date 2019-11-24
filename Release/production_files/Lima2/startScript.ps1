@@ -17,9 +17,9 @@ $StTaskName = "ConfigLima2"
 Register-ScheduledTask -TaskName $StTaskName -Action $Sta -Trigger $Stt -Principal $Stp -Force
 
 # Parameters voor de netwerk adapter
-$local_ip = "172.18.1.67"
-$lan_prefix = "27"
-$default_gateway = ""
+$local_ip = "172.18.1.2"
+$lan_prefix = "26"
+$default_gateway = "172.18.1.7"
 $preferred_dns_ip = "172.18.1.66"
 
 # De naam van de huidige adapter veranderen naar LAN
@@ -28,7 +28,7 @@ if ($temp -ne "LAN") { Get-NetAdapter | Rename-NetAdapter -NewName "LAN" }
 else { Write-Host("Nothing to do") }
 # De LAN adapter configuren met static ip en subnet masker
 $temp = (Get-NetAdapter -Name "LAN" | Get-NetIPAddress -AddressFamily IPv4).IPAddress
-if ($temp -ne $local_ip) { New-NetIPAddress -InterfaceAlias "LAN" -IPAddress $local_ip -PrefixLength $lan_prefix } 
+if ($temp -ne $local_ip) { New-NetIPAddress -InterfaceAlias "LAN" -IPAddress $local_ip -PrefixLength $lan_prefix -DefaultGateway $default_gateway} 
 else { Write-Host("Nothing to do") }
 # DNS server instellen
 Set-DnsClientServerAddress -InterfaceAlias "LAN" -ServerAddresses($preferred_dns_ip)
