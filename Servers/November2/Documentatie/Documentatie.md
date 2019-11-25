@@ -93,7 +93,7 @@ Bij problemen kan je SSMS handmatig installeren door de pdf te hanteren van het 
 - In "Microsoft SQL Server Management Studio", Klik op "Security".
 - Rechtsklik op de domein user ex. RED\Administrator.
 - Deselecteer "Enforce Password Policy" zodat SQL Server niet vraagt om nieuwe wachtwoord aan te maken bij login.
-- Klik links op "User Mapping". Klik onderaan op DB_OWNER, DBCreator!!
+- Klik links op "User Mapping". Klik onderaan op DB_OWNER!
 ![Afbeelding4admin](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/images/4%20admin%20red.png)
 - Klik op "OK" en de Gebruiker wordt gewijzigd.
 - Deze gebruiker kan nu gebruikt worden door de Mike2 server!
