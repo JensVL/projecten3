@@ -79,11 +79,11 @@ Bij problemen kan je SSMS handmatig installeren door de pdf te hanteren van het 
 ### Aanmaken DB en User voor Delta2
 - In "Microsoft SQL Server Management Studio", rechtsklik "Databases" en klik op "New Database".
 - Vul bij de Database Name "Delta2" in klik op Ok. De Database wordt aangemaakt.
-[Afbeelding1]!(https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/images/1.png)
+![Afbeelding1](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/images/1.png)
 - Klik op "Security", rechtsklik op "Logins" en klik op "New Login".
-[Afbeelding2]!(https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/images/2.png)
+![Afbeelding2](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/images/2.png)
 - Vul bij "Login Name" "Delta2" in en selecteer "SQL Server Authentication". Kies als Password "Admin2019".
-[Afbeelding3]!(https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/images/3.png)
+![Afbeelding3](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/images/3.png)
 - Deselecteer "Enforce Password Policy" zodat SQL Server niet vraagt om nieuwe wachtwoord aan te maken bij login.
 - Klik links op "User Mapping" en selecteer het vakje naast de database "Delta2". Klik onderaan ook DB_OWNER aan!!!.
 - Klik op "OK" en de Gebruiker wordt aangemaakt.
