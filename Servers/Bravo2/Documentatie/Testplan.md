@@ -101,3 +101,24 @@ Na het runnen van het script, geef volgende in:
 3. Replicatie testen met Alfa2. (Powershell als admin openen)  
 	`repadmin /showrepl`  
 		- Zou succesvol moeten zijn.
+
+##  DNS records tabel:
+### Uit te voeren stappen:
+Checken of de DNS records bestaan: 
+Server manager > tools > DNS Manager >Forward Lookup Zones > red.local
+
+    Let op: Alle records moeten een A record zijn behalve Alfa2 en Bravo2 deze zijn een NS record.
+    De Exchange server Charlie2 bevat naast een A record ook een MX en Cname record.
+
+| Device | Soort DNS record | IP-address | 
+| :--: | :--: | :--: | 
+| alfa2 | NS | 172.18.1.66 | 
+| bravo2 | NS | 172.18.1.67 (zie je pas na installatie Bravo2 server) | 
+| charlie2 | A + MX + Cname |172.18.1.68  | 
+| delta2 | A | 172.18.1.69 | 
+| kilo2 | A | 172.18.1.1 | 
+| lima2 | A | 172.18.1.2 | 
+| mike2 | A | 172.18.1.3 | 
+| november2 | A | 172.18.1.4 | 
+| oscar2 | A | 172.18.1.5 | 
+| papa2 | A | 172.18.1.6 | 
