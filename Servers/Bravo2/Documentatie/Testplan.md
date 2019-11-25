@@ -92,3 +92,12 @@ Na het runnen van het script, geef volgende in:
  2. Met het volgende commando gaat men de forward servers overlopen. Omdat het hier over meerdere gaat namelijk de Hogent servers, gaan we dit wegschrijen in een "txt" file.  
 	 `Get-Content C:\scripts\servers.txt | Foreach-Object {get-dnsserverforwarder -computer $_}`  
 		- De servernamen van Hogent worden in dit script verwacht.
+
+## AD/DNS configuratie en installatie
+1. "Server Manager" > "Tools" > "Active Directory Users and Computers" > "Bravo2.red.local" > "Domain Controllers (container)"
+	- Hier zouden Alfa2 en Bravo2 moeten staan.
+2. "Server Manager" > "Tools" > "DNS Manager" > "Forward lookup zone" 
+	- Hier zou je "red.local" moeten zien staan.
+3. Replicatie testen met Alfa2. (Powershell als admin openen)
+	`repadmin /showrepl`  
+		- Zou succesvol moeten zijn.
