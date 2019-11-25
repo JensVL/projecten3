@@ -61,6 +61,11 @@ Staat voorlopig nog allemaal op niet bekwaam. Zijn er nog evaluatiepunten die mo
   - [ ] Nog niet bekwaam: ...  
 
 ## Best practices:
+### Windows
 - Gebruik van een duidelijk kanban-bord is nuttig
 - Communicatie is belangrijk (tussen windows-linux zijn netwerkers hiervoor verantwoordelijk)
 
+### Linux
+- Wij hebben op ons kanbanbord iedere servers een aparte rij gegeven.
+- Iedereen heeft spontaan geholpen bij elkaar, bij andere servers,...
+- Wij hebben 3 stand-ups gedaan (in het begin, midden en nadien) => Leerkracht raadt aan om er nog meer te doen op 'cruciale momenten', niet pas om de 3u.
