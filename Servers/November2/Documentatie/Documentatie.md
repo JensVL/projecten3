@@ -44,25 +44,20 @@ Hierdoor zal de server gerestart worden nadat het in het domein is toegevoegd.
 ### Installeer Microsoft SQL Server 2017
 
 Voer het script 3_SQL.ps1 uit om Papa2 rechten te geven en SQL te installeren met juiste configuratie. Deze staat uitgeschreven in de code.
-LET OP: Ons basispad naar deze setup is via Documents.
+LET OP: Ons basispad naar deze setup is via Desktop/Bureaublad.
 
 ### Installatie Microsoft SQL Server Management Studio
 
 Voer het script 4_SSMS.ps1 uit om SQL Server Management Studio te installeren met de juiste configuratie.
-
+LET OP: Ons basispad naar deze setup is via Desktop/Bureaublad.
 
 ### Aanmaken DB en User voor Delta2
 - In "Microsoft SQL Server Management Studio", rechtsklik "Databases" en klik op "New Database".
 - Vul bij de Database Name "Website" in klik op Ok. De Database wordt aangemaakt.
-
-
 - Klik op "Security", rechtsklik op "Logins" en klik op "New Login".
-- Vul bij "Login Name" "Website" in en selecteer "SQL Server Authentication". Kies als Password "Admin2019".
+- Vul bij "Login Name" "Delta2" in en selecteer "SQL Server Authentication". Kies als Password "Admin2019".
 - Deselecteer "Enforce Password Policy" zodat SQL Server niet vraagt om nieuwe wachtwoord aan te maken bij login.
-
-
-- Klik links op "User Mapping" en selecteer het vakje naast de database "Website". Klik onderaan ook DB_OWNER aan!!!.
-
+- Klik links op "User Mapping" en selecteer het vakje naast de database "Delta2". Klik onderaan ook DB_OWNER aan!!!.
 - Klik op "OK" en de Gebruiker wordt aangemaakt.
 - Deze gebruiker kan nu gebruikt worden door de Delta2 server!
 
