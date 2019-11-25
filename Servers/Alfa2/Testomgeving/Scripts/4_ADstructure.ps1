@@ -8,10 +8,10 @@
 # Variables
 #------------------------------------------------------------------------------
 # VOOR INTEGRATIE:
-$VBOXdrive = "C:\Scripts_ESXI\Alfa2"
+#$VBOXdrive = "C:\Scripts_ESXI\Alfa2"
 
 # VOOR VIRTUALBOX TESTING:
-#$VBOXdrive = "Z:"
+$VBOXdrive = "Z:"
 
 Start-Transcript "C:\ScriptLogs\4_ADstructure.txt"
 Import-Module ActiveDirectory
