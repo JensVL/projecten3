@@ -44,12 +44,37 @@ Hierdoor zal de server gerestart worden nadat het in het domein is toegevoegd.
 ### Installeer Microsoft SQL Server 2017
 
 Voer het script 3_SQL.ps1 uit om Papa2 rechten te geven en SQL te installeren met juiste configuratie. Deze staat uitgeschreven in de code.
-LET OP: Ons basispad naar deze setup is via Desktop/Bureaublad.
+* LET OP: Ons basispad naar deze setup is via Desktop/Bureaublad.
+
+Bij problemen kan je SQL handmatig installeren door de pdf te hanteren van het vak Windows Server.
 
 ### Installatie Microsoft SQL Server Management Studio
 
 Voer het script 4_SSMS.ps1 uit om SQL Server Management Studio te installeren met de juiste configuratie.
-LET OP: Ons basispad naar deze setup is via Desktop/Bureaublad.
+* LET OP: Ons basispad naar deze setup is via Desktop/Bureaublad.
+
+Bij problemen kan je SSMS handmatig installeren door de pdf te hanteren van het vak Windows Server.
+
+
+### Zeker na te kijken na installatie SQL en SSMS!
+
+#### SQL Server Configuration Manager
+- Open de SQL Server Configuration Manager.
+- Kijk na of alle services runnnen.
+- Normaal zou TCP/IP enabled moeten staan bij Client Protocols. Indien niet, enable deze dan.
+- Rechtsklik bij SQL Services op 'SQL Server (MSSQLSERVER)' en selevcteer 'Properties'.
+- Klik op 'FILESTREAM' en kijk of alle opties aangevinkt staan, ZEKER de allow remote acces.
+- Klik dan op 'Service' en klik Automatic aan bij 'Start Mode'.
+- Klik op OK en sluit de configuration manager.
+
+#### SQL Server Management Studio
+- Open SQL Server Management Studio.
+- Verbind de SQL server met WIndows Authentication.
+- Rechtsklik op de server en selecteer Properties en klik op Security.
+- Bij Server Authentication kies je voor 'SQL Server and Windows Authentication Mode' indien dit nog niet het geval is.
+- Klik op 'Connections' en selecteer 'Allow remote connections on this server'.
+- Klik op 'OK' en sluit het venster.
+
 
 ### Aanmaken DB en User voor Delta2
 - In "Microsoft SQL Server Management Studio", rechtsklik "Databases" en klik op "New Database".
