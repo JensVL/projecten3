@@ -1,5 +1,7 @@
 ### Testplan Lima2
 
+Getest door Aron Marckx en Cédric van Den Eede
+
 ## De server naam en domein
 
 1. De server naam is Lima2.
