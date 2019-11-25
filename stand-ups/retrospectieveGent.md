@@ -59,3 +59,8 @@ Staat voorlopig nog allemaal op niet bekwaam. Zijn er nog evaluatiepunten die mo
   - [ ] Nog niet bekwaam: ...
 - Technische documentatie
   - [ ] Nog niet bekwaam: ...  
+
+## Best practices:
+- Gebruik van een duidelijk kanban-bord is nuttig
+- Communicatie is belangrijk (tussen windows-linux zijn netwerkers hiervoor verantwoordelijk)
+
