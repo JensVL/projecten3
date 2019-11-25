@@ -23,30 +23,20 @@ $VBOXdrive = "Z:"
     [string]$November2IP = "172.18.1.4" # SQL Server
     [string]$Oscar2IP    = "172.18.1.5" # Monitoring Server
     [string]$Papa2IP     = "172.18.1.6" # SCCM Server
-    [string]$wan_adapter_name = "NAT"
-
+    [string]$local_ip         = "172.18.1.66"
+    [string]$secondary_dc_ip  = "172.18.1.67"
+    [string]$lan_adapter_name = "LAN"
 
 #------------------------------------------------------------------------------
 # Wait for AD services to become available
 #------------------------------------------------------------------------------
-while ($true) {
-    try {
-        Get-ADDomain | Out-Null
-        break
-    } catch {
-        Start-Sleep -Seconds 10
-    }
-}
+
+Start-Sleep -Seconds 10
 
 #------------------------------------------------------------------------------
 # Configure DNS
 #------------------------------------------------------------------------------
 Start-Transcript "C:\ScriptLogs\3_ConfigDCDNS.txt"
-
-
-# Fix adapters
-Write-Host ">>> Fixing DNS after ADDS"
-Set-DnsClientServerAddress -InterfaceAlias $wan_adapter_name -ResetServerAddresses
 
 # Stel forward primary lookup zones in voor alle servers in het red domein:
 Write-host ">>> Setting DNS primary zone for red.local"
@@ -75,10 +65,6 @@ function add_dns_record() {
         [string]$record_hostname_alias
     )
 
-    # TODO: test with and without "2> $null"
-    $record_exists=(Get-DnsServerResourceRecord -Name $record_name -RRType $record_type -ZoneName $record_zone_name 2> $null)
-
-    if(!$record_exists) {
         # make record
         if($record_type -eq "MX") {
             Add-DnsServerResourceRecordMX -Name $record_name -ZoneName $record_zone_name -MailExchange $record_mail_exchange -Preference $record_preference
@@ -90,11 +76,6 @@ function add_dns_record() {
             Add-DnsServerResourceRecordA -Name $record_name -ZoneName $record_zone_name -IPv4Address $ipaddress
         }
     }
-    else {
-        Write-Warning "Record $record_name already exists (skipping)"
-    }
-
-}
 
 add_dns_record -record_name "mail" -record_zone_name "red.local" -record_type "A" -ipaddress $Charlie2IP
 add_dns_record -record_name "mail" -record_zone_name "red.local" -record_type "MX" -record_mail_exchange "mail.red.local" -record_preference 100
@@ -115,6 +96,10 @@ add_dns_record -record_name "Papa2" -record_zone_name "red.local" -record_type "
 # DNS forwarder instellen op Hogent DNS servers:
 Write-Host ">>> Set DNS forwarder to HoGent DNS"
 Add-DnsServerForwarder -IPAddress 193.190.173.1,193.190.173.2
+
+# Set DNS of LAN adapter
+Write-Host ">>> Settings DNS of adapter $lan_adapter_name"
+Set-DnsClientServerAddress -InterfaceAlias "$lan_adapter_name" -ServerAddresses($local_ip,$secondary_dc_ip)
 
 # 5) Connectie met linux-mailserver
 # Stel forward primary lookup zone in voor mail server in het green domein:
