@@ -81,11 +81,11 @@ Bij problemen kan je SSMS handmatig installeren door de pdf te hanteren van het 
 - Vul bij de Database Name "Delta2" in klik op Ok. De Database wordt aangemaakt.
 ![Afbeelding1](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/images/1.png)
 - Klik op "Security", rechtsklik op "Logins" en klik op "New Login".
-![Afbeelding2](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/images/2.png)
 - Vul bij "Login Name" "Delta2" in en selecteer "SQL Server Authentication". Kies als Password "Admin2019".
-![Afbeelding3](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/images/3.png)
 - Deselecteer "Enforce Password Policy" zodat SQL Server niet vraagt om nieuwe wachtwoord aan te maken bij login.
+![Afbeelding3](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/images/3.png)
 - Klik links op "User Mapping" en selecteer het vakje naast de database "Delta2". Klik onderaan ook DB_OWNER aan!!!.
+![Afbeelding4delta](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/images/4%20delta.png)
 - Klik op "OK" en de Gebruiker wordt aangemaakt.
 - Deze gebruiker kan nu gebruikt worden door de Delta2 server!
 
@@ -94,6 +94,7 @@ Bij problemen kan je SSMS handmatig installeren door de pdf te hanteren van het 
 - Rechtsklik op de domein user ex. RED\Administrator.
 - Deselecteer "Enforce Password Policy" zodat SQL Server niet vraagt om nieuwe wachtwoord aan te maken bij login.
 - Klik links op "User Mapping". Klik onderaan op DB_OWNER, DBCreator!!
+![Afbeelding4admin](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/images/4%20admin%20red.png)
 - Klik op "OK" en de Gebruiker wordt gewijzigd.
 - Deze gebruiker kan nu gebruikt worden door de Mike2 server!
 
