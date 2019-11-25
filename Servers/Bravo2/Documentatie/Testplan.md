@@ -98,6 +98,6 @@ Na het runnen van het script, geef volgende in:
 	- Hier zouden Alfa2 en Bravo2 moeten staan.
 2. "Server Manager" > "Tools" > "DNS Manager" > "Forward lookup zone" 
 	- Hier zou je "red.local" moeten zien staan.
-3. Replicatie testen met Alfa2. (Powershell als admin openen)
+3. Replicatie testen met Alfa2. (Powershell als admin openen)  
 	`repadmin /showrepl`  
 		- Zou succesvol moeten zijn.
