@@ -102,8 +102,7 @@ Na het runnen van het script, geef volgende in:
 	`repadmin /showrepl`  
 		- Zou succesvol moeten zijn.
 
-##  DNS records tabel:
-### Uit te voeren stappen:
+##  DNS records tabel
 Checken of de DNS records bestaan: 
 Server manager > tools > DNS Manager >Forward Lookup Zones > red.local
 
