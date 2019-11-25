@@ -1,6 +1,6 @@
-# Verslag week 10
+# Verslag week 11
 
-## Aanwezigen week 10:
+## Aanwezigen week 11:
 | Naam                          | Aanwezig |
 | :---                          | :---   |
 | Alister Adutwum               | V |
@@ -29,7 +29,13 @@
 
 ## Algemeen
 
-- Bespreking retrospectieve Aalst - Gent (wat liep goed/wat liep minder goed/problemen first-release)
+- Stand van zaken: wie heeft wat gedaan?
+- Teamevaluatie invullen op de retrospectieve
+- Bespreking retrospectieve: de bespreking van de retrospective van vorige week is [hier](retrospectieve.md) terug te vinden.  
+  - Wat bedoelt Aalst met "Kabelmanagement was niet zo goed"?
+  - Probleem met de Deploy van Delta2 met November2
+    - Volgens Delta2: November2 blijkt niet te werken voor Delta2.
+    - Volgens November2: November2 werkt maar Delta2 zit met probleem
 - Iedereen vertelt wat hij/zij gaat doen.
   - Aan de hand van de problemen die besproken werden in de retrospectieve
 - Zorg voor een overzichtelijke, volledige documentatie en genereer een pdf hiervan
@@ -37,36 +43,32 @@
 - Zorg dat jullie (aangepaste) scripts in de release-branch staan
 - Problemen/Vragen?
 
-De bespreking van de retrospective is [hier](retrospectieve.md) terug te vinden.  
 
-## Gerealiseerd week 9
+## Gerealiseerd week 10
 * Alfa
-  * First-Release: Er kan niet ingelogd worden met de user-accounts. Geen idee hoe het moet opgelost worden
+  * ...
 * Bravo
-  * First-Release: Server werkte op ESXI, maar niet meer op laptops
-  * Later opnieuw getest bridged adapter (Alfa2 - Bravo2) werkte wel
+  * ...
 * Charlie
-  * First-Release: Afwachten. 15 min
+  * ...
 * Delta
-  * First-Release: Eerste deel werkt volledig. Deploy werkt niet. Gaat eens horen bij fileserver want bij hen werkt het
+  * ...
 * Kilo
-  * First-Release: Test-script werkt, maar praktijk niet 
+  * ...
 * Lima
-  * First-Release: Zo goed als af. Configuratie moet nog afgewerkt worden
+  * ...
 * Mike
-  * First-Release: Sharepoint werkt en webapplicatie ook => Succesvol
+  * ...
 * November
-  * First-Release: Alles werkt
+  * ...
 * Oscar
-  * First-Release: Alles gelukt
+  * ...
 * Papa
-  * First-Release: Probleem met link met SQL. Er moet iets extra worden toegevoegd aan ...
+  * ...
 * Zulu
-  * First-Release: Problemen met OSPF, maar workaround via static routes
-  * Achteraf mogelijke oplossing voor ospf gevonden. Volgende week testen.
+  * ...
 * Netwerkinfra
-  * First-Release: Alles werkt
-  * Hebben achteraf static routes moeten toevoegen voor zulu
+  * ...
   
 ## Volgende stand-up:
 - Stand van zaken
