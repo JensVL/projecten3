@@ -17,28 +17,27 @@ Domein wachtwoord: Admin2019 <br>
 
 ### Installatie procedure
 
-1. Installeer Windows Server 2019
+1. Installeer Windows Server 2019/2016
 2. Verander de hostnaam en ip-config.
    Hieronder de instellingen van November2:
    - Hostnaam: November2
    - Ip-address: 172.18.1.4
    - Subnet mask: 255.255.255.192 (/26)
    - Default gateway: 172.18.1.7
-   - Preferred DNS: 172.18.1.66
-   - Alternate DNS: 172.18.1.67
+   - Preferred DNS (Alfa2) : 172.18.1.66
+   - Alternate DNS (Bravo2) : 172.18.1.67
 3. Voeg de server toe aan het domein red.local (Verander loginggegevens naar RED\Administrator, passwoord naar Admin2019)
 4. Restart de server.
 5. Installeer Microsoft Sql Server 2017 Entreprise Edition.
-6. Restart de server.
-7. Installeer SSMS.
-8. Restart de server.
+6. Installeer SSMS.
+7. Restart de server.
 
 Installatie voltooid.
 
 ### Configuratie Hostname en algemene configuratie (ip, gateway, domein)
 
-De server kan juist geconfigureerd worden door de scripts 1_hostname.ps1 en 2_config.ps1 uit te voeren.
-Hierdoor zal de server gerestart worden nadat het in het domein is toegevoegd.
+De server kan juist geconfigureerd worden door de scripts 1_hostname.ps1 en 2_config.ps1 uit te voeren. Deze zal na het eerste script restarten.
+Na het 2de script zal de server gerestart worden nadat het in het domein is toegevoegd.
 
 
 ### Installeer Microsoft SQL Server 2017
@@ -51,6 +50,7 @@ Bij problemen kan je SQL handmatig installeren door de pdf te hanteren van het v
 ### Installatie Microsoft SQL Server Management Studio
 
 Voer het script 4_SSMS.ps1 uit om SQL Server Management Studio te installeren met de juiste configuratie.
+Hierna zal de server een laatste keer restarten om de installaties te voltooien.
 * LET OP: Ons basispad naar deze setup is via Desktop/Bureaublad.
 
 Bij problemen kan je SSMS handmatig installeren door de pdf te hanteren van het vak Windows Server.
@@ -78,7 +78,7 @@ Bij problemen kan je SSMS handmatig installeren door de pdf te hanteren van het 
 
 ### Aanmaken DB en User voor Delta2
 - In "Microsoft SQL Server Management Studio", rechtsklik "Databases" en klik op "New Database".
-- Vul bij de Database Name "Delta2" in klik op Ok. De Database wordt aangemaakt.
+- Vul bij de Database Name "Delta2" in klik op Ok.
 ![Afbeelding1](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/images/1.png)
 - Klik op "Security", rechtsklik op "Logins" en klik op "New Login".
 - Vul bij "Login Name" "Delta2" in en selecteer "SQL Server Authentication". Kies als Password "Admin2019".
