@@ -7,9 +7,10 @@
     Ook zorgt dit ervoor dat de nood aan scripting verminderd, je toegang hebt tot alle MDT variabelen,
     MDT databases, toolkit en customsettings.ini. 
     Op deze manier maak je het dus eenvoudiger om een Task Sequence aan te maken met specifieke vereisten, zonder deze via scripts te moeten uitvoeren.
-
-    1. Zoek in "START" "Configure ConfigMgr Integration" op en Start dit programma.
-    2. NEXT -> FINISH
+    
+- Zoek in "START" "Configure ConfigMgr Integration" op en Start dit programma.
+- NEXT  
+- FINISH
  
 ## 1.2 Aanmaken van de nodige netwerklocaties
     De Task Sequence Wizard gebruikt enkel bestandlocaties op een netwerkpad, en niet op een lokaal pad.
