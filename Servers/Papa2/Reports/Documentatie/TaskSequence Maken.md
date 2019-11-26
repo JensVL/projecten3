@@ -38,8 +38,10 @@ TE MAKEN UNC FOLDERS (Maak deze in de gedeelde folder "TSReq"):
 4. TAB Summary: NEXT
 
 # 2. Aanmaken van de Task Sequence
-    Een Task Sequence bevat de volgorde aan stappen en processen die moeten worden uitgevoerd bij het deployen ervan. 
-    Het geeft de doel-pc een lijst van installaties en configuraties die dan worden uitgevoerd om zo de computer gebruiksklaar te maken zonder al deze stappen manueel te moeten uitvoeren.
+    Een Task Sequence bevat de volgorde aan stappen en processen die moeten worden uitgevoerd bij 
+    het deployen ervan. 
+    Het geeft de doel-pc een lijst van installaties en configuraties die dan worden uitgevoerd om
+    zo de computer gebruiksklaar te maken zonder al deze stappen manueel te moeten uitvoeren.
 
 1. In "Software Library"
     - ga naar"Operating Systems"  
