@@ -43,7 +43,7 @@ De volgende tabel toont de instellingen van de gebruikers.
 | 4732 | Matthias | Van de Velde | MatthiasVDV | Verkoop | Kimberly | B0.015 | 0444727200 | OU=Verkoop,DC=red,DC=local | Koksijde |
 | 4736 | Robby | Daelman | RobbyD | Verkoop | Matthias | B0.015  | 0444727204 | OU=Verkoop,DC=red,DC=local | Lede |
 | 5078 | Jannes | Van Wonterghem | JannesVW | Ontwikkeling | Kimberly | B1.018  | 0444727290 | OU=Ontwikkeling,DC=red,DC=local | Zoersel |
-| 5079 | Cédric | Van den Eede | CedricVDE | Ontwikkeling | Jannes | B1.018 | 0444727292 | OU=Ontwikkeling,DC=red,DC=local | Meldert |
+| 5079 | CedricVDE | Van den Eede | CedricVDE | Ontwikkeling | Jannes | B1.018 | 0444727292 | OU=Ontwikkeling,DC=red,DC=local | Meldert |
 | 5423 | Elias | Waterschoot | EliasW | Verkoop | Matthias | B0.015 | 0444727202 | OU=Verkoop,DC=red,DC=local | Torhout |
 | 5822 | Nathan | Cammerman | NathanC | Verkoop | Matthias | B0.015 | 0444727201 | OU=Verkoop,DC=red,DC=local | Torhout |
 | 6312 | Tibo | Vanhercke | TiboV | Administratie | Joachim | B4.002 | 0444727261 | OU=Administratie,DC=red,DC=local | Ingooigem |
@@ -52,6 +52,34 @@ De volgende tabel toont de instellingen van de gebruikers.
 | 8425 | Ferre | Verstichelen | FerreV | IT_Administratie | Laurens | B4.037  |  0444727281 | OU=IT_Administratie,DC=red,DC=local | Wervik |
 | 8486 | Sean | Vancompernolle | SeanV | Verkoop | Matthias | B1.015 |  0444727207 | OU=Verkoop,DC=red,DC=local | Ieper |
 | 8653 | Jens | Van Liefferinge | JensVL | IT_Administratie | Laurens| B4.037 | 0444727282 | OU=IT_Administratie,DC=red,DC=local | Lokeren |
+
+De volgende tabel toont de instellingen van de computers.  
+
+| ADComputer | SamAccountName Workstation | SamAccountName User | Location |
+| -------- | --------- | ---------- | ---------- |
+| Directie_001 | Directie001 | KimberlyDC | Gent |
+| Directie_002 | Directie002 | ArnoVN | Aalst |
+| Administratie_001 | Admin001 | JoachimVDK | Gent |
+| Administratie_002 | Admin002 | TiboV | Gent |
+| Administratie_003 | Admin003 | YngvarS | Gent |
+| Administratie_004 | Admin004 | TimG | Gent |
+| Administratie_005 | Admin005 | RikC | Gent |
+| Verkoop_001 | Verkoop001 | MatthiasVDV | Gent |
+| Verkoop_002 | Verkoop002 | RobbyD | Aalst |
+| Verkoop_003 | Verkoop003 | NathanC | Gent |
+| Verkoop_004 | Verkoop004 | EliasW | Gent |
+| Verkoop_005 | Verkoop005 | AlisterA | Gent |
+| Verkoop_006 | Verkoop006 | SeanV | Gent |
+| Ontwikkeling_001 | Ontwikkeling001 | JannesVW | Gent |
+| Ontwikkeling_002 | Ontwikkeling002 | JonasV | Gent |
+| Ontwikkeling_003 | Ontwikkeling003 | CedricVDE | Aalst |
+| Ontwikkeling_004 | Ontwikkeling004 | CedricD | Aalst |
+| Ontwikkeling_005 | Ontwikkeling005 | RobinVDW | Gent |
+| ITAdministratie_001 | ITAdmin001 | LaurensBC | Gent |
+| ITAdministratie_002 | ITAdmin002 | FerreV | Gent |
+| ITAdministratie_003 | ITAdmin003 | LeviG | Aalst |
+| ITAdministratie_004 | ITAdmin004 | AronM | Aalst |
+| ITAdministratie_005 | ITAdmin005 | JensVL | Gent |
 
 ## Stappenplan beleidsregels
 Hieronder volgt een stappenplan hoe je de GPO's in de GUI instelt.   
@@ -108,6 +136,16 @@ In deze lijst zoeken we `Prohibit access to properties of a LAN connection` om d
 ![Disable Networkadapters](../Documentatie/Images/DisableNetworkadapters.JPG)   
 
 Nu zijn alle group policies op de domeincontroller ingesteld.   
+
+Vervolgens moeten we nog de default GPO's aanpassen zodat de gebruikers zich kunnen inloggen. Ga naar Tools in Server Manager, vervolgens klik je op `Group Policy Management`. Ga naar `Forest: red.local` > Domains > red.local > Group Policy Objects. Rechtermuisklik op  **Default Domain Controllers Policy** en klik op `Edit...`. Zie onderstaande afbeelding. 
+![Default Domain Controllers Policy](../Documentatie/Images/GPO_DDCP.JPG)   
+Klik vervolgens door op Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment. Dubbelklik op `Allow log on locally`. Klik op `Add User or Group...`, klik vervolgens op `Browse ...`. Vul de groepen (Verkoop; Administratie; IT_Administratie; Ontwikkeling; Directie) in bij 'Enter the object names to select (examples):'. Scheidt de groepen door middel van een puntkomma (;). Klik op `Check Names`. Zorg ervoor dat ook de Administrators toegevoegd zijn. Klik vervolgens op 'OK' en 'Apply'.  
+![Check Names](../Documentatie/Images/CheckNames.JPG)   
+
+Voor de default GPO **Default Domain Policy** doen we exact hetzelfde. We gaan in het venster van `Group Policy Management` naar Default Domain Policy. Hier klikken we rechts op `Edit...`. Klik opnieuw door op Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment. Dubbelklik op `Allow log on locally`. Vink `Define these policy settings:` aan en klik op `Add User or Group...`. Klik vervolgens opnieuw op `Browse ...` en vul de groepen in. Vergeet de administrators niet toe te voegen. Klik op `Check Names` om te controleren of dit geldige groepen zijn. Zie onderstaande afbeelding. Klik vervolgens op 'OK' en 'Apply'.   
+![Default Domain Policy](../Documentatie/Images/DefaultDomainPolicy.JPG)  
+
+Nu kunnen alle gebruikers in deze groepen zich inloggen. 
 
 ## Informatie AGDLP
 
