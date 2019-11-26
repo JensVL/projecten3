@@ -1,22 +1,25 @@
 # Stappenplan voor het aanmaken van een Task Sequence in SCCM.
 
-## Prerequisites
+## 1. Prerequisites
 
-### 1: MDT integreren in SCCM
-## Door MDT te integreren in SCCM kan je je Task Sequence veel meer personaliseren.<br> Ook zorgt dit ervoor dat de nood aan scripting verminderd, je toegang hebt tot alle MDT variabelen, MDT databases, toolkit en customsettings.ini. Op deze manier maak je het dus eenvoudiger om een Task Sequence aan te maken met specifieke vereisten, zonder deze via scripts te moeten uitvoeren.
+### 1.1 MDT integreren in SCCM
+    Door MDT te integreren in SCCM kan je je Task Sequence veel meer personaliseren.
+    Ook zorgt dit ervoor dat de nood aan scripting verminderd, je toegang hebt tot alle MDT variabelen, MDT databases, toolkit en customsettings.ini. Op deze manier maak je het dus eenvoudiger om een Task Sequence aan te maken met specifieke vereisten, zonder deze via scripts te moeten uitvoeren.
 
-Integratie van MDT in SCCM via applicatie "Configure ConfigMgr Integration": NEXT -> FINISH
+    1. Zoek in "START" "Configure ConfigMgr Integration" op en Start dit programma.
+    2. NEXT -> FINISH
 
-In Configuration Manager Console:
-EERST:
-TE MAKEN UNC FOLDERS:
-- "MDT Toolkit Package": LEEG
-- "MDT Settings Package": LEEG
-- "installImage": MET "install.wim"
-- "Applicaties": MET: 	- Acrobat Reader msi
-						- Flash Player msi
-						- Java (jre) msi
-						- LibreOffice msi
+(In Configuration Manager Console:  )  
+### 1.2 Aanmaken van de nodige netwerklocaties
+TE MAKEN UNC FOLDERS:  
+1. "MDT Toolkit Package": LEEG  
+2. "MDT Settings Package": LEEG  
+3. "installImage": MET "install.wim"
+4. "Applicaties": MET: 	
+                        1. Acrobat Reader msi  
+						2. Flash Player msi  
+						- Java (jre) msi  
+						- LibreOffice msi  
 
 1: Zorg dat een Windows 10 Enterprise "install.wim" file zich op een UNC pad bevind:
 	- Map maken op C schijf -> prop -> share
