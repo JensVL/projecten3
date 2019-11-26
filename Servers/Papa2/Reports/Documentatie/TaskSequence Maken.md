@@ -10,15 +10,17 @@
     2. NEXT -> FINISH
 
 (In Configuration Manager Console:  )  
+
 ### 1.2 Aanmaken van de nodige netwerklocaties
 TE MAKEN UNC FOLDERS:  
 1. "MDT Toolkit Package": LEEG  
 2. "MDT Settings Package": LEEG  
 3. "installImage": MET "install.wim"
-4. "Applicaties": MET:  - Acrobat Reader msi  
-			- Flash Player msi  
-			- Java (jre) msi  
-			- LibreOffice msi  
+4. "Applicaties": MET:  
+	- Acrobat Reader msi  
+	- Flash Player msi  
+	- Java (jre) msi  
+	- LibreOffice msi  
 
 1: Zorg dat een Windows 10 Enterprise "install.wim" file zich op een UNC pad bevind:
 	- Map maken op C schijf -> prop -> share
