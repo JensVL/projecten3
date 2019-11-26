@@ -4,7 +4,9 @@
 
 ## 1.1 MDT integreren in SCCM
     Door MDT te integreren in SCCM kan je je Task Sequence veel meer personaliseren.
-    Ook zorgt dit ervoor dat de nood aan scripting verminderd, je toegang hebt tot alle MDT variabelen, MDT databases, toolkit en customsettings.ini. Op deze manier maak je het dus eenvoudiger om een Task Sequence aan te maken met specifieke vereisten, zonder deze via scripts te moeten uitvoeren.
+    Ook zorgt dit ervoor dat de nood aan scripting verminderd, je toegang hebt tot alle MDT variabelen,
+    MDT databases, toolkit en customsettings.ini. 
+    Op deze manier maak je het dus eenvoudiger om een Task Sequence aan te maken met specifieke vereisten, zonder deze via scripts te moeten uitvoeren.
 
     1. Zoek in "START" "Configure ConfigMgr Integration" op en Start dit programma.
     2. NEXT -> FINISH
@@ -23,7 +25,10 @@ TE MAKEN UNC FOLDERS (Maak deze in de gedeelde folder "TSReq"):
 	- Java (jre) msi  
 	- LibreOffice msi  
 
-## 1.3 install.wim toevoegen in SCCM
+## 1.3 install.wim toevoegen in SCCM 
+    Op deze manier heb je het benodigde installatiebestand   
+    dat in de Task Sequence Wizard word gebruikt al klaar staan om in de Wizard te selecteren.
+
 #### In Configuration Manager Console:  
 1. Right-Click "Operating System Images" -> "Add O S Image"
 2. Navigeer naar de "UNC map\install.wim" SELECTEER "install.wim" -> NEXT
@@ -31,6 +36,8 @@ TE MAKEN UNC FOLDERS (Maak deze in de gedeelde folder "TSReq"):
 4. TAB Summary: NEXT
 
 # 2. Aanmaken van de Task Sequence
+    Een Task Sequence bevat de volgorde aan stappen en processen die moeten worden uitgevoerd bij het deployen ervan. 
+    Het geeft de doel-pc een lijst van installaties en configuraties die dan worden uitgevoerd om zo de computer gebruiksklaar te maken zonder al deze stappen manueel te moeten uitvoeren.
 
 1. In "Software Library"
     - ga naar"Operating Systems"  
