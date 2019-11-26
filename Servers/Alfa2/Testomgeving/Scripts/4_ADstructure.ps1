@@ -10,6 +10,8 @@
 # VOOR INTEGRATIE:
 #$VBOXdrive = "C:\Scripts_ESXI\Alfa2"
 
+$VBOXdrive = "\\VBOXSVR\Scripts"
+
 # VOOR VIRTUALBOX TESTING:
 $VBOXdrive = "Z:"
 
@@ -156,8 +158,8 @@ Import-Csv -Path "$VBOXdrive\ExtendADschema\users3.csv" | ForEach-Object {
 #            -GivenName "Jonas" -State "Vlaams-Brabant" -City "Bierbeek" -PostalCode "3360"  `
 #            -Office "B1.018" -EmployeeID "1578" -HomePhone "0444727291" -Initials "JV" -Path "OU=Ontwikkeling,DC=red,DC=local" -AccountPassword $password
 
-# New-AdUser -Name "Cédric" -Surname "Van den Eede" -SamAccountName "CedricVDE"-Department "Development" -Description "Account voor Cédric" -DisplayName "CedricVDE" `
-#            -GivenName "Cédric" -State "Oost-Vlaanderen" -City "Meldert" -PostalCode "9310"  `
+# New-AdUser -Name "CedricVDE" -Surname "Van den Eede" -SamAccountName "CedricVDE"-Department "Development" -Description "Account voor Cédric" -DisplayName "CedricVDE" `
+#            -GivenName "CedricVDE" -State "Oost-Vlaanderen" -City "Meldert" -PostalCode "9310"  `
 #            -Office "B1.018" -EmployeeID "5079" -HomePhone "0444727292" -Initials "CVDE" -Path "OU=Ontwikkeling,DC=red,DC=local" -AccountPassword $password
 
 # New-AdUser -Name "CedricD" -Surname "Detemmerman" -SamAccountName "CedricD"-Department "Development" -Description "Account voor Cedric" -DisplayName "CedricD" `
@@ -207,8 +209,7 @@ Add-ADGroupMember -Identity "CN=Directie,OU=Directie,DC=red,DC=local" -Members "
 Add-ADGroupMember -Identity "CN=Administratie,OU=Administratie,DC=red,DC=local" -Members "CN=Joachim,OU=Administratie,DC=red,DC=local", "CN=Tibo,OU=Administratie,DC=red,DC=local", "CN=Yngvar,OU=Administratie,DC=red,DC=local", "CN=Tim,OU=Administratie,DC=red,DC=local", "CN=Rik,OU=Administratie,DC=red,DC=local"
 Add-ADGroupMember -Identity "CN=IT_Administratie,OU=IT_Administratie,DC=red,DC=local" -Members "CN=Laurens,OU=IT_Administratie,DC=red,DC=local", "CN=Ferre,OU=IT_Administratie,DC=red,DC=local", "CN=Levi,OU=IT_Administratie,DC=red,DC=local", "CN=Aron,OU=IT_Administratie,DC=red,DC=local", "CN=Jens,OU=IT_Administratie,DC=red,DC=local"
 Add-ADGroupMember -Identity "CN=Verkoop,OU=Verkoop,DC=red,DC=local" -Members "CN=Matthias,OU=Verkoop,DC=red,DC=local", "CN=Robby,OU=Verkoop,DC=red,DC=local", "CN=Nathan,OU=Verkoop,DC=red,DC=local", "CN=Elias,OU=Verkoop,DC=red,DC=local", "CN=Alister,OU=Verkoop,DC=red,DC=local", "CN=Sean,OU=Verkoop,DC=red,DC=local"
-# Opmerking: Als je in een VM met een shared folder test, zou het kunnen dat je overal "CÃ©dric" eerst moet aanpassen naar "Cédric".
-Add-ADGroupMember -Identity "CN=Ontwikkeling,OU=Ontwikkeling,DC=red,DC=local" -Members "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local", "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local", "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local", "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local", "CN=Robin,OU=Ontwikkeling,DC=red,DC=local"
+Add-ADGroupMember -Identity "CN=Ontwikkeling,OU=Ontwikkeling,DC=red,DC=local" -Members "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local", "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local", "CN=CedricVDE,OU=Ontwikkeling,DC=red,DC=local", "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local", "CN=Robin,OU=Ontwikkeling,DC=red,DC=local"
 
 # Managers per OU toekennen
 Write-Host "Allocate managers to OU's..." -ForeGroundColor "Green"
@@ -240,7 +241,7 @@ Set-ADUser -Identity "CN=Rik,OU=Administratie,DC=red,DC=local" -Manager "CN=Joac
 
 Write-Host "Allocate manager OU Ontwikkeling Jannes..." -ForeGroundColor "Green"
 Set-ADUser -Identity "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local" -Manager "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
-Set-ADUser -Identity "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local" -Manager "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
+Set-ADUser -Identity "CN=CedricVDE,OU=Ontwikkeling,DC=red,DC=local" -Manager "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
 Set-ADUser -Identity "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local" -Manager "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
 Set-ADUser -Identity "CN=Robin,OU=Ontwikkeling,DC=red,DC=local" -Manager "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
 
@@ -323,7 +324,7 @@ function unlock_ontwikkeling() {
 }
 unlock_ontwikkeling "Jannes"
 unlock_ontwikkeling "Jonas"
-unlock_ontwikkeling "Cédric"
+unlock_ontwikkeling "CedricVDE"
 unlock_ontwikkeling "CedricD"
 unlock_ontwikkeling "Robin"
 
@@ -362,7 +363,7 @@ unlock_verkoop "Sean"
     Enable-ADAccount -Identity "CN=Rik,OU=Administratie,DC=red,DC=local"
     Enable-ADAccount -Identity "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
     Enable-ADAccount -Identity "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local"
-    Enable-ADAccount -Identity "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=CedricVDE,OU=Ontwikkeling,DC=red,DC=local"
     Enable-ADAccount -Identity "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local"
     Enable-ADAccount -Identity "CN=Robin,OU=Ontwikkeling,DC=red,DC=local"
     Enable-ADAccount -Identity "CN=Matthias,OU=Verkoop,DC=red,DC=local"
@@ -397,7 +398,7 @@ New-ADComputer "Verkoop_006" -SamAccountName "Verkoop006" -Path "CN=Computers,DC
 Write-Host "Create workstations for Ontwikkeling..." -ForeGroundColor "Green"
 New-ADComputer "Ontwikkeling_001" -SamAccountName "Ontwikkeling001" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
 New-ADComputer "Ontwikkeling_002" -SamAccountName "Ontwikkeling002" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local"
-New-ADComputer "Ontwikkeling_003" -SamAccountName "Ontwikkeling003" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local"
+New-ADComputer "Ontwikkeling_003" -SamAccountName "Ontwikkeling003" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "CN=CedricVDE,OU=Ontwikkeling,DC=red,DC=local"
 New-ADComputer "Ontwikkeling_004" -SamAccountName "Ontwikkeling004" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Aalst,BE" -ManagedBy "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local"
 New-ADComputer "Ontwikkeling_005" -SamAccountName "Ontwikkeling005" -Path "CN=Computers,DC=red,DC=local" -Enabled $True -Location "Gent,BE" -ManagedBy "CN=Robin,OU=Ontwikkeling,DC=red,DC=local"
 
@@ -437,7 +438,7 @@ New-ADComputer "ITAdministratie_005" -SamAccountName "ITAdmin005" -Path "CN=Comp
 # Write-Host "Configure the profile path for Ontwikkeling..." -ForeGroundColor "Green"
 # Set-ADUser -Identity "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\jannes"
 # Set-ADUser -Identity "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\jonas"
-# Set-ADUser -Identity "CN=Cédric,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\cédric"
+# Set-ADUser -Identity "CN=CedricVDE,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\cedricVDE"
 # Set-ADUser -Identity "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\cedricD"
 # Set-ADUser -Identity "CN=Robin,OU=Ontwikkeling,DC=red,DC=local" -ProfilePath "\\dc01\profiles\robin"
 #
