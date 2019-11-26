@@ -88,12 +88,23 @@ Er moeten drie GPO's worden ingesteld:
 2. Verwijder het games link menu uit het start menu voor alle afdelingen
 3. Verbied iedereen uit de afdelingen Administratie en Verkoop de toegang tot de eigenschappen van de netwerkadapters
 
-Eerst worden de GPO's (DisableControlPanel, RemoveGameLink en DisableNetworkadapters) gemaakt.   
+
+Eerst moeten we nog de default GPO's aanpassen zodat de gebruikers zich kunnen inloggen. Ga naar Tools in Server Manager, vervolgens klik je op `Group Policy Management`. Ga naar `Forest: red.local` > Domains > red.local > Group Policy Objects. Rechtermuisklik op  **Default Domain Controllers Policy** en klik op `Edit...`. Zie onderstaande afbeelding. 
+![Default Domain Controllers Policy](../Documentatie/Images/GPO_DDCP.JPG)   
+Klik vervolgens door op Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment. Dubbelklik op `Allow log on locally`. Klik op `Add User or Group...`, klik vervolgens op `Browse ...`. Vul de groepen (Verkoop; Administratie; IT_Administratie; Ontwikkeling; Directie) in bij 'Enter the object names to select (examples):'. Scheidt de groepen door middel van een puntkomma (;). Klik op `Check Names`. Zorg ervoor dat ook de Administrators toegevoegd zijn. Klik vervolgens op 'OK' en 'Apply'.  
+![Check Names](../Documentatie/Images/CheckNames.JPG)   
+
+Voor de default GPO **Default Domain Policy** doen we exact hetzelfde. We gaan in het venster van `Group Policy Management` naar Default Domain Policy. Hier klikken we rechts op `Edit...`. Klik opnieuw door op Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment. Dubbelklik op `Allow log on locally`. Vink `Define these policy settings:` aan en klik op `Add User or Group...`. Klik vervolgens opnieuw op `Browse ...` en vul de groepen in. Vergeet de administrators niet toe te voegen. Klik op `Check Names` om te controleren of dit geldige groepen zijn. Zie onderstaande afbeelding. Klik vervolgens op 'OK' en 'Apply'.   
+![Default Domain Policy](../Documentatie/Images/DefaultDomainPolicy.JPG)  
+
+Nu kunnen alle gebruikers in deze groepen zich inloggen.  
+
+Vervolgens maken we zelf een aantal GPO's (**DisableControlPanel**, **RemoveGameLink** en **DisableNetworkadapters**).   
 Ga in de Server Manager naar Tools en kies voor `Group Policy Management`. Kies voor Forest: red.local > Domains  
 Rechtsklik op `red.local` en kies voor `Create a GPO in this domain, and Link it here...`.   
 ![Create GPO](../Documentatie/Images/CreateGPO.JPG)
 
-Vervolgens gaan we de GPO linken aan de juiste afdelingen. 
+Daarna gaan we de GPO linken aan de juiste afdelingen. 
 Onder red.local kies je een afdeling. In de afbeelding linken we de GPO's voor de afdeling `Verkoop`. 
 Rechtsklik op `Verkoop` en kies voor `Link an Existing GPO...`    
 ![Link GPO](../Documentatie/Images/LinkGPO.JPG)  
@@ -128,24 +139,13 @@ Nu kiezen we voor `Start Menu and Taskbar`. Zoek in deze lijst `Remove Games lin
 Nu hebben we de GPO ingesteld zodat de game link uit het start menu verwijderd zal worden voor alle afdelingen, want deze group policy hebben we aan alle afdelingen gelinkt.   
 ![Remove Game Link](../Documentatie/Images/RemoveGameLink.JPG)   
 
-
 Voor de laatste GPO `DisableNetworkadapters` te configureren, gaan we opnieuw naar het scherm `Group Policy Management` en onder `Group Policy Objects` klikken we rechts op `DisableNetworkadapters` en kiezen we voor `Edit...`.   
 In het pop-up venster `Group Policy Manager Editor` kiezen we opnieuw voor `User Configuration` > Policies >  Administrative Templates: Policy definitions (ADMX files) retrieved from the local computer.  
 Nu selecteren we `Network` en vervolgens `Network Connections`. 
-In deze lijst zoeken we `Prohibit access to properties of a LAN connection` om de toegang tot de eigenschappen van de netwerkadapters te verbieden. Kies voor `Edit policy setting` en `Enabled` deze group policy setting. Let op bij het instellen van deze group policy. Kies hier voor **Disabled** en `Apply` deze setting. Klik vervolgens op `OK`. 
+In deze lijst zoeken we `Prohibit access to properties of a LAN connection` om de toegang tot de eigenschappen van de netwerkadapters te verbieden. Kies voor `Edit policy setting`. Let op bij het instellen van deze group policy. Kies hier voor **Disabled** en `Apply` deze setting. Klik vervolgens op `OK`. 
 ![Disable Networkadapters](../Documentatie/Images/DisableNetworkadapters.JPG)   
 
 Nu zijn alle group policies op de domeincontroller ingesteld.   
-
-Vervolgens moeten we nog de default GPO's aanpassen zodat de gebruikers zich kunnen inloggen. Ga naar Tools in Server Manager, vervolgens klik je op `Group Policy Management`. Ga naar `Forest: red.local` > Domains > red.local > Group Policy Objects. Rechtermuisklik op  **Default Domain Controllers Policy** en klik op `Edit...`. Zie onderstaande afbeelding. 
-![Default Domain Controllers Policy](../Documentatie/Images/GPO_DDCP.JPG)   
-Klik vervolgens door op Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment. Dubbelklik op `Allow log on locally`. Klik op `Add User or Group...`, klik vervolgens op `Browse ...`. Vul de groepen (Verkoop; Administratie; IT_Administratie; Ontwikkeling; Directie) in bij 'Enter the object names to select (examples):'. Scheidt de groepen door middel van een puntkomma (;). Klik op `Check Names`. Zorg ervoor dat ook de Administrators toegevoegd zijn. Klik vervolgens op 'OK' en 'Apply'.  
-![Check Names](../Documentatie/Images/CheckNames.JPG)   
-
-Voor de default GPO **Default Domain Policy** doen we exact hetzelfde. We gaan in het venster van `Group Policy Management` naar Default Domain Policy. Hier klikken we rechts op `Edit...`. Klik opnieuw door op Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment. Dubbelklik op `Allow log on locally`. Vink `Define these policy settings:` aan en klik op `Add User or Group...`. Klik vervolgens opnieuw op `Browse ...` en vul de groepen in. Vergeet de administrators niet toe te voegen. Klik op `Check Names` om te controleren of dit geldige groepen zijn. Zie onderstaande afbeelding. Klik vervolgens op 'OK' en 'Apply'.   
-![Default Domain Policy](../Documentatie/Images/DefaultDomainPolicy.JPG)  
-
-Nu kunnen alle gebruikers in deze groepen zich inloggen. 
 
 ## Informatie AGDLP
 
@@ -158,4 +158,3 @@ Nu kunnen alle gebruikers in deze groepen zich inloggen.
 [Disable Control Panel](https://www.isunshare.com/windows-8/disable-display-control-panel.html)  
 [Link GPO to OU](https://www.manageengine.com/products/active-directory-audit/kb/how-to/how-to-link-a-gpo-to-an-ou.html)  
 [Dell - GPO in GUI](https://www.dell.com/support/article/be/fr/bedhs1/sln283093/windows-server-cr%C3%A9ation-et-liaison-d-un-objet-de-strat%C3%A9gie-de-groupe-%C3%A0-l-aide-de-la-console-de-gestion-des-strat%C3%A9gies-de-groupe?lang=fr)  
-
