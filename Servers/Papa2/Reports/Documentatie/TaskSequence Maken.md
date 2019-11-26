@@ -42,6 +42,8 @@ TE MAKEN UNC FOLDERS (Maak deze in de gedeelde folder "TSReq"):
     het deployen ervan. 
     Het geeft de doel-pc een lijst van installaties en configuraties die dan worden uitgevoerd om
     zo de computer gebruiksklaar te maken zonder al deze stappen manueel te moeten uitvoeren.
+    In dit geval is dit vooral handig om de nodige applicaties te installeren
+    en het AD Domain te joinen.
 
 1. In "Software Library"
     - ga naar"Operating Systems"  
