@@ -6,7 +6,8 @@
     Door MDT te integreren in SCCM kan je je Task Sequence veel meer personaliseren.
     Ook zorgt dit ervoor dat de nood aan scripting verminderd, je toegang hebt tot alle MDT variabelen,
     MDT databases, toolkit en customsettings.ini. 
-    Op deze manier maak je het dus eenvoudiger om een Task Sequence aan te maken met specifieke vereisten, zonder deze via scripts te moeten uitvoeren.
+    Op deze manier maak je het dus eenvoudiger om een Task Sequence aan te maken met specifieke vereisten, 
+    zonder deze via scripts te moeten uitvoeren.
     
 - Zoek in "START" "Configure ConfigMgr Integration" op en Start dit programma.
 - NEXT  
