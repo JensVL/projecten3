@@ -1,17 +1,20 @@
 # Network Documentation
 
+## General info
+
 - Switch / Router console password: Console2019
 - Switch / Router configuration password: Admin2019
 - Switch / Router telnet(vty) password: Telnet2019
 - No L3 switches available on site: replaced with router + L2 switch
-- PINGS Won't work on Hogent environment
+- Pings won't work on Hogent environment
 - OSPF needed
 - Configure NAT on outside & inside interfaces
 - Use PAT and ACL to ensure connectivity -> each network separate in ACL, no summarize
 - Workaround for patch panel not working: insert cable on island from internetport to management port (eg 2 -> 14)
 - DHCP on interface to ISP for getting IP address -> static IP from lecturer -> `172.22.192.10`
 - Linuxteam IP to Router4: `172.16.2.1`
-- Static route on every router to outside
+- Static default route on every router to outside
+- Static routes when using firewall: doesn't support OSPF
 
 ## TODO
 
@@ -54,6 +57,19 @@
   - DNS configuration
   - Default Gateways
   - Enable kilo2 DHCP + add pool
+
+## Physical connections
+
+| Device   | S0/1/0                    | S0/1/1                    | G0/0/0              | G0/0/1   | F0/1     |
+| -------- | ------------------------- | ------------------------- | ------------------- | -------- | -------- |
+| Router 1 | (If no firewall) Router 6 | Router 3                  | Zulu2               | -        | -        |
+| Router 3 | Router 4                  | Router 1                  | Router 2 (To LINUX) | -        | -        |
+| Router 4 | Router 3                  | Router 2 (To LINUX)       | WAN connection      |          | -        |
+| Router 5 | Router 6                  | -                         | Switch 5            | Switch 4 | -        |
+| Router 6 | Router 5                  | (If no firewall) Router 1 | Switch 7            | Zulu2    | -        |
+| Switch 4 | -                         | -                         | -                   | -        | Router 5 |
+| Switch 5 | -                         | -                         | -                   | -        | Router 5 |
+| Switch 7 | -                         | -                         | -                   | -        | Router 6 |
 
 ## Documentation per device
 

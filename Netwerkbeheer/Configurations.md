@@ -375,7 +375,7 @@ Router 1
 - tunnel source 172.18.5.1
 - tunnel destination 172.18.5.2
 - router ospf 10
-- network 172.18.6.1 0.0.0.3 area 0-
+- network 172.18.6.1 0.0.0.3 area 0
 - 
 
 Router 0
@@ -391,7 +391,7 @@ Router 0
 
 ## End devices
 
-- IP: Check IP table
+- IP: Check [IP table](https://github.com/HoGentTIN/p3ops-1920-red/blob/network/Netwerkbeheer/IP%20Table.md)
 - DNS: 172.18.1.66
 - Secondary DNS: 172.18.1.67
-- Default Gateway: Check IP table
+- Default Gateway: [Check IP table](https://github.com/HoGentTIN/p3ops-1920-red/blob/network/Netwerkbeheer/IP%20Table.md)

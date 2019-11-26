@@ -1,5 +1,8 @@
 # Testplan Netwerkopstelling
 
+Datum:
+Tester:
+
 ## Voorbereiding
 
 Benodigdheden: 3 pc's
