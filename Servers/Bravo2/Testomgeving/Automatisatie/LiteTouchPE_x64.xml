@@ -1,0 +1,103 @@
+<Definition>
+  <WindowsPE>
+    <!-- Settings -->
+    <Version />
+    <Source modified="2018-04-11 14:14:36Z">C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\en-us\winpe.wim</Source>
+    <ScratchSpace>32</ScratchSpace>
+    <ImageName>Lite Touch Windows PE (x64)</ImageName>
+    <ImageDescription>Lite Touch Windows PE (x64)</ImageDescription>
+    <!-- Components -->
+    <Components>
+      <Component>winpe-hta</Component>
+      <Component>winpe-scripting</Component>
+      <Component>winpe-wmi</Component>
+      <Component>winpe-securestartup</Component>
+      <Component>winpe-fmapi</Component>
+      <Component>winpe-mdac</Component>
+    </Components>
+    <!-- Driver and packages -->
+    <Drivers />
+    <Packages />
+    <!-- Content -->
+    <Content>
+      <!-- Configuration -->
+      <Copy source="%DEPLOYROOT%\Control\Bootstrap.ini" dest="Deploy\Scripts\Bootstrap.ini" hash="89D1A7CD4A62E2B7463A1A2E95D398130FD05AAC5A5AD6DA6ED0E7127736BF09" />
+      <Copy source="%INSTALLDIR%\Templates\Unattend_PE_%PLATFORM%.xml" dest="Unattend.xml" hash="0D9CD89017F46C38397062B44106B451623A5031142AD16CE8CDD8A31E17A6C8" />
+      <Copy source="%INSTALLDIR%\Templates\winpeshl.ini" dest="Windows\system32\winpeshl.ini" hash="292E621753313BA4A041278763C6A0702CEE4A16B1885A3A13487578AF77929F" />
+      <!-- Scripts -->
+      <Copy source="%DEPLOYROOT%\Scripts\LiteTouch.wsf" dest="Deploy\Scripts\LiteTouch.wsf" hash="897587C7B4DE0CA8B725278C74AD59E199EB20E8B7BD4BD3033490B1DA58AA7E" />
+      <Copy source="%DEPLOYROOT%\Scripts\ZTIUtility.vbs" dest="Deploy\Scripts\ZTIUtility.vbs" hash="BF409B7FD18A8F94E4E09DDB3C82DEF97C72F16CB0EAF13918F87BBF06F76961" />
+      <Copy source="%DEPLOYROOT%\Scripts\ZTIBCDUtility.vbs" dest="Deploy\Scripts\ZTIBCDUtility.vbs" hash="0FB6ACCB78EBA430C129943E3BEED717DC9C147AB4B07B7CA813C234C87024EF" />
+      <Copy source="%DEPLOYROOT%\Scripts\ZTIDiskUtility.vbs" dest="Deploy\Scripts\ZTIDiskUtility.vbs" hash="0F652CC095F42F5BB1964BA6DD09EC9AF699D19ACA1358D3301838154700EF6F" />
+      <Copy source="%DEPLOYROOT%\Scripts\ZTIDataAccess.vbs" dest="Deploy\Scripts\ZTIDataAccess.vbs" hash="E595B23E656B603A701A6ECB0264B37BBDC86C316D0F5A9524DB021412A3A6D3" />
+      <Copy source="%DEPLOYROOT%\Scripts\ZTIConfigFile.vbs" dest="Deploy\Scripts\ZTIConfigFile.vbs" hash="DDE9864423723C66703C0F208CA5523D15F4A9394A3E42535D1888DD199BCC8C" />
+      <Copy source="%DEPLOYROOT%\Scripts\ZTIGather.wsf" dest="Deploy\Scripts\ZTIGather.wsf" hash="C9D58C379D1364956D0F7EEA6502584EC4A3BEF7D3980EAD1F873BB87991C337" />
+      <Copy source="%DEPLOYROOT%\Scripts\ZTIGather.xml" dest="Deploy\Scripts\ZTIGather.xml" hash="69C90082B52721F3731B5042BED68B7C8FEEE0CB6B033CF312562D4F55BC488A" />
+      <Copy source="%DEPLOYROOT%\Scripts\Wizard.hta" dest="Deploy\Scripts\Wizard.hta" hash="B3E7AEADCF1A49671F0565A031E52B53F6ED9F753F9C26579091EEA750DC8207" />
+      <Copy source="%DEPLOYROOT%\Scripts\Credentials_ENU.xml" dest="Deploy\Scripts\Credentials_ENU.xml" hash="9F560565E96A1FED13A4A0E88E63840959F10739789122090707ADE3DBF1B939" />
+      <Copy source="%DEPLOYROOT%\Scripts\Credentials_scripts.vbs" dest="Deploy\Scripts\Credentials_scripts.vbs" hash="456CBB3385580F1374491C3105CE72B04217FF64C826046B12B3CFD10D975AFC" />
+      <Copy source="%DEPLOYROOT%\Scripts\WizUtility.vbs" dest="Deploy\Scripts\WizUtility.vbs" hash="18B75ABD6685B02A62A6BEA864D88FC3C029BD48FB6C4B6A22DAC1F02E8E46A3" />
+      <Copy source="%DEPLOYROOT%\Scripts\Wizard.css" dest="Deploy\Scripts\Wizard.css" hash="C6C6FE2E5D6285F6BA38C55996F933896C40CFF8C6A1737B598DC5AF0EC1CAD4" />
+      <Copy source="%DEPLOYROOT%\Scripts\Wizard.ico" dest="Deploy\Scripts\Wizard.ico" hash="562504E1E508536BD92112D0BDA464E70521C1491BCC07EED975915F11DBA673" />
+      <Copy source="%DEPLOYROOT%\Scripts\BackButton.jpg" dest="Deploy\Scripts\BackButton.jpg" hash="509D987DCEA3AB5B951CC6BE2F458E897C2CD1028374AF258991FB27C2697F66" />
+      <Copy source="%DEPLOYROOT%\Scripts\plusicon.gif" dest="Deploy\Scripts\plusicon.gif" hash="F93340BBBD932DC8A4A83DB53B66F9C15953F998171E9589868F8525CFBEB38C" />
+      <Copy source="%DEPLOYROOT%\Scripts\minusico.gif" dest="Deploy\Scripts\minusico.gif" hash="2B4149492C06EC5C31862D5469FCB3141A0F0A059E7CCD51E1368D86ECCBD9DB" />
+      <Copy source="%DEPLOYROOT%\Scripts\Summary_Definition_ENU.xml" dest="Deploy\Scripts\Summary_Definition_ENU.xml" hash="9FE49BF94D0B334074368D1BB1EF7F848F76AA7A5DD1A37CDE6019F9779847FE" />
+      <Copy source="%DEPLOYROOT%\Scripts\Summary_scripts.vbs" dest="Deploy\Scripts\Summary_scripts.vbs" hash="7D3D475A09C9918BFCB01DF99ECADD2384A88DBDFC617A74946CDC5D69356AD4" />
+      <Copy source="%DEPLOYROOT%\Scripts\LTICleanup.wsf" dest="Deploy\Scripts\LTICleanup.wsf" hash="4C504BD280E8597D7A3B205A87510CFA9D1DEAF956409ABC370E531413570363" />
+      <Copy source="%DEPLOYROOT%\Scripts\BDD_Welcome_ENU.xml" dest="Deploy\Scripts\BDD_Welcome_ENU.xml" hash="C7392C6539C103ACF36CABC966D3A796761B669FB11D1A523D20E6496B1C502F" />
+      <Copy source="%DEPLOYROOT%\Scripts\WelcomeWiz_Choice.xml" dest="Deploy\Scripts\WelcomeWiz_Choice.xml" hash="F4E7D20268FD5BBC43FBDDA6CC4B14D54C49F96D094B062E1514DBE2C6C28716" />
+      <Copy source="%DEPLOYROOT%\Scripts\WelcomeWiz_Choice.vbs" dest="Deploy\Scripts\WelcomeWiz_Choice.vbs" hash="FFFE3F116B25342972A64C7C3B341D987AED7AA915D41000FC453F9B5D378BC5" />
+      <Copy source="%DEPLOYROOT%\Scripts\WelcomeWiz_DeployRoot.xml" dest="Deploy\Scripts\WelcomeWiz_DeployRoot.xml" hash="D4CBDC0D615F4EB138EA5C4D840A56175B2839A0CBC473754E7A2F27C382FAFB" />
+      <Copy source="%DEPLOYROOT%\Scripts\WelcomeWiz_DeployRoot.vbs" dest="Deploy\Scripts\WelcomeWiz_DeployRoot.vbs" hash="CA4436B5621C13E421B30258E55ECC4F61F16FE3BE6EFDF7C798A1FE7EC3CE88" />
+      <Copy source="%DEPLOYROOT%\Scripts\WelcomeWiz_Initialize.xml" dest="Deploy\Scripts\WelcomeWiz_Initialize.xml" hash="431D65A5EE513183552766DB5E69E7052EAC07C683180650CE386F921987A12E" />
+      <Copy source="%DEPLOYROOT%\Scripts\WelcomeWiz_Initialize.vbs" dest="Deploy\Scripts\WelcomeWiz_Initialize.vbs" hash="39731F6AEE4BE2DD01E038A1CED0022A9F8BA3174195178582A2B1E94569F8A2" />
+      <Copy source="%DEPLOYROOT%\Scripts\SelectItem.jpg" dest="Deploy\Scripts\SelectItem.jpg" hash="DBB33792DC5CB66F057834F99B01AD4F3EAFE0E76880332862A383FB7550CC16" />
+      <Copy source="%DEPLOYROOT%\Scripts\WelcomeBanner.jpg" dest="Deploy\Scripts\WelcomeBanner.jpg" hash="147E90D4D002EBA52ED659E4A26DBA44DDA718A27F0A86FAFCE4A8F700C9F78F" />
+      <Copy source="%DEPLOYROOT%\Scripts\btnout.png" dest="Deploy\Scripts\btnout.png" hash="E0745DEE29B578FA35225A60938C5D591073FF1B806F61D3C3D652EDA1F81FCE" />
+      <Copy source="%DEPLOYROOT%\Scripts\btnover.png" dest="Deploy\Scripts\btnover.png" hash="1BFD33751802D8288795AAB6CB745191658D829249B6D239805B4B882215E1ED" />
+      <Copy source="%DEPLOYROOT%\Scripts\btnsel.png" dest="Deploy\Scripts\btnsel.png" hash="97C45FA683B349B85B84D6ACB255D1FD7FC23C5304730241416AB829D3F34631" />
+      <Copy source="%DEPLOYROOT%\Scripts\LTIGetFolder.wsf" dest="Deploy\Scripts\LTIGetFolder.wsf" hash="0B1BBC330A4A4966322770338D4EBF858B3B16B9C9793FBFA87F96008DC67412" />
+      <Copy source="%DEPLOYROOT%\Scripts\NICSettings_Definition_ENU.xml" dest="Deploy\Scripts\NICSettings_Definition_ENU.xml" hash="0BDAB0FE9C8F6D551B041657E98ED0C00787863AF882CD600C780E062A0FC079" />
+      <Copy source="%DEPLOYROOT%\Scripts\ZTINicUtility.vbs" dest="Deploy\Scripts\ZTINicUtility.vbs" hash="1DD548C2CDBB8C8B9312F59300ECFB0A4087B8373D494FFF86B575A5160DE706" />
+      <Copy source="%DEPLOYROOT%\Scripts\ZTINicConfig.wsf" dest="Deploy\Scripts\ZTINicConfig.wsf" hash="86B58E0A36CDB6F1EA52950C7ECA059C0B2DF49040D4E0FC8E4B099A0F25E2AB" />
+      <Copy source="%DEPLOYROOT%\Scripts\BackButton.png" dest="Deploy\Scripts\BackButton.png" hash="6E0000DBD8F0BAD8EC3F5DD52B252B97689D1E83A5CAC3D1F2D6C626F05F198D" />
+      <Copy source="%DEPLOYROOT%\Scripts\FolderIcon.png" dest="Deploy\Scripts\FolderIcon.png" hash="8990DA181122742BD7AE4236159CA5E3037669B5D16C138E5706BB1148DC7ADF" />
+      <Copy source="%DEPLOYROOT%\Scripts\ItemIcon1.png" dest="Deploy\Scripts\ItemIcon1.png" hash="FB1CB6D289CAF1CA78E3F17EDF57B161F6019C3A790B43FE2781BDABB6DD1535" />
+      <Copy source="%DEPLOYROOT%\Scripts\MinusIcon1.png" dest="Deploy\Scripts\MinusIcon1.png" hash="6E616CF74B45B76B31117CE3E4FD28ADC3454CD5AB9E9CA7BD54E2BD413E44CB" />
+      <Copy source="%DEPLOYROOT%\Scripts\PlusIcon1.png" dest="Deploy\Scripts\PlusIcon1.png" hash="29F32B28BE9DE6F01EEE00CFFA8197E81681657AABA82914DB93107CF0424926" />
+      <Copy source="%DEPLOYROOT%\Scripts\SelectItem.png" dest="Deploy\Scripts\SelectItem.png" hash="F3CF77F720ACAA73656D20CF2DD86477B82F00A7A10FCCB96E0363144C153076" />
+      <Copy source="%DEPLOYROOT%\Scripts\header-image.png" dest="Deploy\Scripts\header-image.png" hash="3E87D21D2520F9AF3AB16930C995DEF509C90D8F6381E5C5AE2098C1B602050B" />
+      <Copy source="%DEPLOYROOT%\Scripts\NavBar.png" dest="Deploy\Scripts\NavBar.png" hash="A099FA5FC41A772983677DCC5CE573AA46CF397B3AFE8FB0DAF677F9D1543A3F" />
+      <Copy source="%DEPLOYROOT%\Scripts\Computer.png" dest="Deploy\Scripts\Computer.png" hash="866FBD2269881900AC0165CB12327A43A15D5FFC5A78A68BC17BA124B04A64A2" />
+      <Copy source="%DEPLOYROOT%\Scripts\WelcomeWiz_Background.jpg" dest="Deploy\Scripts\WelcomeWiz_Background.jpg" hash="F3403CC1D39070E9296FD54BC3326498C9A5522574F674BC1E030DE321EB1854" />
+      <Copy source="%DEPLOYROOT%\Scripts\DeployWiz_Administrator.png" dest="Deploy\Scripts\DeployWiz_Administrator.png" hash="0C3E368124F47D55907C43F68E04D554182BF37C1A02B881A68EE9609668C435" />
+      <!-- Tools -->
+      <Copy source="%DEPLOYROOT%\Tools\%PLATFORM%\BDDRUN.exe" dest="Windows\system32\BDDRUN.exe" hash="21BE1D4283DC9CF110140DD2F30C2FA50ADE22B1D6634F3A0920335D883C38B5" />
+      <Copy source="%DEPLOYROOT%\Tools\%PLATFORM%\WinRERUN.exe" dest="Deploy\Tools\%PLATFORM%\WinRERUN.exe" hash="45F15F8FEC4BD3B96B51EB182AC1EDFF82C7A2CEE12BAAD699BCD1625A063DFF" />
+      <Copy source="%DEPLOYROOT%\Tools\%PLATFORM%\CcmCore.dll" dest="Deploy\Tools\%PLATFORM%\CcmCore.dll" hash="801F3F509B4FC909FBE911A97E71E05D0484395B71A9AA375C655006261C912C" />
+      <Copy source="%DEPLOYROOT%\Tools\%PLATFORM%\CcmUtilLib.dll" dest="Deploy\Tools\%PLATFORM%\CcmUtilLib.dll" hash="5AAFCF73F6873703044F6F91D1493DB6B037469BE99A0B531F6A64D274E1B642" />
+      <Copy source="%DEPLOYROOT%\Tools\%PLATFORM%\Smsboot.exe" dest="Deploy\Tools\%PLATFORM%\Smsboot.exe" hash="812B1A18E83DFA8E3AB805BA0A3D000005F55D7CD1AC0B6E6DDAC92D525F9CFE" />
+      <Copy source="%DEPLOYROOT%\Tools\%PLATFORM%\SmsCore.dll" dest="Deploy\Tools\%PLATFORM%\SmsCore.dll" hash="85CBA3CE17E693C8D2B46A53EB7C2C7185199C4A68BCD7CC8F20AB110D639CD2" />
+      <Copy source="%DEPLOYROOT%\Tools\%PLATFORM%\TsCore.dll" dest="Deploy\Tools\%PLATFORM%\TsCore.dll" hash="D4FC1F6FE4CB938ACDD3DBEF8D3A84A4C0E18D1500E85D168A428EC190255B74" />
+      <Copy source="%DEPLOYROOT%\Tools\%PLATFORM%\TSEnv.exe" dest="Deploy\Tools\%PLATFORM%\TSEnv.exe" hash="19577614A4A26FBD63F214B806AC0868386413BD26B94A9660CC23DEB17B19FE" />
+      <Copy source="%DEPLOYROOT%\Tools\%PLATFORM%\TsManager.exe" dest="Deploy\Tools\%PLATFORM%\TsManager.exe" hash="491B25DB0AD43F6A633093E4628604FDFB730BAD24BCC321CC2421716EA9BA8C" />
+      <Copy source="%DEPLOYROOT%\Tools\%PLATFORM%\TsmBootstrap.exe" dest="Deploy\Tools\%PLATFORM%\TsmBootstrap.exe" hash="20300E2E227540F5760C85F084C611FF685CF81756417A62128FE2C1ACD79FE3" />
+      <Copy source="%DEPLOYROOT%\Tools\%PLATFORM%\TsMessaging.dll" dest="Deploy\Tools\%PLATFORM%\TsMessaging.dll" hash="110605B3A21AB606B8F65B7C71BD8E895131F8FD68CE288470CB2B416F940D5D" />
+      <Copy source="%DEPLOYROOT%\Tools\%PLATFORM%\TsmBootstrap.exe" dest="Deploy\Tools\%PLATFORM%\TsmBootstrap.exe" hash="20300E2E227540F5760C85F084C611FF685CF81756417A62128FE2C1ACD79FE3" />
+      <Copy source="%DEPLOYROOT%\Tools\%PLATFORM%\TsProgressUI.exe" dest="Deploy\Tools\%PLATFORM%\TsProgressUI.exe" hash="F56D4DBC9FA86C76E16C05409C3A61E0FE2FCCD1CBD2F407E529E27E33B39796" />
+      <Copy source="%DEPLOYROOT%\Tools\%PLATFORM%\TSResNlc.dll" dest="Deploy\Tools\%PLATFORM%\TSResNlc.dll" hash="AFADE800EC98B2C380E7AAA90BD483CD16E8BD537B6147D45E0A13559321AB2D" />
+      <Copy source="%DEPLOYROOT%\Tools\%PLATFORM%\CommonUtils.dll" dest="Deploy\Tools\%PLATFORM%\CommonUtils.dll" hash="0439B8E92D0692CA0690E14D893814A3035F2F82892C989FA09FD3C65B48C53F" />
+      <Copy source="%DEPLOYROOT%\Tools\%PLATFORM%\ccmgencert.dll" dest="Deploy\Tools\%PLATFORM%\ccmgencert.dll" hash="73BEF92AB08965F4B22082A3734A4CD2C80F309A95066F7827D45D6921DD210D" />
+      <Copy source="%DEPLOYROOT%\Tools\%PLATFORM%\msvcp120.dll" dest="Deploy\Tools\%PLATFORM%\msvcp120.dll" hash="2ABF0AAB5A3C5AE9424B64E9D19D9D6D4AEBC67814D7E92E4927B9798FEF2848" />
+      <Copy source="%DEPLOYROOT%\Tools\%PLATFORM%\msvcr120.dll" dest="Deploy\Tools\%PLATFORM%\msvcr120.dll" hash="AD32240BB1DE55C3F5FCAC8789F583A17057F9D14914C538C2A7A5AD346B341C" />
+      <Copy source="%DEPLOYROOT%\Tools\%PLATFORM%\00000409\tsres.dll" dest="Deploy\Tools\%PLATFORM%\00000409\tsres.dll" hash="F9F4E1F4CE424426712F404BF6998C093608ADA7CFC5F8E574BEB5DEFBCA0E17" />
+      <Copy source="%DEPLOYROOT%\Tools\%PLATFORM%\Microsoft.BDD.Utility.dll" dest="Deploy\Tools\%PLATFORM%\Microsoft.BDD.Utility.dll" hash="180DB049EC8AF0957B64D46DBD49611BDAA0CC4517CF9EDD371A91B7958A06D7" />
+      <Copy source="%INSTALLDIR%\Samples\Background.bmp" dest="Windows\system32\winpe.bmp" hash="E2B316114C2ABD10B4B16B14BA1B19BA585842A021142DD4951E12213F293CF7" />
+    </Content>
+    <!-- Exits -->
+    <Exits>
+      <Exit>cscript.exe "%INSTALLDIR%\Samples\UpdateExit.vbs"</Exit>
+    </Exits>
+  </WindowsPE>
+</Definition>
