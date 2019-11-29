@@ -21,7 +21,8 @@
 3.  Ga naar properties
 4.  Ga naar de tab "Sharing"
 5.  Klik op "Share"
-6.  Controleer of de permissies er uit zien als onderstaande afbeelding
+6.  Controleer of de permissies er uit zien als onderstaande afbeelding  
+![Sharing](images/Share.PNG)
 7.  Klik op "Share"
 8.  Controleer of het pad naar de map "\\\\papa2\TSReq" is
 9.  Klik nu op "Done"  
