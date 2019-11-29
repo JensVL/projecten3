@@ -16,17 +16,17 @@
 ## 1.2 Aanmaken van de nodige netwerklocaties
     De Task Sequence Wizard gebruikt enkel bestandlocaties op een netwerkpad, en niet op een lokaal pad.  
 ### 1.2.1   Aanmaken van de gedeelde map
-1.  Maak op de C schijf een Map "TSReq" aan  
-2.  Rechtermuisklik op TSReq  
+1.  Maak op de C schijf een Map "TSReq" aan
+2.  Rechtermuisklik op TSReq
 3.  Ga naar properties
 4.  Ga naar de tab "Sharing"
 5.  Klik op "Share"
 6.  Controleer of de permissies er uit zien als onderstaande afbeelding
 7.  Klik op "Share"
 8.  Controleer of het pad naar de map "\\\\papa2\TSReq" is
-9.  Klik nu op "Done"
+9.  Klik nu op "Done"  
 
-    Je kan controleren of deze map correct is aangemaakt door in File Explorer het pad "\\\\papa2" in te voeren.
+Je kan controleren of deze map correct is aangemaakt door in File Explorer het pad "\\\\papa2" in te voeren.
 ### 1.2.2   Aanmaken van de benodigde mappen (Maak deze in de gedeelde folder "TSReq")
 1. "MDT Toolkit Package": LEEG  
 2. "MDT Settings Package": LEEG  
