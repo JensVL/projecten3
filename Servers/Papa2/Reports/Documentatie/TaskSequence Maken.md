@@ -43,10 +43,13 @@ Je kan controleren of deze map correct is aangemaakt door in File Explorer het p
     dat in de Task Sequence Wizard word gebruikt al klaar staan om in de Wizard te selecteren.
 
 #### In Configuration Manager Console:  
-1. Right-Click "Operating System Images" -> "Add O S Image"
-2. Navigeer naar "\\\\TSReq\installImage\install.wim" SELECTEER "install.wim" -> NEXT
-3. TAB General: NEXT
-4. TAB Summary: NEXT
+1. Navigeer links onder naar "Software Library"
+2. Selecteer "Operating Systems"
+3. Right-Click "Operating System Images" -> "Add O S Image"
+4. Navigeer naar "\\\\TSReq\installImage\install.wim" SELECTEER "install.wim" -> NEXT
+5. TAB General: NEXT
+6. TAB Summary: NEXT  
+![installimage](images/install.PNG)
 
 # 2. Aanmaken van de Task Sequence
     Een Task Sequence bevat de volgorde aan stappen en processen die moeten worden uitgevoerd bij 
