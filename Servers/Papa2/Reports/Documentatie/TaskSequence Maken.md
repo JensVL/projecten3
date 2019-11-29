@@ -63,6 +63,7 @@ Je kan controleren of deze map correct is aangemaakt door in File Explorer het p
     - ga naar"Operating Systems"  
     - right-click "Task Sequences"  
     - SELECTEER "Create MDT Task Sequence"  
+![mdt task seq](images/mdtts.png)
 2. SELECTEER "Client Task Sequence"  
     - Next
 3. Geef NAAM  
@@ -70,9 +71,9 @@ Je kan controleren of deze map correct is aangemaakt door in File Explorer het p
 4. Selecteer "Join a Domain"  
     - vul "red.local" in bij Domain
 5. Set Account:  
-    - User Name="red\SCCM_DJ"  
+    - User Name="red\Administrator"  
     - Password="Admin2019"  
-    - confirm  
+    - Confirm password
     - OK
 6. Windows Settings:  
     - User Name="RED IT"  
@@ -82,6 +83,7 @@ Je kan controleren of deze map correct is aangemaakt door in File Explorer het p
     - Password="Admin2019"  
     - Confirm  
     - NEXT
+![details](images/details.png)
 8. Capture Settings:  
     - DEFAULT= NEVER  
     - NEXT
@@ -90,9 +92,8 @@ Je kan controleren of deze map correct is aangemaakt door in File Explorer het p
     - OK  
     - NEXT
 10. MDT Package:
-	- Maak UNC(gedeelde map op netwerk) met full permission: "MDT Toolkit Package"
-# CONTROLEER OF DEZE STAP NODIG IS ^^
-	- Geef pad op naar de UNC Map bv "\\DC3\MDT Toolkit Package"
+	- SELECTEER "Create new MDT Toolkit Files Package"
+	- Geef pad op naar de UNC Map bv "\\\\papa2\TSReq\MDT Toolkit Package"
 	- NEXT
 11. MDT Details:
 	- Name="MDT Toolkit Package"
@@ -111,7 +112,7 @@ Je kan controleren of deze map correct is aangemaakt door in File Explorer het p
 	- NEXT
 16. SETTINGS PACKAGE:
 	- SELECTEER "Create new settings Package"
-	- VUL UNC PAD IN bv: "\\DC3\MDT Settings Package"
+	- VUL UNC PAD IN bv: "\\\\papa2\TSReq\MDT Settings Package"
 	- NEXT
 17. SETTINGS DETAILS:
 	- NAME="MDT Settings Package"
@@ -119,7 +120,11 @@ Je kan controleren of deze map correct is aangemaakt door in File Explorer het p
 18. SYSPREP PACKAGE:
 	- No Sysprep Package is Required
 	- NEXT
-19. SUMMARY:
-	- NEXT
-	- WACHTEN
+19. SUMMARY:  
+![Summary](images/summary.png)  
+    ("dc3" wordt vervangen door "papa2")
+	- NEXT  
+![Progress](images/progress.png)
+	- WACHTEN  
+![Compleet](images/complete.png)
 	- FINISH
