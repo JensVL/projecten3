@@ -63,7 +63,7 @@ Je kan controleren of deze map correct is aangemaakt door in File Explorer het p
     - ga naar"Operating Systems"  
     - right-click "Task Sequences"  
     - SELECTEER "Create MDT Task Sequence"  
-![mdt task seq](images/mdtts.png)
+![mdt task seq](images/mdtts.PNG)
 2. SELECTEER "Client Task Sequence"  
     - Next
 3. Geef NAAM  
@@ -83,7 +83,7 @@ Je kan controleren of deze map correct is aangemaakt door in File Explorer het p
     - Password="Admin2019"  
     - Confirm  
     - NEXT
-![details](images/details.png)
+![Details](images/details.PNG)
 8. Capture Settings:  
     - DEFAULT= NEVER  
     - NEXT
@@ -121,10 +121,10 @@ Je kan controleren of deze map correct is aangemaakt door in File Explorer het p
 	- No Sysprep Package is Required
 	- NEXT
 19. SUMMARY:  
-![Summary](images/summary.png)  
+![Summary](images/summary.PNG)  
     ("dc3" wordt vervangen door "papa2")
 	- NEXT  
-![Progress](images/progress.png)
+![Progress](images/progress.PNG)
 	- WACHTEN  
-![Compleet](images/complete.png)
+![Compleet](images/complete.PNG)
 	- FINISH
