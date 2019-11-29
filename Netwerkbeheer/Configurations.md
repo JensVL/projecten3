@@ -332,8 +332,8 @@
 - name vlan300
 - exit
 - int range f0/1-7
-- switchport mode access
-- switchport access vlan 300
+- switchport mode trunk
+- switchport trunk allowed vlan 300,500
 - 
 
 ## L2 Switch 7
@@ -361,8 +361,8 @@
 - name vlan500
 - exit
 - int range f0/1-5
-- switchport mode access
-- switchport access vlan 500
+- switchport mode trunk
+- switchport trunk allowed vlan 300,500
 - 
 
 ### VPN
