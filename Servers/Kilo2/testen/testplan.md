@@ -18,7 +18,7 @@ Benodigdheden:
 ### Werkwijze
 -Zet het netwerk op als volgt:
 
-![Opstelling]()
+![Opstelling](https://github.com/HoGentTIN/p3ops-1920-red/blob/Kilo2/Servers/Kilo2/testen/Testopstelling.PNG)
 
 -Configureer Alpha2 als een domeincontroller
 -Configureer Kilo2 als een DHCP-server
