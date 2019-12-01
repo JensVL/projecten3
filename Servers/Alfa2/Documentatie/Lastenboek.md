@@ -25,14 +25,15 @@ Alle user authenticatie gebeurt via Active Directory. Dit betekent dat werkstati
 | Kimberly| Opzoekingswerk Beleidsregels | 3 | 3h30   |
 | Kimberly| AD Structuur installatie + configuratie | 8 |  5 |
 | Kimberly| Beleidsregels installatie + configuratie | 12 |  4h30  |
-| Kimberly| Documentatie AD structuur + Beleidsregels | 3 |  1h30    |
+| Kimberly| Documentatie AD structuur + Beleidsregels | 3 |  2h15   |
 | Kimberly| Testplan opstellen (+ zelf testen) alfa2 server | 4  | 5h30  |
+| Kimberly| Inloggen met clients | 4  | 3h45  |
 | Kimberly| Scripts aanpassen (extra) | 5 |  6h30    |
 | Matthias| Scripts aanpassen (extra) | 4 |  4h00    |
 | Alister| Testrapport met Vagrant | 2h30 |  2h00    |
 | Sean| Testrapport met Vagrant | 4h00 |  6h00    |
 | **Laurens**|  **Totaal Alfa2 Laurens**    | **45h30** |  **33h45**    |
-| **Kimberly**|  **Totaal Alfa2 Kimberly**    | **37h00** |  **28h20**   |
+| **Kimberly**|  **Totaal Alfa2 Kimberly**    | **41h00** |  **32h50**   |
 | **Matthias**|  **Totaal Alfa2 Matthias**    | **04h00** |  **04h00**   |
 | **Alister**|  **Totaal Alfa2 Alister**    | **02h30** |  **02h00**   |
 | **Sean**|  **Totaal Alfa2 Sean**    | **04h00** |  **06h00**   |
