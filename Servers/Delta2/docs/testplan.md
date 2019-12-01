@@ -45,7 +45,7 @@
 
 - *Expected*: True
 
-`(Get-WindowsFeature Web-Mgmt-Service).Installed`
+`(Get-WindowsFeature Web-Server).Installed`
 
 - *Expected*: True
 
