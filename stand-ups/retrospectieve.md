@@ -75,3 +75,9 @@ Staat voorlopig nog allemaal op niet bekwaam. Zijn er nog evaluatiepunten die mo
   - [ ] Bekwaam: ...
 - Technische documentatie
   - [ ] Nog niet bekwaam: ...    
+
+## Kanban-bord First-Release
+![Kanban-bord](img/kanban1.JPG)  
+![Kanban-bord](img/kanban2.JPG)  
+![Kanban-bord](img/kanban3.JPG)  
+![Kanban-bord](img/kanban4.JPG)  
