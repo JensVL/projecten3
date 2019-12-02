@@ -42,35 +42,38 @@
 - Zorg voor een aangepast testplan in de release-branch
 - Zorg dat jullie (aangepaste) scripts in de release-branch staan
 - Problemen/Vragen?
+- Vanmiddag testen we de servers via ESXI
+- Volgende week spreken we om 10u af om te testen
 
 
 ## Gerealiseerd week 10
 * Alfa
-  * ...
+  * Client inloggen werkt. Volledig af nu
 * Bravo
-  * ...
+  * Testplan is afgewerkt. Alles is af nu
 * Charlie
   * ...
 * Delta
-  * ...
+  * Werkt met SQL-light, verder zoeken naar definitieve oplossing
 * Kilo
-  * ...
+  * P
 * Lima
-  * ...
+  * Volledig af
 * Mike
-  * ...
+  * Volledig af. Gaan kijken voor een duidelijker testplan
 * November
-  * ...
+  * Volledig af. Spreken af met Delta volgende week om problemen op te lossen.
 * Oscar
-  * ...
+  * Volledig af
 * Papa
-  * ...
+  * Volledig af. Er moet nog een deel van het testplan geschreven worden
 * Zulu
-  * ...
+  * Statische routes moeten geïmplementeerd in zulu + documentatie updaten
 * Netwerkinfra
-  * ...
+  * Nog steeds niet samengezeten met Linux
   
 ## Volgende stand-up:
 - Stand van zaken
+- 
 
 © Author - Kimberly De Clercq 
