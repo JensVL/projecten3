@@ -14,8 +14,17 @@ Auteur(s) testplan: Tim Grijp
 * controleer of de computername "mike2" noemt
 * controleer of de server toegevoegd is aan het domein red.local
 
-## controleer sharepoint toegang en installatie
+## Controleer of firewall is uitgeschakeld
+* De firewall zou uitgeschakeld moeten zijn
 
-* probeer sharepoint central administration te openen 
+# Controleren SharePoint
+## Controleer of de installatie en configuratie van SharePoint correct verlopen is.
+* Probeer sharepoint central administration te openen 
+* Dit kan door te surfen naar: ´http://mike2:11111´ (poort nr kan verschillend zijn, zal gemeld worden indien dit zo is)
+
+## controleer sharepoint webapplicatie/site collectie
+* probeer eigen sharepoint webapplicatie te openen
+* Dit kan door te surfen naar: ´http://mike2:8080´ (poort nr kan verschillend zijn, zal gemeld worden indien dit zo is)
+* Deze pagina bevat de documentatie van het project
 
 
