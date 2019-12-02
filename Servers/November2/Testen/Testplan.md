@@ -43,7 +43,7 @@ Alternatieve testmethode:
 5. Typ het commando : `select @@version`
 6. Typ het commando : `go`
 7. Kijk na of het de juiste versie is. 
-
+<br>
 1. Open de cmd.
 2. Typ het commando : `SQLCMD -S November2\MSSQLSERVER`
 3. Typ het commando : `select @@version`
