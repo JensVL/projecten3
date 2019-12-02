@@ -62,7 +62,7 @@ Bij problemen kan je SSMS handmatig installeren door de pdf te hanteren van het 
 - Open de SQL Server Configuration Manager.
 - Kijk na of alle services runnnen.
 - Normaal zou TCP/IP enabled moeten staan bij Client Protocols. Indien niet, enable deze dan.
-- Rechtsklik bij SQL Services op 'SQL Server (MSSQLSERVER)' en selevcteer 'Properties'.
+- Rechtsklik bij SQL Services op 'SQL Server (MSSQLSERVER)' en selecteer 'Properties'.
 - Klik op 'FILESTREAM' en kijk of alle opties aangevinkt staan, ZEKER de allow remote acces.
 - Klik dan op 'Service' en klik Automatic aan bij 'Start Mode'.
 - Klik op OK en sluit de configuration manager.
@@ -77,24 +77,25 @@ Bij problemen kan je SSMS handmatig installeren door de pdf te hanteren van het 
 
 
 ### Aanmaken DB en User voor Delta2
-- In "Microsoft SQL Server Management Studio", rechtsklik "Databases" en klik op "New Database".
-- Vul bij de Database Name "Delta2" in klik op Ok.
+- Ga naar 'Microsoft SQL Server Management Studio.
+- Rechtsklik op 'Databases' en klik daarna op 'New Database'.
+- Vul als Database Name 'Delta2' in en klik op 'Ok' om te sluiten.
 ![Afbeelding1](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/images/1.png)
-- Klik op "Security", rechtsklik op "Logins" en klik op "New Login".
-- Vul bij "Login Name" "Delta2" in en selecteer "SQL Server Authentication". Kies als Password "Admin2019".
-- Deselecteer "Enforce Password Policy" zodat SQL Server niet vraagt om nieuwe wachtwoord aan te maken bij login.
+- Klik op 'Security', rechtsklik op 'Logins' en klik daarna op 'New Login' om een nieuwe login voor Delta2 te maken.
+- Vul bij Login Name 'Delta2' in en selecteer 'SQL Server Authentication', vul als Password 'Admin2019' in.
+- Zorg dat 'Enforce Password Policy' niet staat aangevinkt zodat er geen nieuw password wordt gevraagd.
 ![Afbeelding3](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/images/3.png)
-- Klik links op "User Mapping" en selecteer het vakje naast de database "Delta2". Klik onderaan ook DB_OWNER aan!!!.
+- Klik op 'User Mapping' en selecteer het vakje naast de nieuwe database 'Delta2'.
+- Zorg dat onderaan ook DB_OWNER ook is geselecteerd.
 ![Afbeelding4delta](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/images/4%20delta.png)
-- Klik op "OK" en de Gebruiker wordt aangemaakt.
-- Deze gebruiker kan nu gebruikt worden door de Delta2 server!
+- Klik op 'OK'.
 
 ### Aanmaken DB en User voor Mike2
-- In "Microsoft SQL Server Management Studio", Klik op "Security".
-- Rechtsklik op de domein user ex. RED\Administrator.
-- Deselecteer "Enforce Password Policy" zodat SQL Server niet vraagt om nieuwe wachtwoord aan te maken bij login.
-- Klik links op "User Mapping". Klik onderaan op DB_OWNER!
+- Ga naar 'Microsoft SQL Server Management Studio'
+- Klik op 'Security' en rechtsklik op de domein user RED\Administrator.
+- Zorg dat 'Enforce Password Policy' niet staat aangevinkt zodat er geen nieuw password wordt gevraagd.
+- Klik links op 'User Mapping'. 
+- Klik onderaan ook op DB_OWNER.
 ![Afbeelding4admin](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/images/4%20admin%20red.png)
-- Klik op "OK" en de Gebruiker wordt gewijzigd.
-- Deze gebruiker kan nu gebruikt worden door de Mike2 server!
+- Klik op 'OK'.
 
