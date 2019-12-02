@@ -55,11 +55,13 @@ De scripts zijn zo ingsteld dat er automatisch opnieuw wordt opgestart en dat he
 ## Controleer of firewall is uitgeschakeld
 * De firewall zou uitgeschakeld moeten zijn
 
+# Controleren SharePoint
 ## Controleer of de installatie en configuratie van SharePoint correct verlopen is.
 * Probeer sharepoint central administration te openen 
+* Dit kan door te surfen naar: ´http://mike2:11111´ (poort nr kan verschillend zijn, zal gemeld worden indien dit zo is)
 
-
-## controleer sharepoint toegang en installatie
-* probeer sharepoint central administration te openen 
-
+## controleer sharepoint webapplicatie/site collectie
+* probeer eigen sharepoint webapplicatie te openen
+* Dit kan door te surfen naar: ´http://mike2:8080´ (poort nr kan verschillend zijn, zal gemeld worden indien dit zo is)
+* Deze pagina bevat de documentatie van het project
 
