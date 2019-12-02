@@ -15,7 +15,6 @@
 - Bij Firewall was het op voorhand niet duidelijk dat er gerouteerd moest worden. Dit moest op de productie zelf nog gebeuren.
 - Firewall: Op de first-release zelf met het netwerk testen, waardoor er nog problemen waren met OSPF 
 - Netwerkproblemen
-- Kabelmanagement was niet zo goed ??
 - Sneller bepalen van software en beter bespreken
 - Na een bepaalde tijd deed iedereen wat hij/zij wou
 - Tijd op de post-its klopte niet (door probleem met esxi-server)
@@ -68,10 +67,15 @@
 - Wij hebben 3 stand-ups gedaan (in het begin, midden en nadien) => Leerkracht raadt aan om er nog meer te doen op 'cruciale momenten', niet pas om de 3u.
 
 ## Teamevaluatie
-Staat voorlopig nog allemaal op niet bekwaam. Zijn er nog evaluatiepunten die moeten toegevoegd worden voor het team?  
 - Netwerk + services als geheel
-  - [ ] Nog niet bekwaam: ...
+  - [ ] Bekwaam: Er waren fouten, maar het grotere geheel werkte. 
 - Troubleshooting
-  - [ ] Bekwaam: ...
+  - [ ] Bekwaam: Er werd een grondige aanpak gevolgd, maar we hebben geen troubleshooting rapporten gemaakt. 
 - Technische documentatie
-  - [ ] Nog niet bekwaam: ...    
+  - [ ] Gevorderd: De documentatie werd voor elke server opgesteld.     
+
+## Kanban-bord First-Release
+![Kanban-bord](img/kanban1.JPG)  
+![Kanban-bord](img/kanban2.JPG)  
+![Kanban-bord](img/kanban3.JPG)  
+![Kanban-bord](img/kanban4.JPG)  
