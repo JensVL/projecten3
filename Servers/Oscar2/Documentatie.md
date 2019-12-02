@@ -11,7 +11,7 @@ Om de PRTG server op een correcte mannier te installeren hebben we verschillende
 Open virtualbox en navigeer bovenaan naar `Machine` en klik op `Nieuw...`. Dan krijgt u een wizard te zien zoals in onderstaande schermopname.
 Zorg er zeker voor dat uw machine minimum 2gb ram krijgt.
 
-![Figure 1](Images/InstallatieWindows2016_1.png?raw=true)
+![Figure 1](Oscar2/Images/InstallatieWindows2016_1.png?raw=true)
 
 Klik daarna dan op `Aanmaken`. Dan maak je een harde schrijf aan. Minimum 30 gb is nodig voor deze installatie. 
 
