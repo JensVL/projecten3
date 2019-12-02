@@ -70,6 +70,7 @@ Eerst wordt de **red.local** primary zone die tijdens de ADDNS role installatie 
 `Set-DnsServerPrimaryZone -Name "red.local" -SecureSecondaries "TransferToZoneNameServer"`
 
 Hierna worden de DNS records aangemaakt voor alle servers in het **red.local** domein. De ip adressen worden opgeslaan in volgende variables:
+
 [string]$Bravo2IP    = "172.18.1.67" # DC2 / DNS2
 
 [string]$Charlie2IP  = "172.18.1.68" # Exchange Server
