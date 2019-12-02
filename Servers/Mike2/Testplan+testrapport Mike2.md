@@ -47,20 +47,33 @@ De scripts zijn zo ingsteld dat er automatisch opnieuw wordt opgestart en dat he
 ## Controleer lan ip en dns ip
 * Het lan ip moet 172.18.1.3 zijn met subnet 255.255.255.192
 * Het dns ip moet 172.18.1.66 zijn met subnet 255.255.255.252
+|Is dit in orde?|
+|:---|
+| Ja/Nee |
 ## Controleren van naam en domein
 * Kijk in server manager -> local server
 * Controleer of de computername "mike2" noemt
 * Controleer of de server toegevoegd is aan het domein red.local
+|Is dit in orde?|
+|:---|
+| Ja/Nee |
 ## Controleer of firewall is uitgeschakeld
 * De firewall zou uitgeschakeld moeten zijn.
 * Dit kan je bekijken in de windows defender firewall
+|Is dit in orde?|
+|:---|
+| Ja/Nee |
 # Controleren SharePoint
 ## Controleer of de installatie en configuratie van SharePoint correct verlopen is.
 * Probeer sharepoint central administration te openen 
-* Dit kan door te surfen naar: ´http://mike2:11111´ (poort nr kan verschillend zijn, zal gemeld worden indien dit zo is)
-
+* Dit kan door te surfen naar: `http://mike2:11111` (poort nr kan verschillend zijn, zal gemeld worden indien dit zo is)
+|Is dit in orde?|
+|:---|
+| Ja/Nee |
 ## controleer sharepoint webapplicatie/site collectie
 * probeer eigen sharepoint webapplicatie te openen
-* Dit kan door te surfen naar: ´http://mike2:8080´ (poort nr kan verschillend zijn, zal gemeld worden indien dit zo is)
+* Dit kan door te surfen naar: `http://mike2:8080` (poort nr kan verschillend zijn, zal gemeld worden indien dit zo is)
 * Deze pagina bevat de documentatie van het project
-
+|Is dit in orde?|
+|:---|
+| Ja/Nee |
