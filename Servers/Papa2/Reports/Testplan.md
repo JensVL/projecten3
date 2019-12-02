@@ -1,6 +1,6 @@
 # Testplan Papa2: SCCM server
 
-Auteur(s) testplan: Laurens Blancquaert-Cassaer
+Auteur(s) testplan: Laurens Blancquaert-Cassaer, Ferre Verstichelen
 
 
 **VOOR ALLE TESTS MOET JE INGELOGD ZIJN ALS: RED\Administrator**
@@ -74,9 +74,33 @@ Check of de PXE settings in SCCM correct zijn voor client Deployment:
 
 
 ## Windows 10 Client Deployment / Task Sequence
-### Uit te voeren stappen:
+
+### 1. Uit te voeren stappen:
 Na de Papa2 scripts moet je de instructies volgen in: **Papa2_technische_documentatie.md** om de task sequence aan te maken.
-VM aanmaken: De eerste stap is een nieuwe virtuele machine aanmaken in Virtualbox met volgende specificaties:
+
+### 2. Stappen om software binnen SCCM te controleren:
+1. Start Configuration Manager Console  
+2. Navigeer via het menu links-onder naar "Software Library".  
+
+
+| Nr test | Wat moet er getest worden | In orde? |
+| :--- | :--- | :--- |
+| 1 | Binnen "Application Management > Applications", zijn  Libre office, Java, Adobe Flash Player en Adobe Acrobat Reader DC aanwezig? | Ja/Nee |
+| 2 | Binnen "Operating Systems > Operating  System Images", is "Windows 10 Enterprise Evaluation" aanwezig? | Ja/Nee |
+| 3 | Binnen "Operating Systems > Boot Images", is er een boot image (x64) aanwezig? | Ja/Nee |
+| 4 | Binnen "Operating Systems > Task Sequences", is er een Task Sequence aanwezig?| Ja/Nee |
+
+### 3. Stappen om de Task Sequence te controleren:
+1. Start Configuration Manager Console  
+2. Navigeer naar "Software Library > Operating Systems > Task Sequences"
+3. Right-click de Task Sequence en selecteer "View"
+
+| Nr test | Wat moet er getest worden | In orde? |
+| :--- | :--- | :--- |
+| 1 | Navigeer naar "State Restore > Install Applications > Install Application", staan hier onder de tab "Properties", de 4 applicaties? (Acrobat Reader DC, Flash Player, Java en LibreOffice) | Ja/Nee |
+| 2 | Navigeer naar "Post Install > Auto Apply Drivers", is deze stap grijs (aka. uitgeschakeld)? | Ja/Nee |
+
+### 4. VM aanmaken: De eerste stap is een nieuwe virtuele machine aanmaken in Virtualbox met volgende specificaties:
 
                   Name: CLIENT1
                   Windows 10 (64-bit)
@@ -85,17 +109,17 @@ VM aanmaken: De eerste stap is een nieuwe virtuele machine aanmaken in Virtualbo
                   Netwerkadapters: 1 = LAN
                   In Virtualbox in je nieuwe client VM ga naar system > motherboard > boot order en stel hard disk                             als eerste in en network als tweede.
 
-Windows 10 deployment:
-a. Start de VM in Virtualbox
+### 5. Windows 10 deployment: 
+1. Start de VM in Virtualbox
 
-b. Druk op F12 wanneer erom gevraagd wordt
+2. Druk op F12 wanneer erom gevraagd wordt
 
-c. In het eerste venster van de task sequence wizard druk op next en selecteer “Windows 10 PRO”
+3. In het eerste venster van de task sequence wizard druk op next en selecteer “Windows 10 PRO”
 
-d. Laat de deployment lopen (alles gebeurt automatisch)
+4. Laat de deployment lopen (alles gebeurt automatisch)
 
-e. Wanneer de deployment klaar is meld je op de client aan als RED\Administrator (Het scherm zal 10-15min op “welkom” blijven staan)
-
+5. Wanneer de deployment klaar is meld je op de client aan als BLANCQUAERT\Administrator (Het scherm zal 10-15min op “welkom” blijven staan)
+    
 | Nr test | Wat moet er getest worden | In orde? |
 | :--- | :--- | :--- |
 | 1 | Kan de client de PXE / SCCM server Papa2 bereiken via PXE boot?| Ja/Nee |
