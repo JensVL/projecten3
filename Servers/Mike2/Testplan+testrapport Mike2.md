@@ -39,22 +39,21 @@ De scripts zijn zo ingsteld dat er automatisch opnieuw wordt opgestart en dat he
     - installatie van SharePoint via `SPinstallation`
     - Database account wordt gevraagd
     - dit scherm kan je sluiten de installatie is hier compleet.
--Voor de configuratie voer je het script `SPFarm` uit. Hiervoor moet je kunnen connecteren met sql server `november2` 
+- Voor de configuratie voer je het script `SPFarm` uit. Hiervoor moet je kunnen connecteren met sql server `november2` 
+- Voer SPWebApp.ps1 uit. Dit maakt de Site aan met documentatie.
 
-
-# Controleren scripts
-
+# Testrapport Mike2
+* zorg dat je ingelogd ben als administrator van het domein RED
 ## Controleer lan ip en dns ip
-* Het lan ip moet 172.18.1.3 zijn
-* Het dns ip moet 172.18.1.66 zijn
+* Het lan ip moet 172.18.1.3 zijn met subnet 255.255.255.192
+* Het dns ip moet 172.18.1.66 zijn met subnet 255.255.255.252
 ## Controleren van naam en domein
-* Log in als administrator van domein red
 * Kijk in server manager -> local server
 * Controleer of de computername "mike2" noemt
 * Controleer of de server toegevoegd is aan het domein red.local
 ## Controleer of firewall is uitgeschakeld
-* De firewall zou uitgeschakeld moeten zijn
-
+* De firewall zou uitgeschakeld moeten zijn.
+* Dit kan je bekijken in de windows defender firewall
 # Controleren SharePoint
 ## Controleer of de installatie en configuratie van SharePoint correct verlopen is.
 * Probeer sharepoint central administration te openen 
