@@ -26,7 +26,5 @@ Papa2 is de SCCM server. Deze zal de client workstations deployen en zorgt ook v
 
 **
 
-
-Tests van de PAPA2 server wordt gedaan door: **TEAMLID_DIE_TESTRAPPORT_ALFA2_DOET_HIER
 ## Vragen
 /
