@@ -1,8 +1,10 @@
 # Verslag Alfa2
 
-Auteur(s) verslag: Kimberly De Clercq
+Auteur(s) verslag: Kimberly De Clercq & Laurens Blancquaert-Cassaer
 
 ## Installatie en configuratie
+De scripts van Alfa2 zijn zo gemaakt dat je enkel het eerste script (1_RUNFIRST.ps1) moet uitvoeren en dat elk script daarna het volgende script oproept zelfs wanneer de server herstart in het script. Wat de scripts precies doen staat in commentaar stap voor stap uitgelegd bij alle commando’s. Er wordt ook gebruik gemaakt van files die geïnstalleerd worden via de scripts. Deze files staan in **Alfa2/Testomgeving/Scripts/ExtendADschema/**
+
 1. Download een [ISO file](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2019?filetype=ISO)  van Windows Server 2019.
 2. Maak een VM genaamd `Alfa2`. 
 3. Open de VM en installeer de `Guest Additions`
@@ -17,10 +19,10 @@ Auteur(s) verslag: Kimberly De Clercq
 12. Script `999_PrepareADforSCCM` kan uitgevoerd worden na `4_ADstructure`, dit moet uitgevoerd worden **voor** `Papa2` begonnen is.
 
 ## Informatie DC en DNS
-De server username is `Administrator` met als password `Admin2019`.   
-De domeinname van de server `ns1` is `red.local`.   
+De server username is `RED\Administrator` met als password `Admin2019`.   
+De domeinname van de server `Alfa2` is `red.local`.   
 
-** MOET NOG AANGEVULD WORDEN ** 
+
 
 ## Informatie AD structuur
 De gebruikers worden aangemaakt en in de juiste afdeling gesorteerd. Elke gebruiker kan zich inloggen met het wachtwoord `Administrator2019`.   
@@ -146,8 +148,6 @@ In deze lijst zoeken we `Prohibit access to properties of a LAN connection` om d
 ![Disable Networkadapters](../Documentatie/Images/DisableNetworkadapters.JPG)   
 
 Nu zijn alle group policies op de domeincontroller ingesteld.   
-
-## Informatie AGDLP
 
 ## Informatie SCCM
 
