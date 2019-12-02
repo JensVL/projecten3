@@ -13,7 +13,7 @@ Alle user authenticatie gebeurt via Active Directory. Dit betekent dat werkstati
 | --------------              | --------------    | -------------- | --------------|
 | Laurens | Opzoekingswerk AD/DNS   | 3        |      1         |
 | Laurens | AD/DNS installatie + config   |  6 |      7h30      |
-| Laurens | Documentatie maken AD/DNS  |  2   |         1 (nog niet af)      |
+| Laurens | Documentatie maken AD/DNS  |  4   |         4 (nog niet af)      |
 | Laurens | Opzoekingswerk AGDLP permissies | 3 |      0        |
 | Laurens | AGDLP permissies implementeren  | 4 |      4        |
 | Laurens | Documentatie maken AGDLP permissies | 2 |   (nog maken)     |
@@ -32,12 +32,12 @@ Alle user authenticatie gebeurt via Active Directory. Dit betekent dat werkstati
 | Matthias| Scripts aanpassen (extra) | 4 |  4h00    |
 | Alister| Testrapport met Vagrant | 2h30 |  2h00    |
 | Sean| Testrapport met Vagrant | 4h00 |  6h00    |
-| **Laurens**|  **Totaal Alfa2 Laurens**    | **45h30** |  **33h45**    |
+| **Laurens**|  **Totaal Alfa2 Laurens**    | **47h30** |  **35h45**    |
 | **Kimberly**|  **Totaal Alfa2 Kimberly**    | **41h00** |  **32h50**   |
 | **Matthias**|  **Totaal Alfa2 Matthias**    | **04h00** |  **04h00**   |
 | **Alister**|  **Totaal Alfa2 Alister**    | **02h30** |  **02h00**   |
 | **Sean**|  **Totaal Alfa2 Sean**    | **04h00** |  **06h00**   |
-| | **Totaal Alfa2**     | **93h00** |  **74h05**   |
+| | **Totaal Alfa2**     | **95h00** |  **76h05**   |
 
 Tests van de ALFA2 server werd gedaan door: **Alister Adutwum** en **Sean Vancompernolle**
 
