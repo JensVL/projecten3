@@ -57,12 +57,9 @@
 		<already_run_config_upgrade></already_run_config_upgrade>
 		<timezone>Europe/Brussels</timezone>
 		<language>en_US</language>
-		<dnsserver>172.18.1.66</dnsserver>
-		<dnsserver>172.18.1.67</dnsserver>
-		<dnsallowoverride></dnsallowoverride>
-		<dns1gw>WANGW</dns1gw>
+		<dns1gw>none</dns1gw>
 		<dns1host>ns1</dns1host>
-		<dns2gw>WANGW</dns2gw>
+		<dns2gw>none</dns2gw>
 		<dns2host>ns2</dns2host>
 		<gitsync>
 			<repositoryurl></repositoryurl>
@@ -77,6 +74,13 @@
 		<sshguard_blocktime></sshguard_blocktime>
 		<sshguard_detection_time></sshguard_detection_time>
 		<sshguard_whitelist></sshguard_whitelist>
+		<dns3gw>WANGW</dns3gw>
+		<dns3host>google1</dns3host>
+		<dns4gw>WANGW</dns4gw>
+		<dns4host>google2</dns4host>
+		<dnsserver>172.18.1.66</dnsserver>
+		<dnsserver>172.18.1.67</dnsserver>
+		<dnsallowoverride></dnsallowoverride>
 	</system>
 	<interfaces>
 		<wan>
@@ -88,6 +92,9 @@
 			<ipaddr>172.18.1.106</ipaddr>
 			<subnet>30</subnet>
 			<gateway>WANGW</gateway>
+			<ipaddrv6></ipaddrv6>
+			<subnetv6></subnetv6>
+			<gatewayv6></gatewayv6>
 		</wan>
 		<lan>
 			<enable></enable>
@@ -119,7 +126,28 @@
 			<subnet>24</subnet>
 		</opt3>
 	</interfaces>
-	<staticroutes></staticroutes>
+	<staticroutes>
+		<route>
+			<network>172.18.1.64/27</network>
+			<gateway>LAN_Gateway</gateway>
+			<descr></descr>
+		</route>
+		<route>
+			<network>172.18.1.96/30</network>
+			<gateway>LAN_Gateway</gateway>
+			<descr></descr>
+		</route>
+		<route>
+			<network>172.18.1.0/26</network>
+			<gateway>LAN_Gateway</gateway>
+			<descr></descr>
+		</route>
+		<route>
+			<network>172.18.0.0/24</network>
+			<gateway>LAN_Gateway</gateway>
+			<descr></descr>
+		</route>
+	</staticroutes>
 	<dhcpd>
 		<lan>
 			<range>
@@ -965,8 +993,8 @@
 		<forward_tls_upstream></forward_tls_upstream>
 	</unbound>
 	<revision>
-		<time>1574693778</time>
-		<description><![CDATA[admin@192.168.2.2 (Local Database): /interfaces.php made unknown change]]></description>
+		<time>1575293553</time>
+		<description><![CDATA[admin@192.168.2.2 (Local Database): System: ]]></description>
 		<username>admin@192.168.2.2 (Local Database)</username>
 	</revision>
 	<cert>
@@ -976,8 +1004,7 @@
 		<crt>LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUVlakNDQTJLZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREJhTVRnd05nWURWUVFLRXk5d1psTmwKYm5ObElIZGxZa052Ym1acFozVnlZWFJ2Y2lCVFpXeG1MVk5wWjI1bFpDQkRaWEowYVdacFkyRjBaVEVlTUJ3RwpBMVVFQXhNVmNHWlRaVzV6WlMwMVpHRmpObUl4T1dFNVpEZGpNQjRYRFRFNU1UQXlNREUwTVRFek4xb1hEVEkxCk1EUXhNVEUwTVRFek4xb3dXakU0TURZR0ExVUVDaE12Y0daVFpXNXpaU0IzWldKRGIyNW1hV2QxY21GMGIzSWcKVTJWc1ppMVRhV2R1WldRZ1EyVnlkR2xtYVdOaGRHVXhIakFjQmdOVkJBTVRGWEJtVTJWdWMyVXROV1JoWXpaaQpNVGxoT1dRM1l6Q0NBU0l3RFFZSktvWklodmNOQVFFQkJRQURnZ0VQQURDQ0FRb0NnZ0VCQU0xTVdzOXBEaDBtCmtubE95N1hXQ1FCRXQzSmVOUEJmeVlWaGhCbDFRVSsvb090Uy9vNWJ5OGN2RTdUNmRVbjByT3M2a2hNRmVVU1gKZ0ltU24xWDZCNVBBL0tmdHd6cm9FOHJ6MGdQbTNKWFhBV2ZuS1ExRHQ5alJ1Tzl5ZXZyMEV1UXpCdFF3WVJRVAp4VkV3aEZFN2Q5Qmk3NFoyQmhvOXpvMmwxcURPNDljUWI5cFpjZ2toZk9jNEpOYVNvN1pnVzE0VlRJOEROUUFxCjR1V3RWNk43Ylc3L1RSTDBrTDZyQmp3NktheDlnZFNNcUhycWRSWGdTVG03TWJYSGZUK1RyamlITEFMSHdTV1IKSkI0YzZ1TDBhNkRQWUlrQUpTM3M0TTNnV01rUnpjaXFlcHozMjFJaGI1aEJNVGlaK2w5aGliSUg3UEtOZ2F4bAorZlBMbTlKeXVyTUNBd0VBQWFPQ0FVa3dnZ0ZGTUFrR0ExVWRFd1FDTUFBd0VRWUpZSVpJQVliNFFnRUJCQVFECkFnWkFNQXNHQTFVZER3UUVBd0lGb0RBekJnbGdoa2dCaHZoQ0FRMEVKaFlrVDNCbGJsTlRUQ0JIWlc1bGNtRjAKWldRZ1UyVnlkbVZ5SUVObGNuUnBabWxqWVhSbE1CMEdBMVVkRGdRV0JCVExpM1M3L2lTbXhXbllodm1oVDhucgowdHoxa3pDQmdnWURWUjBqQkhzd2VZQVV5NHQwdS80a3BzVnAySWI1b1UvSjY5TGM5Wk9oWHFSY01Gb3hPREEyCkJnTlZCQW9UTDNCbVUyVnVjMlVnZDJWaVEyOXVabWxuZFhKaGRHOXlJRk5sYkdZdFUybG5ibVZrSUVObGNuUnAKWm1sallYUmxNUjR3SEFZRFZRUURFeFZ3WmxObGJuTmxMVFZrWVdNMllqRTVZVGxrTjJPQ0FRQXdIUVlEVlIwbApCQll3RkFZSUt3WUJCUVVIQXdFR0NDc0dBUVVGQ0FJQ01DQUdBMVVkRVFRWk1CZUNGWEJtVTJWdWMyVXROV1JoCll6WmlNVGxoT1dRM1l6QU5CZ2txaGtpRzl3MEJBUXNGQUFPQ0FRRUFpdzhIWEY3Z2FadG1QbG42c3BibkJGaGgKa0tvNll4Z0wwTzRzcExxV3NyOFc2NWNORjU0b0hKRGZEaFBWWFNzTElWRDNlcUw4YUkwSjZlbXRRSGRFbUJiOApBMy8wb1NaZTJkQmQ5ekZZbHNwbU9yeU53a1FwOGtDcnk4TTZ6R0MxYkdMTXJMWWpUclBzZEk4ZmxoS3Vybll0ClZwejJ1MFFZY3o5MjZNaEtYdWdqT2x3YVdNcUFkSXJVYXByK2JsakFLR3FWSUoydGM4SkVBcHI0eUZzSkNEa2EKamlsUDFpcFprMTZGQU9lZnVNcGFBSVpSeHFVZCszcFVGa1d2b3g0UjlaUENZZFVFellYcjllSDdNSXhveXRGYgpDSU1XeU54MkpHOFJCaVZOdTBaN0RTUDEzcUJrWVdhVy92NFhTdThDRkhSUUFxYmU0MjhPVkRpbXNHOU56QT09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K</crt>
 		<prv>LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2UUlCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktjd2dnU2pBZ0VBQW9JQkFRRE5URnJQYVE0ZEpwSjUKVHN1MTFna0FSTGR5WGpUd1g4bUZZWVFaZFVGUHY2RHJVdjZPVzh2SEx4TzArblZKOUt6ck9wSVRCWGxFbDRDSgprcDlWK2dlVHdQeW43Y002NkJQSzg5SUQ1dHlWMXdGbjV5a05RN2ZZMGJqdmNucjY5QkxrTXdiVU1HRVVFOFZSCk1JUlJPM2ZRWXUrR2RnWWFQYzZOcGRhZ3p1UFhFRy9hV1hJSklYem5PQ1RXa3FPMllGdGVGVXlQQXpVQUt1TGwKclZlamUyMXUvMDBTOUpDK3F3WThPaW1zZllIVWpLaDY2blVWNEVrNXV6RzF4MzAvazY0NGh5d0N4OEVsa1NRZQpIT3JpOUd1Z3oyQ0pBQ1V0N09ETjRGakpFYzNJcW5xYzk5dFNJVytZUVRFNG1mcGZZWW15Qit6eWpZR3NaZm56Cnk1dlNjcnF6QWdNQkFBRUNnZ0VBS1IvS2NSSFNTZlNZRXNTOStjYk9Oc2VORjlQWE51OTVKc2JKOTIrTmpiUU4KUUJaMzkzeGI3YUo0aUNCRHJuVGN6cUlFOE5wLzJFV2c4ZTMxRFB2dzJLQW4vRnVjYUFobExwcDR6MTlIZ0p4NQpJNThpa2cybW5rQWtrNUtUSUFJVVpySHlCRDlNc3dEaTNjaWlPTU40MUwxOHphcUd2bXJ6SFZ6RENhTm44SVIyCkRrNUpCR3RUM01lRlpaZENrNk5Nek5scEtwd1A5OXF3Sko0VVN3ZW15SGJQTHRqYVlYSDNCNnJWaVBHcEdFQ3AKZ3FhbnpZeVdGeGdDdjNnUzFSWS9vSS96NUlRYit0Q1hBOTlrdE1NaUZiUVZHOTdZY1VaYW1Xci9CSWhoeDZsYwpjSWZwQXBNOEppZUlZN3hMdUtML21JcHpBS0M0akJ6NWhXcFNjYXoxQVFLQmdRRCtHRk5jVVVDdDRJZk56M2JGCkt5ZDRYYU0yME5ma01MTGN0bm1CTmNhQ3doaXREK2pBZGx3MnFLRjdreGsrRkVBRXpBSEU3YlhreVVyMnJEbjcKbHVUTEJGdXorNTkyZ0FHQVkvZjBkNlQ4SmhTVmQxTi9MZlgwS3lqTDFwNkRTcVAxRGQ5VDlPNU5zK2pCYXVDQQp1Q2UrRkNjb3RxbXJUZitraEx5WXRjeGcwUUtCZ1FETzFtQWNoNWF6dVQ3aVBQNnhqd0gzSDRabmFPUFE5OUpaCmdOT1EvRjg4YXgxamgxWGtETWxEZEZ3TXVBL1QzRENHU2tpODNmcVZxZ3BUT2xPVnJyOEZGRnArcGgrenFFZXYKenV4NmVPSzVhSU5iaHprZlhnNjNtV2RiV1BTbVlIclJ6cWowL0QxTUpEd1NtejZPVGl4ZjUvQjBKUXFBeVA5cgpFbEY0ME5na1F3S0JnRWFvSFFZZTBnMkgwanU0NVI0TzBmcjJqdHcvVnNsdGdVOCtycXJ2ZVRRREpUbDZvdzVoCjIyS1hvYy9ySjZuTGw4Rzl1UUE1MmNxMDd0T0pNTloxTDBvRS9Ec2dUVWQyY1BSeTJCQnk5TDNwR1BBM0xsQy8KUnhXT3F0bUQ1TEE5b1RvVGtYYVhOVzBHQ2tNK3BROG1KbWNFMDU3T3JIK21RT0JPeU9MdUt0Y0JBb0dCQUpKRgo0dVJxTXZaWXZCTHN4Y1cxOTlMWEZZck9EOFo1YStYbUNEaVJjWnhkdUFQcDhxRDdOZDRoVFBPbHUzTzlWUWV6ClF1dG1KRTl4V0NueHBxakZVc3Q1MEdHZWcrN2V4QXVkejNqeFFvMlNUc3NNdnlYaXM0Kzl5ZTA4NUk5QXpiclEKWm9ZU1dCc2Z5T2Z6cC9LbGNCWkhCYkp0ZTVjR0RqT2ZXY1NTRlRqWEFvR0FVQXpjNXB6eWJnemFVREpKUHZxRgpySTk4emJ5TE1Bak1Zd2crbE5JcU5FNmttei80ektnWWtuNkFJTTUvL1N4TmREZTQyaFlyclpJQXNybEFCeHExCkJ5dTd5dGxIMkFPYm0rOXZxL0NIM08zZHhHTWtjL1lON05MQ2xpdGhVU0Jtb3dwY1I5U0RIUzZ2bVJFS3VGdW8KY2xhN2lUL2x3bVI0NUhaWlFIL3h5QnM9Ci0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0K</prv>
 	</cert>
-	<ppps>
-	</ppps>
+	<ppps></ppps>
 	<vlans>
 		<vlan>
 			<if>hn0</if>
@@ -1012,6 +1039,7 @@
 			<descr><![CDATA[LAN Gateway]]></descr>
 		</gateway_item>
 		<defaultgw4>WANGW</defaultgw4>
+		<defaultgw6></defaultgw6>
 	</gateways>
 	<dhcrelay>
 		<enable></enable>
