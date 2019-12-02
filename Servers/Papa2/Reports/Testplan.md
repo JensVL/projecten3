@@ -85,17 +85,17 @@ VM aanmaken: De eerste stap is een nieuwe virtuele machine aanmaken in Virtualbo
                   Netwerkadapters: 1 = LAN
                   In Virtualbox in je nieuwe client VM ga naar system > motherboard > boot order en stel hard disk                             als eerste in en network als tweede.
 
-Windows 10 deployment:
-a. Start de VM in Virtualbox
+Windows 10 deployment: 
+1. Start de VM in Virtualbox
 
-b. Druk op F12 wanneer erom gevraagd wordt
+2. Druk op F12 wanneer erom gevraagd wordt
 
-c. In het eerste venster van de task sequence wizard druk op next en selecteer “Windows 10 PRO”
+3. In het eerste venster van de task sequence wizard druk op next en selecteer “Windows 10 PRO”
 
-d. Laat de deployment lopen (alles gebeurt automatisch)
+4. Laat de deployment lopen (alles gebeurt automatisch)
 
-e. Wanneer de deployment klaar is meld je op de client aan als RED\Administrator (Het scherm zal 10-15min op “welkom” blijven staan)
-
+5. Wanneer de deployment klaar is meld je op de client aan als BLANCQUAERT\Administrator (Het scherm zal 10-15min op “welkom” blijven staan)
+    
 | Nr test | Wat moet er getest worden | In orde? |
 | :--- | :--- | :--- |
 | 1 | Kan de client de PXE / SCCM server Papa2 bereiken via PXE boot?| Ja/Nee |
