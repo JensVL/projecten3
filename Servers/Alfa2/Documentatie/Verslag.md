@@ -70,7 +70,7 @@ Eerst wordt de **red.local** primary zone die tijdens de ADDNS role installatie 
 `Set-DnsServerPrimaryZone -Name "red.local" -SecureSecondaries "TransferToZoneNameServer"`
 
 Hierna worden de DNS records aangemaakt voor alle servers in het **red.local** domein. De ip adressen worden opgeslaan in volgende variables:
-`[string]$Bravo2IP    = "172.18.1.67" # DC2 / DNS2
+[string]$Bravo2IP    = "172.18.1.67" # DC2 / DNS2
 [string]$Charlie2IP  = "172.18.1.68" # Exchange Server
 [string]$Delta2IP    = "172.18.1.69" # IIS Webserver
 [string]$Kilo2IP     = "172.18.1.1" # DHCP Server
@@ -79,7 +79,7 @@ Hierna worden de DNS records aangemaakt voor alle servers in het **red.local** d
 [string]$November2IP = "172.18.1.4" # SQL Server
 [string]$Oscar2IP    = "172.18.1.5" # Monitoring Server
 [string]$Papa2IP     = "172.18.1.6" # SCCM Server
-[string]$local_ip         = "172.18.1.66" # Alfa2 ip`
+[string]$local_ip         = "172.18.1.66" # Alfa2 ip
 
 Om de DNS records aan te maken worden volgende commando's gebruikt:
 `Add-DnsServerResourceRecordMX
