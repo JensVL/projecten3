@@ -54,9 +54,10 @@ De scripts zijn zo ingsteld dat er automatisch opnieuw wordt opgestart en dat he
 * Kijk in server manager -> local server
 * Controleer of de computername "mike2" noemt
 * Controleer of de server toegevoegd is aan het domein red.local
-|Is dit in orde?|
-|:---|
-| Ja/Nee |
+| Taak | Ja/Nee |
+|:---|:---|
+| computername | Ja/Nee |
+| domein | Ja/nee |
 ## Controleer of firewall is uitgeschakeld
 * De firewall zou uitgeschakeld moeten zijn.
 * Dit kan je bekijken in de windows defender firewall
