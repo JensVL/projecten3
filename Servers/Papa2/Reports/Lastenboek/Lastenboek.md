@@ -17,12 +17,12 @@ Papa2 is de SCCM server. Deze zal de client workstations deployen en zorgt ook v
 | Laurens Blancquaert-Cassaer | Implementatie SCCM installatie + configuratie (scripts + GUI  | 5 |      4        |
 | Laurens Blancquaert-Cassaer | Documentatie maken SCCM installatie | 1.5 |      1    |
 | Laurens Blancquaert-Cassaer | WSUS configuratie (opzoekingswerk + documentatie + scripts) | 3 |   2       |
-| Ferre Verstichelen | |   |    |
-| Ferre Verstichelen | | |    |
-| Ferre Verstichelen | |  |    |
-| Ferre Verstichelen | |  |    |
+| Ferre Verstichelen | Opzoeken van info over SCCM |  5 |  13  |
+| Ferre Verstichelen | Task Sequence maken | 5 | 34.5  |
+| Ferre Verstichelen | Documentatie maken | 5 |  13.5  |
+| Ferre Verstichelen | Testplan opstellen (+ zelf testen) Papa2 server | 2 |  2  |
 | Laurens Blancquaert-Cassaer  | Testplan opstellen (+ zelf testen + vagrantfile maken) Papa2 server | 4 | 2 |
-| Ferre Verstichelen  | Testplan opstellen (+ zelf testen) Papa2 server |  |  |
+
 
 **
 
