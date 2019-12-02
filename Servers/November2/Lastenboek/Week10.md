@@ -18,7 +18,7 @@ Week: 10
 
 ## Done
 
-![week 09](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/Lastenboek/Screenshots%20lastenboek/week09.png)
+![week 09](https://github.com/HoGentTIN/p3ops-1920-red/blob/November2/Servers/November2/Lastenboek/Screenshots%20lastenboek/week10.png)
 
 ## To do
 
