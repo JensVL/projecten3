@@ -1,8 +1,6 @@
 # Testplan Papa2: SCCM server
 
-(Een testplan is een *exacte* procedure van de handelingen die je moet uitvoeren om aan te tonen dat de opdracht volledig volbracht is en dat aan alle specificaties voldaan is. Een teamlid moet aan de hand van deze procedure in staat zijn om de tests uit te voeren en erover te rapporteren (zie testrapport). Geef bij elke stap het verwachte resultaat en hoe je kan verifiëren of dat resultaat ook behaald is. Kies zelf de structuur: genummerde lijst, tabel, secties, ... Verwijder deze uitleg als het plan af is.)
-
-Auteur(s) testplan: Laurens Blancquaert-Cassaer en ...
+Auteur(s) testplan: Laurens Blancquaert-Cassaer
 
 
 **VOOR ALLE TESTS MOET JE INGELOGD ZIJN ALS: RED\Administrator**
@@ -77,6 +75,7 @@ Check of de PXE settings in SCCM correct zijn voor client Deployment:
 
 ## Windows 10 Client Deployment / Task Sequence
 ### Uit te voeren stappen:
+Na de Papa2 scripts moet je de instructies volgen in: **Papa2_technische_documentatie.md** om de task sequence aan te maken.
 VM aanmaken: De eerste stap is een nieuwe virtuele machine aanmaken in Virtualbox met volgende specificaties:
 
                   Name: CLIENT1
@@ -101,4 +100,4 @@ e. Wanneer de deployment klaar is meld je op de client aan als RED\Administrator
 | :--- | :--- | :--- |
 | 1 | Kan de client de PXE / SCCM server Papa2 bereiken via PXE boot?| Ja/Nee |
 | 2 | Wordt Windows 10 op de client geïnstalleerd via PXE boot? | Ja/Nee |
-| 3 | Zijn de 3 applications (Libre office, java en Adobe Flash Player geïnstalleerd op de client? | Ja/Nee |
+| 3 | Zijn de 4 applications (Libre office, java, Adobe Reader en Adobe Flash Player geïnstalleerd op de client? | Ja/Nee |
