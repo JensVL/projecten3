@@ -43,6 +43,12 @@ Als inhoud voor deze CMS server voorzie je alle Windows documentatie van dit pro
 | Elias Waterschoot | SQL installatie ||
 | Elias Waterschoot | SharePoint setup via eigen Database ||
 | Tim Grijp | Vagrant + troubleshooting ||
+| Elias Waterschoot | Productie release 1 |  |
+| Tim Grijp | Productie release 1 |  |
+| Elias Waterschoot | Retrospectieve |  |
+| Tim Grijp | Retrospectieve |  |
+| Elias Waterschoot | Automatisatie SP WebApp | |
+| Elias Waterschoot | Automatisatie SP Site Collection| |
 
 
 
