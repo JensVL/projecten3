@@ -24,19 +24,13 @@
 - exit
 - ip route 0.0.0.0 0.0.0.0 s0/1/1
 - exit
-- 
-
-#
-
+-
 - without zulu2:
 - int s0/1/0
 - ip address 172.18.1.109 255.255.255.252
 - no shut
 - exit
-- 
-
-#
-
+-
 - conf t
 - router ospf 10
 - router-id 1.1.1.1
@@ -49,7 +43,6 @@
 - network 172.18.1.104 0.0.0.3 area 0
 - network 172.18.3.0 0.0.0.3 area 0
 - exit
-- 
 
 ## Router 3
 
@@ -77,10 +70,7 @@
 - ip address 172.16.3.2 255.255.255.252
 - no shut
 - ip route 0.0.0.0 0.0.0.0 s0/1/0
-- 
-
-#
-- conf t
+-
 - router ospf 10
 - router-id 3.3.3.3
 - end
@@ -92,7 +82,6 @@
 - network 172.18.3.0 0.0.0.3 area 0
 - network 172.16.3.0 0.0.0.3 area 0
 - exit
--
 
 ## Router 4
 
@@ -122,7 +111,7 @@
 - ip address 172.16.2.1 255.255.255.252
 - ip nat inside
 - no shut
-- 
+
 (external interface)
 
 - int g0/0/0
@@ -147,12 +136,9 @@
 - access-list 1 permit 172.16.1.104 0.0.0.3
 - access-list 1 permit 172.16.2.0 0.0.0.3
 - ip nat inside source list 1 interface g0/0/0 overload
-- 
+-
 - (do) show ip nat translations
-
-#
-
-- conf t
+-
 - router ospf 10
 - router-id 4.4.4.4
 - end
@@ -164,13 +150,11 @@
 - network 172.16.2.0 0.0.0.3 area 0
 - network 172.22.0.0 0.0.255.255 area 0
 - exit
-- 
 
 #### Backup comms
 
 - ip nat pool pool1 172.22.192.10 172.22.192.10 prefix 16
 - ip nat inside source list 1 pool pool1 overload
-- 
 
 ## Router 5 (Formerly L3 Switch5)
 
@@ -201,12 +185,7 @@
 - exit
 - conf t
 - access-list 10 permit 172.18.1.64 0.0.0.31
-- exit
-
-
-#
-
-- conf t
+-
 - router ospf 10
 - router-id 5.5.5.5
 - end
@@ -220,7 +199,6 @@
 - passive-interface g0/0/0
 - passive-interface g0/0/1
 - exit
-- 
 
 ## Router 6 (Formerly L3 Switch6)
 
@@ -249,19 +227,14 @@
 - exit
 - ip route 0.0.0.0 0.0.0.0 g0/0/1
 - exit
-- 
+-
 - without zulu2:
 - int s0/1/1
 - ip address 172.18.1.110 255.255.255.252
 - no shut
 - exit
 - ip route 0.0.0.0 0.0.0.0 s0/1/1
-- exit
-- 
-
-#
-
-- conf t
+-
 - router ospf 10
 - router-id 6.6.6.6
 - end
@@ -275,7 +248,6 @@
 - network 172.18.1.108 0.0.0.3 area 0
 - passive-interface g0/0/0
 - exit
-- 
 
 ## L2 Switch 4
 
@@ -293,9 +265,8 @@
 - exit
 - service password-encryption
 - exit
-- 
 
-### VLAN
+### VLAN 200
 
 - conf t
 - vlan 200
@@ -323,9 +294,8 @@
 - exit
 - service password-encryption
 - exit
-- 
 
-### VLAN
+### VLAN 300
 
 - conf t
 - vlan 300
@@ -333,8 +303,7 @@
 - exit
 - int range f0/1-7
 - switchport mode trunk
-- switchport trunk allowed vlan 300,500
-- 
+- switchport trunk allowed vlan 200,300,500
 
 ## L2 Switch 7
 
@@ -352,9 +321,8 @@
 - exit
 - service password-encryption
 - exit
-- 
 
-### VLAN
+### VLAN 500
 
 - conf t
 - vlan 500
@@ -362,10 +330,9 @@
 - exit
 - int range f0/1-5
 - switchport mode trunk
-- switchport trunk allowed vlan 300,500
-- 
+- switchport trunk allowed vlan 200,300,500
 
-### VPN
+## VPN
 
 Router 1
 
@@ -376,7 +343,6 @@ Router 1
 - tunnel destination 172.18.5.2
 - router ospf 10
 - network 172.18.6.1 0.0.0.3 area 0
-- 
 
 Router 0
 
@@ -387,7 +353,6 @@ Router 0
 - tunnel destination 172.18.5.1
 - router ospf 10
 - network 172.16.6.1 0.0.0.3 area 0
-- 
 
 ## End devices
 
