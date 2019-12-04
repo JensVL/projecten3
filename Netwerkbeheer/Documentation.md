@@ -128,7 +128,7 @@
   - `no shut`
 - Configure interface to Router 2:
   - `int g0/0/0`
-  - `ip address LINUX IP`
+  - `ip address 172.16.3.1 255.255.255.252`
   - `no shut`
 - Add a static default route to allow traffic to WAN:
   - `ip route 0.0.0.0 0.0.0.0 s0/1/0`
@@ -140,7 +140,7 @@
 - Add connected networks to OSPF configuration:
   - `network 172.18.2.0 0.0.0.3 area 0`
   - `network 172.18.3.0 0.0.0.3 area 0`
-  - `network LINUX IP 0.0.0.3 area 0`
+  - `network 172.16.3.0 0.0.0.3 area 0`
 
 ### Router 4
 
@@ -208,6 +208,8 @@
   - `no shut`
 - Add a static default route to allow traffic to WAN:
   - `ip route 0.0.0.0 0.0.0.0 s0/1/0`
+- Control access to private network using ACL:
+  - `access-list 10 permit 172.18.1.64 0.0.0.31`
 - Configure OSPF with ID 10:
   - `router ospf 10`
 - Give Router 5 a router ID:
@@ -252,7 +254,6 @@
   - `network 172.18.1.64 0.0.0.31 area 0`
   - `network 172.18.1.96 0.0.0.3 area 0`
   - `network 172.18.1.108 0.0.0.3 area 0`
-
 - Configure passive interfaces to surpress OSPF updates to switch:
   - `passive-interface g0/0/0`
 
@@ -282,6 +283,8 @@
   - `int range f0/1-6`
   - `switchport mode access`
   - `switchport access vlan 200`
+- Add a helper address referring the DHCP server:
+  - `ip helper-address 172.18.1.1`
 
 ### Switch 5
 
@@ -302,6 +305,8 @@
   - `int range f0/1-6`
   - `switchport mode access`
   - `switchport access vlan 500`
+
+### VPN Configuration
 
 ## Resources
 

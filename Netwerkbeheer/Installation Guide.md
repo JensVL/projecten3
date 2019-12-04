@@ -5,6 +5,7 @@
 - 5 routers (for Windows side)
 - 3 Layer 2 switches (for Windows side)
 - A sufficient amount of ethernet (at least 7) & serial cables (at least 5)
+- At least one console cable
 
 ## Physical configuration
 
