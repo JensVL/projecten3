@@ -330,11 +330,7 @@
 - exit
 - int range f0/1-5
 - switchport mode trunk
-<<<<<<< HEAD
-- switchport trunk allowed vlan 300,500
-=======
 - switchport trunk allowed vlan 200,300,500
->>>>>>> network
 
 ## VPN
 
@@ -346,26 +342,10 @@ Router 1
 - tunnel source 172.18.3.2
 - tunnel destination 172.16.1.109
 - router ospf 10
-<<<<<<< HEAD
 - network 172.17.4.0 0.0.0.3 area 0
 - ip route 172.16.1.108 255.255.255.252  s0/1/1
-=======
-- network 172.18.6.1 0.0.0.3 area 0
->>>>>>> network
 
-
-<<<<<<< HEAD
 - ip route 172.16.0.0 255.255.0.0 tunnel0
-
-=======
-- int Tunnel0
-- tunnel mode gre ip
-- ip address 172.16.6.1 255.255.255.252
-- tunnel source 172.18.5.2
-- tunnel destination 172.18.5.1
-- router ospf 10
-- network 172.16.6.1 0.0.0.3 area 0
->>>>>>> network
 
 ## End devices
 
