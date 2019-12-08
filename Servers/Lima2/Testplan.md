@@ -54,8 +54,10 @@ Open Server Manager -> File and Storage Services -> Shares
 
 ## De dagelijske schaduw kopie
 
+Log in met de builtin admin:
+	- Username: Administrator
+	- Password: Admin2019
 Open de Task Scheduler -> Task Scheduler (local) -> Task Scheduler Library
-
 * Controleren dat een nieuwe task is toegevoegd met de naam 'ShadowCopy'
 * Deze taak heeft een trigger die elke dag om 17:00 geactiveerd wordt
 * Om een snellte test uit te voeren kan je op de taak klikken en deze manueel uitvoeren. Rechter muis klik op de taak en kies voor run.
