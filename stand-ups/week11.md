@@ -74,6 +74,5 @@
   
 ## Volgende stand-up:
 - Stand van zaken
-- 
 
-© Author - Kimberly De Clercq 
+© Author - Kimberly De Clercq en Jannes Van Wonterghem
