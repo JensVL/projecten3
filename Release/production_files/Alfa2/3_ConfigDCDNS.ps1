@@ -75,10 +75,6 @@ function add_dns_record() {
         [string]$record_hostname_alias
     )
 
-    # TODO: test with and without "2> $null"
-    $record_exists=(Get-DnsServerResourceRecord -Name $record_name -RRType $record_type -ZoneName $record_zone_name 2> $null)
-
-    if(!$record_exists) {
         # make record
         if($record_type -eq "MX") {
             Add-DnsServerResourceRecordMX -Name $record_name -ZoneName $record_zone_name -MailExchange $record_mail_exchange -Preference $record_preference
@@ -89,11 +85,6 @@ function add_dns_record() {
         elseif ($record_type -eq "A") {
             Add-DnsServerResourceRecordA -Name $record_name -ZoneName $record_zone_name -IPv4Address $ipaddress
         }
-    }
-    else {
-        Write-Warning "Record $record_name already exists (skipping)"
-    }
-
 }
 
 add_dns_record -record_name "mail" -record_zone_name "red.local" -record_type "A" -ipaddress $Charlie2IP
@@ -116,11 +107,11 @@ add_dns_record -record_name "Papa2" -record_zone_name "red.local" -record_type "
 Write-Host ">>> Set DNS forwarder to HoGent DNS"
 Add-DnsServerForwarder -IPAddress 193.190.173.1,193.190.173.2
 
-# 5) Start het 4_ADstructure.ps1 script als Administrator:
-Write-host "Running next script 4_ADSTRUCTURE.ps1 as admin:" -ForeGroundColor "Green"
-Start-Process powershell -Verb runAs -ArgumentList "$VBOXdrive\4_ADstructure.ps1"
+# Set DNS of LAN adapter
+Write-Host ">>> Settings DNS of adapter $lan_adapter_name"
+Set-DnsClientServerAddress -InterfaceAlias "$lan_adapter_name" -ServerAddresses($local_ip,$secondary_dc_ip)
 
-# Connectie met linux-mailserver
+# 5) Connectie met linux-mailserver
 # Stel forward primary lookup zone in voor mail server in het green domein:
 Write-host ">>> Setting DNS primary zone for green.local"
 Add-DnsServerPrimaryZone -Name "green.local" -ReplicationScope "Forest"
@@ -130,5 +121,10 @@ Add-DnsServerResourceRecordA -Name "mail" -ZoneName "green.local" -IPv4Address "
 Add-DnsServerResourceRecordMX -Name "mail" -MailExchange "mail.green.local" -Preference 100 -ZoneName "green.local"
 
 Add-DnsServerResourceRecordCName -Name "owa" -HostNameAlias "mail.green.local" -ZoneName "green.local"
+
+
+# 6) Start het 4_ADstructure.ps1 script als Administrator:
+Write-host "Running next script 4_ADSTRUCTURE.ps1 as admin:" -ForeGroundColor "Green"
+Start-Process powershell -Verb runAs -ArgumentList "$VBOXdrive\4_ADstructure.ps1"
 
 Stop-Transcript

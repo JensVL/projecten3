@@ -13,10 +13,10 @@ Tim,Grijp,TimG,Administration,"Account voor Tim",TimG,Tim,Oost-Vlaanderen,Sint-M
 Rik,Claeyssens,RikC,Administration,"Account voor Rik",RikC,Rik,Oost-Vlaanderen,Sint-Martens-Latem,9830,B4.002,2731,0444727264,RC,"OU=Administratie,DC=red,DC=local",$paswoord
 Jannes,Van Wonterghem,JannesVW,Development,"Account voor Jannes",JannesVW,Jannes,Antwerpen,Zoersel,2980,B1.018,5078,0444727290,JVW,"OU=Ontwikkeling,DC=red,DC=local",$paswoord
 Jonas,Vandegehuchte,JonasV,Development,"Account voor Jonas",JonasV,Jonas,Vlaams-Brabant,Bierbeek,3360,B1.018,1578,0444727291,JV,"OU=Ontwikkeling,DC=red,DC=local",$paswoord
-Cédric,Van den Eede,CedricVDE,Development,"Account voor Cédric",CedricVDE,Cédric,Oost-Vlaanderen,Meldert,9310,B1.018,5079,0444727292,CVDE,"OU=Ontwikkeling,DC=red,DC=local",$paswoord
+CedricVDE,Van den Eede,CedricVDE,Development,"Account voor Cédric",CedricVDE,Cédric,Oost-Vlaanderen,Meldert,9310,B1.018,5079,0444727292,CVDE,"OU=Ontwikkeling,DC=red,DC=local",$paswoord
 CedricD,Detemmerman,CedricD,Development,"Account voor Cedric",CedricD,Cedric,Oost-Vlaanderen,Haaltert,9451,B1.018,1558,0444727293,CD,"OU=Ontwikkeling,DC=red,DC=local",$paswoord
 Robin,Van de Walle,RobinVDW,Development,"Account voor Robin",RobinVDW,Robin,Oost-Vlaanderen,Haaltert,9451,B1.018,1658,0444727295,RVDW,"OU=Ontwikkeling,DC=red,DC=local",$paswoord
-Matthias,Van de Velde,MatthiasV,Sale,"Account voor Matthias",MatthiasVDV,Matthias,West-Vlaanderen,Koksijde,8670,B1.015,4732,0444727200,MVDV,"OU=Verkoop,DC=red,DC=local",$paswoord
+Matthias,Van de Velde,MatthiasVDV,Sale,"Account voor Matthias",MatthiasVDV,Matthias,West-Vlaanderen,Koksijde,8670,B1.015,4732,0444727200,MVDV,"OU=Verkoop,DC=red,DC=local",$paswoord
 Robby,Daelman,RobbyD,Sale,"Account voor Robby",RobbyD,Robby,Oost-Vlaanderen,Lede,9340,B1.015,4736,0444727204,RD,"OU=Verkoop,DC=red,DC=local",$paswoord
 Nathan,Cammerman,NathanC,Sale,"Account voor Nathan",NathanC,Nathan,West-Vlaanderen,Torhout,8820,B1.015,5822,0444727201,NC,"OU=Verkoop,DC=red,DC=local",$paswoord
 Elias,Waterschoot,EliasW,Sale,"Account voor Elias",EliasW,Elias,West-Vlaanderen,Torhout,8820,B1.015,5423,0444727202,EW,"OU=Verkoop,DC=red,DC=local",$paswoord
