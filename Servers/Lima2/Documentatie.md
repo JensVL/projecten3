@@ -377,3 +377,15 @@ New-FSRMQuotaTemplate -Name "OntwikkelingData Quota" -Size 200MB
 New-FSRMQuotaTemplate -Name "ITData Quota" -Size 200MB
 ```
 10. deze quota's stellen de maximum capaciteiten in voor de shares die een maximum moesten ingesteld hebben.
+
+## Probleem op de maximum capaciteit op de drive H: of AdminData
+
+Door een quota in te stellen op de AdminData is de maximum capaciteit 100MB. Met als gevolg dat de BuiltIn\Administrator geen shadow copy's kan maken, omdat 100MB niet voldoende ruimte is.
+
+1. Verwijder de quota op AdminData -> Server Manager -> Tools -> File Server Resource Manager -> Quota Management -> Quotas -> In deze lijst verwijder de quota met path H:
+2. Op de Windows verkenner en ga naar This PC
+3. Onder Devices and drives zoeken naar de AdminData (H:) drive
+4. Selecteer properties
+5. Ga naar quota en Enable quota mangement
+6. Limiteer de disk space to 100MB en warning level naar keuze
+7. Ga naar Quota Entries en controleer dat de BUILTIN\Administrator zijn quota limit 'No Limit" is
