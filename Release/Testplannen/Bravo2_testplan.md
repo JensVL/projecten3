@@ -34,7 +34,7 @@ In dit script is de volgorde van de scripts waarin ze worden uitgevoerd, aangero
 	- Computername: Bravo2  
 2. Username testen.  
 `whoami`
-	- Username: Administrator
+	- Username: RED\Administrator
 
 ## DNSInstall
 
