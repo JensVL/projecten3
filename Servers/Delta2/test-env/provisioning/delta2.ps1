@@ -19,7 +19,7 @@ Param(
     [string]$pool_name          = 'Delta2Red',
     [string]$website_domain     = 'www.red.local',
     [string]$publocation        = 'C:\inetpub\wwwroot\',
-    [string]$packagelocation    = 'C:\vagrant\app\app.zip',
+    [string]$packagelocation    = 'C:\vagrant\provision\files\deploy-site\',
 
     [string]$domain             = 'red.local',
     [string]$domain_user        = 'Administrator',
@@ -108,26 +108,20 @@ if ($include_linter) {
 #------------------------------------------------------------------------------
 # Changing adapter names depending if used by Vagrant(2 adapters)
 # or directly in Virtualbox(1 adapter)
-debug "Changing adapter names"
 $adaptercount=(Get-NetAdapter | measure).count
 if ($adaptercount -eq 1) {
-    (Get-NetAdapter -Name "Ethernet") | Rename-NetAdapter -NewName $lan_adapter_name
+    change_adapter_name "Ethernet" $lan_adapter_name
 } 
 elseif ($adaptercount -eq 2) {
-    (Get-NetAdapter -Name "Ethernet") | Rename-NetAdapter -NewName $wan_adapter_name
-    (Get-NetAdapter -Name "Ethernet 2") | Rename-NetAdapter -NewName $lan_adapter_name
+    change_adapter_name "Ethernet" $wan_adapter_name
+    change_adapter_name "Ethernet 2" $lan_adapter_name
 }
 
 # Set static IP address on LAN interface
-$existing_ip=(Get-NetAdapter -Name $lan_adapter_name | Get-NetIPAddress -AddressFamily IPv4).IPAddress
-if ("$existing_ip" -ne "$local_ip") {
-    debug "Setting static IP address on adapter $lan_adapter_name to $local_ip with default_gateway $default_gateway"
-    New-NetIPAddress -InterfaceAlias "$lan_adapter_name" -IPAddress "$local_ip" -PrefixLength $lan_prefix -DefaultGateway "$default_gateway"
-}
+set_static_ip $lan_adapter_name $local_ip $lan_prefix $default_gateway
 
 # Set DNS of LAN adapter
-debug "Settings DNS of adapter $lan_adapter_name to $primary_dns and $secondary_dns"
-Set-DnsClientServerAddress -InterfaceAlias "$lan_adapter_name" -ServerAddresses($primary_dns,$secondary_dns)
+set_static_dns $lan_adapter_name $primary_dns $secondary_dns
 
 #------------------------------------------------------------------------------
 # Configuring local Administrator account 
@@ -152,9 +146,9 @@ install_iis
 # Download + install webdeploy
 install_webdeploy $downloadpath
 
-############################################################################
-### To install .NET Framework on Windows 2019 refer to the documentation ###
-############################################################################
+#############################################################################
+## To install .NET Framework 3.5on Windows 2019 refer to the documentation ##
+#############################################################################
 
 if ($asp45) {
     install_asp_dotnet_45
@@ -182,7 +176,7 @@ if ($demo) {
     # unzip $dotnet_app_deploy_zip_location $dotnet_app_deploy_unzip_location
 
     # TODO: implement
-    # deploy_app $publocation $packagelocation
+    deploy_app $publocation $packagelocation
 
     # create_App_Pool $NamePool
     create_App_Pool $pool_name
@@ -191,8 +185,8 @@ if ($demo) {
     create_site $app_name $publocation $website_domain $pool_name
 
     # TODO: test
-    fix_ssl $website_name $website_domain
+    fix_ssl $website_name
 }
 
 # Join the domain
-join_domain $domain $domain_user $domain_pw
+# join_domain $domain $domain_user $domain_pw

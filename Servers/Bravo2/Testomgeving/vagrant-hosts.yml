@@ -30,7 +30,7 @@
 # [1] http://docs.vagrantup.com/v2/synced-folders/basic_usage.html
 ---
 
-- name: Bravo2
+- name: ns2
   ip: 172.18.1.67
   netmask: 255.255.255.224
   box: gusztavvargadr/windows-server

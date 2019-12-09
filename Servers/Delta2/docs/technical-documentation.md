@@ -34,8 +34,8 @@ OS: Windows Server 2019
     * dotnetcore30    -- Install .NET Core 3.0 (true/false)
 * webapp
     * demo            -- Wether to deploy a demo app or not (true/false)
-    * publocation     -- Location where the website will we hosted on the server (e.g. C:\inetpub\wwwroot\)
-    * packagelocation -- Location of the app that will be deployed (e.g. C:\vagrant\app\app.zip)
+    * publocation     -- Location where the website will we hosted on the server (e.g. C:\\inetpub\\wwwroot\\)
+    * packagelocation -- Location of the app that will be deployed (e.g. C:\\vagrant\\app\\app.zip)
 * include_linter      -- Wether to install PSScriptAnalyser or not (true/false)
 
 

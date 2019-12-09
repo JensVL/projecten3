@@ -16,7 +16,7 @@ Auteurs: Levi Goessens en Arno Van Nieuwenhove
 5. Klik op File explorer en vervolgens op Network en sta Network Discovery toe. We zien nu de map VBOXSVR, met hierin onze scripts.
 
 ### Uitvoeren scripts
-1. BELANGRIJK! Voer nu eerst voor Alfa 2 het script 1_RUNFIRST.ps1 uit door hierop met de rechtermuisknop te klikken en te kiezen voor 'Run with powershell'. Hierdoor worden ook automatisch de andere scripts (2_installDCDNS, 3_ConfigDCDNS en 4_ADstructure) uitgevoerd.
+1. BELANGRIJK! Voer nu eerst voor Alfa 2 het script 1_RUNFIRST.ps1 uit door hierop met de rechtermuisknop te klikken en te kiezen voor 'Run with powershell'. Hierdoor worden ook automatisch de andere scripts (2_installDCDNS en 3_ConfigDCDNS) uitgevoerd.
 2. Aangezien Bravo 2 repliceert van Alfa 2, moeten deze scripts helemaal doorlopen zijn voor de scripts van Bravo 2 uitgevoerd mogen worden.
 3. Eens de scripts van Alfa 2 doorlopen zijn, voer je in volgorde de scripts van Bravo 2 uit: 1_RUNFIRST.ps1, 2_InstallDCDNS.ps1 en ten slotte 3_ConfigDCDNS.ps1
 
