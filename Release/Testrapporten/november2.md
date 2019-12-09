@@ -1,46 +1,67 @@
-# **Testrapport November2**
+# Testplan november2
 
-Auteurs: Arno Van Nieuwenhove & Levi Goessens
+Auteur(s) testplan: 
 
-## Testplan
+# Preconditie
+- alfa2 en bravo2 juist opgesteld en actief.<br>
+- Ingelogd op November2 met volgende gegevens: <br>
+    User: RED\Administrator <br>
+    Password: Admin2019 <br>
+ 
+# Testing
+## Naam server en domein
+1. Ga naar de Servermanager en klik op local server. 
+2. Controleer onderstaande instellingen:
+   - Computer name: November2
+   - Domain name: red.local
 
-### Resultaten naam server en domein
+## Netwerksettings
+1. Ga naar de Servermanager.
+2. Klik op local server en klik daarna op de 'host-only' adapter. 
+3. Klik 'Internet Protocol version 4' aan, en klik op properties.
+4. De netwerkconfiguratie moet als volgt zijn: <br>
+  - Ip-address: 172.18.1.4 <br>
+  - Subnet mask: 255.255.255.192 <br>
+  - Default gateway: 172.18.1.7 <br>
+  - Preferred dns: 172.18.1.66 <br>
+  - Alternate dns: 172.18.1.67  <br>
 
-- Naam van server: November2
-- Domein: red.local
+Alternatieve testmethode:
+1. Open de cmd 
+2. Voer het commando `ipconfig/all` uit
+3. Controleer de netwerkconfiguratie zoals hierboven.
 
-### Resultaten Netwerksettings
-- Naam: Ethernet
-- Ip: 172.18.1.4
-- Subnet: 255.255.255.192
-- Default gateway: 172.18.1.7
-- Preferred DNS server: 172.18.1.66
-- Alternate DNS server: 172.18.1.67
-  
-Alternatieve testmethode:  
+## Testen Firewall
+1. Open 'Status van firewall' controleren in de zoekfunctie.
+2. Kijk of deze is uitgeschakeld.  
 
-- Ok!
-  
-### Resultaten correcte SQL Server Installatie
-1. Aanwezig in "Program Files".  
-2. Folder "Microsoft SQL Server" is aanwezig.
-3. Versie 2017 - 14.0.1000.169 
-4. Services van SQL draaien.
-  
-### Resultaten testen firewall
+## Nakijken correcte SQL Server installatie
+1. Kijk de versie en installatiefolder na in 'Program Files'.
+2. Indien 'Microsoft SQL Server' in de map staat, is het geïnstalleerd.
+3. Open de cmd.
+4. Typ het commando : `SQLCMD -S November2`
+5. Typ het commando : `select @@version`
+6. Typ het commando : `go`
+7. Kijk na of het de juiste versie is. 
 
-- Firewall staat uit. 
+<br>
 
-## TestConfigNovember2 (powershell)
-### Check-name, Check-ip-settings, Check-firewall
+1. Open de cmd.
+2. Typ het commando : `SQLCMD -S November2\MSSQLSERVER`
+3. Typ het commando : `select @@version`
+4. Typ `go`
+5. Kijk na of het de juiste versie is. 
 
-- √Computernaam is correct geconfigureerd
-- √IP Address is correct geconfigureerd
-- √Subnet Mask is correct geconfigureerd
-- √Default Gateway is correct geconfigureerd
-- √ALFA2 is goed geconfigureerd als DNS Server
-- √BRAVO2 is goed geconfigureerd als backup DNS Server
-- √Private firewall is disabled
-- √Domain firewall is disabled
-- √Public firewall is disabled
-- 9 test(s) passes, 0 test(s) failed:
+## Nakijken SQL Server instance name
+1. Open de cmd.
+2. Typ het commando : `services.msc`
+3. Ga naar de entry beginnende met 'SQL'.
+4. Kijk na of de entry naam overeenkomt met de instance naam.
+
+
+
+
+
+
+   
+ 
