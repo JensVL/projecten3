@@ -68,6 +68,16 @@ Zorg er dan voor dat je monitor server in het zelfde domein zit zoals in de stap
 Ga naar de PRTG website: https://www.paessler.com/prtg?gclid=Cj0KCQiAiZPvBRDZARIsAORkq7dwu92OxGBLzDKYruquO2U--lwIBhPa0AermPf1ir995qyz35Kl5foaAighEALw_wcB
 en download PRTG. Start daarna de installer die je juist gedownload hebt en volg de wizard zoals in onderstaande afbeeldingen.
 
+![Figure 12](Images/InstallerenPRTG_1.PNG)
 
+![Figure 13](Images/InstallerenPRTG_2.PNG)
+
+![Figure 14](Images/InstallerenPRTG_3.PNG)
+
+![Figure 15](Images/InstallerenPRTG_4.PNG)
+
+Volg de instructies zoals uitgelegd in onderstaande oranje wizard. Deze wizard zal automatische gestart worden als je de eerste keer PRTG opent.
+
+![Figure 16](Images/InstallerenPRTG_5.PNG)
 
 
