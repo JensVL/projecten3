@@ -33,9 +33,12 @@ Benodigdheden: 3 pc's
 
 ### Connectiviteit
 
-1. Ping van pc1 naar pc2: open een command prompt op pc1 en voer `ping 172.18.1.8` uit. Deze zouden moeten beantwoord worden.
-2. Ping van pc1 naar pc3: open een command prompt op pc1 en voer `ping 172.18.0.20` uit. Deze zouden moeten beantwoord worden.
-3. Ping van pc2 naar pc3: open een command prompt op pc2 en voer `ping 172.18.0.20` uit. Deze zouden moeten beantwoord worden.
+1. Ping van pc1 naar pc2: open een command prompt op pc1 en voer `ping 172.18.1.8` uit. Deze zou moeten beantwoord worden.
+2. Ping van pc2 naar pc1: open een command prompt op pc2 en voer `ping 172.18.1.70` uit. Deze zou moeten beantwoord worden.
+3. Ping van pc1 naar pc3: open een command prompt op pc1 en voer `ping 172.18.0.20` uit. Deze zou moeten beantwoord worden.
+4. Ping van pc3 naar pc1: open een command prompt op pc3 en voer `ping 172.18.1.70` uit. Deze zou moeten beantwoord worden.
+5. Ping van pc2 naar pc3: open een command prompt op pc2 en voer `ping 172.18.0.20` uit. Deze zou moeten beantwoord worden.
+6. Ping van pc3 naar pc2: open een command prompt op pc3 en voer `ping 172.18.1.8` uit. Deze zou moeten beantwoord worden.
 
 ### Internet
 
