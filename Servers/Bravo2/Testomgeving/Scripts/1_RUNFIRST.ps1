@@ -1,7 +1,7 @@
 # VARIABLES:
-$VBOXdrive = "C:\Scripts_ESXI\Bravo2"
+#$VBOXdrive = "C:\Scripts_ESXI\Bravo2"
 
-#$VBOXdrive = "Z:"
+$VBOXdrive = "Z:"
 
 # LOG SCRIPT TO FILE (+ op het einde van het script Stop-Transcript doen):
 Start-Transcript "C:\ScriptLogs\1_RUNFIRSTlog.txt"
