@@ -14,13 +14,13 @@ Get-Disk 0 | Initialize-Disk
 #Alle partities aanmaken op disk 0 en deze direct formateren indien deze nog niet bestaan.
 if (!(Test-Path D:))
 {
-	New-Partition -DiskNumber 0 -Size 5GB -DriveLetter D
+	New-Partition -DiskNumber 0 -Size 1GB -DriveLetter D
 	Format-Volume -DriveLetter D -FileSystem NTFS -NewFileSystemLabel VerkoopData -Confirm:$False
 }
 
 if (!(Test-Path E:))
 {
-	New-Partition -DiskNumber 0 -Size 5GB -DriveLetter E
+	New-Partition -DiskNumber 0 -Size 1GB -DriveLetter E
 	Format-Volume -DriveLetter E -FileSystem NTFS -NewFileSystemLabel OntwikkelingData -Confirm:$False
 }
 
@@ -30,32 +30,32 @@ Get-Disk 1 | Initialize-Disk
 #Alle partities aanmaken op disk 1 en deze direct formateren indien deze nog niet bestaan.
 if (!(Test-Path F:))
 {
-	New-Partition -DiskNumber 1 -Size 5GB -DriveLetter F
+	New-Partition -DiskNumber 1 -Size 1GB -DriveLetter F
 	Format-Volume -DriveLetter F -FileSystem NTFS -NewFileSystemLabel ITData -Confirm:$False
 }
 if (!(Test-Path G:))
 {
-	New-Partition -DiskNumber 1 -Size 5GB -DriveLetter G
+	New-Partition -DiskNumber 1 -Size 1GB -DriveLetter G
 	Format-Volume -DriveLetter G -FileSystem NTFS -NewFileSystemLabel DirData -Confirm:$False
 }
 if (!(Test-Path H:))
 {
-	New-Partition -DiskNumber 1 -Size 5GB -DriveLetter H
+	New-Partition -DiskNumber 1 -Size 2GB -DriveLetter H
 	Format-Volume -DriveLetter H -FileSystem NTFS -NewFileSystemLabel AdminData -Confirm:$False
 }
 if (!(Test-Path Y:))
 {
-	New-Partition -DiskNumber 1 -Size 5GB -DriveLetter Y
+	New-Partition -DiskNumber 1 -Size 1GB -DriveLetter Y
 	Format-Volume -DriveLetter Y -FileSystem NTFS -NewFileSystemLabel HomeDirs -Confirm:$False
 }
 if (!(Test-Path P:))
 {
-	New-Partition -DiskNumber 1 -Size 5GB -DriveLetter P
+	New-Partition -DiskNumber 1 -Size 1GB -DriveLetter P
 	Format-Volume -DriveLetter P -FileSystem NTFS -NewFileSystemLabel ProfileDirs -Confirm:$False
 }
 if (!(Test-Path Q:))
 {
-	New-Partition -DiskNumber 1 -Size 5GB -DriveLetter Q
+	New-Partition -DiskNumber 1 -Size 1GB -DriveLetter Q
 	Format-Volume -DriveLetter Q -FileSystem NTFS -NewFileSystemLabel ShareVerkoop -Confirm:$False
 }
 
@@ -110,7 +110,7 @@ if(!(Get-SmbShare -Name ShareVerkoop -ea 0))
 #Op het einde wordt deze taak geregistreerd in de scheduler.
 
 #Configure shadow storage voor adminData
-vssadmin add shadowstorage /for=h: /on=h: /maxsize=2000mb
+vssadmin add shadowstorage /for=h: /on=h: /maxsize=1000mb
 #Hier komt ps code voor dagelijkse schadow copy te maken
 Import-Module -Name "ScheduledTasks"
 $Sta = New-ScheduledTaskAction -Execute "powershell" -Argument "-ExecutionPolicy Bypass C:\Scripts_ESXI\Lima2\ShadowCopy.ps1"
