@@ -120,7 +120,7 @@ Als laatste stap wordt er ingesteld welke updates er wel of niet nodig zijn (zie
 8.  Controleer of het pad naar de map "\\\\papa2\TSReq" is
 9.  Klik nu op "Done"  
 
-Je kan controleren of deze map correct is aangemaakt door in File Explorer het pad "\\papa2" in te voeren.
+Je kan controleren of deze map correct is aangemaakt door in File Explorer het pad "\\\\papa2" in te voeren.
 #### 1.1.2   Aanmaken van de benodigde mappen (Maak deze in de gedeelde folder "TSReq")
     De bestanden "install.wim" en de 4 ".msi"'s kan je vinden op het bureablad.  
 1. "MDT Toolkit Package": LEEG  
