@@ -31,7 +31,6 @@
 - no shut
 - exit
 -
-- conf t
 - router ospf 10
 - router-id 1.1.1.1
 - end
@@ -344,6 +343,8 @@ Router 1
 - router ospf 10
 - network 172.17.4.0 0.0.0.3 area 0
 - ip route 172.16.1.108 255.255.255.252  s0/1/1
+
+---
 
 - ip route 172.16.0.0 255.255.0.0 tunnel0
 
