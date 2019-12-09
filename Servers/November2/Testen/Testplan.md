@@ -46,12 +46,6 @@ Alternatieve testmethode:
 
 <br>
 
-1. Open de cmd.
-2. Typ het commando : `SQLCMD -S November2\MSSQLSERVER`
-3. Typ het commando : `select @@version`
-4. Typ `go`
-5. Kijk na of het de juiste versie is. 
-
 ## Nakijken SQL Server instance name
 1. Open de cmd.
 2. Typ het commando : `services.msc`
