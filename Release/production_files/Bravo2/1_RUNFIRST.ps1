@@ -1,9 +1,12 @@
 # VARIABLES:
-$VBOXdrive = "Z:\"
+$VBOXdrive = "C:\Scripts_ESXI\Bravo2"
+
+#$VBOXdrive = "Z:"
+
 # LOG SCRIPT TO FILE (+ op het einde van het script Stop-Transcript doen):
 Start-Transcript "C:\ScriptLogs\1_RUNFIRSTlog.txt"
 Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce' -Name ResumeScript `
-                -Value 'C:\Windows\system32\WindowsPowerShell\v1.0\Powershell.exe -executionpolicy bypass -file "$VBOXdrive\DNSInstall.ps1"'
+                -Value "C:\Windows\system32\WindowsPowerShell\v1.0\Powershell.exe -executionpolicy bypass -file `"$VBOXdrive\DNSInstall.ps1`""
 
 $RegPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"
 $DefaultUsername = "Administrator"
@@ -17,9 +20,8 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogon -Value 1
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name ForceAutoLogon -Value 1
 
-invoke-command -filepath C:\Scripts_ESXI\Bravo2\1_RUNFIRST.ps1 -computerName Server64
-invoke-command -filepath C:\Scripts_ESXI\Bravo2\DNSInstall.ps1 -computerName Server64
-invoke-command -filepath C:\Scripts_ESXI\Bravo2\DNSConfig.ps1 -computerName Server64
+#Invoke-Command -FilePath $VBOXdrive\DNSInstall.ps1
+#Invoke-Command -FilePath $VBOXdrive\DNSConfig.ps1
 
 Rename-Computer -NewName Bravo2 -Force 
 Stop-Transcript

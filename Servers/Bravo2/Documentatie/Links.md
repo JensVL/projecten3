@@ -27,3 +27,17 @@ https://www.windowscentral.com/how-enable-or-disable-wi-fi-and-ethernet-network-
 ## Vagrant box
 https://app.vagrantup.com/gusztavvargadr/boxes/windows-server
 https://stackoverflow.com/questions/42718527/vagrant-up-command-throwing-ssl-error
+
+## Disable NAT adapter
+https://www.windowscentral.com/how-enable-or-disable-wi-fi-and-ethernet-network-adapters-windows-10
+
+## Testplan
+https://community.spiceworks.com/topic/951838-getting-dns-forwarder-info-for-multiple-dns-servers
+https://docs.microsoft.com/en-us/powershell/module/dnsserver/get-dnsserverforwarder?view=win10-ps
+https://docs.microsoft.com/en-us/powershell/module/dnsclient/get-dnsclientserveraddress?view=win10-ps
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-service?view=powershell-6
+https://docs.microsoft.com/en-us/powershell/module/netsecurity/get-netfirewallrule?view=win10-ps
+https://docs.microsoft.com/en-us/powershell/module/activedirectory/get-addomain?view=winserver2012-ps
+https://docs.microsoft.com/en-us/powershell/module/exchange/users-and-groups/get-user?view=exchange-ps
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-timezone?view=powershell-6
+https://stackoverflow.com/questions/2085744/how-do-i-get-the-current-username-in-windows-powershell

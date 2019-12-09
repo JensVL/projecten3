@@ -68,20 +68,20 @@ Open de Task Scheduler -> Task Scheduler (local) -> Task Scheduler Library
 
 2. Ga naar bestanden -> Computer en ga naar de verschillende fileshares
 
-3. Ga in de fileshare van de afdeling Ontwikkeling en probeer een nieuwe file aan te maken -> dit zou moeten lukken
+3. Ga in de fileshare van de afdeling Ontwikkeling(E:) > map Shares > map Ontwikkelingsdata,  en probeer een nieuwe file aan te maken -> dit zou moeten lukken
 
-4. Ga in de fileshare van homedir en probeer een nieuwe file aan te maken -> dit zou moeten lukken
+4. Ga in de fileshare van homedir(Y:) > map Shares > map homedir, en probeer een nieuwe file aan te maken -> dit zou moeten lukken
 
-5. ga in de fileshare van Directie en probeer een nieuwe file aan te maken -> dit zou NIET mogen lukken.
+5. ga in de fileshare van DirData (G:) > map Shares > map Dirdata en probeer een nieuwe file aan te maken -> dit zou NIET mogen lukken.
 
 
 ## maximumcapaciteit share per user
 
-1. neem een folder of bestand van 150MB en probeer het in de fileshare Ontwikkeling te zetten -> dit moet lukken
+1. neem een folder of bestand van 150MB en probeer het in de fileshare Ontwikkeling(E:) > map Shares > map Ontwikkelingsdata te zetten -> dit moet lukken
 
 2. verwijder het 150MB bestand of folder
 
-3. probeer nu een folder/bestand van 250MB in de fileshare Ontwikkeling te zetten -> dit mag NIET lukken.
+3. probeer nu een folder/bestand van 250MB in de fileshare Ontwikkeling te zetten(deze pc > OntwikkelingsData(E:) -> dit mag NIET lukken.
 
 
 

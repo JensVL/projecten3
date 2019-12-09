@@ -102,7 +102,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       if host['name'] == "Bravo2"
         node.vm.provision 'shell',
           privileged: true,
-          path: 'Scripts/' + '2_InstallDCDNS.ps1',
+          path: 'Scripts/' + 'DNSInstall.ps1',
           args: [
             "eng-BE",
             host['ip'],
@@ -117,7 +117,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           node.vm.provision 'shell', reboot: true
           node.vm.provision 'shell',
           privileged: true,
-          path: 'Scripts/' + '3_ConfigDCDNS.ps1',
+          path: 'Scripts/' + 'DNSConfig.ps1',
           args: [
             host['ip'],
             "NAT"
