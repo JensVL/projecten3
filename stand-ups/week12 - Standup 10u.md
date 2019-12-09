@@ -10,7 +10,7 @@
 | Kimberly De Clercq            | V |
 | Tim Grijp                     | X |
 | Yngvar Samyn                  | V |
-| Joachim Van de Keere          | V |
+| Joachim Van de Keere          | X |
 | Matthias Van de Velde         | V |
 | Robin Van de Walle            | V |
 | Jens Van Liefferinge          | V |
