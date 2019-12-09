@@ -33,7 +33,7 @@
 - Zorg dat alles in de release-branch staat wat nodig is (testplan, template testrapport, verslag, scripts)
 - Problemen/Vragen?
 
-## Gerealiseerd week 10
+## Gerealiseerd week 11
 * Alfa
   * ...
 * Bravo
