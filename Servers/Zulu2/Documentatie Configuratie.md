@@ -160,6 +160,13 @@ We laden een custom configuratie.
 
 ## 6. Routering <a name="Routering"></a>  
 
+Omdat onze routers tussen 2 routers bevind, moeten we ook doen aan routering. Wij kiezen ervoor om statische routes toe te voegen in plaats van dynamische routering te gebruiken. Dit komt omdat OSPF de routing tables niet wil bijhouden bij pfsense in de productie. Het is ook veel meer werk om dynamische routering in te zetten omdat we dan ook de package manager moeten updaten en dus direct internet connectie nodig hebben in de productieomgeving.  
+
+* Navigeer naar System -> Routing  
+* Navigeer naar Static Routes tab  
+* Voeg één voor één de static routes toe volgens de onderstaand afbeelding    
+
+![web13](img/web13.png) 
 
 
 ## 7. Bronnen <a name="Bronnen"></a>  
