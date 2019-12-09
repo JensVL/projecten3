@@ -4,7 +4,8 @@
 # VARIABLES:
 # --------------------------------------------------------------------------------------------------------
 # VOOR INTEGRATIE:
-$VBOXdrive = "C:\Scripts_ESXI\Papa2"
+# $VBOXdrive = "C:\Scripts_ESXI\Papa2"
+$VBOXdrive = "\\VBOXSVR\Scripts"
 
 # VOOR VIRTUALBOX TESTING:
 #$VBOXdrive = "Z:"

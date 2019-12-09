@@ -6,9 +6,10 @@
 # --------------------------------------------------------------------------------------------------------
 # VOOR INTEGRATIE:
 #$VBOXdrive = "C:\Scripts_ESXI\Papa2"
+$VBOXdrive = "\\VBOXSVR\Scripts"
 
 # VOOR VIRTUALBOX TESTING:
-$VBOXdrive = "Z:"
+# $VBOXdrive = "Z:"
 # --------------------------------------------------------------------------------------------------------
 
 $Username = "RED\Administrator"  # LET OP RED\Administrator ZAL SCCM INSTALLEREN EN ALLE RECHTEN EROP HEBBEN !
