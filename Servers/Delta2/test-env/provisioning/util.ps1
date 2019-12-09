@@ -98,6 +98,45 @@ function join_domain() {
     Add-Computer -DomainName $domain -DomainCredential $credential -Force
 }
 
+# Usage: change_adapter_name [-old_name] <old_name> [-new_name] <new_name>
+#
+# Change the adapter name
+function change_adapter_name() {
+    param([string]$old_name,[string]$new_name)
+    debug "Changing adapter names"
+
+    (Get-NetAdapter -Name $old_name) | Rename-NetAdapter -NewName $new_name 2> $null
+}
+
+# Usage: set_static_ip [-adapter_name] <adapter_name> [-new_ip] <new_ip> [-lan_prefix] <lan_prefix> [-default_gateway] <default_gateway>
+#
+# Set a static ip for the given adapter name
+#   adapter_name     -- mandatory
+#   new_ip           -- mandatory
+#   lan_prefix       -- mandatory
+#   default_gateway  -- optional
+function set_static_ip() {
+    param([string]$adaper_name,[string]$new_ip,[string]$lan_prefix,[string]$default_gateway)
+
+    # $existing_ip=(Get-NetAdapter -Name $adaper_name | Get-NetIPAddress -AddressFamily IPv4).IPAddress
+    # if ("$existing_ip" -ne "$local_ip") {
+        debug "Setting static IP address on adapter $lan_adapter_name to $local_ip with default_gateway $default_gateway"
+        New-NetIPAddress -InterfaceAlias $adaper_name -IPAddress $new_ip -PrefixLength $lan_prefix -DefaultGateway $default_gateway
+    # }
+}
+
+# Usage: set_static_dns [-adapter_name] <adapter_name> [-primary_dns] <primary_dns> [-secondary_dns] <secondary_dns>
+#
+#   adapter_name   -- mandatory
+#   primary_dns    -- mandatory
+#   secondary_dns  -- mandatory
+function set_static_dns() {
+    param([string]$adaper_name,[string]$primary_dns,[string]$secondary_dns)
+
+    debug "Settings DNS of adapter $adaper_name to $primary_dns and $secondary_dns"
+    Set-DnsClientServerAddress -InterfaceAlias "$adaper_name" -ServerAddresses($primary_dns,$secondary_dns)
+}
+
 #------------------------------------------------------------------------------
 # Install features and roles
 #------------------------------------------------------------------------------
@@ -323,7 +362,7 @@ function configure_iis() {
         [void][Microsoft.Web.Management.Server.ManagementAuthorization]::Grant($iisusername, "Default Web Site", $FALSE)
     }
     Catch [System.Management.Automation.RuntimeException] {
-        debug '$iisusername has alreaddy management permission for the website(skipping)'
+        debug "$iisusername has already management permission for the website(skipping)"
     }
 }
 
@@ -366,7 +405,7 @@ function create_app_pool() {
 function create_site() {
     param([string]$website_name, [string]$publocation, [string]$website_domain, [string]$pool_name)
 
-    New-Website -Name $website_name -Port 80 -IPAddress "*" -HostHeader $website_domain -PhysicalPath "$publocation\$website_name" -ApplicationPool $pool_name
+    New-Website -Name $website_name -Port 80 -IPAddress "*" -HostHeader $website_domain -PhysicalPath "$publocation" -ApplicationPool $pool_name
     Start-Website -Name $website_name
 
     ### Extended way of creating site {{{
@@ -377,30 +416,22 @@ function create_site() {
     ### }}}
 }
 
-# Usage: fix_ssl [-website_name] <foo> [-website_domain] <www.red.local>
+# Usage: fix_ssl [-website_name] <foo>
 #
 # -website_name    Name of the website
-# -website_domain  Domain name of the website
 # Allow all hosts to connect on port 443 and use the SSL certificate to ensure HTTPS
 function fix_ssl() {
-    param([string]$website_name, [string]$website_domain)
+    param([string]$website_name)
 
     Import-Module WebAdministration
 
-    #add new binding to site
     New-WebBinding -Name $website_name -IPAddress * -Port 443 -Protocol https
 
-    #create self signed certificate
-    #$cert = New-SelfSignedCertfificate -CertStoreLocation "Cert:\LocalMachine\App" -DnsName $website_domain
-    $cert = New-SelfSignedCertificate -CertStoreLocation "Cert:\LocalMachine\App" -DnsName $website_domain
+    $webServerCert = Get-ChildItem Cert:\LocalMachine\My\ | Select-Object -First 1
 
-    #Attach the certificate to the SSL binding
-    $CertPath = "Cert:\LocalMachine\App\$($cert.Thumbprint)"
+    $bind = Get-WebBinding -Name $website_name -Protocol https
 
-    #binding to all ip addresses to port 443 | als * niet werkt probeer 0.0.0.0
-    $ProviderPath = "IIS:\SSLBindings\*!443" 
-
-    Get-Item $CertPath | New-Item $ProviderPath
+    $bind.AddSslCertificate($webServerCert.GetCertHashString(), "my")
 }
 
 
@@ -408,19 +439,21 @@ function fix_ssl() {
 #
 # Publish a webdeploy package to the given location
 # The package is a zip file, containing the app, with config files in the same directory
-# function deploy_app() {
-#     param([string]$publocation, [string]$packagelocation)
-#
-#     $directoryInfo = Get-ChildItem $publocation | Measure-Object
-#
-#     # if publocation is empty, deploy app
-#     if (!($directoryInfo.count -eq 0)) {
-#         Get-ChildItem -Path $publocation -Include * -File -Recurse | foreach { $_.Delete()}
-#         debug 'Deploying Blog Demo ...'
-#         $msdeploy = "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe"
-#         & $msdeploy -verb:sync -source:package=$packagelocation -dest:auto > $null
-#     }
-# }
+function deploy_app() {
+    param([string]$publocation, [string]$packagelocation)
+
+     $directoryInfo = Get-ChildItem $publocation | Measure-Object
+
+     # if publocation is empty, deploy app
+     if (!($directoryInfo.count -eq 0)) {
+         Get-ChildItem -Path $publocation -Include * -File -Recurse | foreach { $_.Delete()}
+         debug 'Deploying Blog Demo ...'
+         cd $packagelocation
+         .\App.deploy.cmd /Y
+         # $msdeploy = "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe"
+         # & $msdeploy -verb:sync -source:package=$packagelocation -dest:auto > $null
+     }
+}
 
 # Usage: configure_certs [-downloadpath] <c:\foo\bar>
 #
