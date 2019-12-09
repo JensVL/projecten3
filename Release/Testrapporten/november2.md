@@ -1,4 +1,4 @@
-# Testplan november2
+# Testrapport november2
 
 Auteur(s) testplan: 
 
