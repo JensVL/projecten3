@@ -60,7 +60,7 @@ Na het runnen van het script, geef volgende in:
      `ipconfig`  
         - IP-address: 172.18.1.67  
         - Subnetmask: 255.255.255.224  
-        - Default Gateway: 172.18.1.98  
+        - Default Gateway: 172.18.1.65  
         - DNS:  
             - 172.18.1.66  
             - 172.18.1.67  
@@ -70,7 +70,7 @@ Na het runnen van het script, geef volgende in:
         - 172.18.1.66, 172.18.1.67  
  
  5. Firewall status.  
-	 `netsh advfirewall show private|public|domain`  
+	 `netsh advfirewall show private`  
 		- Verwachte uitkomst is "off" want er is een firewall geconfigureerd op het domein.  
  
  6. ADDS controle. Gaat testen of er wordt aangemeld met administrator, DNS geïnstalleerd is en of DSRM goed is ingesteld.  
@@ -81,7 +81,7 @@ Na het runnen van het script, geef volgende in:
  7. Controle of domein "red.local" gejoind is.  
      `Get-WmiObject -Class Win32_ComputerSystem`  
 	 	- Domain: red.local  
-		- Name: ns2  
+		- Name: Bravo2  
 
 ##  DNSConfig
 
@@ -89,12 +89,8 @@ Na het runnen van het script, geef volgende in:
 	 `Get-DnsClientServerAddress`  
 	 	- Hier zouden de adapters moeten komen met het adres.  
 
- 2. Met het volgende commando gaat men de forward servers overlopen. Omdat het hier over meerdere gaat namelijk de Hogent servers, gaan we dit wegschrijen in een "txt" file.  
-	 `Get-Content C:\scripts\servers.txt | Foreach-Object {get-dnsserverforwarder -computer $_}`  
-		- De servernamen van Hogent worden in dit script verwacht.
-
 ## AD/DNS configuratie en installatie
-1. "Server Manager" > "Tools" > "Active Directory Users and Computers" > "Bravo2.red.local" > "Domain Controllers (container)"
+1. "Server Manager" > "Tools" > "Active Directory Users and Computers" > "red.local" > "Domain Controllers (container)"
 	- Hier zouden Alfa2 en Bravo2 moeten staan.
 2. "Server Manager" > "Tools" > "DNS Manager" > "Forward lookup zone" 
 	- Hier zou je "red.local" moeten zien staan.
@@ -110,7 +106,7 @@ Server manager > tools > DNS Manager >Forward Lookup Zones > red.local
     De Exchange server Charlie2 bevat naast een A record ook een MX en Cname record.
 
 | Device | Soort DNS record | IP-address | 
-| :--: | :--: | :--: | 
+| :--:   | :--: | :--: | 
 | alfa2 | NS | 172.18.1.66 | 
 | bravo2 | NS | 172.18.1.67 (zie je pas na installatie Bravo2 server) | 
 | charlie2 | A + MX + Cname |172.18.1.68  | 
