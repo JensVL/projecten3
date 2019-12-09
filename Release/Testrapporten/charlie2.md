@@ -4,7 +4,7 @@ Auteur(s) testrapport: Kimberly De Clercq
 
 Labo gemaakt door: Jannes Van Wonterghem en Joachim Van de Keere  
 Uitvoerder(s) test: Kimberly De Clercq  
-Uitgevoerd op: 18/11/2019 (niet uitgevoerd)
+Uitgevoerd op: 09/12/2019
 
 #### Uit te voeren stappen
 
@@ -33,5 +33,5 @@ Controleer zeker ook volgende zaken:
   -  'Mail exchange transport' service herstarten
   - DNS-lookup controleren in Exchange-beheercentrum
 
-###### Problemen bij uitvoeren testplan
-- Testrapport kan niet uitgevoerd worden, Charlie2 niet klaar
+###### Resultaat bij uitvoeren testplan
+- Werkt volledig, kan enkel nog niet testen met Linux.
