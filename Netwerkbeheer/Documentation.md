@@ -102,6 +102,8 @@
   - `no shut`
 - Add a static default route to allow traffic to WAN:
   - `ip route 0.0.0.0 0.0.0.0 s0/1/1`
+- Add a static route for firewall:
+  - `ip route 172.18.0.0 255.255.0.0 g0/0/0 172.18.1.106`
 - Configure OSPF with ID 10:
   - `router ospf 10`
 - Give Router 1 a router ID:
@@ -115,6 +117,20 @@
   - `int s0/1/0`
   - `ip address 172.18.1.109 255.255.255.252`
   - `no shut`
+- Configure the Tunnel0 interface for VPN:
+  - `int Tunnel0`
+- Cnfigure the GRE tunnel:
+  - `tunnel mode gre ip`
+  - `ip address 172.17.4.2 255.255.255.252`
+- Add a source and destination IP:
+  - `tunnel source 172.18.3.2`
+  - `tunnel destination 172.16.1.109`
+- Add the networks and routes to OSPF configuration:  
+  - `router ospf 10`
+  - `network 172.17.4.0 0.0.0.3 area 0`
+  - `ip route 172.16.1.108 255.255.255.252 s0/1/1`
+  - `network 172.18.6.1 0.0.0.3 area 0`
+  - `ip route 172.16.0.0 255.255.0.0 tunnel0`
 
 ### Router 3
 
@@ -132,6 +148,8 @@
   - `no shut`
 - Add a static default route to allow traffic to WAN:
   - `ip route 0.0.0.0 0.0.0.0 s0/1/0`
+- Add a static route for firewall:
+  - `ip route 172.18.0.0 255.255.0.0 s0/1/1 172.18.3.2`
 - Configure OSPF with ID 10:
   - `router ospf 10`
 - Give Router 3 a router ID:
@@ -161,6 +179,9 @@
   - `no shut`
 - Add a static default route to allow traffic to WAN:
   - `ip route 0.0.0.0 0.0.0.0 g0/0/0`
+- Add static routes to split Linux & Windows traffic:
+  - `ip route 172.18.0.0 255.255.0.0 s0/1/0 172.18.2.2`
+  - `ip route 172.16.0.0 255.255.0.0 s0/1/1 172.16.2.2`
 - Configure an access list which permits all LAN networks to connect to the internet via the outside interface:
   - `access-list 1 permit 172.18.2.0 0.0.0.3`
   - `access-list 1 permit 172.18.1.0 0.0.0.63`
@@ -202,6 +223,8 @@
   - `int g0/0/1`
   - `ip address 172.18.0.1 255.255.255.0`
   - `no shut`
+- Add a IP helper address to forward DHCP packets:
+  - `ip helper-address 172.18.1.1`
 - Configure interface to Router 6:
   - `int s0/1/0`
   - `ip address 172.18.1.97 255.255.255.252`
@@ -243,6 +266,7 @@
   - `int s0/1/1`
   - `ip address 172.18.1.110 255.255.255.252`
   - `no shut`
+  - `ip route 0.0.0.0 0.0.0.0 g0/0/1`
   - `ip route 0.0.0.0 0.0.0.0 s0/1/1`
 - Configure OSPF with ID 10:
   - `router ospf 10`
@@ -280,33 +304,29 @@
   - `vlan 200`
   - `name vlan200`
 - Assign VLAN 200 to interfaces:
-  - `int range f0/1-6`
+  - `int range f0/1-10`
   - `switchport mode access`
   - `switchport access vlan 200`
-- Add a helper address referring the DHCP server:
-  - `ip helper-address 172.18.1.1`
 
 ### Switch 5
 
 - Create a new VLAN with ID 300:
   - `vlan 300`
   - `name vlan300`
-- Assign VLAN 300 to interfaces:
-  - `int range f0/1-7`
-  - `switchport mode access`
-  - `switchport access vlan 300`
+- Assign VLAN 300 to interfaces & allow traffic:
+  - `int range f0/1-10`
+  - `switchport mode trunk`
+  - `switchport trunk allowed vlan 200,300,500`
 
 ### Switch 7
 
 - Create a new VLAN with ID 500:
   - `vlan 500`
   - `name vlan500`
-- Assign VLAN 500 to interfaces:
-  - `int range f0/1-6`
-  - `switchport mode access`
-  - `switchport access vlan 500`
-
-### VPN Configuration
+- Assign VLAN 500 to interfaces & allow traffic:
+  - `int range f0/1-10`
+  - `switchport mode trunk`
+  - `switchport trunk allowed vlan 200,300,500`
 
 ## Resources
 
