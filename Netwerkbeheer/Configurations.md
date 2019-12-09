@@ -23,6 +23,7 @@
 - no shut
 - exit
 - ip route 0.0.0.0 0.0.0.0 s0/1/1
+- ip route 172.18.0.0 255.255.0.0 g0/0/0 172.18.1.106
 - exit
 -
 - without zulu2:
@@ -42,6 +43,19 @@
 - network 172.18.1.104 0.0.0.3 area 0
 - network 172.18.3.0 0.0.0.3 area 0
 - exit
+
+### VPN
+
+- int Tunnel0
+- tunnel mode gre ip
+- ip address 172.17.4.2 255.255.255.252
+- tunnel source 172.18.3.2
+- tunnel destination 172.16.1.109
+- router ospf 10
+- network 172.17.4.0 0.0.0.3 area 0
+- ip route 172.16.1.108 255.255.255.252  s0/1/1
+- network 172.18.6.1 0.0.0.3 area 0
+- ip route 172.16.0.0 255.255.0.0 tunnel0
 
 ## Router 3
 
@@ -69,6 +83,7 @@
 - ip address 172.16.3.2 255.255.255.252
 - no shut
 - ip route 0.0.0.0 0.0.0.0 s0/1/0
+- ip route 172.18.0.0 255.255.0.0 s0/1/1 172.18.3.2
 -
 - router ospf 10
 - router-id 3.3.3.3
@@ -119,6 +134,8 @@
 - no shut
 - exit
 - ip route 0.0.0.0 0.0.0.0 g0/0/0
+- ip route 172.18.0.0 255.255.0.0 s0/1/0 172.18.2.2
+- ip route 172.16.0.0 255.255.0.0 s0/1/1 172.16.2.2
 - access-list 1 permit 172.18.2.0 0.0.0.3
 - access-list 1 permit 172.18.1.0 0.0.0.63
 - access-list 1 permit 172.18.0.0 0.0.0.255
@@ -175,6 +192,7 @@
 - no shut
 - int g0/0/1
 - ip address 172.18.0.1 255.255.255.0
+- ip helper-address 172.18.1.1
 - no shut
 - int s0/1/0
 - ip address 172.18.1.97 255.255.255.252
@@ -232,6 +250,7 @@
 - ip address 172.18.1.110 255.255.255.252
 - no shut
 - exit
+- no ip route 0.0.0.0 0.0.0.0 g0/0/1
 - ip route 0.0.0.0 0.0.0.0 s0/1/1
 -
 - router ospf 10
@@ -271,11 +290,10 @@
 - vlan 200
 - name vlan200
 - exit
-- int range f0/1-6
+- int range f0/1-10
 - switchport mode access
 - switchport access vlan 200
 - int vlan 200
-- ip helper-address 172.18.1.1
 
 ## L2 Switch 5
 
@@ -300,7 +318,7 @@
 - vlan 300
 - name vlan300
 - exit
-- int range f0/1-7
+- int range f0/1-10
 - switchport mode trunk
 - switchport trunk allowed vlan 200,300,500
 
@@ -330,23 +348,6 @@
 - int range f0/1-5
 - switchport mode trunk
 - switchport trunk allowed vlan 200,300,500
-
-## VPN
-
-Router 1
-
-- int Tunnel0
-- tunnel mode gre ip
-- ip address 172.17.4.2 255.255.255.252
-- tunnel source 172.18.3.2
-- tunnel destination 172.16.1.109
-- router ospf 10
-- network 172.17.4.0 0.0.0.3 area 0
-- ip route 172.16.1.108 255.255.255.252  s0/1/1
-
----
-
-- ip route 172.16.0.0 255.255.0.0 tunnel0
 
 ## End devices
 
