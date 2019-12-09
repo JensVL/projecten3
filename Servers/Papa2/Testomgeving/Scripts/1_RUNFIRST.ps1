@@ -5,10 +5,10 @@
 # --------------------------------------------------------------------------------------------------------
 # VOOR INTEGRATIE:
 # $VBOXdrive = "C:\Scripts_ESXI\Papa2"
-$VBOXdrive = "\\VBOXSVR\Scripts"
+# $VBOXdrive = "\\VBOXSVR\Scripts"
 
 # VOOR VIRTUALBOX TESTING:
-#$VBOXdrive = "Z:"
+$VBOXdrive = "Z:"
 # --------------------------------------------------------------------------------------------------------
 
 # PREFERENCE VARIABLES: (Om Debug,Verbose en informaation info in de Start-Transcript log files te zien)
