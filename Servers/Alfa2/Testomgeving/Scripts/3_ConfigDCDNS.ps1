@@ -9,10 +9,11 @@
 #------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------------------
 # VOOR INTEGRATIE:
-#$VBOXdrive = "C:\Scripts_ESXI\Alfa2"
+# $VBOXdrive = "C:\Scripts_ESXI\Alfa2"
+$VBOXdrive = "\\VBOXSVR\Scripts"
 
 # VOOR VIRTUALBOX TESTING:
-$VBOXdrive = "Z:"
+# $VBOXdrive = "Z:"
 # --------------------------------------------------------------------------------------------------------
     [string]$Bravo2IP    = "172.18.1.67" # DC2 / DNS2
     [string]$Charlie2IP  = "172.18.1.68" # Exchange Server

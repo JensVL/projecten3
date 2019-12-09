@@ -11,9 +11,10 @@
 # --------------------------------------------------------------------------------------------------------
 # VOOR INTEGRATIE:
 #$VBOXdrive = "C:\Scripts_ESXI\Alfa2"
+$VBOXdrive = "\\VBOXSVR\Scripts"
 
 # VOOR VIRTUALBOX TESTING:
-$VBOXdrive = "Z:"
+# $VBOXdrive = "Z:"
 # --------------------------------------------------------------------------------------------------------
 
 $Account = "RED\Administrator"
