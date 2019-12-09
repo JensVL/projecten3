@@ -35,31 +35,31 @@
 
 ## Gerealiseerd week 11
 * Alfa
-  * ...
+  * Oké. 
 * Bravo
-  * ...
+  * November2 aan het testen.
 * Charlie
-  * ...
+  * Scripts zijn bezig. 
 * Delta
-  * ...
+  * Beginnen aan Deploy. 
 * Kilo
-  * ...
+  * Bekijken of Client in VLAN200 een IP-adres krijgt
 * Lima
-  * 
+  * Klaar. Bravo2 al getest. 
 * Mike
-  * 
+  * Domein gejoined, maar esxi-server geheugen is vol. 
 * November
-  * 
+  * Op VirtualBox overgeschakeld, maar is gelukt. Lima2 beginnen testen. 
 * Oscar
-  * ...
+  * Enkele problemen, werkt traag. 
 * Papa
-  * ...
+  * Geen plaats op esxi-server, zal op VirtualBox gebeuren. 
 * Zulu
-  * ...
+  * Moet worden getest, nog adapter nodig. Delta2 provisioning getest. 
 * Netwerkinfra
-  * ...
+  * VPN moet nog getest worden met Linux. 
   
 ## Volgende stand-up:
 - Final release
 
-© Author - Kimberly De Clercq 
+© Author - Kimberly De Clercq en Jannes Van Wonterghem
