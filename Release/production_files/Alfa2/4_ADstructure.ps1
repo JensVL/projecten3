@@ -8,10 +8,12 @@
 # Variables
 #------------------------------------------------------------------------------
 # VOOR INTEGRATIE:
-$VBOXdrive = "C:\Scripts_ESXI\Alfa2"
+# $VBOXdrive = "C:\Scripts_ESXI\Alfa2"
+
+$VBOXdrive = "\\VBOXSVR\Scripts"
 
 # VOOR VIRTUALBOX TESTING:
-#$VBOXdrive = "Z:"
+# $VBOXdrive = "Z:"
 
 Start-Transcript "C:\ScriptLogs\4_ADstructure.txt"
 Import-Module ActiveDirectory
@@ -95,6 +97,103 @@ Import-Csv -Path "$VBOXdrive\ExtendADschema\users3.csv" | ForEach-Object {
         Write-Warning "User $sambaname already exists (skipping)"
     }
 }
+
+<# Het onderstaande werkt ook #>
+# New-AdUser -Name "Kimberly" -Surname "De Clercq" -SamAccountName "KimberlyDC" -Department "Manager" -Description "Account voor Kimberly" -DisplayName "KimberlyDC" `
+#            -GivenName "Kimberly" -State "West-Vlaanderen"  -City "Ingelmunster" -PostalCode "8770" `
+#            -Office "B0.001" -EmployeeID "1004" -HomePhone "0444727272" -Initials "KDC" -Path "OU=Directie,DC=red,DC=local" -AccountPassword $password
+
+# New-AdUser -Name "Arno" -Surname "Van Nieuwenhove" -SamAccountName "ArnoVN" -Department "Manager" -Description "Account voor Arno" -DisplayName "ArnoVN" `
+#            -GivenName "Arno" -State "Oost-Vlaanderen"  -City "Ninove" -PostalCode "9404"  `
+#            -Office "B0.002" -EmployeeID "1003" -HomePhone "0444727273" -Initials "AVN" -Path "OU=Directie,DC=red,DC=local" -AccountPassword $password
+
+# Write-Host "Create users for OU IT Administratie..." -ForeGroundColor "Green"
+# New-AdUser -Name "Laurens" -Surname "Blancquaert-Cassaer" -SamAccountName "LaurensBC" -Department "IT_Administration" -Description "Account voor Laurens" -DisplayName "LaurensBC" `
+#            -GivenName "Laurens" -State "Oost-Vlaanderen" -City "Gent" -PostalCode "9000" `
+#            -Office "B4.037" -EmployeeID "2015" -HomePhone "0444727280" -Initials "LBC" -Path "OU=IT_Administratie,DC=red,DC=local" -AccountPassword $password
+
+# New-AdUser -Name "Ferre" -Surname "Verstichelen" -SamAccountName "FerreV" -Department "IT_Administration" -Description "Account voor Ferre" -DisplayName "FerreV" `
+#            -GivenName "Ferre" -State "West-Vlaanderen" -City "Wervik" -PostalCode "8940" `
+#            -Office "B4.037" -EmployeeID "8425" -HomePhone "0444727281" -Initials "FV" -Path "OU=IT_Administratie,DC=red,DC=local" -AccountPassword $password
+
+# New-AdUser -Name "Levi" -Surname "Goessens" -SamAccountName "LeviG" -Department "IT_Administration" -Description "Account voor Levi" -DisplayName "LeviG" `
+#            -GivenName "Levi" -State "Oost-Vlaanderen" -City "Denderwindeke" -PostalCode "9400" `
+#            -Office "B4.037" -EmployeeID "2014" -HomePhone "0444727284" -Initials "LG" -Path "OU=IT_Administratie,DC=red,DC=local" -AccountPassword $password
+
+# New-AdUser -Name "Aron" -Surname "Marckx" -SamAccountName "AronM" -Department "IT_Administration" -Description "Account voor Aron" -DisplayName "AronM" `
+#            -GivenName "Aron" -State "Oost-Vlaanderen" -City "Meldert" -PostalCode "9310" `
+#            -Office "B4.037" -EmployeeID "8424" -HomePhone "0444727285" -Initials "AM" -Path "OU=IT_Administratie,DC=red,DC=local" -AccountPassword $password
+
+# New-AdUser -Name "Jens" -Surname "Van Liefferinge" -SamAccountName "JensVL" -Department "IT_Administration" -Description "Account voor Jens" -DisplayName "JensVL" `
+#            -GivenName "Jens" -State "Oost-Vlaanderen" -City "Lokeren" -PostalCode "9160" `
+#            -Office "B4.037" -EmployeeID "8653" -HomePhone "0444727282" -Initials "JVL" -Path "OU=IT_Administratie,DC=red,DC=local" -AccountPassword $password
+
+# Write-Host "Create users for Administratie..." -ForeGroundColor "Green"
+# New-AdUser -Name "Joachim" -Surname "Van de Keere" -SamAccountName "JoachimVDK" -Department "Administration" -Description "Account voor Joachim" -DisplayName "JoachimVDK" `
+#             -GivenName "Joachim" -State "Oost-Vlaanderen" -City "Sint-Martens-Latem" -Postalcode "9830"  `
+#             -Office "B4.002" -EmployeeID "2531" -HomePhone "0444727260" -Initials "JVDK" -Path "OU=Administratie,DC=red,DC=local" -AccountPassword $password
+
+# New-AdUser -Name "Tibo" -Surname "Vanhercke" -SamAccountName "TiboV"-Department "Administration" -Description "Account voor Tibo" -DisplayName "TiboV" `
+#             -GivenName "Tibo" -State "West-Vlaanderen" -City "Ingooigem" -Postalcode "8570" `
+#             -Office "B4.002" -EmployeeID "6312" -HomePhone "0444727261" -Initials "TV" -Path "OU=Administratie,DC=red,DC=local" -AccountPassword $password
+
+# New-AdUser -Name "Yngvar" -Surname "Samyn" -SamAccountName "YngvarS"-Department "Administration" -Description "Account voor Yngvar" -DisplayName "YngvarS" `
+#             -GivenName "Yngvar" -State "West-Vlaanderen" -City "Ingooigem" -Postalcode "8570"  `
+#             -Office "B4.002" -EmployeeID "2210" -HomePhone "0444727262" -Initials "YS" -Path "OU=Administratie,DC=red,DC=local" -AccountPassword $password
+
+# New-AdUser -Name "Tim" -Surname "Grijp" -SamAccountName "TimG" -Department "Administration" -Description "Account voor Tim" -DisplayName "TimG" `
+#             -GivenName "Tim" -State "Oost-Vlaanderen" -City "Sint-Martens-Latem" -Postalcode "9830" `
+#             -Office "B4.002" -EmployeeID "2532" -HomePhone "0444727263" -Initials "TG" -Path "OU=Administratie,DC=red,DC=local" -AccountPassword $password
+
+# New-AdUser -Name "Rik" -Surname "Claeyssens" -SamAccountName "RikC" -Department "Administration" -Description "Account voor Rik" -DisplayName "RikC" `
+#             -GivenName "Rik" -State "Oost-Vlaanderen" -City "Sint-Martens-Latem" -Postalcode "9830"  `
+#             -Office "B4.002" -EmployeeID "2731" -HomePhone "0444727264" -Initials "RC" -Path "OU=Administratie,DC=red,DC=local" -AccountPassword $password
+
+# Write-Host "Create users for OU Ontwikkeling..." -ForeGroundColor "Green"
+# New-AdUser -Name "Jannes" -Surname "Van Wonterghem" -SamAccountName "JannesVW" -Department "Development" -Description "Account voor Jannes" -DisplayName "JannesVW" `
+#            -GivenName "Jannes" -State "Antwerpen" -City "Zoersel" -PostalCode "2980"  `
+#            -Office "B1.018" -EmployeeID "5078" -HomePhone "0444727290" -Initials "JVW" -Path "OU=Ontwikkeling,DC=red,DC=local" -AccountPassword $password
+
+# New-AdUser -Name "Jonas" -Surname "Vandegehuchte" -SamAccountName "JonasV"-Department "Development" -Description "Account voor Jonas" -DisplayName "JonasV" `
+#            -GivenName "Jonas" -State "Vlaams-Brabant" -City "Bierbeek" -PostalCode "3360"  `
+#            -Office "B1.018" -EmployeeID "1578" -HomePhone "0444727291" -Initials "JV" -Path "OU=Ontwikkeling,DC=red,DC=local" -AccountPassword $password
+
+# New-AdUser -Name "CedricVDE" -Surname "Van den Eede" -SamAccountName "CedricVDE"-Department "Development" -Description "Account voor Cédric" -DisplayName "CedricVDE" `
+#            -GivenName "CedricVDE" -State "Oost-Vlaanderen" -City "Meldert" -PostalCode "9310"  `
+#            -Office "B1.018" -EmployeeID "5079" -HomePhone "0444727292" -Initials "CVDE" -Path "OU=Ontwikkeling,DC=red,DC=local" -AccountPassword $password
+
+# New-AdUser -Name "CedricD" -Surname "Detemmerman" -SamAccountName "CedricD"-Department "Development" -Description "Account voor Cedric" -DisplayName "CedricD" `
+#            -GivenName "Cedric" -State "Oost-Vlaanderen" -City "Haaltert" -PostalCode "9451"  `
+#            -Office "B1.018" -EmployeeID "1558" -HomePhone "0444727293" -Initials "CD" -Path "OU=Ontwikkeling,DC=red,DC=local" -AccountPassword $password
+
+# New-AdUser -Name "Robin" -Surname "Van de Walle" -SamAccountName "RobinVDW"-Department "Development" -Description "Account voor Robin" -DisplayName "RobinVDW" `
+#            -GivenName "Robin" -State "Oost-Vlaanderen" -City "Haaltert" -PostalCode "9451"  `
+#            -Office "B1.018" -EmployeeID "1658" -HomePhone "0444727295" -Initials "RVDW" -Path "OU=Ontwikkeling,DC=red,DC=local" -AccountPassword $password
+
+# Write-Host "Create users for Verkoop..." -ForeGroundColor "Green"
+# New-AdUser -Name "Matthias" -Surname "Van de Velde" -SamAccountName "MatthiasVDV"-Department "Sale" -Description "Account voor Matthias" -DisplayName "MatthiasVDV" `
+#            -GivenName "Matthias" -State "West-Vlaanderen" -City "Koksijde" -PostalCode "8670"  `
+#            -Office "B0.015" -EmployeeID "4732" -HomePhone "0444727200" -Initials "MVDV" -Path "OU=Verkoop,DC=red,DC=local" -AccountPassword $password
+
+# New-AdUser -Name "Robby" -Surname "Daelman" -SamAccountName "RobbyD" -Department "Sale" -Description "Account voor Robby" -DisplayName "RobbyD" `
+#            -GivenName "Robby" -State "Oost-Vlaanderen" -City "Lede" -PostalCode "9340" `
+#            -Office "B0.015" -EmployeeID "4736" -HomePhone "0444727204" -Initials "RD" -Path "OU=Verkoop,DC=red,DC=local" -AccountPassword $password
+
+# New-AdUser -Name "Nathan" -Surname "Cammerman" -SamAccountName "NathanC"-Department "Sale" -Description "Account voor Nathan" -DisplayName "NathanC" `
+#            -GivenName "Nathan" -State "West-Vlaanderen" -City "Torhout" -PostalCode "8820" `
+#            -Office "B0.015" -EmployeeID "5822" -HomePhone "0444727201" -Initials "NC" -Path "OU=Verkoop,DC=red,DC=local" -AccountPassword $password
+
+# New-AdUser -Name "Elias" -Surname "Waterschoot" -SamAccountName "EliasW"-Department "Sale" -Description "Account voor Elias" -DisplayName "EliasW" `
+#            -GivenName "Elias" -State "West-Vlaanderen" -City "Torhout" -PostalCode "8820" `
+#            -Office "B0.015" -EmployeeID "5423" -HomePhone "0444727202" -Initials "EW" -Path "OU=Verkoop,DC=red,DC=local" -AccountPassword $password
+
+# New-AdUser -Name "Alister" -Surname "Adutwum" -SamAccountName "AlisterA"-Department "Sale" -Description "Account voor Alister" -DisplayName "AlisterA" `
+#            -GivenName "Alister" -State "West-Vlaanderen" -City "Torhout" -PostalCode "8820" `
+#            -Office "B0.015" -EmployeeID "7215" -HomePhone "0444727206" -Initials "AA" -Path "OU=Verkoop,DC=red,DC=local" -AccountPassword $password
+
+# New-AdUser -Name "Sean" -Surname "Vancompernolle" -SamAccountName "SeanV"-Department "Sale" -Description "Account voor Sean" -DisplayName "SeanV" `
+#            -GivenName "Sean" -State "West-Vlaanderen" -City "Ieper" -PostalCode "8900" `
+#            -Office "B0.015" -EmployeeID "8486" -HomePhone "0444727207" -Initials "SV" -Path "OU=Verkoop,DC=red,DC=local" -AccountPassword $paswoord
 
 # Managers per groep toekennen
 Write-Host "Allocate managers to groups..." -ForeGroundColor "Green"
@@ -249,6 +348,32 @@ unlock_verkoop "Elias"
 unlock_verkoop "Alister"
 unlock_verkoop "Sean"
 
+<# Het onderstaande werkt ook
+    Enable-ADAccount -Identity "CN=Kimberly,OU=Directie,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=Arno,OU=Directie,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=Laurens,OU=IT_Administratie,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=Ferre,OU=IT_Administratie,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=Levi,OU=IT_Administratie,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=Aron,OU=IT_Administratie,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=Jens,OU=IT_Administratie,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=Joachim,OU=Administratie,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=Tibo,OU=Administratie,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=Yngvar,OU=Administratie,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=Tim,OU=Administratie,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=Rik,OU=Administratie,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=Jannes,OU=Ontwikkeling,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=Jonas,OU=Ontwikkeling,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=CedricVDE,OU=Ontwikkeling,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=CedricD,OU=Ontwikkeling,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=Robin,OU=Ontwikkeling,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=Matthias,OU=Verkoop,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=Robby,OU=Verkoop,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=Nathan,OU=Verkoop,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=Elias,OU=Verkoop,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=Alister,OU=Verkoop,DC=red,DC=local"
+    Enable-ADAccount -Identity "CN=Sean,OU=Verkoop,DC=red,DC=local"
+#>
+
 # Computers
 # Voeg minstens 5 werkstations toe (één in elke afdeling).
 Write-Host "Create workstations for Directie..." -ForeGroundColor "Green"
@@ -327,7 +452,7 @@ New-ADComputer "ITAdministratie_005" -SamAccountName "ITAdmin005" -Path "CN=Comp
 #>
 
 # Group Policy
-# De GPO's worden in de GUI ingesteld. Zie screenshots in het verslag.
+# De GPO's worden in de GUI ingesteld.
 # 1. Verbied iedereen uit alle afdelingen behalve IT Administratie de toegang tot het control panel
 # 2. Verwijder het games link menu uit het start menu voor alle afdelingen
 # 3. Verbied iedereen uit de afdelingen Administratie en Verkoop de toegang tot de eigenschappen van de netwerkadapters

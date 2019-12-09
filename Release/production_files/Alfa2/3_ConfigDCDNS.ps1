@@ -9,10 +9,11 @@
 #------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------------------
 # VOOR INTEGRATIE:
-$VBOXdrive = "C:\Scripts_ESXI\Alfa2"
+# $VBOXdrive = "C:\Scripts_ESXI\Alfa2"
+$VBOXdrive = "\\VBOXSVR\Scripts"
 
 # VOOR VIRTUALBOX TESTING:
-#$VBOXdrive = "Z:"
+# $VBOXdrive = "Z:"
 # --------------------------------------------------------------------------------------------------------
     [string]$Bravo2IP    = "172.18.1.67" # DC2 / DNS2
     [string]$Charlie2IP  = "172.18.1.68" # Exchange Server
@@ -23,30 +24,20 @@ $VBOXdrive = "C:\Scripts_ESXI\Alfa2"
     [string]$November2IP = "172.18.1.4" # SQL Server
     [string]$Oscar2IP    = "172.18.1.5" # Monitoring Server
     [string]$Papa2IP     = "172.18.1.6" # SCCM Server
-    [string]$wan_adapter_name = "NAT"
-
+    [string]$local_ip         = "172.18.1.66"
+    [string]$secondary_dc_ip  = "172.18.1.67"
+    [string]$lan_adapter_name = "LAN"
 
 #------------------------------------------------------------------------------
 # Wait for AD services to become available
 #------------------------------------------------------------------------------
-while ($true) {
-    try {
-        Get-ADDomain | Out-Null
-        break
-    } catch {
-        Start-Sleep -Seconds 10
-    }
-}
+
+Start-Sleep -Seconds 10
 
 #------------------------------------------------------------------------------
 # Configure DNS
 #------------------------------------------------------------------------------
 Start-Transcript "C:\ScriptLogs\3_ConfigDCDNS.txt"
-
-
-# Fix adapters
-Write-Host ">>> Fixing DNS after ADDS"
-Set-DnsClientServerAddress -InterfaceAlias $wan_adapter_name -ResetServerAddresses
 
 # Stel forward primary lookup zones in voor alle servers in het red domein:
 Write-host ">>> Setting DNS primary zone for red.local"
@@ -85,7 +76,7 @@ function add_dns_record() {
         elseif ($record_type -eq "A") {
             Add-DnsServerResourceRecordA -Name $record_name -ZoneName $record_zone_name -IPv4Address $ipaddress
         }
-}
+    }
 
 add_dns_record -record_name "mail" -record_zone_name "red.local" -record_type "A" -ipaddress $Charlie2IP
 add_dns_record -record_name "mail" -record_zone_name "red.local" -record_type "MX" -record_mail_exchange "mail.red.local" -record_preference 100
@@ -122,9 +113,9 @@ Add-DnsServerResourceRecordMX -Name "mail" -MailExchange "mail.green.local" -Pre
 
 Add-DnsServerResourceRecordCName -Name "owa" -HostNameAlias "mail.green.local" -ZoneName "green.local"
 
-
 # 6) Start het 4_ADstructure.ps1 script als Administrator:
 Write-host "Running next script 4_ADSTRUCTURE.ps1 as admin:" -ForeGroundColor "Green"
 Start-Process powershell -Verb runAs -ArgumentList "$VBOXdrive\4_ADstructure.ps1"
+
 
 Stop-Transcript

@@ -9,7 +9,8 @@
 #------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------------------
 # VOOR INTEGRATIE:
-$VBOXdrive = "C:\Scripts_ESXI\Alfa2"
+# $VBOXdrive = "C:\Scripts_ESXI\Alfa2"
+$VBOXdrive = "\\VBOXSVR\Scripts"
 
 # VOOR VIRTUALBOX TESTING:
 #$VBOXdrive = "Z:"
@@ -63,10 +64,6 @@ if ("$existing_ip" -ne "$local_ip") {
     New-NetIPAddress -InterfaceAlias "$lan_adapter_name" -IPAddress "$local_ip" -PrefixLength $lan_prefix -DefaultGateway "$default_gateway"
 }
 
-# Set DNS of LAN adapter
-Write-Host ">>> Settings DNS of adapter $lan_adapter_name"
-Set-DnsClientServerAddress -InterfaceAlias "$lan_adapter_name" -ServerAddresses($local_ip,$secondary_dc_ip)
-
 # Set default password
 Write-Host ">>> Setting default Administrator password"
 $DSRM = ConvertTo-SecureString "Admin2019" -asPlainText -force
@@ -83,23 +80,15 @@ Set-LocalUser -Name Administrator -AccountNeverExpires -Password $DSRM -Password
 #     DNS role laten aanmaken en DNSdelegation uitzetten om later onze eigen DNS server in te stellen
 #     Force forceert negeren van bevestigingen
 
-$is_AD_domainservices_installed=(Get-WindowsFeature AD-Domain-Services).Installed
-if ("$is_AD_domainservices_installed" -eq 'False') {
-    Write-Host ">>> Installing AD-Domain-Services"
-    Install-WindowsFeature AD-Domain-Services
-}
+Write-Host ">>> Installing AD-Domain-Services"
+Install-WindowsFeature AD-Domain-Services
 
-$is_RSAT_admincenter_installed=(Get-WindowsFeature RSAT-AD-AdminCenter).Installed
-if ("$is_RSAT_admincenter_installed" -eq 'False') {
-    Write-Host ">>> Installing RSAT-AD-AdminCenter"
-    Install-WindowsFeature RSAT-AD-AdminCenter
-}
+Write-Host ">>> Installing RSAT-AD-AdminCenter"
+Install-WindowsFeature RSAT-AD-AdminCenter
 
-$is_RSAT_addstools_installed=(Get-WindowsFeature RSAT-ADDS-Tools).Installed
-if ("$is_RSAT_addstools_installed" -eq 'False') {
-    Write-Host ">>> Installing RSAT-ADDS-Tools"
-    Install-WindowsFeature RSAT-ADDS-Tools
-}
+Write-Host ">>> Installing RSAT-ADDS-Tools"
+Install-WindowsFeature RSAT-ADDS-Tools
+
 
 # Sla doman admin username/password op als credentials en voeg de nodige properties aan de registry toe
 # om de sierver de mogelijkheid te geven een reboot te doen en daarna verder te gaan door het script:
@@ -114,19 +103,15 @@ Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce'
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultUserName -Value $Username
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultPassword -Value $Password
 
+Write-Host ">>> Installing AD forest and adding Alfa2 as first DC"
+Import-Module ADDSDeployment
 
-$domaincontroller_installed=(Get-ADDomainController 2> $null)
-if (!"$domaincontroller_installed") {
-    Write-Host ">>> Installing AD forest and adding Alfa2 as first DC"
-    Import-Module ADDSDeployment
-
-    install-ADDSForest -DomainName $domain `
+install-ADDSForest -DomainName $domain `
                   -ForestMode 7 `
                   -DomainMode 7 `
                   -installDns:$true `
                   -createDNSDelegation:$false `
                   -SafeModeAdministratorPassword $DSRM `
                   -force:$true
-}
 
 Stop-Transcript
