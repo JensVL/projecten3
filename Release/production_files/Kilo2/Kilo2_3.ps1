@@ -15,7 +15,7 @@ $SubnetMask = "255.255.255.0"
 $DnsServersOptionValue = @($primary_dns, $secondary_dns)
 $ScopeDG = "172.18.0.1"
 $DHCPOption66Value = "papa2.$domain"
-$DHCPOption67Value = "\smsboot\x64\wdsnbp.com"
+$DHCPOption67Value = "\boot\x64\wdsnbp.com"
 
 #Installing DHCP Windows Feature
 
