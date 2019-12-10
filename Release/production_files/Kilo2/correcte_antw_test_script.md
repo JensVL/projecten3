@@ -82,7 +82,7 @@ Variable | Value
 ---|---
 OptionID | 67
 Name | Bootfile Name
-Value | {\smsboot\x64\wdsnbp.com}
+Value | {\boot\x64\wdsnbp.com}
 
 # Check if server is authorized
 
