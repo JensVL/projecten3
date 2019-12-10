@@ -175,14 +175,14 @@ if ($demo) {
     # CopyPaste $shared_Path $dotnet_app_deploy_location
     # unzip $dotnet_app_deploy_zip_location $dotnet_app_deploy_unzip_location
 
+    # # create_App_Pool $NamePool
+    # create_App_Pool $pool_name
+
+    # # create_Site $dotnet_app_deploy_unzip_location $NamePool
+    # create_site $app_name $publocation $website_domain $pool_name
+
     # TODO: implement
     deploy_app $publocation $packagelocation
-
-    # create_App_Pool $NamePool
-    create_App_Pool $pool_name
-
-    # create_Site $dotnet_app_deploy_unzip_location $NamePool
-    create_site $app_name $publocation $website_domain $pool_name
 
     # TODO: test
     fix_ssl $website_name
