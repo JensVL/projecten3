@@ -91,54 +91,54 @@
 - *Expected*: True
 
 
-### Build WebApp
-
-TODO: Nathan
-
-
 ### Deploy WebApp
 
-TODO: Nathan
+* Open a webbrowser ans surf to http://localhost/
+* Open a webbrowser ans surf to https://localhost/
+* Open a webbrowser ans surf to http://www.red.local/
+* Open a webbrowser ans surf to https://www.red.local/
 
+- Expected: The Blogifier webpage
+- **NOTE**: when visiting the https site, you might receive an error regarding the certificat. This is normal and is caused by using the default self-signed certificate.
 
-### creat WebAppPool
+### Create WebAppPool
 
 `Get-WebAppPoolState -name 'Delta2TRed'`
 
 | Value            | 
 | ---------------- |
 | Started          |
+
 ### Create site
 
-`Get-Website -name 'App'`
-or
-`Get-IISSite -name 'App'`
+`Get-Website -name 'Default Web Site'` or `Get-IISSite -name 'Default Web Site'`
 
 - *Expected*:
 
-| Name |ID | State   | Physical Path          | Bindings                                              | 
-| ---- | - | ------- | ---------------------- |:-----------------------------------------------------:|
-| App  | 2 | Started | C:\\inetpub\\wwwroot\\App| http  *:80:www.red.local <br> shttps *:443: sslFlags=0|
+| Name | ID | State   | Physical Path             | Bindings                                                |
+| ---- | -  | ------- | ----------------------    | :-----------------------------------------------------: |
+| App  | 2  | Started | C:\\inetpub\\wwwroot\\App | http  *:80:www.red.local<br>https *:443: sslFlags=0  |
   
 
 ### Configure website on IIS
 
 `Get-WebBinding`
-| protocol         | BindingInformation| sslFlags      |
-| ---------------- |:-----------------:| -------------:|
-| http             |*:80:www.red.local |    0          |
+
+| Protocol         | Binding Information | SSL Flags      |
+| ---------------- | :-----------------: | -------------: |
+| http             | *:80:www.red.local  | 0              |
 
 
 ### Generate SSL certificate
 
-`Get-WebBinding 'App'`
+`Get-WebBinding 'Default Web Site'`
 
 - *Expected*: 
 
-| protocol         | BindingInformation| sslFlags      |
-| ---------------- |:-----------------:| -------------:|
-| http             |*:80:www.red.local |    0          |
-|<mark>https</mark>|<mark>*:443:</mark>|<mark>0</mark> |
+| Protocol         | Binding Information | SSL Flags      |
+| ---------------- | :-----------------: | -------------: |
+| http             | *:80:www.red.local  | 0              |
+| https            | *:443:              | 0              |
 
 
 
