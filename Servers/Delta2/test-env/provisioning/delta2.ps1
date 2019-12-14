@@ -9,12 +9,12 @@ Param(
     [string]$iisusername        = 'vagrant',
     [string]$iispassword        = 'vagrant',
 
-    [string]$stringasp45        = "$false",
+    [string]$stringasp45        = "$true",
     [string]$stringdotnetcore21 = "$false",
-    [string]$stringdotnetcore22 = "$false",
+    [string]$stringdotnetcore22 = "$true",
     [string]$stringdotnetcore30 = "$false",
 
-    [string]$stringdemo         = "$false",
+    [string]$stringdemo         = "$true",
     [string]$app_name           = 'App',
     [string]$pool_name          = 'Delta2Red',
     [string]$website_domain     = 'www.red.local',
