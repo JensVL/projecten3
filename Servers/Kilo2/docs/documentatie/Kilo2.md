@@ -1,4 +1,5 @@
 # Documentatie Kilo2
+Auteurs: Tibo Vanhercke & Yngvar Samyn
 ## Algemene informatie
 Kilo2 is een DHCP server die ervoor gaat zorgen dat er via PXI-boot clients kunnen worden aangemaakt. De clients kunnen een IP-Address krijgen binnen VLAN 200.
 
