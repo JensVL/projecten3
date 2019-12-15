@@ -1,5 +1,5 @@
 ### Testplan Lima2
-
+Auteurs: Aron Marckx, Cédric Van den Eede
 ## De server naam en domein
 
 1. De server naam is Lima2.
@@ -60,7 +60,7 @@ Log in met de builtin admin:
 Open de Task Scheduler -> Task Scheduler (local) -> Task Scheduler Library
 * Controleren dat een nieuwe task is toegevoegd met de naam 'ShadowCopy'
 * Deze taak heeft een trigger die elke dag om 17:00 geactiveerd wordt
-* Om een snellte test uit te voeren kan je op de taak klikken en deze manueel uitvoeren. Rechter muis klik op de taak en kies voor run.
+* Om een snelle test uit te voeren kan je op de taak klikken en deze manueel uitvoeren. Rechter muis klik op de taak en kies voor run.
 * Controleer volume AdminData. Dit volume bevat een nieuwe schaduw kopie. Dit kan je nazien door naar AdminData te gaan -> Properties -> Shadow Copies.
 * Het veld "Shadow copies of selected volume bevat een nieuw veld met de huidige tijd en datum.
 
@@ -76,7 +76,6 @@ Open de Task Scheduler -> Task Scheduler (local) -> Task Scheduler Library
 
 5. ga in de fileshare van Directie en probeer een nieuwe file aan te maken -> dit zou NIET mogen lukken.
 
-
 ## maximumcapaciteit share per user
 
 1. neem een folder of bestand van 150MB en probeer het in de fileshare Ontwikkeling te zetten -> dit moet lukken
@@ -84,7 +83,5 @@ Open de Task Scheduler -> Task Scheduler (local) -> Task Scheduler Library
 2. verwijder het 150MB bestand of folder
 
 3. probeer nu een folder/bestand van 250MB in de fileshare Ontwikkeling te zetten -> dit mag NIET lukken.
-
-
 
 
