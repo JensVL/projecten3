@@ -1,7 +1,14 @@
 # Documentatie Kilo2
-## Algmene informatie
-### Locaties
-De locaties van de scripts die gebruikt moeten worden staan in `test-env/provisioning/`. Er is een test-script aanwezig alsook de verwachte resultaten. Deze bevinden zich in `testen/`. Het testscript heet `test_script.ps1` en de verwachte resultaten heet `correcte_antw_test_script.md`.
+## Algemene informatie
+Kilo2 is een DHCP server die ervoor gaat zorgen dat er via PXI-boot clients kunnen worden aangemaakt. De clients kunnen een IP-Address krijgen binnen VLAN 200.
+
+## Configuratie VM Virtual Box
+
+* OS: Windows Server 2016 / Windows Server 2019
+* Netwerkadapter: Host-only adapter ; subnet: `172.18.1.0/26`
+* Storage: 40GB
+
+Na het installeren van Windows Server moeten de bestanden met de scripts op de VM komen. Virtualbox guest additions kan hiervoor geïnstalleerd worden en hierna kan een shared folder gemaakt worden. Dit gaat ervoor zorgen dat de bestand beschikbaar zijn in de VM.
 ### Scripts
 Een korte uitleg over wat in welke script te vinden is
 #### Kilo2_1
@@ -34,7 +41,7 @@ Er wordt één scope gemaakt voor de clients die in vlan 200 komen. De scope hee
 * Default Gateway: `172.18.0.1`
 * DNS Servers: `172.18.1.66` en `172.18.1.67`
 * Value option 66: `papa2.red.local`
-* Value option 67: `\smsboot\x64\wdsnbp.com`
+* Value option 67: `\boot\x64\wdsnbp.com`
 * Lease Duration: `2 Dagen`
 
 Voor de DHCP worden er security groepen gemaakt namelijk `DHCP Administrators` en `DHCP Users`. Tenslotte wordt ook de DHCP Server geauthorizeerd zodat deze leases mag uitdelen binnen het domein `red.local`.
