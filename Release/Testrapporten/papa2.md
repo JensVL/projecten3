@@ -59,4 +59,4 @@ Uitgevoerd op: 16/12/2019
 | 1 | Kan de client de PXE / SCCM server Papa2 bereiken via PXE boot?| Ja |
 | 2 | Wordt Windows 10 op de client geïnstalleerd via PXE boot? | Nee |
 | 3 | Zijn de 4 applications (Libre office, java, Adobe Reader en Adobe Flash Player geïnstalleerd op de client? | Nee |
-Resultaat: de windows 10 client kon het domein niet joinen via de task sequencce.
+| Resultaat | de windows 10 client kon het domein niet joinen via de task sequencce.
