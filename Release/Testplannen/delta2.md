@@ -138,7 +138,7 @@
 | Protocol         | Binding Information | SSL Flags      |
 | ---------------- | :-----------------: | -------------: |
 | http             | *:80:www.red.local  | 0              |
-| https            | *:443:              | 0              |
+| https            | *:443:www.red.local | 0              |
 
 
 
