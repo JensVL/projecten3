@@ -22,7 +22,7 @@ Week: 11
 
 ## To do
 
-- Release (evaluatie moment)
+- laatste demo moment. 
 
 ## Vragen
 - geen
