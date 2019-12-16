@@ -1,6 +1,6 @@
-# Testrapport november2
+# Testplan november2
 
-Auteur(s) testrapport:   
+Auteur(s) testplan: Aron Marckx, Cédric Van den Eede
 
 # Preconditie
 - alfa2 en bravo2 juist opgesteld en actief.<br>
@@ -14,13 +14,10 @@ Auteur(s) testrapport:
 2. Controleer onderstaande instellingen:
    - Computer name: November2
    - Domain name: red.local
-Resultaat:   
 
 ## Netwerksettings
 1. Ga naar de Servermanager.
 2. Klik op local server en klik daarna op de 'host-only' adapter. 
-Resultaat:   
-
 3. Klik 'Internet Protocol version 4' aan, en klik op properties.
 4. De netwerkconfiguratie moet als volgt zijn: <br>
   - Ip-address: 172.18.1.4 <br>
@@ -28,18 +25,15 @@ Resultaat:
   - Default gateway: 172.18.1.7 <br>
   - Preferred dns: 172.18.1.66 <br>
   - Alternate dns: 172.18.1.67  <br>
-Resultaat:   
 
 Alternatieve testmethode:
 1. Open de cmd 
 2. Voer het commando `ipconfig/all` uit
 3. Controleer de netwerkconfiguratie zoals hierboven.
-Resultaat:   
 
 ## Testen Firewall
 1. Open 'Status van firewall' controleren in de zoekfunctie.
 2. Kijk of deze is uitgeschakeld.  
-Resultaat:   
 
 ## Nakijken correcte SQL Server installatie
 1. Kijk de versie en installatiefolder na in 'Program Files'.
@@ -49,7 +43,7 @@ Resultaat:
 5. Typ het commando : `select @@version`
 6. Typ het commando : `go`
 7. Kijk na of het de juiste versie is. 
-Resultaat:   
+
 <br>
 
 1. Open de cmd.
@@ -57,11 +51,17 @@ Resultaat:
 3. Typ het commando : `select @@version`
 4. Typ `go`
 5. Kijk na of het de juiste versie is. 
-Resultaat:   
 
 ## Nakijken SQL Server instance name
 1. Open de cmd.
 2. Typ het commando : `services.msc`
 3. Ga naar de entry beginnende met 'SQL'.
 4. Kijk na of de entry naam overeenkomt met de instance naam.
-Resultaat:  
+
+
+
+
+
+
+   
+ 
