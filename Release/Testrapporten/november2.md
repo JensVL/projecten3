@@ -1,6 +1,6 @@
 # Testplan november2
 
-Auteur(s) testplan: Aron Marckx, Cédric Van den Eede
+Auteur(s) testplan: 
 
 # Preconditie
 - alfa2 en bravo2 juist opgesteld en actief.<br>
