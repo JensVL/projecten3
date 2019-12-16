@@ -3,8 +3,8 @@
 Auteur(s) testrapport: Arno Van Nieuwenhove en Levi Goessens
 
 ## Voorbereiding op SCCM installatie:
-Labo gemaakt door: Laurens Blancquaert-Cassaer
-Uitvoerder(s) test: Arno Van Nieuwenhove en Levi Goessens
+Labo gemaakt door: Laurens Blancquaert-Cassaer  
+Uitvoerder(s) test: Arno Van Nieuwenhove en Levi Goessens  
 Uitgevoerd op: 16/12/2019
 
 ### Uit te voeren testen
@@ -18,8 +18,8 @@ Uitgevoerd op: 16/12/2019
 
 
 ## SCCM Installatie + configuratie:
-Labo gemaakt door: Laurens Blancquaert-Cassaer
-Uitvoerder(s) test: Arno Van Nieuwenhove en Levi Goessens
+Labo gemaakt door: Laurens Blancquaert-Cassaer  
+Uitvoerder(s) test: Arno Van Nieuwenhove en Levi Goessens  
 Uitgevoerd op: 16/12/2019 
 
 ### Uit te voeren testen
