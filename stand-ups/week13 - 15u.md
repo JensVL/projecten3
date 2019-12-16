@@ -34,40 +34,40 @@
 
 ## Gerealiseerd week 13 om 15h00
 * Alfa
-  * ...
-  * Getest: 
+  * Klaar
+  * Getest: Ja
 * Bravo
-  * ...
-  * Getest: 
+  * Klaar
+  * Getest: Ja
 * Charlie
-  * ...
-  * Getest: 
+  * Bezig
+  * Getest: /
 * Delta
-  * ...
-  * Getest: 
+  * Nog een probleem met te surfen, maar lukt wel met localhost. 
+  * Getest: /
 * Kilo
-  * ...
-  * Getest: 
+  * Klaar
+  * Getest: Ja
 * Lima
-  * ...
-  * Getest: 
+  * Klaar
+  * Getest: Ja
 * Mike
-  * ...
-  * Getest: 
+  * Proberen te connecteren met november2, maar krijgen een error. 
+  * Getest: /
 * November
-  * ...
-  * Getest: 
+  * Klaar
+  * Getest: Ja 
 * Oscar
-  * ...
-  * Getest: 
+  * Verloopt vlot. 
+  * Getest: /
 * Papa
-  * ...
-  * Getest: 
+  * Bijna klaar. 
+  * Getest: /
 * Zulu
-  * ...
-  * Getest: 
+  * Statische routes werken niet, OSPF werken niet. Oplossing wordt gezocht. 
+  * Getest: /
 * Netwerkinfra
-  * ...
-  * Getest: 
+  * Wachten op Linux. 
+  * Getest: /
 
-© Author - Kimberly De Clercq 
+© Author - Kimberly De Clercq en Jannes Van Wonterghem
