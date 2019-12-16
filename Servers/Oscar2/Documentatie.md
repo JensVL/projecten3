@@ -49,7 +49,7 @@ Nu wordt WindowsServer2016 geinstalleerd. Dit kan enkele minuten duren. Je weet 
 
 ## Monitorserver toevoegen aan een bestaand domein
 
-Nu moeten we aan een domein toegevoegd worden. Indien u lokaal bezig bent dan zal u een 2de server moeten aanmaken en die een domeincontroller maken. Ga hiervoor naar de volgende stap. Indien er al een domein is binnen uw netwerk dan kan u zich toevoegen aan dat domein door server manager te open en te navigeren naar `Local Server` en klik op uw computernaam dan zou er een vester moeten openen zoals hieronder.
+Nu moeten we aan een domein toegevoegd worden. Indien u lokaal bezig bent dan zal u een 2de server moeten aanmaken en die een domeincontroller maken. Ga hiervoor naar de volgende stap. Indien er al een domein is binnen uw netwerk dan kan u zich toevoegen aan dat domein. Geef uw virtuele machine hiervoor eerst het juiste ip-adres. Daarna kunnen we ons toevoegen aan het domein door server manager te open en te navigeren naar `Local Server` en klik op uw computernaam dan zou er een vester moeten openen zoals hieronder.
 
 ![Figure 10](Images/ToevoegenDomein.PNG)
 
@@ -70,6 +70,8 @@ en download PRTG. Start daarna de installer die je juist gedownload hebt en volg
 
 ![Figure 12](Images/InstallerenPRTG_1.PNG)
 
+Geef een email-adres op. Dit hoeft niet van hogent te zijn. Je krijgt geen spammails van PRTG. 
+
 ![Figure 13](Images/InstallerenPRTG_2.PNG)
 
 ![Figure 14](Images/InstallerenPRTG_3.PNG)
@@ -80,4 +82,13 @@ Volg de instructies zoals uitgelegd in onderstaande oranje wizard. Deze wizard z
 
 ![Figure 16](Images/InstallerenPRTG_5.PNG)
 
+Na het volgen van de wizard bent u klaar met de installatie van PRTG. Nu kan je alle servers uit je verbonden netwerk gaan monitoren. Dit doe je door linksbovenaan naar `apparaten` te gaan en klik dan op `apparaat toevoegen` onder windows-server. Er word weer een wizard geopend. Geef de server die je monitoren een naam en zijn ip-adres. Je kan dan ook een symbool kiezen voor die bepaalde server en klik kan op `standaard auto-discovery` zodat verschillende probes automatisch worden geinstalleerd op de server. Nu zou u na ongeveer 10 minuten moeten zien dat je server succesvol gemonitord wordt. Je kan Cpu-verbruik, Geheugen-verbruik, schijfruimte en nog veel meer zien.
 
+
+![Figure 16](Images/InstallerenPRTG_6.PNG)
+
+![Figure 16](Images/InstallerenPRTG_7.PNG)
+
+![Figure 16](Images/InstallerenPRTG_8.PNG)
+
+Nu bent u klaar met 1 server en kan je hetzelfde doen voor alle andere servers.
