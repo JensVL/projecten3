@@ -84,6 +84,7 @@ Bij problemen kan je SSMS handmatig installeren door de pdf te hanteren van het 
 <img src="../images/1.png" alt="Afbeelding1" width="500">
 
 <br>
+
 - Klik op 'Security', rechtsklik op 'Logins' en klik daarna op 'New Login' om een nieuwe login voor Delta2 te maken.
 - Vul bij Login Name 'Delta2' in en selecteer 'SQL Server Authentication', vul als Password 'Admin2019' in.
 - Zorg dat 'Enforce Password Policy' niet staat aangevinkt zodat er geen nieuw password wordt gevraagd.
@@ -91,6 +92,7 @@ Bij problemen kan je SSMS handmatig installeren door de pdf te hanteren van het 
 <img src="../images/3.png" alt="Afbeelding3" width="500">
 
 <br>
+
 - Klik op 'User Mapping' en selecteer het vakje naast de nieuwe database 'Delta2'.
 - Zorg dat onderaan ook DB_OWNER ook is geselecteerd.
 
