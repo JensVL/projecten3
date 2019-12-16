@@ -1,13 +1,10 @@
-### Testplan Lima2
+### Testrapport Lima2
 
-Getest door Aron Marckx en Cédric van Den Eede
-
+Auteur(s) testrapport:   
 ## De server naam en domein
 
 1. De server naam is Lima2.
 2. Lima2 is het domein automatisch gejoined.
-
-OK
 
 ## Controleren dat alle volumes aangemaakt zijn
 
@@ -19,8 +16,6 @@ Klik op de disk met nummer 0
 - Optioneel volume: 'C:' -> Wordt aangemaakt bij de installatie van de Windows Server
 - Controleren of volume 'D:' en 'E:' aangemaakt zijn op disk 0
 
-OK
-
 Klik op de disk met nummer 1
 
 - Controleren dat er 6 volumes aangemaakt zijn op disk 1
@@ -31,8 +26,6 @@ Klik op de disk met nummer 1
 - Q:
 - Y:
 - G:
-
-OK
 
 ## De File System Labels van de volumes controleren
 
@@ -46,8 +39,6 @@ Open Server Manager -> File and Storage Services -> Volumes
 - Volume: 'E:' met File System Label: 'OntwikkelingData'
 - Volume: 'Y:' met File System Label: 'HomeDirs'
 - Volume: 'G:' met File System Label: 'DirData'
-
-OK
 
 ## Controleren dat alle shares aangemaakt zijn
 
@@ -64,8 +55,6 @@ Open Server Manager -> File and Storage Services -> Shares
 - shareVerkoop
 - VerkoopData
 
-OK
-
 ## De dagelijske schaduw kopie
 
 Open de Task Scheduler -> Task Scheduler (local) -> Task Scheduler Library
@@ -76,7 +65,6 @@ Open de Task Scheduler -> Task Scheduler (local) -> Task Scheduler Library
 - Controleer volume AdminData. Dit volume bevat een nieuwe schaduw kopie. Dit kan je nazien door naar AdminData te gaan -> Properties -> Shadow Copies.
 - Het veld "Shadow copies of selected volume bevat een nieuw veld met de huidige tijd en datum.
 
-nog niet OK, probleem met Capacity
 
 ## Share Permissies
 
@@ -90,8 +78,6 @@ nog niet OK, probleem met Capacity
 
 5. ga in de fileshare van Directie en probeer een nieuwe file aan te maken -> dit zou NIET mogen lukken.
 
-OK, misschien iets duidelijker met pad en waar de file aan te maken
-
 ## maximumcapaciteit share per user
 
 1. neem een folder of bestand van 150MB en probeer het in de fileshare Ontwikkeling te zetten -> dit moet lukken
@@ -99,5 +85,3 @@ OK, misschien iets duidelijker met pad en waar de file aan te maken
 2. verwijder het 150MB bestand of folder
 
 3. probeer nu een folder/bestand van 250MB in de fileshare Ontwikkeling te zetten -> dit mag NIET lukken.
-
-OK, iets meer verduidelijking met pad

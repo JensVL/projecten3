@@ -1,6 +1,7 @@
-# TestRapport Netwerkopstelling
+# Testrapport Netwerkopstelling
 
-datum: 09/12/2019
+Auteur(s) testrapport:   
+Datum: 16/12/2019
 
 ## Voorbereiding
 

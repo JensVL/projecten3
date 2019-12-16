@@ -1,10 +1,10 @@
 # Testrapport Charlie2 - Exchange Server
 
-Auteur(s) testrapport: Kimberly De Clercq   
+Auteur(s) testrapport: 
 
 Labo gemaakt door: Jannes Van Wonterghem en Joachim Van de Keere  
-Uitvoerder(s) test: Kimberly De Clercq  
-Uitgevoerd op: 09/12/2019
+Uitvoerder(s) test: 
+Uitgevoerd op: 16/12/2019
 
 #### Uit te voeren stappen
 
@@ -34,4 +34,4 @@ Controleer zeker ook volgende zaken:
   - DNS-lookup controleren in Exchange-beheercentrum
 
 ###### Resultaat bij uitvoeren testplan
-- Werkt volledig, kan enkel nog niet testen met Linux.
+- 

@@ -1,4 +1,5 @@
-# Test report: Kilo2
+# Testrapport: Kilo2
+Auteur(s) testrapport:   
 
 ## Context
 
@@ -42,5 +43,3 @@ All the output matches according to the test plan.
 
 
 ## Conclusion
-
-All tests succeded!

@@ -1,14 +1,11 @@
 # Testrapport Papa2: SCCM deployment server
 
-(Een testrapport is het verslag van de uitvoering van het testplan door een teamlid (iemand anders dan de auteur van het testplan!). Deze noteert bij elke stap in het testplan of het bekomen resultaat overeenstemt met wat verwacht werd. Indien niet, dan is het belangrijk om gedetailleerd op te geven wat er misloopt, wat het effectieve resultaat was, welke foutboodschappen gegenereerd werden, enz. De tester kan meteen een Github issue aanmaken en er vanuit het testrapport naar verwijzen. Wanneer het probleem opgelost werdt, wordt een nieuwe test uitgevoerd, met een nieuw verslag.)
-
-Auteur(s) testrapport: Laurens Blancquaert-Cassaer
+Auteur(s) testrapport: 
 
 ## Voorbereiding op SCCM installatie:
 Labo gemaakt door: Laurens Blancquaert-Cassaer
 Uitvoerder(s) test:   
-Uitgevoerd op:   
-Github commit:   
+Uitgevoerd op: 16/12/2019
 
 ### Uit te voeren testen
 | Nr test | Wat moet er getest worden | In orde? |
@@ -41,8 +38,7 @@ Github commit:
 ## Windows 10 Client Deployment / Task Sequence
 Labo gemaakt door: Ferre Verstichelen en Laurens Blancquaert-Cassaer
 Uitvoerder(s) test:   
-Uitgevoerd op:   
-Github commit:   
+Uitgevoerd op: 16/12/2019
 
 ### 1. Stappen om software binnen SCCM te controleren:
 | Nr test | Wat moet er getest worden | In orde? |

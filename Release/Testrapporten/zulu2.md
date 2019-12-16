@@ -1,14 +1,14 @@
 # Testrapport Zulu2
 
-- Uitvoerder(s) test: Laurens Blancquaert-Cassaer
-- Uitgevoerd op: 04/11/19
-- Github commit: Het testrapport is de commit
+- Uitvoerder(s) test: 
+- Uitgevoerd op: 16/12/19
 
 ## Doel
 ### Installatie PfSense
 - [x] Download de PfSense Iso
 - [x] Maak de Virtualbox VM aan
 - [x] Installeer PfSense op de VM
+
 ### Configuratie PfSense
 - [x] Stel de IPv4 interfaces in
 - [x] Navigeer naar de WebGUI
@@ -25,7 +25,8 @@
 * Memory size en Hard disk(VDI): Default
 * Storage: Dynamically Allocated  
 
-*Verwacht*: de VM Zulu2 is aangemaakt. **Deze is inderdaad aangemaakt**  
+*Verwacht*: de VM Zulu2 is aangemaakt.   
+**Resultaat:**  
 
 2.1 Configureer de netwerk settings.
 * Voeg een Host-only adapter toe met ip 192.168.1.10/24, DHCP disabled
@@ -34,7 +35,8 @@
 Adapter 1: NAT/Bridged Adapter (maakt niet uit, we gaan via de LAN interface op de WebGUI)
 Adapter 2: Host-only Adapter (die je juist hebt gemaakt)
 ```
-*Verwacht*: de netwerk settings op de VM zijn juist geconfigureerd. **De twee interfaces zijn correct geconfigureerd**
+*Verwacht*: de netwerk settings op de VM zijn juist geconfigureerd.   
+**Resultaat:**
 
 3.1 Installeer PfSense op de VM
 * Ga naar de storage settings van de VM en voeg de PfSense Iso file toe.
@@ -45,7 +47,8 @@ Adapter 2: Host-only Adapter (die je juist hebt gemaakt)
 * Je wenst geen manuele modificatie uit te voeren, selecteer No.  
 * Reboot de VM en verwijder iso file uit Virtual Machine. 
 
-*Verwacht*: PfSense is geïnstalleerd op de VM en de gebruiker staat op het menu. **PFsense is correct geïnstalleerd het menu is zichtbaar**
+*Verwacht*: PfSense is geïnstalleerd op de VM en de gebruiker staat op het menu.   
+**Resultaat:**
 
 ### Configuratie PfSense
 
@@ -54,13 +57,15 @@ Adapter 2: Host-only Adapter (die je juist hebt gemaakt)
 LAN: 192.168.1.1/24 (geen DHCP/http kiezen)
 WAN: 10.0.2.15 (NAT)
 ```
-*Verwacht*: De LAN en WAN ip adressen zijn juist gezet voor deze PfSense testomgeving. **De ip adressen van de interfaces zijn correct geconfigureerd**   
+*Verwacht*: De LAN en WAN ip adressen zijn juist gezet voor deze PfSense testomgeving.   
+**Resultaat:**   
 
 5. Surf naar de WebGUI van je PfSense.  
 ```
 https://192.168.1.1  
 ```  
-*Verwacht*: De gebruiker ziet het login scherm van de PfSense WebGUI. De console output toont dat de gebruiker op de WebGUI is geconnecteerd. Ga naar stap 5.1 indien dit niet gaat.  **De GUI is goed bereikbaar**
+*Verwacht*: De gebruiker ziet het login scherm van de PfSense WebGUI. De console output toont dat de gebruiker op de WebGUI is geconnecteerd. Ga naar stap 5.1 indien dit niet gaat.    
+**Resultaat:**
 
 5.1. Voeg firewall regel toe voor access op WebGUI
 
@@ -72,14 +77,16 @@ easyrule pass lan tcp 192.168.1.10 192.168.1.1 443
 ```
 pfctl -d
 ```
-*Verwacht*: firewall regel wordt toegevoegd, de gebruiker zou toegang hebben op de WebGUI.  
+*Verwacht*: firewall regel wordt toegevoegd, de gebruiker zou toegang hebben op de WebGUI.    
+**Resultaat:**
 
 6. Log in de WebGUI en ga door de PfSense wizard. 
 ```
 Username: admin  
 Password: pfsense  
 ```
-*Verwacht*: De gebruiker ziet het dashboard.  **login succesvol (dashboard is zichtbaar)**
+*Verwacht*: De gebruiker ziet het dashboard.   
+**Resultaat:**
 
 7. Laad de configuratie file.  
 
@@ -88,4 +95,5 @@ Password: pfsense
 * Configuration file: [Zulu2.xml](/test-env/Zulu2.xml)
 * Click restore configuration.
 
-*Verwacht*: Het systeem wordt herstart en het systeem is volledig geconfigureerd. **De configuratiefile werd correct restored**
+*Verwacht*: Het systeem wordt herstart en het systeem is volledig geconfigureerd.   
+**Resultaat:**

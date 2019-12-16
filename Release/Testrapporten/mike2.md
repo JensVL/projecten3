@@ -1,4 +1,6 @@
-## Test plan
+## Testrapport mike2
+
+Auteur(s) testrapport:   
 
 ### Controleer lan ip en dns ip
 * Het lan ip moet 172.18.1.3 zijn
@@ -40,17 +42,9 @@ Ik heb ervoor gezorgd dat ze elk een toegang hebben tot de shared folder met all
 
 ### output scripts
 #### toevoegen domein.ps1
-Geen errors, computer herstarten is nodig.
 
 #### roles.ps1
-Geen errors
 
 #### prerequisites.ps1
-Geen errors, heb het pad naar de .exe moeten aanpassen naargelang de locatie mijn folder zich bevond
 
 #### SPsetup.ps1
-Script runt vlot tot hij vraagt voor de database server, na het ingeven van "November2" heb ik de knop "Retrieve Database Names" gedrukt.
-Dit gaf een error na een korte tijd laden.
-
-Error: Failed to connect to the database server. Ensure the database server exists, is a Sql server, and that you have the appropriate permissions to access the server. ...
-
