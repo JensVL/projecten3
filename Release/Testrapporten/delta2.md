@@ -6,21 +6,34 @@ Aan de hand van delta2.md instructies volgen, de verwachtte output staat onder h
 
 ## resultaat
 
-### Install IIS 
-
-
-### Configure website on IIS
+### Install IIS
+output: true
+Output komt overeen met de verwachte waarde, is dus in orde.
 
 
 ### Install .NET Framework 4.5
-
-
-### Install .NET Core 2.1
-
+output: true
+Output komt overeen met de verwachte waarde, is dus in orde.
 
 ### Install .NET Core 2.2
+output: 2.2.3.0
+Dit komt overeen met de geinstalleerde versie, is dus in orde.
 
+### Install Webdeploy
+output: true
+Output komt overeen met de verwachte waarde, is dus in orde.
 
-### Install Webdepoly
+### Deploy Webapp
+Open a webbrowser ans surf to http://www.red.local/
+Open a webbrowser ans surf to https://www.red.local/
 
+Beide sites zijn bereikbaar dus dat is in orde.
 
+### Create Site
+Output komt overeen met de verwachte waarde, is dus in orde.
+
+### Configure website on IIS
+Output komt overeen met de verwachte waarde, is dus in orde.
+
+### Generate SSL certificate
+Output komt overeen met de verwachte waarde, is dus in orde.
