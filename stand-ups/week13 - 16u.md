@@ -32,42 +32,47 @@
 - Stand van zaken
 - Problemen/Vragen?
 
-## Gerealiseerd week 13 om 16h30
+## Gerealiseerd week 13 om 16h00
 * Alfa
-  * ...
-  * Getest: 
+  * Klaar, foute tijdzone
+  * Getest: Ja 
 * Bravo
-  * ...
-  * Getest: 
+  * Klaar
+  * Getest: Ja 
 * Charlie
-  * ...
-  * Getest: 
+  * Klaar
+  * Getest: Ja
 * Delta
-  * ...
-  * Getest: 
+  * Klaar
+  * Getest: Yngvar is bezig.
 * Kilo
-  * ...
-  * Getest: 
+  * Klaar
+  * Getest: Ja 
 * Lima
-  * ...
-  * Getest: 
+  * Klaar
+  * Getest: Ja
 * Mike
-  * ...
-  * Getest: 
+  * Klaar
+  * Getest: Ja 
 * November
-  * ...
-  * Getest: 
+  * Klaar
+  * Getest: Ja
 * Oscar
-  * ...
-  * Getest: 
+  * Laatste servers nog toegevoegt. 
+  * Getest: Yngvar heeft alles al getest wat kon.
 * Papa
-  * ...
-  * Getest: 
+  * Probleem met client te deployen. 
+  * Getest: Bezig
 * Zulu
-  * ...
-  * Getest: 
+  * Overgeschakeld naar router met ACL's. 
+  * Getest: Robin en Jens testen dit.
 * Netwerkinfra
-  * ...
-  * Getest: 
+  * Werkt volledig. Zulu staat op via een route. 
+  * Getest: /
 
-© Author - Kimberly De Clercq 
+
+## Opmerkingen van de leerkracht
+- Bravo2 beter niet op de esxi-server zetten
+- Mail testen met linux
+
+© Author - Kimberly De Clercq en Jannes Van Wonterghem
