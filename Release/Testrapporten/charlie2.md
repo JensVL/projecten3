@@ -3,7 +3,7 @@
 Auteur(s) testrapport: Kimberly De Clercq
 
 Labo gemaakt door: Jannes Van Wonterghem en Joachim Van de Keere  
-Uitvoerder(s) test: Kimberly De Clercq
+Uitvoerder(s) test: Kimberly De Clercq  
 Uitgevoerd op: 16/12/2019
 
 #### Uit te voeren stappen
