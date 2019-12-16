@@ -37,7 +37,7 @@ Er wordt ook een "Log transcript" gecreëerd na elk script via "Start-Transcript
 2. Ip adres instellen voor de LAN-netwerkadapter
 
    ```
-   New-NetIPAddress -InterfaceAlias "LAN" -IPAddress "172.18.1.68" -PrefixLength 27
+   New-NetIPAddress -InterfaceAlias "LAN" -IPAddress "172.18.1.68" -PrefixLength 27 -DefaultGateway 172.18.1.65
    ```
 
 3. Alfa2 en Bravo2 als DNS-server instellen
