@@ -57,14 +57,14 @@
 * November
   * /
 * Oscar
-  * Klaar
+  * /
 * Papa
   * /
 * Zulu
-  * ...
+  * Wordt getest in aparte testomgeving met netwerkers
   * Getest: 
 * Netwerkinfra
-  * ...
+  * zie zulu
   * Getest: 
 
 © Author - Kimberly De Clercq 
