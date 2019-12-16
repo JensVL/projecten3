@@ -67,4 +67,4 @@
   * zie zulu
   * Getest: 
 
-© Author - Kimberly De Clercq 
+© Author - Kimberly De Clercq en Jannes Van Wonterghem

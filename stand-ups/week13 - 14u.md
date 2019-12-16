@@ -34,28 +34,28 @@
 
 ## Gerealiseerd week 13 om 14h00
 * Alfa
-  * 
+  * Klaar, Elias en Tim zijn aan het testen. 
 * Bravo
-  * 
+  * Bezig, duurt langer dan normaal. 
 * Charlie
-  * 
+  * Bezig. 
 * Delta
-  * 
+  * Lukt niet om de database november2 te pingen.
 * Kilo
-  * 
+  * Klaar. Nathan is aan het testen. 
 * Lima
-  * 
+  * Installatie is goed verlopen. Cédric en Aron zullen dit testen. 
 * Mike
-  * 
+  * Bezig.
 * November
-  * 
+  * Klaar. Wordt getest als bravo klaar is. 
 * Oscar
-  * 
+  * Bezig, duurt lang.
 * Papa
-  * 
+  * Bezig. 
 * Zulu
-  * 
+  * Statische routering werkt niet. Men zal overschakelen naar OSPF. 
 * Netwerkinfra
-  * 
+  * Wachten op Linux voor VPN. 
 
-© Author - Kimberly De Clercq 
+© Author - Kimberly De Clercq en Jannes Van Wonterghem
