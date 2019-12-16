@@ -1,6 +1,6 @@
 # TestRapport Netwerkopstelling
 
-datum: 18/11/2019
+datum: 09/12/2019
 
 ## Voorbereiding
 
@@ -33,8 +33,11 @@ Benodigdheden: 3 pc's
 ### Connectiviteit
 
 1. Ping van pc1 naar pc2: open een command prompt op pc1 en voer `ping 172.18.1.8` uit. Dit is gelukt.
-2. Ping van pc1 naar pc3: open een command prompt op pc1 en voer `ping 172.18.0.20` uit. Dit is gelukt.
-3. Ping van pc2 naar pc3: open een command prompt op pc2 en voer `ping 172.18.0.20` uit. Dit is gelukt.
+2. Ping van pc2 naar pc1: open een command prompt op pc2 en voer `ping 172.18.1.70` uit. Dit is gelukt.
+3. Ping van pc1 naar pc3: open een command prompt op pc1 en voer `ping 172.18.0.20` uit. Dit is gelukt.
+4. Ping van pc3 naar pc1: open een command prompt op pc3 en voer `ping 172.18.1.70` uit. Dit is gelukt.
+5. Ping van pc2 naar pc3: open een command prompt op pc2 en voer `ping 172.18.0.20` uit. Dit is gelukt.
+6. Ping van pc3 naar pc2: open een command prompt op pc3 en voer `ping 172.18.1.8` uit. Dit is gelukt.
 
 ### Internet
 
