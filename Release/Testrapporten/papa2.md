@@ -36,7 +36,7 @@ Uitgevoerd op: 16/12/2019
 
 ## Windows 10 Client Deployment / Task Sequence
 Labo gemaakt door: Ferre Verstichelen en Laurens Blancquaert-Cassaer
-Uitvoerder(s) test:   
+Uitvoerder(s) test: Arno Van Nieuwenhove en Levi Goessens     
 Uitgevoerd op: 16/12/2019
 
 ### 1. Stappen om software binnen SCCM te controleren:
@@ -56,6 +56,7 @@ Uitgevoerd op: 16/12/2019
 ### 3. Windows 10 deployment:
 | Nr test | Wat moet er getest worden | In orde? |
 | :--- | :--- | :--- |
-| 1 | Kan de client de PXE / SCCM server Papa2 bereiken via PXE boot?| Ja/Nee |
-| 2 | Wordt Windows 10 op de client geïnstalleerd via PXE boot? | Ja/Nee |
-| 3 | Zijn de 4 applications (Libre office, java, Adobe Reader en Adobe Flash Player geïnstalleerd op de client? | Ja/Nee |
+| 1 | Kan de client de PXE / SCCM server Papa2 bereiken via PXE boot?| Ja |
+| 2 | Wordt Windows 10 op de client geïnstalleerd via PXE boot? | Nee |
+| 3 | Zijn de 4 applications (Libre office, java, Adobe Reader en Adobe Flash Player geïnstalleerd op de client? | Nee |
+Resultaat: de windows 10 client kon het domein niet joinen via de task sequencce.
