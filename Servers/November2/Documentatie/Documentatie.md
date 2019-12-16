@@ -99,6 +99,7 @@ Bij problemen kan je SSMS handmatig installeren door de pdf te hanteren van het 
 <img src="../images/4%20delta.png" alt="Afbeelding4delta" width="500">
 
 <br>
+
 - Klik op 'OK'.
 
 ### Aanmaken DB en User voor Mike2
@@ -111,5 +112,6 @@ Bij problemen kan je SSMS handmatig installeren door de pdf te hanteren van het 
 <img src="../images/4%20admin%20red.png" alt="Afbeelding4admin" width="500">
 
 <br>
+
 - Klik op 'OK'.
 
