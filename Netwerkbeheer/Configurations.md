@@ -24,7 +24,6 @@
 - exit
 - ip route 0.0.0.0 0.0.0.0 s0/1/1
 - ip route 172.18.0.0 255.255.0.0 g0/0/0 172.18.1.106
-- exit
 -
 - without zulu2:
 - int s0/1/0
@@ -345,7 +344,7 @@
 - vlan 500
 - name vlan500
 - exit
-- int range f0/1-5
+- int range f0/1-10
 - switchport mode trunk
 - switchport trunk allowed vlan 200,300,500
 
