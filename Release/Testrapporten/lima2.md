@@ -1,10 +1,12 @@
 ### Testrapport Lima2
 
-Auteur(s) testrapport:   
+Auteur(s) testrapport: Aron Marckx, Cédric Van den Eede
 ## De server naam en domein
 
 1. De server naam is Lima2.
 2. Lima2 is het domein automatisch gejoined.
+
+Resultaat: Klopt
 
 ## Controleren dat alle volumes aangemaakt zijn
 
@@ -16,6 +18,8 @@ Klik op de disk met nummer 0
 - Optioneel volume: 'C:' -> Wordt aangemaakt bij de installatie van de Windows Server
 - Controleren of volume 'D:' en 'E:' aangemaakt zijn op disk 0
 
+Resultaat: Klopt
+
 Klik op de disk met nummer 1
 
 - Controleren dat er 6 volumes aangemaakt zijn op disk 1
@@ -26,6 +30,8 @@ Klik op de disk met nummer 1
 - Q:
 - Y:
 - G:
+
+Resultaat: Klopt
 
 ## De File System Labels van de volumes controleren
 
@@ -39,6 +45,8 @@ Open Server Manager -> File and Storage Services -> Volumes
 - Volume: 'E:' met File System Label: 'OntwikkelingData'
 - Volume: 'Y:' met File System Label: 'HomeDirs'
 - Volume: 'G:' met File System Label: 'DirData'
+
+Resultaat: Klopt
 
 ## Controleren dat alle shares aangemaakt zijn
 
@@ -55,6 +63,8 @@ Open Server Manager -> File and Storage Services -> Shares
 - shareVerkoop
 - VerkoopData
 
+Resultaat: Klopt
+
 ## De dagelijske schaduw kopie
 
 Open de Task Scheduler -> Task Scheduler (local) -> Task Scheduler Library
@@ -65,6 +75,7 @@ Open de Task Scheduler -> Task Scheduler (local) -> Task Scheduler Library
 - Controleer volume AdminData. Dit volume bevat een nieuwe schaduw kopie. Dit kan je nazien door naar AdminData te gaan -> Properties -> Shadow Copies.
 - Het veld "Shadow copies of selected volume bevat een nieuw veld met de huidige tijd en datum.
 
+Resultaat: Klopt
 
 ## Share Permissies
 
@@ -78,6 +89,8 @@ Open de Task Scheduler -> Task Scheduler (local) -> Task Scheduler Library
 
 5. ga in de fileshare van Directie en probeer een nieuwe file aan te maken -> dit zou NIET mogen lukken.
 
+Resultaat: Klopt
+
 ## maximumcapaciteit share per user
 
 1. neem een folder of bestand van 150MB en probeer het in de fileshare Ontwikkeling te zetten -> dit moet lukken
@@ -85,3 +98,6 @@ Open de Task Scheduler -> Task Scheduler (local) -> Task Scheduler Library
 2. verwijder het 150MB bestand of folder
 
 3. probeer nu een folder/bestand van 250MB in de fileshare Ontwikkeling te zetten -> dit mag NIET lukken.
+
+Resultaat: Niet genoeg ruimte, dus waarschijnlijk geslaagd zoals het hoort.
+
