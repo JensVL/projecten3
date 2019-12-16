@@ -5,7 +5,7 @@ Auteur(s) testrapport: Kimberly De Clercq
 ## Test AD/DNS installatie en configuratie
 Labo gemaakt door: Laurens Blancquaert-Cassaer  
 Uitvoerder(s) test: Elias Waterschoot
-Uitgevoerd op: 18/11/2019
+Uitgevoerd op: 16/12/2019
 
 ### Uit te voeren testen
 | Nr test | Wat moet er getest worden | In orde? |
@@ -32,20 +32,20 @@ Uitgevoerd op: 18/11/2019
 
 ## Test AD en DNS Replication tussen Alfa2 en Bravo2 (Tweede domeincontroller)
 Labo gemaakt door: Laurens Blancquaert-Cassaer  
-Uitvoerder(s) test: 
-Uitgevoerd op: 18/11/2019  
+Uitvoerder(s) test: Elias Waterschoot
+Uitgevoerd op: 16/12/2019  
 
 ### Uit te voeren testen
 | Nr test | Wat moet er getest worden | In orde? |
 | :--- | :--- | :--- |
-| 1 | Werkt de replicatie tussen Alfa2 en Bravo2 hun Active Directory zoals het hoort? | Ja/Nee |
-| 2 | Staat de DNS primary zone "red.local" ook op Bravo2 met alle records? | Ja/Nee |
+| 1 | Werkt de replicatie tussen Alfa2 en Bravo2 hun Active Directory zoals het hoort? | Ja |
+| 2 | Staat de DNS primary zone "red.local" ook op Bravo2 met alle records? | Ja |
 
 
 ## Test ADstructuur en beleidsregels
 Labo gemaakt door: Kimberly De Clercq  
 Uitvoerder(s) test: Elias Waterschoot
-Uitgevoerd op: 18/11/2019   
+Uitgevoerd op: 16/12/2019   
 
 ### Uit te voeren testen Organizational Units
 
@@ -105,7 +105,7 @@ Uitgevoerd op: 18/11/2019
 ## Test Prepare AD for SCCM
 Labo gemaakt door:  Laurens Blancquaert-Cassaer  
 Uitvoerder(s) test: Elias Waterschoot  
-Uitgevoerd op: 18/11/2019  
+Uitgevoerd op: 16/12/2019  
 
 ### Uit te voeren testen
 | Nr test | Wat moet er getest worden | In orde? |
