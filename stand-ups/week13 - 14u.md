@@ -34,30 +34,28 @@
 
 ## Gerealiseerd week 13 om 14h00
 * Alfa
-  * ...
+  * 
 * Bravo
-  * ...
+  * 
 * Charlie
-  * ...
+  * 
 * Delta
-  * ...
+  * 
 * Kilo
-  * ...
+  * 
 * Lima
-  * ...
+  * 
 * Mike
-  * /
+  * 
 * November
-  * ...
+  * 
 * Oscar
-  * ...
+  * 
 * Papa
-  * ...
+  * 
 * Zulu
-  * ...
-  * Getest: 
+  * 
 * Netwerkinfra
-  * ...
-  * Getest: 
+  * 
 
 © Author - Kimberly De Clercq 

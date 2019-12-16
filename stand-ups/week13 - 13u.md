@@ -4,7 +4,7 @@
 | Naam                          | Aanwezig |
 | :---                          | :---   |
 | Alister Adutwum               | V |
-| Laurens Blancquart-Cassaer    | V |
+| Laurens Blancquart-Cassaer    | X (miscommunicatie) |
 | Nathan Cammerman              | V |
 | Rik Claeyssens                | V |
 | Kimberly De Clercq            | V |
@@ -21,7 +21,7 @@
 | Ferre Verstichelen            | V |
 | Elias Waterschoot             | V |
 | Robby Daelman                 | V |
-| Cedric Detemmerman            | V |
+| Cedric Detemmerman            | X |
 | Levi Goessens                 | V |
 | Aron Marckx                   | V |
 | Cédric Van den Eede           | V |
