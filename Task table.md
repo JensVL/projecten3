@@ -1,4 +1,6 @@
-### Takenverdeling
+# Task table
+
+## Servers
 
 Alfa2
 
@@ -50,7 +52,7 @@ Papa2
 - Laurens Blancquaert-Cassaer
 - Ferre Verstichelen
 
-Netwerk
+Network
 
 - Jens Van Liefferinge
 - Robin Van de Walle
@@ -60,8 +62,7 @@ Firewall
 - Alister Adutwum
 - Sean Vancompernolle
 
-
-## Testrapport
+## Testers
 
 Alfa2
 
@@ -113,10 +114,10 @@ Papa2
 - Jens Van Liefferinge
 - Robin Van de Walle
 
-Netwerk
+Network
 
 - Rik Claeyssens
-- Jonas Vandegehuchte 
+- Jonas Vandegehuchte
 
 Firewall
 
