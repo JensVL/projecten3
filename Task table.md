@@ -1,6 +1,8 @@
-### Takenverdeling
+# Task table
 
-Alpha2
+## Servers
+
+Alfa2
 
 - Kimberly De Clercq
 - Laurens Blancquart-Cassaer
@@ -47,9 +49,10 @@ Oscar2
 
 Papa2
 
+- Laurens Blancquaert-Cassaer
 - Ferre Verstichelen
 
-Netwerk
+Network
 
 - Jens Van Liefferinge
 - Robin Van de Walle
@@ -57,14 +60,14 @@ Netwerk
 Firewall
 
 - Alister Adutwum
+- Sean Vancompernolle
 
+## Testers
 
-## Voorlopige versie testrapport
-
-Alpha2
+Alfa2
 
 - Alister Adutwum
-- 
+- Sean Vancompernolle
 
 Bravo2
 
@@ -103,18 +106,18 @@ November2
 
 Oscar2
 
-- Rik Claeyssens
-- Jonas Vandegehuchte 
+- Tim Grijp
+- Elias Waterschoot
 
 Papa2
 
 - Jens Van Liefferinge
 - Robin Van de Walle
 
-Netwerk
+Network
 
-- Tim Grijp
-- Elias Waterschoot
+- Rik Claeyssens
+- Jonas Vandegehuchte
 
 Firewall
 
