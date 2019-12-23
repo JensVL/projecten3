@@ -29,7 +29,7 @@ The global assignment consists of a fully integrated Windows and Linux server st
 
 ### General requirements
 
-- De gehele opstelling moet volledig geautomatiseerd zijn. Dat betekent datop het moment van een productie-release het netwerk “from scratch” kanopgezet worden.
+- The whole server structure should be completely automated. This also means that on release day, everything is set up from scratch.
   - Use Ansible for the Linux domain
   - Use Powershell scripts for the Windows domain
 - Provide an Administrator account on every server for remote access. (Linux via ssh, Windows via WinRM/HTTPS).
